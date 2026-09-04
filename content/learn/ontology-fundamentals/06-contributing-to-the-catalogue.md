@@ -1,40 +1,40 @@
 ---
-title: Contributing to the Catalogue
+title: 向本体目录贡献内容
 slug: contributing-to-the-catalogue
-description: How to share your ontology with the community — fork, add your RDF and metadata, submit a PR, and see it published in the catalogue.
+description: 学习如何派生仓库、添加 RDF 与元数据、提交拉取请求，并将本体发布到社区目录。
 order: 6
 embed: official/university
 ---
 
-## The community catalogue
+## 社区本体目录
 
-The Ontology Playground includes a [catalogue](#/catalogue) of ontologies — some maintained by the project team ("official") and others contributed by the community. Anyone can submit an ontology by opening a pull request.
+本体探索平台的[目录](#/catalogue)包含项目团队维护的官方本体和社区贡献本体。任何人都可以通过拉取请求提交。
 
-## Two ways to contribute
+## 两种贡献方式
 
-### Option A: One-click PR from the designer
+### 方式 A：从设计器导出贡献文件
 
-The fastest way to contribute:
+可从设计器开始：
 
-1. Open the [Designer](#/designer) and build your ontology (or load an existing one)
-2. Click **Submit to Catalogue** in the toolbar
-3. Fill in the metadata: name, description, category, and tags
-4. Sign in with GitHub (device flow — no passwords stored)
-5. The tool automatically forks the repo, creates a branch, commits your RDF and metadata, and opens a pull request
+1. 打开[设计器](#/designer)，构建本体或加载已有本体
+2. 点击工具栏的**提交到本体目录**
+3. 下载 RDF 与元数据，填写名称、说明、类别和标签
+4. 使用自己的 GitHub 账号登录 GitHub
+5. 按弹窗说明派生仓库，将文件加入社区目录，并提交拉取请求
 
-That's it. The CI pipeline validates your RDF, checks the metadata schema, and runs tests. A maintainer reviews and merges.
+CI 流水线会校验 RDF、检查元数据结构并运行测试，然后由维护者评审合并。
 
-### Option B: Manual PR
+### 方式 B：手动提交拉取请求
 
-If you prefer working with Git directly:
+如果更喜欢直接使用 Git：
 
-1. **Fork** the repository on GitHub
-2. Create a directory under `catalogue/community/<your-github-username>/<ontology-slug>/`
-3. Add two files:
-   - `ontology.rdf` — your RDF/OWL file
-   - `metadata.json` — describes your ontology
+1. 在 GitHub 上**派生（Fork）**仓库
+2. 在 `catalogue/community/<your-github-username>/<ontology-slug>/` 下创建目录
+3. 添加两个文件：
+   - ontology.rdf：RDF/OWL 本体文件
+   - metadata.json：本体说明与元数据
 
-## The metadata format
+## 元数据格式
 
 ```json
 {
@@ -47,56 +47,56 @@ If you prefer working with Git directly:
 }
 ```
 
-| Field | Required | Description |
+| 字段 | 必填 | 说明 |
 |-------|----------|-------------|
-| `name` | Yes | Display name for the catalogue |
-| `description` | Yes | One-sentence summary |
-| `category` | Yes | One of: `retail`, `healthcare`, `finance`, `manufacturing`, `education`, `technology`, `general` |
-| `icon` | No | Single emoji for the card |
-| `tags` | No | Array of lowercase keywords for search |
-| `author` | No | GitHub username (auto-filled by the one-click flow) |
+| name | 是 | 目录显示名称 |
+| description | 是 | 一句话摘要 |
+| category | 是 | retail、healthcare、finance、manufacturing、education、technology、general 等支持的类别 |
+| icon | 否 | 卡片使用的单个表情符号 |
+| tags | 否 | 用于搜索的小写关键词数组 |
+| author | 否 | GitHub 用户名 |
 
-## Validation rules
+## 校验规则
 
-Your PR will be automatically validated against these rules:
+拉取请求会按照以下规则自动校验：
 
-- **Valid RDF/OWL** — must parse without errors
-- **Round-trip fidelity** — `parse(serialize(ontology))` must produce equivalent output
-- **Metadata schema** — all required fields present, category is valid
-- **Directory naming** — lowercase alphanumeric, hyphens, and underscores only
-- **No symlinks** — for security, symbolic links in the catalogue are rejected
+- **有效 RDF/OWL**：必须能够无错误解析
+- **往返一致性**：parse(serialize(ontology)) 必须得到等价输出
+- **元数据结构**：必填字段齐全，类别有效
+- **目录命名**：只使用小写字母、数字、连字符和下划线
+- **禁止符号链接**：出于安全考虑，目录中的符号链接会被拒绝
 
-## What happens after merge?
+## 合并后会发生什么？
 
-Once merged, the build pipeline:
+合并后，构建流水线将：
 
-1. Runs `npm run catalogue:build` — compiles all RDF files into `catalogue.json`
-2. Deploys the updated site — your ontology appears in the [Gallery](#/catalogue)
-3. It's immediately available for embedding, deep-linking, and loading in the playground
+1. 运行 `npm run catalogue:build`，将全部 RDF 文件编译为 catalogue.json
+2. 部署更新后的网站，使本体出现在[本体目录](#/catalogue)中
+3. 部署后即可嵌入、通过深链接访问，或在探索平台中加载
 
 <ontology-embed id="official/university" height="400px"></ontology-embed>
 
-*The University System ontology is one of the official catalogue entries. Community contributions follow the same format — your ontology will look just like this in the gallery.*
+*大学系统是官方目录中的一个本体。社区贡献遵循相同格式，提交的本体也会在目录中以同样方式展示。*
 
-## Tips for a smooth review
+## 让评审更顺利
 
-- **Write a good description** — explain what domain your ontology models and who it's for
-- **Add meaningful tags** — helps users find your ontology in search
-- **Test locally** — run `npm run validate -- catalogue/community/<you>/<slug>/ontology.rdf` before pushing
-- **Keep it focused** — a well-scoped ontology with 3-8 entity types is more useful than a sprawling one with 30+
+- **写好说明**：解释本体描述什么领域、面向哪些用户
+- **添加有意义的标签**：帮助用户搜索到本体
+- **本地测试**：推送前运行 `npm run validate -- catalogue/community/<you>/<slug>/ontology.rdf`
+- **保持聚焦**：边界清晰、包含 3–8 个实体的本体，往往比庞杂的 30 多实体模型更实用
 
-## Key takeaways
+## 核心要点
 
-- Anyone can contribute an ontology via the one-click PR flow or a manual pull request
-- Each submission needs an RDF file and a `metadata.json`
-- CI validates your RDF automatically — fix any errors before the review
-- Merged ontologies appear in the live catalogue immediately after deployment
+- 任何人都可以从设计器导出文件，或手动发起拉取请求来贡献本体
+- 每次提交都需要 RDF 文件和 metadata.json
+- CI 自动校验 RDF，评审前应修复错误
+- 合并后的本体会在部署完成后出现在在线目录中
 
 ```quiz
-Q: What two files must every catalogue contribution include?
-- ontology.json and README.md
-- schema.rdf and config.yaml
-- ontology.rdf and metadata.json [correct]
-- index.html and style.css
-> Each catalogue entry requires an ontology.rdf file (the RDF/OWL ontology) and a metadata.json file (name, description, category, and tags for the catalogue listing).
+Q: 每个目录贡献必须包含哪两个文件？
+- ontology.json 与 README.md
+- schema.rdf 与 config.yaml
+- ontology.rdf 与 metadata.json [correct]
+- index.html 与 style.css
+> 每个目录条目都需要 ontology.rdf（RDF/OWL 本体）和 metadata.json（目录使用的名称、说明、类别及标签）。
 ```

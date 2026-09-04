@@ -1,55 +1,55 @@
 ---
-title: Collateral and Schedules
+title: 抵押物与还款计划
 slug: collateral-and-schedules
-description: Add security agreements and repayment cadence using FIBO's collateral and payment schedule concepts.
+description: 使用 FIBO 的抵押物和还款计划概念，为模型加入担保协议与还款节奏。
 order: 3
 embed: official/fibo-loans-step-2
 reviewStatus: under-human-review
 ---
 
-## From contract to structure
+## 从合同到结构
 
-A loan becomes operationally meaningful when you add two concepts from FIBO:
+添加两个 FIBO 概念后，贷款才具备具体的业务执行结构：
 
-- **Collateral** — what secures repayment (adapted from `fibo-fbc-dae-dbt:Collateral` in [FBC/DebtAndEquities/Debt](https://github.com/edmcouncil/fibo/tree/master/FBC/DebtAndEquities/Debt))
-- **LoanPaymentSchedule** — how repayment is expected over time (adapted from `fibo-loan-ln-ln:LoanPaymentSchedule` in [LOAN/LoansGeneral/Loans](https://github.com/edmcouncil/fibo/tree/master/LOAN/LoansGeneral/Loans))
+- **Collateral（抵押物）**：用什么保障还款，改编自 [FBC/DebtAndEquities/Debt](https://github.com/edmcouncil/fibo/tree/master/FBC/DebtAndEquities/Debt) 中的 `fibo-fbc-dae-dbt:Collateral`。
+- **LoanPaymentSchedule（还款计划）**：预期如何随时间还款，改编自 [LOAN/LoansGeneral/Loans](https://github.com/edmcouncil/fibo/tree/master/LOAN/LoansGeneral/Loans) 中的 `fibo-loan-ln-ln:LoanPaymentSchedule`。
 
-These additions capture two core FIBO concerns: **security agreements** and **temporal obligations**.
+这些内容体现了 FIBO 的两个核心关注点：**担保协议**和**时间性义务**。
 
-## New properties
+## 新增属性
 
-### Collateral
+### 抵押物（Collateral）
 
-| Property | Type | Notes |
+| 属性 | 类型 | 说明 |
 |---|---|---|
-| `assetType` | string | Identifier — the kind of asset (e.g., "real property", "vehicle", "securities") |
-| `appraisedValue` | decimal (USD) | Market value at time of appraisal |
+| `assetType` | string | 标识符：资产类别，如 real property、vehicle、securities |
+| `appraisedValue` | decimal（USD） | 评估时的市场价值 |
 
-> **FIBO reference**: In the full ontology, debt collateral is modeled as `fibo-fbc-dae-dbt:Collateral`, which can represent physical and non-physical pledged assets. In the FIBO Mortgages module ([LOAN/RealEstateLoans/Mortgages](https://github.com/edmcouncil/fibo/tree/master/LOAN/RealEstateLoans/Mortgages)), `LoanSecuredByRealEstate` constrains collateral to `fibo-fnd-plc-rp:RealProperty` and links to `SecurityAgreement` via `owl:Restriction` blocks.
+> **FIBO 参考：**完整本体使用 `fibo-fbc-dae-dbt:Collateral` 表示债务抵押物，可涵盖实体和非实体的担保资产。在[按揭模块](https://github.com/edmcouncil/fibo/tree/master/LOAN/RealEstateLoans/Mortgages)中，`LoanSecuredByRealEstate` 将抵押物约束为 `fibo-fnd-plc-rp:RealProperty`，并通过 `owl:Restriction` 关联到 `SecurityAgreement`。
 
-### LoanPaymentSchedule
+### 还款计划（LoanPaymentSchedule）
 
-| Property | Type | Notes |
+| 属性 | 类型 | 说明 |
 |---|---|---|
-| `scheduleId` | string | Identifier |
-| `expectedPayments` | integer | Anticipated number of payment periods |
+| `scheduleId` | string | 标识符 |
+| `expectedPayments` | integer | 预期还款期数 |
 
-## New relationships
+## 新增关系
 
-- **securedBy**: `Loan` → `Collateral` (`one-to-many`) — a loan can be secured by multiple assets
-- **repaidBySchedule**: `Loan` → `LoanPaymentSchedule` (`one-to-one`) — each loan has one primary repayment schedule
+- **securedBy（担保物）**：`Loan` → `Collateral`（`one-to-many`），一笔贷款可由多项资产担保。
+- **repaidBySchedule（还款计划）**：`Loan` → `LoanPaymentSchedule`（`one-to-one`），每笔贷款有一份主要还款计划。
 
-## Step 2 graph (diff from Step 1)
+## 步骤 2 图谱（与步骤 1 对比）
 
 <ontology-embed id="official/fibo-loans-step-2" diff="official/fibo-loans-step-1" height="380px"></ontology-embed>
 
-*New entities highlighted: Collateral and LoanPaymentSchedule extend the loan model with security and temporal structure.*
+*高亮的新增实体 Collateral 和 LoanPaymentSchedule，为贷款模型加入担保和时间结构。*
 
 ```quiz
-Q: In FIBO, where does the Collateral concept originate?
+Q: FIBO 中的 Collateral 概念来自哪个模块？
 - LOAN/LoansGeneral/Loans
 - FBC/DebtAndEquities/Debt [correct]
 - FND/Agreements/Contracts
 - FND/Places/RealProperty
-> Collateral is defined in FIBO's FBC (Financial Business and Commerce) domain under DebtAndEquities/Debt. It represents assets pledged to secure repayment obligations — a concept shared across all secured lending types, not just mortgages.
+> Collateral 定义在 FIBO 的金融业务与商务领域 FBC 下的 DebtAndEquities/Debt 模块中，表示为保障还款义务而提供的资产。它适用于各种担保贷款，不仅限于按揭。
 ```

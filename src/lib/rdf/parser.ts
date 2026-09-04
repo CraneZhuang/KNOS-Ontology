@@ -149,7 +149,7 @@ export function parseRDF(rdfXml: string): { ontology: Ontology; bindings: DataBi
   // Check for XML parse errors
   const parseError = doc.querySelector('parsererror');
   if (parseError) {
-    throw new RDFParseError(`Malformed XML: ${parseError.textContent?.trim() || 'parse error'}`);
+    throw new RDFParseError(`XML 格式错误： ${parseError.textContent?.trim() || 'parse error'}`);
   }
 
   const root = doc.documentElement;
@@ -352,11 +352,11 @@ export function parseRDF(rdfXml: string): { ontology: Ontology; bindings: DataBi
   const entityTypes = Array.from(entityMap.values());
 
   if (!ontologyName && entityTypes.length === 0) {
-    throw new RDFParseError('No ontology metadata or OWL classes found in the RDF document.');
+    throw new RDFParseError("RDF 文档中未找到本体元数据或 OWL 类。");
   }
 
   const ontology: Ontology = {
-    name: ontologyName || 'Imported Ontology',
+    name: ontologyName || "导入的本体",
     description: ontologyDescription,
     entityTypes,
     relationships,

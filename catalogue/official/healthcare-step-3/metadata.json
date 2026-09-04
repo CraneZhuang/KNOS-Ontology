@@ -1,8 +1,12 @@
 {
-  "name": "Healthcare — Step 3: Prescriptions",
-  "description": "Complete model with Prescription medication orders",
+  "name": "医疗 — 第三步：处方",
+  "description": "包含 Prescription 药物医嘱的完整模型。",
   "icon": "💊",
   "category": "school",
-  "tags": ["healthcare", "school", "step-3"],
+  "tags": [
+    "healthcare",
+    "school",
+    "step-3"
+  ],
   "author": "ontology-quest"
 }

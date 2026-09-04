@@ -15,28 +15,28 @@
     xmlns:ont="http://example.org/ontology/fibo-risk-step-2/">
 
   <owl:Ontology rdf:about="">
-    <rdfs:label>FIBO Risk Lab — Step 2</rdfs:label>
-    <rdfs:comment>Industry classification plus geographic hierarchy with disaster-zone risk flags. Adapted from EDM Council FIBO. Source: https://github.com/edmcouncil/fibo — MIT License.</rdfs:comment>
+    <rdfs:label>FIBO 风险实验 — 第二步：地理层次</rdfs:label>
+    <rdfs:comment>行业分类与带灾害区域风险标记的地理层次，改编自 EDM Council FIBO。来源：https://github.com/edmcouncil/fibo；MIT 许可。</rdfs:comment>
   </owl:Ontology>
 
   <!-- All entities from Step 1 -->
   <owl:Class rdf:about="Sector">
     <rdfs:label>Sector</rdfs:label>
-    <rdfs:comment>Top-level economic sector grouping industries by broad function.</rdfs:comment>
+    <rdfs:comment>按广义功能组织行业的顶层经济部门。</rdfs:comment>
     <ont:icon>🏢</ont:icon>
     <ont:color>#0078D4</ont:color>
   </owl:Class>
 
   <owl:Class rdf:about="Subsector">
     <rdfs:label>Subsector</rdfs:label>
-    <rdfs:comment>Subdivision of an economic sector for finer-grained classification.</rdfs:comment>
+    <rdfs:comment>经济部门的细分子部门。</rdfs:comment>
     <ont:icon>🏗️</ont:icon>
     <ont:color>#00A9E0</ont:color>
   </owl:Class>
 
   <owl:Class rdf:about="IndustryGroup">
     <rdfs:label>IndustryGroup</rdfs:label>
-    <rdfs:comment>NAICS-coded industry group with climate sensitivity and cyclicality attributes for risk analysis.</rdfs:comment>
+    <rdfs:comment>采用 NAICS 编码的行业组，包含气候敏感性与周期性属性，用于风险分析。</rdfs:comment>
     <ont:icon>🏭</ont:icon>
     <ont:color>#486991</ont:color>
   </owl:Class>
@@ -44,21 +44,21 @@
   <!-- New in Step 2 -->
   <owl:Class rdf:about="Region">
     <rdfs:label>Region</rdfs:label>
-    <rdfs:comment>Continental or geographic region grouping for macroeconomic analysis.</rdfs:comment>
+    <rdfs:comment>用于宏观经济分析的洲级或地理区域分组。</rdfs:comment>
     <ont:icon>🌍</ont:icon>
     <ont:color>#107C10</ont:color>
   </owl:Class>
 
   <owl:Class rdf:about="Country">
     <rdfs:label>Country</rdfs:label>
-    <rdfs:comment>Nation-state with economic zone, currency, and regulatory framework attributes.</rdfs:comment>
+    <rdfs:comment>国家实体，包含经济区、货币和监管框架属性。</rdfs:comment>
     <ont:icon>🏳️</ont:icon>
     <ont:color>#008272</ont:color>
   </owl:Class>
 
   <owl:Class rdf:about="Jurisdiction">
     <rdfs:label>Jurisdiction</rdfs:label>
-    <rdfs:comment>Subnational jurisdiction with disaster-zone flags for hurricane, flood, earthquake, and wildfire risk.</rdfs:comment>
+    <rdfs:comment>国家以下辖区，记录飓风、洪水、地震和野火风险区域标记。</rdfs:comment>
     <ont:icon>📍</ont:icon>
     <ont:color>#00B294</ont:color>
   </owl:Class>
@@ -279,7 +279,7 @@
     <rdfs:label>partOfSector</rdfs:label>
     <rdfs:domain rdf:resource="Subsector"/>
     <rdfs:range rdf:resource="Sector"/>
-    <rdfs:comment>Links a subsector to its parent economic sector.</rdfs:comment>
+    <rdfs:comment>连接子部门与父级经济部门。</rdfs:comment>
     <ont:cardinality>many-to-one</ont:cardinality>
     <ont:fromEntityId>Subsector</ont:fromEntityId>
     <ont:toEntityId>Sector</ont:toEntityId>
@@ -289,7 +289,7 @@
     <rdfs:label>belongsToSubsector</rdfs:label>
     <rdfs:domain rdf:resource="IndustryGroup"/>
     <rdfs:range rdf:resource="Subsector"/>
-    <rdfs:comment>Links an industry group to its parent subsector.</rdfs:comment>
+    <rdfs:comment>连接行业组与父级子部门。</rdfs:comment>
     <ont:cardinality>many-to-one</ont:cardinality>
     <ont:fromEntityId>IndustryGroup</ont:fromEntityId>
     <ont:toEntityId>Subsector</ont:toEntityId>
@@ -300,7 +300,7 @@
     <rdfs:label>inCountry</rdfs:label>
     <rdfs:domain rdf:resource="Jurisdiction"/>
     <rdfs:range rdf:resource="Country"/>
-    <rdfs:comment>Links a jurisdiction to the country it belongs to.</rdfs:comment>
+    <rdfs:comment>连接辖区与所属国家。</rdfs:comment>
     <ont:cardinality>many-to-one</ont:cardinality>
     <ont:fromEntityId>Jurisdiction</ont:fromEntityId>
     <ont:toEntityId>Country</ont:toEntityId>
@@ -310,7 +310,7 @@
     <rdfs:label>inRegion</rdfs:label>
     <rdfs:domain rdf:resource="Jurisdiction"/>
     <rdfs:range rdf:resource="Region"/>
-    <rdfs:comment>Links a jurisdiction to its geographic region.</rdfs:comment>
+    <rdfs:comment>连接辖区与所属地理区域。</rdfs:comment>
     <ont:cardinality>many-to-one</ont:cardinality>
     <ont:fromEntityId>Jurisdiction</ont:fromEntityId>
     <ont:toEntityId>Region</ont:toEntityId>

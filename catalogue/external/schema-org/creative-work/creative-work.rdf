@@ -8,8 +8,8 @@
     xmlns:ont="https://schema.org/creative-work-subset/">
 
     <owl:Ontology rdf:about="https://schema.org/creative-work-subset/">
-        <rdfs:label>Schema.org — CreativeWork</rdfs:label>
-        <rdfs:comment>Books, articles, movies and other creative works with authorship, publication, and ratings — a Schema.org subset.</rdfs:comment>
+        <rdfs:label>Schema.org — 创作作品</rdfs:label>
+        <rdfs:comment>描述图书、文章、电影等作品的作者、出版和评分信息，采用 Schema.org 子集。</rdfs:comment>
     </owl:Ontology>
 
     <!-- ===================== -->
@@ -18,35 +18,35 @@
 
     <owl:Class rdf:about="https://schema.org/creative-work-subset/CreativeWork">
         <rdfs:label>CreativeWork</rdfs:label>
-        <rdfs:comment>A book, article, movie, or other creative output</rdfs:comment>
+        <rdfs:comment>图书、文章、电影或其他创作成果。</rdfs:comment>
         <ont:icon>📖</ont:icon>
         <ont:color>#0078D4</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="https://schema.org/creative-work-subset/Person">
         <rdfs:label>Person</rdfs:label>
-        <rdfs:comment>An author or contributor of a creative work</rdfs:comment>
+        <rdfs:comment>作品的作者或贡献者。</rdfs:comment>
         <ont:icon>👤</ont:icon>
         <ont:color>#5C2D91</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="https://schema.org/creative-work-subset/Organization">
         <rdfs:label>Organization</rdfs:label>
-        <rdfs:comment>A publisher or production company</rdfs:comment>
+        <rdfs:comment>出版社或制作公司。</rdfs:comment>
         <ont:icon>🏢</ont:icon>
         <ont:color>#107C10</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="https://schema.org/creative-work-subset/Rating">
         <rdfs:label>Rating</rdfs:label>
-        <rdfs:comment>An aggregate or individual rating for a creative work</rdfs:comment>
+        <rdfs:comment>作品的汇总评分或单次评分。</rdfs:comment>
         <ont:icon>⭐</ont:icon>
         <ont:color>#FFB900</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="https://schema.org/creative-work-subset/Comment">
         <rdfs:label>Comment</rdfs:label>
-        <rdfs:comment>A reader or viewer comment on a creative work</rdfs:comment>
+        <rdfs:comment>读者或观众对作品的评论。</rdfs:comment>
         <ont:icon>💬</ont:icon>
         <ont:color>#E74C3C</ont:color>
     </owl:Class>
@@ -120,7 +120,7 @@
 
     <owl:ObjectProperty rdf:about="https://schema.org/creative-work-subset/author">
         <rdfs:label>author</rdfs:label>
-        <rdfs:comment>The author of the creative work</rdfs:comment>
+        <rdfs:comment>作品作者。</rdfs:comment>
         <rdfs:domain rdf:resource="https://schema.org/creative-work-subset/CreativeWork"/>
         <rdfs:range rdf:resource="https://schema.org/creative-work-subset/Person"/>
         <ont:cardinality>many-to-one</ont:cardinality>
@@ -128,7 +128,7 @@
 
     <owl:ObjectProperty rdf:about="https://schema.org/creative-work-subset/publisher">
         <rdfs:label>publisher</rdfs:label>
-        <rdfs:comment>The organization that published the work</rdfs:comment>
+        <rdfs:comment>出版作品的组织。</rdfs:comment>
         <rdfs:domain rdf:resource="https://schema.org/creative-work-subset/CreativeWork"/>
         <rdfs:range rdf:resource="https://schema.org/creative-work-subset/Organization"/>
         <ont:cardinality>many-to-one</ont:cardinality>
@@ -136,7 +136,7 @@
 
     <owl:ObjectProperty rdf:about="https://schema.org/creative-work-subset/aggregateRating">
         <rdfs:label>aggregateRating</rdfs:label>
-        <rdfs:comment>The aggregate audience rating of the work</rdfs:comment>
+        <rdfs:comment>作品的受众汇总评分。</rdfs:comment>
         <rdfs:domain rdf:resource="https://schema.org/creative-work-subset/CreativeWork"/>
         <rdfs:range rdf:resource="https://schema.org/creative-work-subset/Rating"/>
         <ont:cardinality>one-to-one</ont:cardinality>
@@ -144,7 +144,7 @@
 
     <owl:ObjectProperty rdf:about="https://schema.org/creative-work-subset/hasComment">
         <rdfs:label>hasComment</rdfs:label>
-        <rdfs:comment>A reader or viewer comment on the work</rdfs:comment>
+        <rdfs:comment>读者或观众的作品评论。</rdfs:comment>
         <rdfs:domain rdf:resource="https://schema.org/creative-work-subset/CreativeWork"/>
         <rdfs:range rdf:resource="https://schema.org/creative-work-subset/Comment"/>
         <ont:cardinality>one-to-many</ont:cardinality>

@@ -93,15 +93,15 @@ export function EmbedWidget({ config }: { config: EmbedConfig }) {
             || window.location.origin + '/';
           const catalogueUrl = base.endsWith('/') ? `${base}catalogue.json` : `${base}/catalogue.json`;
           const res = await fetch(catalogueUrl);
-          if (!res.ok) throw new Error(`Failed to load catalogue (${res.status})`);
+          if (!res.ok) throw new Error(`目录加载失败（${res.status}）`);
           const cat = (await res.json()) as Catalogue;
           const entry = cat.entries.find((e) => e.id === config.catalogueId);
-          if (!entry) throw new Error(`Ontology "${config.catalogueId}" not found in catalogue`);
+          if (!entry) throw new Error(`本体“${config.catalogueId}”未在目录中找到`);
           ont = entry.ontology;
         } else if (config.ontologyUrl) {
           // Fetch from URL
           const res = await fetch(config.ontologyUrl);
-          if (!res.ok) throw new Error(`Failed to fetch ontology (${res.status})`);
+          if (!res.ok) throw new Error(`获取本体失败（${res.status}）`);
           const text = await res.text();
           // Detect format: RDF/XML starts with < or has xml prologue
           if (text.trimStart().startsWith('<')) {
@@ -111,7 +111,7 @@ export function EmbedWidget({ config }: { config: EmbedConfig }) {
             ont = JSON.parse(text) as Ontology;
           }
         } else {
-          throw new Error('No ontology source specified. Use data-catalogue-id, data-ontology-url, or data-ontology-inline.');
+          throw new Error("未指定本体来源。请使用 data-catalogue-id、data-ontology-url 或 data-ontology-inline。");
         }
 
         if (!cancelled) {
@@ -148,7 +148,7 @@ export function EmbedWidget({ config }: { config: EmbedConfig }) {
     return (
       <div style={containerStyle}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flex: 1, color: theme.textSecondary, fontSize: 14 }}>
-          Loading ontology…
+          正在加载本体…
         </div>
       </div>
     );
@@ -158,7 +158,7 @@ export function EmbedWidget({ config }: { config: EmbedConfig }) {
     return (
       <div style={containerStyle}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flex: 1, color: '#E81123', fontSize: 13, padding: 20, textAlign: 'center' }}>
-          {error || 'Unknown error'}
+          {error || "未知错误"}
         </div>
       </div>
     );
@@ -230,12 +230,12 @@ function EmbedHeader({ ontology, tab, setTab, theme, copied, onCopyRdf }: EmbedH
       <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
         <span style={{ fontWeight: 600, fontSize: 14 }}>{ontology.name}</span>
         <span style={{ fontSize: 11, color: theme.textTertiary }}>
-          {ontology.entityTypes.length} entities · {ontology.relationships.length} relationships
+          {ontology.entityTypes.length} 个实体 · {ontology.relationships.length} 条关系
         </span>
       </div>
       <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-        <button style={tabStyle(tab === 'graph')} onClick={() => setTab('graph')}>Graph</button>
-        <button style={tabStyle(tab === 'rdf')} onClick={() => setTab('rdf')}>RDF Source</button>
+        <button style={tabStyle(tab === 'graph')} onClick={() => setTab('graph')}>图谱</button>
+        <button style={tabStyle(tab === 'rdf')} onClick={() => setTab('rdf')}>RDF 源码</button>
         {tab === 'rdf' && (
           <button
             onClick={onCopyRdf}
@@ -245,7 +245,7 @@ function EmbedHeader({ ontology, tab, setTab, theme, copied, onCopyRdf }: EmbedH
               border: `1px solid ${theme.border}`, borderRadius: 4, cursor: 'pointer',
             }}
           >
-            {copied ? 'Copied!' : 'Copy RDF'}
+            {copied ? "已复制！" : "复制 RDF"}
           </button>
         )}
       </div>
@@ -287,7 +287,7 @@ function EmbedGraph({ ontology, theme, setSelected }: EmbedGraphProps) {
           selector: 'node',
           style: {
             label: 'data(label)', 'text-valign': 'bottom', 'text-halign': 'center',
-            'font-size': '13px', 'font-family': 'Segoe UI, sans-serif', 'font-weight': 600,
+            'font-size': '13px', 'font-family': 'Segoe UI, Microsoft YaHei, PingFang SC, sans-serif', 'font-weight': 600,
             color: theme.nodeText, 'text-margin-y': 8,
             width: 60, height: 60, 'background-color': 'data(color)',
             'border-width': 2, 'border-color': 'data(color)', 'border-opacity': 0.5,
@@ -300,7 +300,7 @@ function EmbedGraph({ ontology, theme, setSelected }: EmbedGraphProps) {
         {
           selector: 'edge',
           style: {
-            label: 'data(label)', 'font-size': '11px', 'font-family': 'Segoe UI, sans-serif',
+            label: 'data(label)', 'font-size': '11px', 'font-family': 'Segoe UI, Microsoft YaHei, PingFang SC, sans-serif',
             color: theme.edgeText, 'text-rotation': 'autorotate', 'text-margin-y': -8,
             width: 2, 'line-color': theme.edgeColor, 'target-arrow-color': theme.edgeColor,
             'target-arrow-shape': 'triangle', 'curve-style': 'unbundled-bezier',

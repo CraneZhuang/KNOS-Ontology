@@ -1,26 +1,26 @@
 ---
-title: Retail Fulfillment
+title: 零售履约
 slug: retail-fulfillment
-description: Add RetailDC, Store and Order to connect Zava's supply chain to its retail partners and to revenue.
+description: 添加 RetailDC、Store 和 Order，将 Zava 供应链连接到零售伙伴与收入。
 order: 5
 embed: official/zava-grove-to-shelf-step-4
 ---
 
-## Where the supply chain meets the till
+## 供应链连接销售端
 
-The previous step ended with a shipment in transit. This step puts a face on the receiver: which retail chain, which DC, which stores, which orders.
+上一步停留在运输途中。这一步明确接收方：哪家零售商、哪个配送中心、哪些门店和订单。
 
-Three new entities complete the commercial side of Zava:
+三个新实体补齐 Zava 的商业侧：
 
-- **RetailDC** — a retailer's distribution centre that receives Zava shipments.
-- **Store** — a retailer's storefront, supplied by one DC.
-- **Order** — a purchase order placed by a store for a specific fruit variety.
+- **RetailDC（零售配送中心）**——接收 Zava 发货的零售商配送中心。
+- **Store（门店）**——由某个配送中心供货的零售门店。
+- **Order（订单）**——门店针对特定水果品种下达的采购订单。
 
-## Entities
+## 实体
 
-### RetailDC
+### RetailDC（零售配送中心）
 
-| Property | Type | Identifier? |
+| 属性 | 类型 | 是否为标识符？ |
 |---|---|---|
 | `dcId` | string | ✓ |
 | `name` | string | |
@@ -28,9 +28,9 @@ Three new entities complete the commercial side of Zava:
 | `city` | string | |
 | `retailerCode` | string | |
 
-### Store
+### Store（门店）
 
-| Property | Type | Identifier? |
+| 属性 | 类型 | 是否为标识符？ |
 |---|---|---|
 | `storeId` | string | ✓ |
 | `name` | string | |
@@ -38,9 +38,9 @@ Three new entities complete the commercial side of Zava:
 | `country` | string | |
 | `city` | string | |
 
-### Order
+### 订单（Order）
 
-| Property | Type | Identifier? |
+| 属性 | 类型 | 是否为标识符？ |
 |---|---|---|
 | `orderId` | string | ✓ |
 | `kilograms` | decimal (kg) | |
@@ -49,18 +49,18 @@ Three new entities complete the commercial side of Zava:
 | `status` | string | |
 | `unitPriceEur` | decimal (EUR) | |
 
-## New relationships
+## 新增关系
 
-| From | Verb | To | Cardinality |
+| 起点 | 关系动词 | 终点 | 基数 |
 |---|---|---|---|
-| Shipment | deliveredTo | RetailDC | many-to-one |
-| RetailDC | supplies | Store | one-to-many |
-| Store | places | Order | one-to-many |
-| Order | forVariety | FruitVariety | many-to-one |
+| Shipment | deliveredTo | RetailDC | 多对一 |
+| RetailDC | supplies | Store | 一对多 |
+| Store | places | Order | 一对多 |
+| Order | forVariety | FruitVariety | 多对一 |
 
-## Now the cold-chain breach query closes the loop
+## 冷链超限查询形成闭环
 
-Recall the breach question from step 3. With retail in place, the full traversal is:
+回顾第三步的超限问题。加入零售侧后，完整路径为：
 
 ```
 ColdChainSensor[breach]
@@ -72,23 +72,23 @@ ColdChainSensor[breach]
    → Order[forVariety = same variety, status = open]
 ```
 
-A Fabric IQ Data Agent can now answer the customer-impact question in business English:
+在完成数据接入后，可向 Fabric IQ 数据智能体提出客户影响问题：
 
-> *"For the cold-chain breach on shipment SH-2026-04812, which retailer orders are at risk and what is the revenue exposure (kg × unitPriceEur)?"*
+> *“运输任务 SH-2026-04812 发生冷链超限，哪些零售订单面临风险？涉及多少收入（kg × unitPriceEur）？”*
 
-## The graph so far
+## 当前图谱
 
 <ontology-embed id="official/zava-grove-to-shelf-step-4" diff="official/zava-grove-to-shelf-step-3" height="480px"></ontology-embed>
 
-*Eleven entities. The retail branch (RetailDC → Store → Order) plugs directly into the FruitVariety hub via `Order forVariety FruitVariety`, closing the grove-to-shelf path.*
+*十一个实体。零售分支 RetailDC → Store → Order 通过 Order forVariety FruitVariety 连接品种枢纽，补齐从果园到货架的路径。*
 
 ```quiz
-Q: In the breach query, why do we need `Order forVariety FruitVariety` *in addition to* `Shipment carries HarvestLot ofVariety FruitVariety`?
-- Redundancy is required by Fabric IQ
-- It lets us match an at-risk lot to the *open orders for the same variety*, since orders are placed against varieties, not against specific lots [correct]
-- It is only there for visualisation
-- Without it, the graph is disconnected
-> Retailers order by variety, not by lot. To know *which orders are exposed* by a breach on a specific lot, we cross-reference its variety with `Order.forVariety`. Without that link the graph would tell us the shipment is at risk, but not which open orders are.
+Q: 在超限查询中，已有 Shipment carries HarvestLot ofVariety FruitVariety，为什么还需要 Order forVariety FruitVariety？
+- 因为 Fabric IQ 要求冗余
+- 因为订单按品种而非具体批次下单，需要将风险批次匹配到同品种的未完成订单 [correct]
+- 只是为了可视化效果
+- 否则图必然不连通
+> 零售商按品种下单，而不是按采收批次下单。要识别某批次超限影响哪些订单，需通过 Order.forVariety 交叉匹配品种。缺少此连接，就难以从风险运输任务定位相应的未完成订单。
 ```
 
-One last entity to add — the program that makes the model sing for Zava's CSR story.
+最后添加一个实体，将 Zava 的 CSR 业务纳入模型。

@@ -8,29 +8,29 @@
     xmlns:ont="http://example.org/ontology/finance-step-2/">
 
   <owl:Ontology rdf:about="">
-    <rdfs:label>Banking &amp; Finance – Step 2</rdfs:label>
-    <rdfs:comment>Adds Transaction tracking to Customer and Account</rdfs:comment>
+    <rdfs:label>银行 — 第二步：交易</rdfs:label>
+    <rdfs:comment>为 Customer 与 Account 添加 Transaction 交易跟踪。</rdfs:comment>
   </owl:Ontology>
 
   <!-- ════════════════  CLASSES  ════════════════ -->
 
   <owl:Class rdf:about="Customer">
     <rdfs:label>Customer</rdfs:label>
-    <rdfs:comment>A bank customer</rdfs:comment>
+    <rdfs:comment>银行客户。</rdfs:comment>
     <ont:icon>👤</ont:icon>
     <ont:color>#0078D4</ont:color>
   </owl:Class>
 
   <owl:Class rdf:about="Account">
     <rdfs:label>Account</rdfs:label>
-    <rdfs:comment>A financial account</rdfs:comment>
+    <rdfs:comment>金融账户</rdfs:comment>
     <ont:icon>🏦</ont:icon>
     <ont:color>#107C10</ont:color>
   </owl:Class>
 
   <owl:Class rdf:about="Transaction">
     <rdfs:label>Transaction</rdfs:label>
-    <rdfs:comment>A financial transaction</rdfs:comment>
+    <rdfs:comment>金融交易。</rdfs:comment>
     <ont:icon>💳</ont:icon>
     <ont:color>#FFB900</ont:color>
   </owl:Class>
@@ -158,7 +158,7 @@
     <rdfs:label>owns</rdfs:label>
     <rdfs:domain rdf:resource="Customer"/>
     <rdfs:range rdf:resource="Account"/>
-    <rdfs:comment>Customer's accounts</rdfs:comment>
+    <rdfs:comment>客户的账户</rdfs:comment>
     <ont:cardinality>one-to-many</ont:cardinality>
     <ont:fromEntityId>Customer</ont:fromEntityId>
     <ont:toEntityId>Account</ont:toEntityId>
@@ -168,7 +168,7 @@
     <rdfs:label>has_transaction</rdfs:label>
     <rdfs:domain rdf:resource="Account"/>
     <rdfs:range rdf:resource="Transaction"/>
-    <rdfs:comment>Account transactions</rdfs:comment>
+    <rdfs:comment>账户交易</rdfs:comment>
     <ont:cardinality>one-to-many</ont:cardinality>
     <ont:fromEntityId>Account</ont:fromEntityId>
     <ont:toEntityId>Transaction</ont:toEntityId>

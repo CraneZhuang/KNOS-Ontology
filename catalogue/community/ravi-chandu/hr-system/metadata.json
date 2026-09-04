@@ -1,8 +1,14 @@
 {
-  "name": "HR System",
-  "description": "Human resources ontology covering employees, departments, positions, assignments, and performance reviews.",
+  "name": "人力资源系统",
+  "description": "涵盖员工、部门、职位、任职安排和绩效评估的人力资源本体。",
   "icon": "👥",
   "category": "general",
-  "tags": ["hr", "workforce", "payroll", "organization", "performance"],
+  "tags": [
+    "hr",
+    "workforce",
+    "payroll",
+    "organization",
+    "performance"
+  ],
   "author": "ravi-chandu"
 }

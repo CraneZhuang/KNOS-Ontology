@@ -1,8 +1,14 @@
 {
-  "name": "Emergency Management Agency ontology",
-  "description": "This ontology represents an emergency management and dispatch system, showing how real-world emergencies are handled from the first report to final resolution. It models the complete lifecycle of an incident: a caller reports an emergency, a dispatcher assesses the situation, response units are deployed, resources move between locations, and events are recorded until the incident is resolved and closed.",
+  "name": "应急管理机构本体",
+  "description": "应急管理与调度系统本体，展示从首次报告到最终解决的完整流程：报警人报告紧急情况，调度员评估，派出响应单位，资源在地点之间移动，并持续记录事件直至结案。",
   "icon": "🚨",
   "category": "general",
-  "tags": ["incident management", "operations", "emergency", "dispatch", "911"],
+  "tags": [
+    "incident management",
+    "operations",
+    "emergency",
+    "dispatch",
+    "911"
+  ],
   "author": "Benito van Breugel"
 }

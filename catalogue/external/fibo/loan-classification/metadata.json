@@ -1,6 +1,6 @@
 {
-  "name": "FIBO Loan Classification",
-  "description": "Loan types with Basel risk weights, collateral categories with recovery expectations, and OCC/FDIC concentration buckets — adapted from EDM Council FIBO debt and classification modules.",
+  "name": "FIBO 贷款分类",
+  "description": "包含巴塞尔风险权重的贷款类型、带回收预期的抵押品类别及 OCC/FDIC 集中度分类，改编自 EDM Council FIBO 债务与分类模块。",
   "icon": "💰",
   "category": "fibo",
   "tags": [

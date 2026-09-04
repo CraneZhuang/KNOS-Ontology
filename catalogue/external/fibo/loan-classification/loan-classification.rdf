@@ -15,28 +15,28 @@
     xmlns:ont="http://example.org/ontology/fibo-loan-classification/">
 
   <owl:Ontology rdf:about="">
-    <rdfs:label>FIBO Loan Classification</rdfs:label>
-    <rdfs:comment>Loan types with Basel risk weights, collateral categories, and OCC/FDIC concentration buckets. Adapted from EDM Council FIBO. Source: https://github.com/edmcouncil/fibo — MIT License.</rdfs:comment>
+    <rdfs:label>FIBO 贷款分类</rdfs:label>
+    <rdfs:comment>包含巴塞尔风险权重的贷款类型、抵押品类别及 OCC/FDIC 集中度分类。改编自 EDM Council FIBO。来源：https://github.com/edmcouncil/fibo；MIT 许可。</rdfs:comment>
   </owl:Ontology>
 
   <!-- Entity Types -->
   <owl:Class rdf:about="ConcentrationCategory">
     <rdfs:label>ConcentrationCategory</rdfs:label>
-    <rdfs:comment>Regulatory concentration bucket defined by OCC/FDIC guidance for portfolio risk management.</rdfs:comment>
+    <rdfs:comment>OCC/FDIC 指引定义的监管集中度分类，用于投资组合风险管理。</rdfs:comment>
     <ont:icon>📊</ont:icon>
     <ont:color>#D83B01</ont:color>
   </owl:Class>
 
   <owl:Class rdf:about="LoanType">
     <rdfs:label>LoanType</rdfs:label>
-    <rdfs:comment>Loan product classification with Basel III risk weight, regulatory treatment, and capital tier.</rdfs:comment>
+    <rdfs:comment>贷款产品分类，记录巴塞尔 III 风险权重、监管处理和资本层级。</rdfs:comment>
     <ont:icon>💰</ont:icon>
     <ont:color>#E81123</ont:color>
   </owl:Class>
 
   <owl:Class rdf:about="CollateralType">
     <rdfs:label>CollateralType</rdfs:label>
-    <rdfs:comment>Collateral asset category with recovery expectations and concentration classification.</rdfs:comment>
+    <rdfs:comment>抵押资产类别，记录预期回收与集中度分类。</rdfs:comment>
     <ont:icon>🏠</ont:icon>
     <ont:color>#FF8C00</ont:color>
   </owl:Class>
@@ -151,7 +151,7 @@
     <rdfs:label>loanClassifiedAs</rdfs:label>
     <rdfs:domain rdf:resource="LoanType"/>
     <rdfs:range rdf:resource="ConcentrationCategory"/>
-    <rdfs:comment>Classifies a loan type into an OCC/FDIC concentration category.</rdfs:comment>
+    <rdfs:comment>将贷款类型归入 OCC/FDIC 集中度类别。</rdfs:comment>
     <ont:cardinality>many-to-one</ont:cardinality>
     <ont:fromEntityId>LoanType</ont:fromEntityId>
     <ont:toEntityId>ConcentrationCategory</ont:toEntityId>
@@ -161,7 +161,7 @@
     <rdfs:label>collateralClassifiedAs</rdfs:label>
     <rdfs:domain rdf:resource="CollateralType"/>
     <rdfs:range rdf:resource="ConcentrationCategory"/>
-    <rdfs:comment>Classifies a collateral type into an OCC/FDIC concentration category.</rdfs:comment>
+    <rdfs:comment>将抵押品类型归入 OCC/FDIC 集中度类别。</rdfs:comment>
     <ont:cardinality>many-to-one</ont:cardinality>
     <ont:fromEntityId>CollateralType</ont:fromEntityId>
     <ont:toEntityId>ConcentrationCategory</ont:toEntityId>
@@ -171,7 +171,7 @@
     <rdfs:label>typicallySecuredBy</rdfs:label>
     <rdfs:domain rdf:resource="CollateralType"/>
     <rdfs:range rdf:resource="LoanType"/>
-    <rdfs:comment>Links a collateral type to the loan types it typically secures.</rdfs:comment>
+    <rdfs:comment>连接抵押品类型与其通常担保的贷款类型。</rdfs:comment>
     <ont:cardinality>many-to-many</ont:cardinality>
     <ont:fromEntityId>CollateralType</ont:fromEntityId>
     <ont:toEntityId>LoanType</ont:toEntityId>

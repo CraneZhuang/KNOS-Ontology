@@ -21,6 +21,47 @@ function matchesDemoQuery(normalizedQuery: string, demoQuery: string, matches: s
   return normalizedQuery === demoQuery || matches.some(match => normalizedQuery.includes(match));
 }
 
+/** Normalize the supported Chinese teaching queries without changing schema identifiers. */
+export function normalizeChineseQuery(query: string): string {
+  const text = query.trim().replace(/[？?！!。]+$/g, '').trim();
+  const examples: Record<string, string> = {
+    '什么是实体类型': 'what is an entity type',
+    '什么是关系': 'what is a relationship',
+    '什么是本体': 'how does ontology work',
+    '本体如何工作': 'how does ontology work',
+    '查看本体结构': 'schema overview',
+    '显示所有金卡会员': 'show me all gold tier customers',
+    '哪些产品来自埃塞俄比亚': 'which products come from ethiopia',
+    'Arif Ramadhan 下了哪些订单': 'what orders did arif ramadhan place',
+    '西雅图有哪些门店': 'how many stores are in seattle',
+    '哥伦比亚拿铁的供应链': 'what is the supply chain for colombian latte',
+    '显示所有白金会员': 'show platinum customers',
+    '显示有机产品': 'show organic products',
+  };
+  if (Object.hasOwn(examples, text)) return examples[text];
+  const aliases: Record<string, string> = {
+    客户: 'Customer', 订单: 'Order', 产品: 'Product', 门店: 'Store', 供应商: 'Supplier',
+    发货单: 'Shipment', 买家: 'Buyer', 购物车: 'Shopping-Cart', 评价: 'Review', 患者: 'Patient',
+    医护人员: 'Provider', 预约: 'Appointment', 诊断: 'Diagnosis', 处方: 'Prescription',
+    账户: 'Account', 交易: 'Transaction', 贷款: 'Loan', 投资: 'Investment', 学生: 'Student',
+    教授: 'Professor', 课程: 'Course', 院系: 'Department', 设备: 'Machine', 传感器: 'Sensor',
+  };
+  const name = (value: string) => Object.hasOwn(aliases, value.trim()) ? aliases[value.trim()] : value.trim();
+  let match = text.match(/^什么是\s*(.+)$/);
+  if (match) return `what is ${name(match[1])}`;
+  match = text.match(/^(?:显示|列出)(?:所有|全部)\s*(.+)$/);
+  if (match) return `show me all ${name(match[1])}`;
+  match = text.match(/^(.+?)\s*如何(?:连接到|关联到)\s*(.+)$/);
+  if (match) return `how does ${name(match[1])} connect to ${name(match[2])}`;
+  match = text.match(/^查看\s*(.+?)\s*的\s*(.+?)\s*属性$/);
+  if (match) return `${name(match[1])} ${match[2].trim()}`;
+  match = text.match(/^(.+?)\s*有多少(?:个|条)?$/);
+  if (match) return `how many ${name(match[1])}`;
+  match = text.match(/^(.+?)\s*关系$/);
+  if (match) return `${match[1].trim()} relationship`;
+  return query;
+}
+
 // Generate dynamic query suggestions based on the current ontology
 export function generateQuerySuggestions(ontology: Ontology): string[] {
   const suggestions: string[] = [];
@@ -30,11 +71,11 @@ export function generateQuerySuggestions(ontology: Ontology): string[] {
   // Entity-based queries
   if (entities.length > 0) {
     const firstEntity = entities[0];
-    suggestions.push(`Show me all ${firstEntity.name.toLowerCase()}s`);
+    suggestions.push(`显示所有 ${firstEntity.name}`);
     
     if (entities.length > 1) {
       const secondEntity = entities[1];
-      suggestions.push(`List all ${secondEntity.name.toLowerCase()}s`);
+      suggestions.push(`列出所有 ${secondEntity.name}`);
     }
   }
 
@@ -42,7 +83,7 @@ export function generateQuerySuggestions(ontology: Ontology): string[] {
   entities.forEach(entity => {
     entity.properties.forEach(prop => {
       if (prop.type === 'string' && !prop.isIdentifier && prop.name !== 'name') {
-        suggestions.push(`Show ${entity.name.toLowerCase()}s by ${prop.name}`);
+        suggestions.push(`查看 ${entity.name} 的 ${prop.name} 属性`);
       }
     });
   });
@@ -53,14 +94,14 @@ export function generateQuerySuggestions(ontology: Ontology): string[] {
     const fromEntity = entities.find(e => e.id === rel.from);
     const toEntity = entities.find(e => e.id === rel.to);
     if (fromEntity && toEntity) {
-      suggestions.push(`How does ${fromEntity.name} connect to ${toEntity.name}?`);
+      suggestions.push(`${fromEntity.name} 如何连接到 ${toEntity.name}？`);
     }
   }
 
   // Conceptual queries always available
-  suggestions.push("What is an entity type?");
-  suggestions.push("What is a relationship?");
-  suggestions.push("How does ontology work?");
+  suggestions.push('什么是实体类型？');
+  suggestions.push('什么是关系？');
+  suggestions.push('本体如何工作？');
 
   // Return unique suggestions (max 6)
   return [...new Set(suggestions)].slice(0, 6);
@@ -68,7 +109,7 @@ export function generateQuerySuggestions(ontology: Ontology): string[] {
 
 // Process a natural language query against the ontology
 export function processQuery(query: string, ontology: Ontology): QueryResponse {
-  const normalizedQuery = query.toLowerCase().trim();
+  const normalizedQuery = normalizeChineseQuery(query).toLowerCase().trim();
   const normalizedNoPunctuation = normalizedQuery.replace(/[?!.:,;]+/g, '').trim();
   const entities = ontology.entityTypes;
   const relationships = ontology.relationships;
@@ -84,7 +125,7 @@ export function processQuery(query: string, ontology: Ontology): QueryResponse {
         result: demoResponse.result,
         highlightEntities: demoResponse.highlightEntities,
         highlightRelationships: demoResponse.highlightRelationships,
-        interpretation: 'Detected: Fourth Coffee sample query'
+        interpretation: "识别结果：Fourth Coffee 示例查询"
       };
     }
   }
@@ -93,30 +134,34 @@ export function processQuery(query: string, ontology: Ontology): QueryResponse {
   if (normalizedQuery.includes('what is') && (normalizedQuery.includes('entity') || normalizedQuery.includes('ontology'))) {
     return {
       query,
-      result: "An **Entity Type** is a reusable logical model of a real-world concept (like Customer, Product, or Order). In the Fabric IQ Ontology, entity types standardize:\n\n• **Name & Description** - Common terminology\n• **Properties** - Attributes with types and units\n• **Identifier** - Unique key for each instance\n\nEntity types ensure everyone in your organization uses consistent definitions.",
+      result: "**实体类型**是现实世界概念（如 Customer、Product、Order）的可复用逻辑模型。在 Fabric IQ 本体中，它统一定义：\n\n• **名称与说明**：共享术语\n• **属性**：具有类型和单位的特征\n• **标识符**：每个实例的唯一键\n\n实体类型确保组织中的所有团队使用一致的定义。",
       highlightEntities: entities.slice(0, 2).map(e => e.id),
       highlightRelationships: [],
-      interpretation: "Detected: conceptual question about entity types"
+      interpretation: "识别结果：关于实体类型的概念问题"
     };
   }
 
   if (normalizedQuery.includes('what is') && normalizedQuery.includes('relationship')) {
     return {
       query,
-      result: "A **Relationship** is a typed, directional link between entity types. Relationships define:\n\n• **Name** - Action verb (e.g., 'places', 'contains')\n• **Direction** - From one entity to another\n• **Cardinality** - One-to-one, one-to-many, etc.\n• **Attributes** - Optional properties on the connection\n\nRelationships let you traverse the ontology to answer complex questions.",
+      result: "**关系**是实体类型之间有类型、有方向的连接，定义以下内容：\n\n• **名称**：动作动词（如 places、contains）\n• **方向**：从一个实体指向另一个实体\n• **基数**：一对一、一对多等\n• **关系属性**：连接上可选的属性\n\n利用关系可以遍历本体，回答复杂问题。",
       highlightEntities: [],
       highlightRelationships: relationships.slice(0, 2).map(r => r.id),
-      interpretation: "Detected: conceptual question about relationships"
+      interpretation: "识别结果：关于关系的概念问题"
     };
   }
 
   if (normalizedQuery.includes('how') && (normalizedQuery.includes('ontology') || normalizedQuery.includes('work'))) {
     return {
       query,
-      result: `The **${ontology.name}** ontology has:\n\n• **${entities.length} Entity Types** - ${entities.map(e => e.name).join(', ')}\n• **${relationships.length} Relationships** - Connecting entities together\n\nThe ontology acts as a semantic layer that binds to your data platform sources, enabling natural language queries that understand your business concepts.`,
+      result: `本体 **${ontology.name}** 包含：
+
+• **${entities.length} 个实体类型** — ${entities.map(e => e.name).join(', ')}\n• **${relationships.length} 条关系** — 将实体连接起来
+
+本体充当连接数据平台的语义层，让自然语言查询能够理解业务概念。`,
       highlightEntities: entities.map(e => e.id),
       highlightRelationships: [],
-      interpretation: "Detected: question about ontology structure"
+      interpretation: "识别结果：关于本体结构的问题"
     };
   }
 
@@ -141,10 +186,13 @@ export function processQuery(query: string, ontology: Ontology): QueryResponse {
 
         return {
           query,
-          result: `**${entity.name}** ${entity.icon}\n${entity.description}\n\n**Properties:**\n${propList}`,
+          result: `**${entity.name}** ${entity.icon}\n${entity.description}
+
+**属性：**
+${propList}`,
           highlightEntities: [entity.id],
           highlightRelationships: [],
-          interpretation: `Detected: definition query for ${entity.name}`
+          interpretation: `识别结果：实体定义查询 — ${entity.name}`
         };
       }
     }
@@ -170,10 +218,15 @@ export function processQuery(query: string, ontology: Ontology): QueryResponse {
       
       return {
         query,
-        result: `**${entity.name}** ${entity.icon}\n${entity.description}\n\n**Properties:**\n${propList}\n\n_In a real deployment, this would query the data platform for actual ${entityNameLower} records._`,
+        result: `**${entity.name}** ${entity.icon}\n${entity.description}
+
+**属性：**
+${propList}
+
+_在实际部署中，这会查询数据平台中的真实 ${entityNameLower} 记录。_`,
         highlightEntities: [entity.id],
         highlightRelationships: [],
-        interpretation: `Detected: query for ${entity.name} entities`
+        interpretation: `识别结果：实体查询 — ${entity.name} 实体`
       };
     }
   }
@@ -190,10 +243,10 @@ export function processQuery(query: string, ontology: Ontology): QueryResponse {
     ) {
       return {
         query,
-        result: `**${rel.name}** connects **${fromEntity?.name ?? rel.from}** to **${toEntity?.name ?? rel.to}** (${rel.cardinality}).${rel.description ? `\n\n${rel.description}` : ''}`,
+        result: `**${rel.name}** 将 **${fromEntity?.name ?? rel.from}** 连接到 **${toEntity?.name ?? rel.to}** (${rel.cardinality}).${rel.description ? `\n\n${rel.description}` : ''}`,
         highlightEntities: [rel.from, rel.to],
         highlightRelationships: [rel.id],
-        interpretation: `Detected: relationship-name query for ${rel.name}`
+        interpretation: `识别结果：关系名称查询 — ${rel.name}`
       };
     }
   }
@@ -218,10 +271,12 @@ export function processQuery(query: string, ontology: Ontology): QueryResponse {
 
         return {
           query,
-          result: `**${entity.name}** ${entity.icon} has ${relatedRels.length} connection(s):\n\n${relList}`,
+          result: `**${entity.name}** ${entity.icon} 具有 ${relatedRels.length} 条连接：
+
+${relList}`,
           highlightEntities: [entity.id, ...relatedRels.map(r => r.from === entity.id ? r.to : r.from)],
           highlightRelationships: relatedRels.map(r => r.id),
-          interpretation: `Detected: relationship query for ${entity.name}`
+          interpretation: `识别结果：关系查询 — ${entity.name}`
         };
       }
     }
@@ -233,10 +288,14 @@ export function processQuery(query: string, ontology: Ontology): QueryResponse {
       if (normalizedQuery.includes(prop.name.toLowerCase()) && normalizedQuery.includes(entity.name.toLowerCase())) {
         return {
           query,
-          result: `**${entity.name}.${prop.name}**\n\n• Type: ${prop.type}\n${prop.unit ? `• Unit: ${prop.unit}` : ''}\n${prop.isIdentifier ? '• This is the identifier property 🔑' : ''}\n${prop.description ? `• ${prop.description}` : ''}\n\n_In production, you could filter ${entity.name.toLowerCase()}s by this property._`,
+          result: `**${entity.name}.${prop.name}**
+
+• 类型： ${prop.type}\n${prop.unit ? `• 单位： ${prop.unit}` : ''}\n${prop.isIdentifier ? "• 这是标识符属性 🔑" : ''}\n${prop.description ? `• ${prop.description}` : ''}
+
+_在实际部署中，可以筛选 ${entity.name.toLowerCase()}的记录，筛选条件使用此属性。_`,
           highlightEntities: [entity.id],
           highlightRelationships: [],
-          interpretation: `Detected: property query for ${entity.name}.${prop.name}`
+          interpretation: `识别结果：属性查询 — ${entity.name}.${prop.name}`
         };
       }
     }
@@ -248,10 +307,14 @@ export function processQuery(query: string, ontology: Ontology): QueryResponse {
       if (normalizedQuery.includes(entity.name.toLowerCase())) {
         return {
           query,
-          result: `The ontology defines the **${entity.name}** entity type.\n\n_In production, this query would count actual ${entity.name.toLowerCase()} records from the data platform._\n\nExample: "SELECT COUNT(*) FROM ${entity.name.toLowerCase()}s"`,
+          result: `本体定义了 **${entity.name}** 实体类型。
+
+_在实际部署中，这个查询会统计数据平台中的真实 ${entity.name.toLowerCase()} 记录。_
+
+示例："SELECT COUNT(*) FROM ${entity.name.toLowerCase()}s"`,
           highlightEntities: [entity.id],
           highlightRelationships: [],
-          interpretation: `Detected: count query for ${entity.name}`
+          interpretation: `识别结果：计数查询 — ${entity.name}`
         };
       }
     }
@@ -262,10 +325,14 @@ export function processQuery(query: string, ontology: Ontology): QueryResponse {
     const entityList = entities.map(e => `• ${e.icon} **${e.name}** - ${e.description.slice(0, 50)}...`).join('\n');
     return {
       query,
-      result: `**${ontology.name}** Schema Overview\n\n${entityList}\n\n**Total:** ${entities.length} entities, ${relationships.length} relationships`,
+      result: `**${ontology.name}** 结构概览
+
+${entityList}
+
+**合计：** ${entities.length} 个实体， ${relationships.length} 条关系`,
       highlightEntities: entities.map(e => e.id),
       highlightRelationships: [],
-      interpretation: "Detected: schema overview request"
+      interpretation: "识别结果：结构概览查询"
     };
   }
 
@@ -273,7 +340,12 @@ export function processQuery(query: string, ontology: Ontology): QueryResponse {
   const suggestions = generateQuerySuggestions(ontology).slice(0, 3);
   return {
     query,
-    result: `I couldn't interpret "${query}" for **${ontology.name}**.\n\nTry asking:\n${suggestions.map(s => `• "${s}"`).join('\n')}\n\nOr click on graph elements to explore the ontology visually.`,
+    result: `无法理解查询“${query}”，当前本体为 **${ontology.name}**。
+
+试着提问：
+${suggestions.map(s => `• "${s}"`).join('\n')}
+
+也可以点击图谱元素，直观地探索本体。`,
     highlightEntities: [],
     highlightRelationships: [],
     interpretation: undefined

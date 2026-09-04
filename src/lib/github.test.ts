@@ -66,7 +66,7 @@ describe('startDeviceFlow', () => {
       status: 500,
     });
 
-    await expect(startDeviceFlow('client-id-test')).rejects.toThrow('Device flow start failed (500)');
+    await expect(startDeviceFlow('client-id-test')).rejects.toThrow('启动设备授权流程失败（500）');
   });
 });
 
@@ -138,7 +138,7 @@ describe('getUser', () => {
 
   it('throws on 401', async () => {
     (fetch as ReturnType<typeof vi.fn>).mockResolvedValueOnce({ ok: false, status: 401 });
-    await expect(getUser('bad_token')).rejects.toThrow('Failed to get user (401)');
+    await expect(getUser('bad_token')).rejects.toThrow('获取用户失败（401）');
   });
 });
 

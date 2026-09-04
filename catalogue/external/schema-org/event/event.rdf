@@ -8,8 +8,8 @@
     xmlns:ont="https://schema.org/event-subset/">
 
     <owl:Ontology rdf:about="https://schema.org/event-subset/">
-        <rdfs:label>Schema.org — Event</rdfs:label>
-        <rdfs:comment>Events, venues, performers, and offers — a subset of Schema.org's vocabulary for describing events, ticket sales, and scheduling.</rdfs:comment>
+        <rdfs:label>Schema.org — 活动</rdfs:label>
+        <rdfs:comment>活动、场馆、表演者和票务，采用 Schema.org 词汇子集描述活动、售票与日程。</rdfs:comment>
     </owl:Ontology>
 
     <!-- ===================== -->
@@ -18,35 +18,35 @@
 
     <owl:Class rdf:about="https://schema.org/event-subset/Event">
         <rdfs:label>Event</rdfs:label>
-        <rdfs:comment>A happening at a specific time and place — concert, conference, sports match, etc.</rdfs:comment>
+        <rdfs:comment>在特定时间与地点举行的活动，如音乐会、会议或体育比赛。</rdfs:comment>
         <ont:icon>🎫</ont:icon>
         <ont:color>#0078D4</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="https://schema.org/event-subset/Place">
         <rdfs:label>Place</rdfs:label>
-        <rdfs:comment>A venue or location where an event takes place</rdfs:comment>
+        <rdfs:comment>活动举办的场馆或地点。</rdfs:comment>
         <ont:icon>📍</ont:icon>
         <ont:color>#E74C3C</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="https://schema.org/event-subset/Person">
         <rdfs:label>Person</rdfs:label>
-        <rdfs:comment>A performer, organizer, or attendee of an event</rdfs:comment>
+        <rdfs:comment>活动表演者、组织者或参加者。</rdfs:comment>
         <ont:icon>👤</ont:icon>
         <ont:color>#5C2D91</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="https://schema.org/event-subset/Organization">
         <rdfs:label>Organization</rdfs:label>
-        <rdfs:comment>A company or group that sponsors or organizes events</rdfs:comment>
+        <rdfs:comment>赞助或组织活动的公司或团体。</rdfs:comment>
         <ont:icon>🏢</ont:icon>
         <ont:color>#107C10</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="https://schema.org/event-subset/Offer">
         <rdfs:label>Offer</rdfs:label>
-        <rdfs:comment>A ticket or admission offer with price and availability</rdfs:comment>
+        <rdfs:comment>包含价格和可用情况的门票或入场方案。</rdfs:comment>
         <ont:icon>🎟️</ont:icon>
         <ont:color>#FFB900</ont:color>
     </owl:Class>
@@ -138,7 +138,7 @@
 
     <owl:ObjectProperty rdf:about="https://schema.org/event-subset/location">
         <rdfs:label>location</rdfs:label>
-        <rdfs:comment>The venue where the event takes place</rdfs:comment>
+        <rdfs:comment>活动举办场馆。</rdfs:comment>
         <rdfs:domain rdf:resource="https://schema.org/event-subset/Event"/>
         <rdfs:range rdf:resource="https://schema.org/event-subset/Place"/>
         <ont:cardinality>many-to-one</ont:cardinality>
@@ -146,7 +146,7 @@
 
     <owl:ObjectProperty rdf:about="https://schema.org/event-subset/performer">
         <rdfs:label>performer</rdfs:label>
-        <rdfs:comment>A person performing at the event</rdfs:comment>
+        <rdfs:comment>活动中的表演人员。</rdfs:comment>
         <rdfs:domain rdf:resource="https://schema.org/event-subset/Event"/>
         <rdfs:range rdf:resource="https://schema.org/event-subset/Person"/>
         <ont:cardinality>many-to-many</ont:cardinality>
@@ -154,7 +154,7 @@
 
     <owl:ObjectProperty rdf:about="https://schema.org/event-subset/organizer">
         <rdfs:label>organizer</rdfs:label>
-        <rdfs:comment>The organization that hosts or sponsors the event</rdfs:comment>
+        <rdfs:comment>主办或赞助活动的组织。</rdfs:comment>
         <rdfs:domain rdf:resource="https://schema.org/event-subset/Event"/>
         <rdfs:range rdf:resource="https://schema.org/event-subset/Organization"/>
         <ont:cardinality>many-to-one</ont:cardinality>
@@ -162,7 +162,7 @@
 
     <owl:ObjectProperty rdf:about="https://schema.org/event-subset/offers">
         <rdfs:label>offers</rdfs:label>
-        <rdfs:comment>Ticket or admission offers available for the event</rdfs:comment>
+        <rdfs:comment>活动可用的门票或入场方案。</rdfs:comment>
         <rdfs:domain rdf:resource="https://schema.org/event-subset/Event"/>
         <rdfs:range rdf:resource="https://schema.org/event-subset/Offer"/>
         <ont:cardinality>one-to-many</ont:cardinality>

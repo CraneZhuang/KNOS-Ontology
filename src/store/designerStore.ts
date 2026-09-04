@@ -28,10 +28,10 @@ export function isValidFabricIQName(name: string): boolean {
 
 export function fabricIQNameError(kind: string, name: string): string | null {
   if (!name) return null; // empty names are caught separately
-  if (name.length > 26) return `${kind} name "${name}" exceeds 26 characters.`;
-  if (!/^[A-Za-z0-9]/.test(name)) return `${kind} name "${name}" must start with a letter or digit.`;
-  if (!/[A-Za-z0-9]$/.test(name)) return `${kind} name "${name}" must end with a letter or digit.`;
-  if (!FABRIC_IQ_NAME_RE.test(name)) return `${kind} name "${name}" may only contain letters, digits, hyphens, and underscores.`;
+  if (name.length > 26) return `${kind}名称“${name}”超过了 26 个字符。`;
+  if (!/^[A-Za-z0-9]/.test(name)) return `${kind}名称“${name}”必须以英文字母或数字开头。`;
+  if (!/[A-Za-z0-9]$/.test(name)) return `${kind}名称“${name}”必须以英文字母或数字结尾。`;
+  if (!FABRIC_IQ_NAME_RE.test(name)) return `${kind}名称“${name}”只能包含英文字母、数字、连字符和下划线。`;
   return null;
 }
 
@@ -39,7 +39,7 @@ export function validateOntology(ontology: Ontology): ValidationError[] {
   const errors: ValidationError[] = [];
 
   if (ontology.entityTypes.length === 0) {
-    errors.push({ message: 'Add at least one entity type to your ontology.' });
+    errors.push({ message: "请为本体添加至少一个实体类型。" });
   }
 
   const entityIds = new Set<string>();
@@ -48,20 +48,20 @@ export function validateOntology(ontology: Ontology): ValidationError[] {
   const propNameTypeMap = new Map<string, { type: string; entityName: string }>();
 
   for (const e of ontology.entityTypes) {
-    const label = e.name || 'Unnamed entity';
+    const label = e.name || "未命名实体";
     if (!e.id) {
-      errors.push({ message: `"${label}" is missing an internal ID.`, entityId: e.id });
+      errors.push({ message: `"${label}”缺少内部 ID。`, entityId: e.id });
     } else if (entityIds.has(e.id)) {
-      errors.push({ message: `Two entities share the same ID "${e.id}". Rename one of them.`, entityId: e.id });
+      errors.push({ message: `两个实体使用了相同的 ID“${e.id}”。请重命名其中一个。`, entityId: e.id });
     } else {
       entityIds.add(e.id);
     }
     if (!e.name) {
-      errors.push({ message: 'One of your entities has no name. Give it a name.', entityId: e.id });
+      errors.push({ message: "有一个实体尚未命名，请填写名称。", entityId: e.id });
     }
 
     // §7.1 — Entity type name validation
-    const nameErr = fabricIQNameError('Entity type', e.name);
+    const nameErr = fabricIQNameError("实体类型", e.name);
     if (nameErr) {
       errors.push({ message: nameErr, entityId: e.id });
     }
@@ -69,7 +69,7 @@ export function validateOntology(ontology: Ontology): ValidationError[] {
     const hasIdentifier = e.properties.some((p) => p.isIdentifier);
     if (!hasIdentifier) {
       errors.push({
-        message: `"${label}" has no identifier property. Click the key icon (🔑) on one of its properties to mark it as the unique identifier.`,
+        message: `"${label}”没有标识符属性。点击某个属性旁的钥匙图标（🔑），将其设为唯一标识符。`,
         entityId: e.id,
       });
     }
@@ -78,14 +78,14 @@ export function validateOntology(ontology: Ontology): ValidationError[] {
     for (const p of e.properties) {
       if (p.isIdentifier && p.type !== 'string' && p.type !== 'integer') {
         errors.push({
-          message: `Identifier property "${p.name}" on "${label}" must be string or integer type for Fabric IQ compatibility.`,
+          message: `标识符属性“${p.name}”，所属实体“${label}”必须使用 string 或 integer 类型，才能兼容 Fabric IQ。`,
           entityId: e.id,
         });
       }
 
       // §7.2 — Property name validation
       if (p.name) {
-        const propNameErr = fabricIQNameError('Property', p.name);
+        const propNameErr = fabricIQNameError("属性", p.name);
         if (propNameErr) {
           errors.push({ message: propNameErr, entityId: e.id });
         }
@@ -93,7 +93,7 @@ export function validateOntology(ontology: Ontology): ValidationError[] {
         const existing = propNameTypeMap.get(p.name);
         if (existing && existing.type !== p.type) {
           errors.push({
-            message: `Property "${p.name}" is defined as "${p.type}" in "${label}" but as "${existing.type}" in "${existing.entityName}". Fabric IQ requires the same type when property names match across entity types.`,
+            message: `属性“${p.name}”的数据类型为“${p.type}”，所属实体“${label}”，但另一处定义为“${existing.type}”，所属实体“${existing.entityName}”。Fabric IQ 要求不同实体类型中的同名属性使用相同数据类型。`,
             entityId: e.id,
           });
         } else if (!existing) {
@@ -105,25 +105,25 @@ export function validateOntology(ontology: Ontology): ValidationError[] {
 
   const relIds = new Set<string>();
   for (const r of ontology.relationships) {
-    const label = r.name || 'Unnamed relationship';
+    const label = r.name || "未命名关系";
     if (!r.id) {
-      errors.push({ message: `"${label}" is missing an internal ID.`, relationshipId: r.id });
+      errors.push({ message: `"${label}”缺少内部 ID。`, relationshipId: r.id });
     } else if (relIds.has(r.id)) {
-      errors.push({ message: `Two relationships share the same ID "${r.id}". Rename one of them.`, relationshipId: r.id });
+      errors.push({ message: `两条关系使用了相同的 ID“${r.id}”。请重命名其中一个。`, relationshipId: r.id });
     } else {
       relIds.add(r.id);
     }
     if (!entityIds.has(r.from)) {
       const fromLabel = r.from || '(none)';
       errors.push({
-        message: `"${label}" points from "${fromLabel}" which doesn't exist. Pick a valid source entity.`,
+        message: `"${label}”的源实体“${fromLabel}”不存在，请选择有效的源实体。`,
         relationshipId: r.id,
       });
     }
     if (!entityIds.has(r.to)) {
       const toLabel = r.to || '(none)';
       errors.push({
-        message: `"${label}" points to "${toLabel}" which doesn't exist. Pick a valid target entity.`,
+        message: `"${label}”的目标实体“${toLabel}”不存在，请选择有效的目标实体。`,
         relationshipId: r.id,
       });
     }
@@ -254,7 +254,7 @@ export const useDesignerStore = create<DesignerState>((set, get) => ({
 
   // ─ Entities ─────────────────────────────────────────────────────────────
   addEntity: () => {
-    const name = 'New Entity';
+    const name = 'NewEntity';
     const colorIdx = get().ontology.entityTypes.length % ENTITY_COLORS.length;
     const iconIdx = get().ontology.entityTypes.length % ENTITY_ICONS.length;
     const entity: EntityType = {

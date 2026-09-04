@@ -1,25 +1,25 @@
 ---
-title: Cold-Chain Logistics
+title: 冷链物流
 slug: cold-chain-logistics
-description: Add Shipment and ColdChainSensor to model the perishable logistics layer — and the live temperature telemetry that drives Zava's most important alerting rule.
+description: 添加 Shipment 与 ColdChainSensor，建模易腐品物流及支持冷链预警的实时温度遥测。
 order: 4
 embed: official/zava-grove-to-shelf-step-3
 ---
 
-## The most expensive minutes in Zava's day
+## 冷链中的关键时刻
 
-Once a HarvestLot leaves the packhouse, the clock starts. Fruit is perishable. A 15-minute breach above the safe temperature for a variety can write off an entire reefer container — easily six figures of revenue. The cold-chain layer is where Zava's investment in semantics pays back hardest.
+采收批次离开包装中心后，保鲜时间便开始倒计时。温度超出该品种的安全范围可能导致整箱水果报损；具体阈值、持续时间和损失取决于品种及真实业务规则。冷链是 Zava 语义模型的重要应用场景。
 
-Two new entities express this domain:
+两个新实体描述这一领域：
 
-- **Shipment** — a reefer container or truck moving one or more HarvestLots toward a retail DC.
-- **ColdChainSensor** — a sensor attached to a shipment streaming temperature and humidity telemetry.
+- **Shipment（运输批次）**——装载一个或多个 HarvestLot、前往零售配送中心的冷藏集装箱或卡车运输任务。
+- **ColdChainSensor（冷链传感器）**——附着于运输任务、持续上报温湿度遥测的传感器。
 
-## Entities
+## 实体
 
-### Shipment
+### Shipment（运输批次）
 
-| Property | Type | Identifier? |
+| 属性 | 类型 | 是否为标识符？ |
 |---|---|---|
 | `shipmentId` | string | ✓ |
 | `departureDate` | datetime | |
@@ -27,56 +27,56 @@ Two new entities express this domain:
 | `modality` | string | |
 | `containerId` | string | |
 
-### ColdChainSensor
+### ColdChainSensor（冷链传感器）
 
-| Property | Type | Identifier? |
+| 属性 | 类型 | 是否为标识符？ |
 |---|---|---|
 | `sensorId` | string | ✓ |
 | `sensorModel` | string | |
 | `temperatureC` | decimal (°C) | |
 | `humidityPct` | decimal (%) | |
 
-In Microsoft Fabric IQ, `ColdChainSensor` is the canonical example of a **time-series entity** — its readings are bound to an Eventhouse rather than a Lakehouse table. The ontology hides that split: queries traverse `Sensor → Shipment` without knowing the underlying engine.
+在此 Fabric IQ 示例中，ColdChainSensor 是**时序实体**：读数绑定到 Eventhouse，而非 Lakehouse 表。本体在概念层隐藏这种差异，提问者无需了解底层引擎即可表达 Sensor → Shipment 的路径。
 
-## New relationships
+## 新增关系
 
-| From | Verb | To | Cardinality |
+| 起点 | 关系动词 | 终点 | 基数 |
 |---|---|---|---|
-| Shipment | carries | HarvestLot | one-to-many |
-| Shipment | monitoredBy | ColdChainSensor | one-to-many |
+| Shipment | carries | HarvestLot | 一对多 |
+| Shipment | monitoredBy | ColdChainSensor | 一对多 |
 
-Notice how `Shipment` acts as a **hub** — it bridges the static lakehouse world (HarvestLot lineage) to the streaming eventhouse world (sensor telemetry).
+Shipment 是**枢纽实体**，连接静态 Lakehouse 数据（采收批次来源）与流式 Eventhouse 数据（传感器遥测）。
 
-## The cold-chain breach query
+## 冷链超限查询
 
-The flagship Zava demo question:
+Zava 演示中的核心问题：
 
-> *"Shipment SH-2026-04812 just crossed 9°C. Which retailer orders are exposed?"*
+> *“运输任务 SH-2026-04812 的温度刚超过 9°C。哪些零售订单面临风险？”*
 
-Today this is a five-system manual chase. With the ontology, it is a single traversal:
+原先需要人工跨五个系统追查；本体把它表达为一条连贯的遍历路径：
 
 ```
 ColdChainSensor[temperatureC > FruitVariety.maxStorageTempC + 2]
    → Shipment
    → HarvestLot
-   → (later) Order → Store → Retailer
+   →（后续添加）Order → Store → Retailer
 ```
 
-We'll connect the retail side in the next step.
+下一步将连接零售侧。
 
-## The graph so far
+## 当前图谱
 
 <ontology-embed id="official/zava-grove-to-shelf-step-3" diff="official/zava-grove-to-shelf-step-2" height="450px"></ontology-embed>
 
-*Eight entities. The right-hand branch (Sensor → Shipment) is the live telemetry side; the left-hand branch (HarvestLot → Plot → Farm → Grower) is the lineage side. The ontology unifies them.*
+*八个实体。右侧分支 Sensor → Shipment 表示实时遥测；左侧 HarvestLot → Plot → Farm → Grower 表示来源追溯。本体将两者统一。*
 
 ```quiz
-Q: What does it mean that `Shipment` is described as a "hub" entity?
-- It is the largest entity in the graph
-- It connects two otherwise separate domains — lineage (harvest lots) and telemetry (sensors) — through a single shared concept [correct]
-- Every other entity must connect through it
-- Hubs are required for RDF compliance
-> A hub entity links domains that would otherwise live in different systems. Shipment connects HarvestLot (Lakehouse lineage) with ColdChainSensor (Eventhouse telemetry), so a single graph traversal spans both.
+Q: Shipment 被称为“枢纽实体”意味着什么？
+- 它是图中最大的实体
+- 它通过一个共同概念，连接原本独立的来源追溯（采收批次）和遥测（传感器）领域 [correct]
+- 其他所有实体都必须经过它连接
+- RDF 合规要求必须有枢纽实体
+> 枢纽实体连接原本分散在不同系统中的领域。Shipment 连接 HarvestLot（Lakehouse 来源数据）与 ColdChainSensor（Eventhouse 遥测），一条图路径便可跨越两个领域。
 ```
 
-Next we'll close the loop to retail — DCs, stores and the orders at risk.
+下一步连接配送中心、门店与风险订单，完成零售闭环。

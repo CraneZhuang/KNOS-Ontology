@@ -15,42 +15,42 @@
     xmlns:ont="http://example.org/ontology/fibo-loans-step-3/">
 
   <owl:Ontology rdf:about="">
-    <rdfs:label>FIBO Loans Lab — Step 3</rdfs:label>
-    <rdfs:comment>Servicing and payment history concepts for operational tracking. Adapted from EDM Council FIBO. Source: https://github.com/edmcouncil/fibo — MIT License.</rdfs:comment>
+    <rdfs:label>FIBO 贷款实验 — 第三步：贷款服务与支付历史</rdfs:label>
+    <rdfs:comment>用于运营跟踪的贷款服务与支付历史概念，改编自 EDM Council FIBO。来源：https://github.com/edmcouncil/fibo；MIT 许可。</rdfs:comment>
   </owl:Ontology>
 
   <!-- Entities from Steps 1-2 -->
   <owl:Class rdf:about="Loan">
     <rdfs:label>Loan</rdfs:label>
-    <rdfs:comment>Debt instrument extended to a borrower and repaid according to contract terms.</rdfs:comment>
+    <rdfs:comment>向借款人提供、按合同条款偿还的债务工具。</rdfs:comment>
     <ont:icon>📄</ont:icon>
     <ont:color>#00A9E0</ont:color>
   </owl:Class>
 
   <owl:Class rdf:about="Borrower">
     <rdfs:label>Borrower</rdfs:label>
-    <rdfs:comment>Party that receives funds and assumes repayment obligations.</rdfs:comment>
+    <rdfs:comment>接收资金并承担偿还义务的一方。</rdfs:comment>
     <ont:icon>👤</ont:icon>
     <ont:color>#0078D4</ont:color>
   </owl:Class>
 
   <owl:Class rdf:about="Lender">
     <rdfs:label>Lender</rdfs:label>
-    <rdfs:comment>Party that provides funds or credit under loan agreement terms.</rdfs:comment>
+    <rdfs:comment>按贷款合同提供资金或信用的一方。</rdfs:comment>
     <ont:icon>🏦</ont:icon>
     <ont:color>#107C10</ont:color>
   </owl:Class>
 
   <owl:Class rdf:about="Collateral">
     <rdfs:label>Collateral</rdfs:label>
-    <rdfs:comment>Asset pledged to secure repayment obligations.</rdfs:comment>
+    <rdfs:comment>为担保偿还义务而质押的资产。</rdfs:comment>
     <ont:icon>🏠</ont:icon>
     <ont:color>#D83B01</ont:color>
   </owl:Class>
 
   <owl:Class rdf:about="LoanPaymentSchedule">
     <rdfs:label>LoanPaymentSchedule</rdfs:label>
-    <rdfs:comment>Regular schedule defining due dates and expected loan payments.</rdfs:comment>
+    <rdfs:comment>定义到期日期与预期还款额的定期计划。</rdfs:comment>
     <ont:icon>🗓️</ont:icon>
     <ont:color>#5C2D91</ont:color>
   </owl:Class>
@@ -58,21 +58,21 @@
   <!-- New in Step 3 -->
   <owl:Class rdf:about="Servicer">
     <rdfs:label>Servicer</rdfs:label>
-    <rdfs:comment>Financial service provider responsible for collecting loan payments. Adapted from fibo-loan-ln-ln:Servicer.</rdfs:comment>
+    <rdfs:comment>负责收取贷款还款的金融服务机构，改编自 fibo-loan-ln-ln:Servicer。</rdfs:comment>
     <ont:icon>🧾</ont:icon>
     <ont:color>#008272</ont:color>
   </owl:Class>
 
   <owl:Class rdf:about="PaymentHistory">
     <rdfs:label>PaymentHistory</rdfs:label>
-    <rdfs:comment>Record of all payment events associated with a loan account. Adapted from fibo-fbc-pas-caa:PaymentHistory.</rdfs:comment>
+    <rdfs:comment>贷款账户全部支付事件的记录，改编自 fibo-fbc-pas-caa:PaymentHistory。</rdfs:comment>
     <ont:icon>📚</ont:icon>
     <ont:color>#FFB900</ont:color>
   </owl:Class>
 
   <owl:Class rdf:about="PaymentTransaction">
     <rdfs:label>PaymentTransaction</rdfs:label>
-    <rdfs:comment>Single payment event that contributes to payment history. Adapted from fibo-fbc-pas-caa:IndividualTransaction.</rdfs:comment>
+    <rdfs:comment>构成支付历史的单次支付事件，改编自 fibo-fbc-pas-caa:IndividualTransaction。</rdfs:comment>
     <ont:icon>💸</ont:icon>
     <ont:color>#E81123</ont:color>
   </owl:Class>
@@ -177,7 +177,7 @@
     <rdfs:label>owedBy</rdfs:label>
     <rdfs:domain rdf:resource="Loan"/>
     <rdfs:range rdf:resource="Borrower"/>
-    <rdfs:comment>Relates a loan to the borrower obligated to repay it.</rdfs:comment>
+    <rdfs:comment>连接贷款与承担偿还义务的借款人。</rdfs:comment>
     <ont:cardinality>many-to-one</ont:cardinality>
     <ont:fromEntityId>Loan</ont:fromEntityId>
     <ont:toEntityId>Borrower</ont:toEntityId>
@@ -187,7 +187,7 @@
     <rdfs:label>originatedBy</rdfs:label>
     <rdfs:domain rdf:resource="Loan"/>
     <rdfs:range rdf:resource="Lender"/>
-    <rdfs:comment>Relates a loan to the lending organization that originated it.</rdfs:comment>
+    <rdfs:comment>连接贷款与发放贷款的机构。</rdfs:comment>
     <ont:cardinality>many-to-one</ont:cardinality>
     <ont:fromEntityId>Loan</ont:fromEntityId>
     <ont:toEntityId>Lender</ont:toEntityId>
@@ -197,7 +197,7 @@
     <rdfs:label>securedBy</rdfs:label>
     <rdfs:domain rdf:resource="Loan"/>
     <rdfs:range rdf:resource="Collateral"/>
-    <rdfs:comment>Relates a secured loan to pledged collateral assets.</rdfs:comment>
+    <rdfs:comment>连接担保贷款与质押资产。</rdfs:comment>
     <ont:cardinality>one-to-many</ont:cardinality>
     <ont:fromEntityId>Loan</ont:fromEntityId>
     <ont:toEntityId>Collateral</ont:toEntityId>
@@ -207,7 +207,7 @@
     <rdfs:label>repaidBySchedule</rdfs:label>
     <rdfs:domain rdf:resource="Loan"/>
     <rdfs:range rdf:resource="LoanPaymentSchedule"/>
-    <rdfs:comment>Relates a loan to its payment schedule.</rdfs:comment>
+    <rdfs:comment>连接贷款与还款计划。</rdfs:comment>
     <ont:cardinality>one-to-one</ont:cardinality>
     <ont:fromEntityId>Loan</ont:fromEntityId>
     <ont:toEntityId>LoanPaymentSchedule</ont:toEntityId>
@@ -217,7 +217,7 @@
     <rdfs:label>servicedBy</rdfs:label>
     <rdfs:domain rdf:resource="Loan"/>
     <rdfs:range rdf:resource="Servicer"/>
-    <rdfs:comment>Relates a loan to the servicing organization collecting payments.</rdfs:comment>
+    <rdfs:comment>连接贷款与负责收款的服务机构。</rdfs:comment>
     <ont:cardinality>many-to-one</ont:cardinality>
     <ont:fromEntityId>Loan</ont:fromEntityId>
     <ont:toEntityId>Servicer</ont:toEntityId>
@@ -227,7 +227,7 @@
     <rdfs:label>hasPaymentHistory</rdfs:label>
     <rdfs:domain rdf:resource="LoanPaymentSchedule"/>
     <rdfs:range rdf:resource="PaymentHistory"/>
-    <rdfs:comment>Links a payment schedule to payment history records.</rdfs:comment>
+    <rdfs:comment>连接还款计划与支付历史记录。</rdfs:comment>
     <ont:cardinality>one-to-one</ont:cardinality>
     <ont:fromEntityId>LoanPaymentSchedule</ont:fromEntityId>
     <ont:toEntityId>PaymentHistory</ont:toEntityId>
@@ -237,7 +237,7 @@
     <rdfs:label>hasIndividualPayment</rdfs:label>
     <rdfs:domain rdf:resource="PaymentHistory"/>
     <rdfs:range rdf:resource="PaymentTransaction"/>
-    <rdfs:comment>Links a payment history record to each payment transaction event.</rdfs:comment>
+    <rdfs:comment>连接支付历史记录与各笔支付交易。</rdfs:comment>
     <ont:cardinality>one-to-many</ont:cardinality>
     <ont:fromEntityId>PaymentHistory</ont:fromEntityId>
     <ont:toEntityId>PaymentTransaction</ont:toEntityId>

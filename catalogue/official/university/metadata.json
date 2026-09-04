@@ -1,6 +1,6 @@
 {
-  "name": "University System",
-  "description": "Academic institution with students, professors, courses, and departments",
+  "name": "大学系统",
+  "description": "包含学生、教授、课程和院系的教学机构模型。",
   "icon": "🎓",
   "category": "education",
   "author": "ontology-quest"

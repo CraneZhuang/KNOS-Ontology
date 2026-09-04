@@ -1,76 +1,76 @@
 ---
-title: Complete Model
+title: 完整模型
 slug: complete-model
-description: Add Promotion and Return to finish the full 15-entity retail supply chain ontology — then explore the complete graph.
+description: 添加 Promotion 和 Return，完成包含 15 个实体的零售供应链本体，并探索完整图谱。
 order: 7
 embed: official/iq-lab-retail-step-6
 ---
 
-## The final two entities
+## 最后两个实体
 
-The last two entity types close the loop on the retail lifecycle:
+最后两个实体类型使零售生命周期形成闭环：
 
-- **Promotion** — marketing campaigns that drive sales
-- **Return** — items that come back, linking to both orders and products
+- **Promotion（促销）**：促进销售的营销活动
+- **Return（退货）**：退回的商品，同时连接订单和产品
 
-## Promotion
+## 促销（Promotion）
 
-Marketing campaigns targeting specific products:
+针对特定产品的营销活动：
 
-| Property | Type | Identifier? |
+| 属性 | 类型 | 是否为标识符？ |
 |---|---|---|
 | `promotionId` | string | ✓ |
 | `promotionName` | string | |
 | `isActivePromotion` | boolean | |
 
-The `isActivePromotion` flag enables filtering for current campaigns — a question like "Which active promotions are associated with products that have high return rates?" traverses Promotion → Product ← Return.
+isActivePromotion 支持筛选当前活动。“哪些正在进行的促销关联到退货率较高的产品？”对应路径为 Promotion → Product ← Return。
 
-## Return
+## 退货（Return）
 
-Returned items linking back to orders and products:
+退回的商品关联到原订单和产品：
 
-| Property | Type | Identifier? |
+| 属性 | 类型 | 是否为标识符？ |
 |---|---|---|
 | `returnId` | string | ✓ |
 | `returnDate` | date | |
 | `reason` | string | |
 
-## New relationships
+## 新增关系
 
-Three final relationships:
+最后三条关系：
 
-- **PromotionForProduct** — `Promotion` → `Product` (many-to-one)
-  Which product a promotion targets.
+- **PromotionForProduct（促销产品）**：`Promotion` → `Product`（多对一）
+  表示促销针对哪个产品。
 
-- **ReturnForOrder** — `Return` → `Order` (many-to-one)
-  Which order the return is linked to.
+- **ReturnForOrder（退货订单）**：`Return` → `Order`（多对一）
+  表示退货关联哪个订单。
 
-- **ReturnOfProduct** — `Return` → `Product` (many-to-one)
-  Which product was returned.
+- **ReturnOfProduct（退货产品）**：`Return` → `Product`（多对一）
+  表示退回了哪个产品。
 
-## The complete graph
+## 完整图谱
 
 <ontology-embed id="official/iq-lab-retail-step-6" diff="official/iq-lab-retail-step-5" height="500px"></ontology-embed>
 
-*The complete retail supply chain ontology: 15 entity types, 18 relationships. Every entity connects to at least one other, forming a rich, traversable graph.*
+*完整零售供应链本体包含 15 个实体类型、18 条关系。每个实体至少连接一个其他实体，形成可遍历的丰富图谱。*
 
-## What the complete model enables
+## 完整模型支持的能力
 
-With the full ontology in place, here are examples of questions that become natural to answer:
+完整本体可以自然地回答以下问题：
 
-| Question | Graph path |
+| 问题 | 图谱路径 |
 |---|---|
-| Which promotions drove returns? | Promotion → Product ← Return |
-| What's the inventory for returned products? | Return → Product ← Inventory → Warehouse |
-| Which carriers serve regions with high demand? | DemandSignal → Region ← Store; Shipment → Carrier |
-| Which customers ordered promoted products? | Customer ← Order → OrderLine → Product ← Promotion |
-| What's the forecast for products running low? | Inventory → Product ← Forecast |
+| 哪些促销带动了退货？ | Promotion → Product ← Return |
+| 退货产品的库存是多少？ | Return → Product ← Inventory → Warehouse |
+| 哪些承运商服务于高需求区域？ | DemandSignal → Region ← Store；Shipment → Carrier |
+| 哪些客户购买了促销产品？ | Customer ← Order → OrderLine → Product ← Promotion |
+| 库存不足产品的预测需求是多少？ | Inventory → Product ← Forecast |
 
-Each of these would require complex multi-table SQL joins. With the ontology, they're expressed as graph traversals — and in Fabric IQ, a natural-language Data Agent can answer them from the ontology structure.
+这些问题通常需要复杂的多表 SQL 关联。在本体中，它们可以表达为图谱遍历；Fabric IQ 的自然语言数据智能体可依据本体结构查询回答。
 
-## GQL query example
+## GQL 查询示例
 
-Here's how the first question — "Which promotions drove returns?" — would look in GQL:
+第一个问题“哪些促销带动了退货？”可以写成如下 GQL：
 
 ```gql
 MATCH (r:Return)-[:ReturnOfProduct]->(p:Product)<-[:PromotionForProduct]-(promo:Promotion)
@@ -78,37 +78,37 @@ WHERE promo.isActivePromotion = true
 RETURN promo.promotionName, p.name, r.reason
 ```
 
-The GQL pattern directly mirrors the ontology relationships you designed. There's no impedance mismatch between the model and the query.
+GQL 模式直接对应你设计的本体关系，模型和查询之间无需转换成另一套结构。
 
-## What we built
+## 已构建的模型
 
-Over six steps, we progressively constructed a complete ontology:
+我们通过六个步骤逐渐构建了完整本体：
 
-| Step | Entities added | Cumulative | Key concept |
+| 步骤 | 新增实体 | 累计数量 | 关键概念 |
 |---|---|---|---|
-| 1 | Customer, Order, Product | 3 | Entity types, identifiers, cardinality |
-| 2 | OrderLine, ProductCategory | 5 | Linking entities, hierarchies |
-| 3 | Region, Store | 7 | Geographic structure, boolean properties |
-| 4 | Shipment, Carrier, Warehouse | 10 | Hub entities, cross-domain connections |
-| 5 | Inventory, Forecast, DemandSignal | 13 | Cross-source unification, planning data |
-| 6 | Promotion, Return | 15 | Closing the loop, GQL querying |
+| 1 | Customer、Order、Product | 3 | 实体类型、标识符、基数 |
+| 2 | OrderLine、ProductCategory | 5 | 关联实体、层级结构 |
+| 3 | Region、Store | 7 | 地理结构、布尔属性 |
+| 4 | Shipment、Carrier、Warehouse | 10 | 枢纽实体、跨领域连接 |
+| 5 | Inventory、Forecast、DemandSignal | 13 | 跨来源统一、规划数据 |
+| 6 | Promotion、Return | 15 | 形成闭环、GQL 查询 |
 
-## Key takeaways
+## 核心要点
 
-1. **Start small, grow incrementally** — three entities are enough to create value
-2. **Linking entities** solve the many-to-many attribute problem
-3. **Hub entities** (like Shipment) bridge different domains
-4. **Cross-source unification** is the core value — one ontology, multiple data engines
-5. **Graph traversal** replaces complex SQL joins with intuitive path patterns
-6. **The ontology is the API** — GQL queries and Data Agent questions both follow the same structure
+1. **从小模型开始，逐步扩展**：三个实体就能创造价值
+2. **关联实体**解决多对多关联的属性问题
+3. Shipment 等**枢纽实体**连接不同领域
+4. **跨数据源统一**是核心价值：一个本体，多个数据引擎
+5. **图谱遍历**用直观路径代替复杂 SQL 关联
+6. **本体就是接口**：GQL 查询和数据智能体问题都遵循同一结构
 
 ```quiz
-Q: In the complete retail ontology, how would you express the query "Which promotions drove returns?" as a graph traversal?
+Q: 在完整零售本体中，“哪些促销带动了退货？”应对应哪条图谱路径？
 - Customer → Order → Product → Promotion
 - Promotion → Product ← Return [correct]
 - Return → Order → Customer → Promotion
 - Promotion → Return → Product
-> The path Promotion → Product ← Return follows the PromotionForProduct and ReturnOfProduct relationships, connecting promotions to returned products through their shared Product entity.
+> Promotion → Product ← Return 沿 PromotionForProduct 和 ReturnOfProduct 两条关系，通过共享的 Product 实体连接促销与退货。
 ```
 
-You've completed the IQ Lab: Retail Supply Chain. Load any step ontology from the [catalogue](#/catalogue) to explore it interactively in the playground.
+你已完成 IQ 零售供应链实验。可从[本体目录](#/catalogue)加载任意步骤，在探索平台中交互式查看。

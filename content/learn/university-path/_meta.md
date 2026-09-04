@@ -1,7 +1,7 @@
 ---
-title: "University System"
+title: "大学系统"
 slug: university-path
-description: "Model an academic institution — students, courses, enrollments, professors, and departments."
+description: "为大学建模：学生、课程、选课记录、教授与院系。"
 type: path
 icon: 🎓
 ---

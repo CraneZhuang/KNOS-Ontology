@@ -1,106 +1,106 @@
 ---
-title: Building Your First Ontology
+title: 构建你的第一个本体
 slug: building-your-first-ontology
-description: A step-by-step tutorial to create an ontology from scratch using the visual designer — add entities, define properties, connect with relationships, and export to RDF.
+description: 通过可视化设计器从零创建本体：添加实体、定义属性、连接关系，并导出 RDF。
 order: 4
 embed: official/cosmic-coffee
 ---
 
-## What we'll build
+## 我们将构建什么
 
-In this tutorial, you'll create a simple **Library** ontology with three entity types: `Book`, `Author`, and `Member` — connected by relationships. By the end, you'll have a valid RDF file ready for use with Microsoft Fabric IQ or any semantic tool.
+本教程将创建一个简单的**图书馆本体**，包含 Book、Author 和 Member 三个实体类型，并通过关系连接。完成后可导出适用于 Microsoft Fabric IQ 或其他语义工具的 RDF 文件。
 
-## Step 1: Open the designer
+## 步骤 1：打开设计器
 
-Click the **Designer** button in the top navigation bar, or go directly to [/#/designer](#/designer). You'll see a blank canvas: an entity form on the left, a live graph preview on the right.
+点击顶部导航栏的**设计器**，或直接打开[设计页面](#/designer)。页面左侧是实体表单，右侧是实时图谱预览。
 
-## Step 2: Create entity types
+## 步骤 2：创建实体类型
 
-Add three entities using the **+ Add Entity** button:
+点击实体区域的**添加**按钮，创建三个实体：
 
-**Book**
-- Name: `Book`
-- Icon: `📚`
-- Color: pick a blue
-- Properties:
-  - `isbn` — string, **identifier** ✓
-  - `title` — string
-  - `publishedYear` — integer
+**图书（Book）**
+- 名称：`Book`
+- 图标：`📚`
+- 颜色：蓝色
+- 属性：
+  - `isbn`：string，**标识符** ✓
+  - `title`：string
+  - `publishedYear`：integer
 
-**Author**
-- Name: `Author`
-- Icon: `✍️`
-- Color: pick a green
-- Properties:
-  - `authorId` — string, **identifier** ✓
-  - `name` — string
-  - `nationality` — string
+**作者（Author）**
+- 名称：`Author`
+- 图标：`✍️`
+- 颜色：绿色
+- 属性：
+  - `authorId`：string，**标识符** ✓
+  - `name`：string
+  - `nationality`：string
 
-**Member**
-- Name: `Member`
-- Icon: `👤`
-- Color: pick a purple
-- Properties:
-  - `memberId` — string, **identifier** ✓
-  - `name` — string
-  - `joinDate` — date
+**会员（Member）**
+- 名称：`Member`
+- 图标：`👤`
+- 颜色：紫色
+- 属性：
+  - `memberId`：string，**标识符** ✓
+  - `name`：string
+  - `joinDate`：date
 
-As you add each entity, watch the graph preview update in real-time.
+添加每个实体时，观察图谱预览实时更新。
 
-## Step 3: Add relationships
+## 步骤 3：添加关系
 
-Switch to the **Relationships** tab and add:
+在**关系**区域添加：
 
-| Relationship | From | To | Cardinality |
+| 关系 | 起点 | 终点 | 基数 |
 |-------------|------|-----|-------------|
-| `writtenBy` | Book | Author | Many-to-one |
-| `borrowedBy` | Book | Member | Many-to-many |
+| `writtenBy` | Book | Author | 多对一 |
+| `borrowedBy` | Book | Member | 多对多 |
 
-The `writtenBy` relationship is many-to-one because many books can share one author, but each book has one primary author. The `borrowedBy` relationship is many-to-many because a book can be borrowed by many members, and a member can borrow many books.
+writtenBy 是多对一关系，因为多本书可以共享一位作者，本例中每本书有一位主要作者。borrowedBy 是多对多，因为一本书可以被多位会员借阅，一位会员也可以借多本书。
 
-## Step 4: Validate
+## 步骤 4：校验
 
-Click the **Validate** button in the toolbar. If everything is correct, you'll see a green "No issues found" banner. Otherwise, fix any reported issues:
+点击工具栏的**校验**。如果通过，会显示绿色“未发现问题”提示，否则请修复报告的问题：
 
-- Every entity must have at least one identifier property
-- Relationships must reference existing entity types
-- No duplicate IDs
+- 每个实体至少有一个标识符属性
+- 关系必须引用已存在的实体类型
+- ID 不得重复
 
-## Step 5: Preview the RDF
+## 步骤 5：预览 RDF
 
-Click the **RDF** tab in the preview pane. You'll see the live RDF/OWL output with syntax highlighting. This is the exact file that tools like Fabric IQ consume.
+点击预览区域的 **RDF** 标签，即可查看实时生成、带语法高亮的 RDF/OWL 内容。Fabric IQ 等工具使用的就是这类文件。
 
 <ontology-embed id="official/cosmic-coffee" height="400px"></ontology-embed>
 
-*The Fourth Coffee ontology was built using the same workflow. Your Library ontology will look similar — entities as colourful nodes, relationships as directed edges.*
+*Fourth Coffee 本体也采用相同流程构建。你的图书馆本体也会以彩色节点表示实体，以有向连线表示关系。*
 
-## Step 6: Export
+## 步骤 6：导出
 
-You have three options:
+可以使用以下方式：
 
-1. **Download RDF** — saves a `.rdf` file to your Downloads folder
-2. **Submit to Catalogue** — opens a one-click PR flow to contribute your ontology to the community catalogue (requires GitHub sign-in)
-3. **Copy JSON** — copies the JSON representation for use in apps
+1. **下载 RDF**：保存为 .rdf 文件
+2. **提交到本体目录**：打开社区贡献说明，下载 RDF 和元数据，再通过 GitHub 提交拉取请求
+3. **复制 JSON**：获取供应用使用的 JSON 表示
 
-## What's next?
+## 下一步
 
-- Explore the [Catalogue](#/catalogue) to see how other ontologies are structured
-- Read [Ontology Design Patterns](#/learn/ontology-design-patterns) for naming conventions and best practices
-- Try the **Query Playground** on the home page to ask natural-language questions against your ontology
+- 浏览[本体目录](#/catalogue)，了解其他模型的结构
+- 阅读[本体设计模式](#/learn/ontology-fundamentals/ontology-design-patterns)，了解命名约定与实践建议
+- 在首页的**自然语言查询**面板中，针对本体提问
 
-## Key takeaways
+## 核心要点
 
-- The designer provides a visual, code-free workflow for building ontologies
-- Every entity needs a name, at least one property, and one identifier
-- Relationships connect entities with a name and cardinality
-- The live graph and RDF previews give instant feedback as you design
-- Export to RDF for Fabric IQ, or submit directly to the community catalogue
+- 设计器提供无需编码的可视化建模流程
+- 每个实体需要名称、至少一个属性及一个标识符
+- 关系通过名称和基数连接实体
+- 实时图谱与 RDF 预览提供即时反馈
+- 可为 Fabric IQ 导出 RDF，或贡献到社区目录
 
 ```quiz
-Q: Why is the borrowedBy relationship between Book and Member set to many-to-many?
-- A book can only be borrowed once
-- Each member borrows exactly one book at a time
-- A book can be borrowed by many members over time, and a member can borrow many books [correct]
-- Many-to-many is the default cardinality for all relationships
-> A single book can be borrowed by different members at different times, and each member can borrow multiple books simultaneously — this bidirectional multiplicity is what makes it many-to-many.
+Q: 为什么 Book 与 Member 之间的 borrowedBy 关系是多对多？
+- 一本书只能被借阅一次
+- 每位会员同时恰好只借一本书
+- 一本书可以在不同时期被多位会员借阅，一位会员也可以借多本书 [correct]
+- 多对多是所有关系的默认基数
+> 同一本书可以在不同时间被不同会员借阅，每位会员也可以同时借阅多本书。双方的多重对应使其成为多对多关系。
 ```

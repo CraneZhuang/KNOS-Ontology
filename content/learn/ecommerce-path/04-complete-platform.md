@@ -1,18 +1,18 @@
 ---
-title: "Complete Platform"
+title: "完整电商平台"
 slug: complete-platform
-description: "Add Review to close the buyer feedback loop and complete the e-commerce ontology."
+description: "添加 Review，形成买家反馈闭环，完成电商本体。"
 order: 4
 embed: official/ecommerce-step-3
 ---
 
-## Closing the feedback loop
+## 形成反馈闭环
 
-The final piece of the e-commerce puzzle is **customer reviews**. Reviews connect buyers back to products, creating a feedback loop that influences future purchases.
+电商模型的最后一块拼图是**客户评价**。评价把买家重新连接到产品，形成影响未来购买行为的反馈闭环。
 
-## Review entity
+## 评价实体（Review）
 
-| Property | Type | Identifier? |
+| 属性 | 类型 | 是否为标识符？ |
 |---|---|---|
 | `reviewId` | string | ✓ |
 | `rating` | integer | |
@@ -20,36 +20,36 @@ The final piece of the e-commerce puzzle is **customer reviews**. Reviews connec
 | `body` | string | |
 | `verified` | boolean | |
 
-The `verified` boolean indicates whether the reviewer actually purchased the product — a critical trust signal for other buyers and for analytics.
+布尔属性 `verified` 表示评价者是否实际购买过产品，是其他买家和分析系统判断可信度的重要信号。
 
-## New relationships
+## 新增关系
 
-- **writes** — `Buyer` → `Review` (one-to-many)
-  A buyer can write many reviews over time.
+- **writes（撰写）**：`Buyer` → `Review`（一对多）
+  买家可以在不同时间撰写多条评价。
 
-- **reviews** — `Review` → `Product` (many-to-one)
-  Each review is about exactly one product, but a product can have many reviews.
+- **reviews（评价）**：`Review` → `Product`（多对一）
+  每条评价只针对一个产品，但一个产品可以拥有多条评价。
 
-> **Feedback loop:** The path `Buyer → writes → Review → reviews → Product` creates a cycle back to Product — buyers consume products, then review them, influencing other buyers.
+> **反馈闭环：**路径 `Buyer → writes → Review → reviews → Product` 返回到 Product。买家消费产品后进行评价，进而影响其他买家。
 
-## The complete graph
+## 完整图谱
 
 <ontology-embed id="official/ecommerce-step-3" diff="official/ecommerce-step-2" height="500px"></ontology-embed>
 
-*The complete E-Commerce ontology: 5 entities, 6 relationships. Review closes the buyer feedback loop.*
+*完整电商本体包含 5 个实体、6 条关系。Review 形成了买家反馈闭环。*
 
-## What the complete model enables
+## 完整模型支持的能力
 
-| Question | Graph path |
+| 问题 | 图谱路径 |
 |---|---|
-| Which products have the highest-rated verified reviews? | Review (verified=true) → Product |
-| Which buyers have full carts but no orders? | Buyer → Cart (itemCount > 0) with no Buyer → Order |
-| What's the average rating for products in a category? | Review → Product (group by category) |
-| Which loyal buyers write the most reviews? | Buyer (loyaltyTier=Gold) → Review (count) |
+| 哪些产品拥有评分最高的已验证评价？ | Review（verified=true）→ Product |
+| 哪些买家的购物车有商品，但没有订单？ | Buyer → Cart（itemCount > 0），且不存在 Buyer → Order |
+| 某个类别的产品平均评分是多少？ | Review → Product（按 category 分组） |
+| 哪些忠诚买家撰写的评价最多？ | Buyer（loyaltyTier=Gold）→ Review（计数） |
 
-## GQL query example
+## GQL 查询示例
 
-Find verified reviews for products currently in someone's cart:
+查找当前位于某人购物车中的产品所对应的已验证评价：
 
 ```gql
 MATCH (b:Buyer)-[:has_cart]->(c:Cart)-[:contains]->(p:Product)<-[:reviews]-(r:Review)
@@ -57,29 +57,29 @@ WHERE r.verified = true
 RETURN p.name, r.rating, r.title
 ```
 
-## What we built
+## 已构建的模型
 
-| Step | Entities added | Cumulative | Key concept |
+| 步骤 | 新增实体 | 累计数量 | 关键概念 |
 |---|---|---|---|
-| 1 | Buyer, Product, Order | 3 | Purchase flow, SKU identifiers |
-| 2 | Shopping-Cart | 4 | Session entities, one-to-one |
-| 3 | Review | 5 | Feedback loops, verified trust |
+| 1 | Buyer、Product、Order | 3 | 购买流程、SKU 标识符 |
+| 2 | Shopping-Cart | 4 | 会话实体、一对一 |
+| 3 | Review | 5 | 反馈闭环、已验证可信度 |
 
-## Key takeaways
+## 核心要点
 
-1. **Session entities** (Cart) capture in-progress state
-2. **One-to-one** relationships model exclusive ownership
-3. **Boolean properties** (verified) enable trust-based filtering
-4. **Feedback loops** create richer query paths than linear chains
-5. The complete graph enables **funnel analysis** from browsing to reviewing
+1. **会话实体**（Cart）描述进行中的状态
+2. **一对一**关系描述排他归属
+3. **布尔属性**（verified）支持基于可信度的筛选
+4. **反馈闭环**提供比线性链条更丰富的查询路径
+5. 完整图谱支持从浏览到评价的**漏斗分析**
 
 ```quiz
-Q: What makes the Review entity create a "feedback loop" in this ontology?
-- It connects to every other entity in the graph
-- It creates a path from Buyer back to Product through a different route than the purchase path [correct]
-- It has the most properties of any entity
-- It uses a boolean verified property
-> Without Review, the path from Buyer to Product only goes through Order. Review creates a second path — Buyer → Review → Product — forming a loop. This dual-path structure enables comparative queries (e.g. "bought but didn't review" vs "reviewed but didn't buy").
+Q: Review 为什么能在本体中形成反馈闭环？
+- 它连接图谱中的所有其他实体
+- 它通过一条不同于购买路径的路线，将 Buyer 重新连接到 Product [correct]
+- 它拥有最多的属性
+- 它使用了布尔属性 verified
+> 没有 Review 时，Buyer 只能通过 Order 到达 Product。Review 新增了 Buyer → Review → Product 路径，形成闭环。双路径结构支持比较查询，例如“买过但未评价”和“评价过但未购买”。
 ```
 
-You've completed the E-Commerce Platform learning path! Load any step from the [catalogue](#/catalogue) to explore it interactively.
+你已完成电商平台学习路径！从[本体目录](#/catalogue)加载任意步骤，即可交互式探索。

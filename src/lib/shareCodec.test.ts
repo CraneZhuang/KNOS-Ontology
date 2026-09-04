@@ -73,7 +73,7 @@ describe('shareCodec', () => {
 
   it('throws on empty payload', async () => {
     const encoded = await compressPayload({ foo: 'bar' });
-    await expect(decodeSharePayload(encoded)).rejects.toThrow('Invalid share payload');
+    await expect(decodeSharePayload(encoded)).rejects.toThrow('分享数据无效');
   });
 
   it('returns undefined for very large ontologies', async () => {
@@ -105,12 +105,12 @@ describe('shareCodec – security', () => {
 
   it('rejects payload where ontology is a string instead of an object', async () => {
     const encoded = await compressPayload({ ontology: 'not-an-object', bindings: [] });
-    await expect(decodeSharePayload(encoded)).rejects.toThrow('Invalid share payload');
+    await expect(decodeSharePayload(encoded)).rejects.toThrow('分享数据无效');
   });
 
   it('rejects payload where ontology is null', async () => {
     const encoded = await compressPayload({ ontology: null, bindings: [] });
-    await expect(decodeSharePayload(encoded)).rejects.toThrow('Invalid share payload');
+    await expect(decodeSharePayload(encoded)).rejects.toThrow('分享数据无效');
   });
 
   it('rejects payload where entityTypes is not an array', async () => {
@@ -118,7 +118,7 @@ describe('shareCodec – security', () => {
       ontology: { name: 'X', entityTypes: 'not-array', relationships: [] },
       bindings: [],
     });
-    await expect(decodeSharePayload(encoded)).rejects.toThrow('Invalid share payload');
+    await expect(decodeSharePayload(encoded)).rejects.toThrow('分享数据无效');
   });
 
   it('rejects payload where relationships is missing', async () => {
@@ -126,17 +126,17 @@ describe('shareCodec – security', () => {
       ontology: { name: 'X', entityTypes: [] },
       bindings: [],
     });
-    await expect(decodeSharePayload(encoded)).rejects.toThrow('Invalid share payload');
+    await expect(decodeSharePayload(encoded)).rejects.toThrow('分享数据无效');
   });
 
   it('rejects a JSON array instead of an object', async () => {
     const encoded = await compressPayload([1, 2, 3]);
-    await expect(decodeSharePayload(encoded)).rejects.toThrow('Invalid share payload');
+    await expect(decodeSharePayload(encoded)).rejects.toThrow('分享数据无效');
   });
 
   it('rejects a JSON number', async () => {
     const encoded = await compressPayload(42);
-    await expect(decodeSharePayload(encoded)).rejects.toThrow('Invalid share payload');
+    await expect(decodeSharePayload(encoded)).rejects.toThrow('分享数据无效');
   });
 
   // --- XSS via entity/property names ---

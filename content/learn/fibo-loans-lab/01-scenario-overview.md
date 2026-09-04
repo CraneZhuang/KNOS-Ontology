@@ -1,72 +1,72 @@
 ---
-title: Scenario Overview
+title: 场景概览
 slug: scenario-overview
-description: What is FIBO, where does it come from, and what we'll build in this lab.
+description: 了解 FIBO 的定义、来源，以及本实验将构建的模型。
 order: 1
 reviewStatus: under-human-review
 ---
 
-## What is FIBO?
+## 什么是 FIBO？
 
-The **Financial Industry Business Ontology** (FIBO) is an industry-standard ontology family developed by the [EDM Council](https://edmcouncil.org/) and the [Object Management Group](https://www.omg.org/) (OMG). It provides a formal, machine-readable vocabulary for financial instruments, parties, contracts, and regulatory concepts.
+**金融行业业务本体**（FIBO）是由 [EDM Council](https://edmcouncil.org/) 和[对象管理组织](https://www.omg.org/)（OMG）开发的行业标准本体族，为金融工具、参与方、合同和监管概念提供正式、机器可读的词汇体系。
 
-FIBO is:
+FIBO 的特点：
 
-- **Open source** under the [MIT License](https://opensource.org/licenses/MIT)
-- **Hosted on GitHub** at [edmcouncil/fibo](https://github.com/edmcouncil/fibo)
-- **Published as OWL ontologies** at [spec.edmcouncil.org/fibo](https://spec.edmcouncil.org/fibo/)
-- **Developed since 2012** with contributions from major financial institutions, regulators, and standards bodies
+- 按照 [MIT 许可证](https://opensource.org/licenses/MIT)**开源**
+- **托管在 GitHub**：[edmcouncil/fibo](https://github.com/edmcouncil/fibo)
+- 在 [spec.edmcouncil.org/fibo](https://spec.edmcouncil.org/fibo/) **以 OWL 本体形式发布**
+- **自 2012 年起开发**，主要金融机构、监管机构和标准组织共同参与
 
-> **Source**: Concepts in this lab are adapted primarily from `LOAN/LoansGeneral/Loans`, with supporting concepts from `FBC/DebtAndEquities/Debt`, `FBC/ProductsAndServices/ClientsAndAccounts`, and `FND/OwnershipAndControl/Ownership`. See the [FIBO GitHub repository](https://github.com/edmcouncil/fibo) for full source modules.
+> **来源：**本实验主要改编自 `LOAN/LoansGeneral/Loans`，并使用 `FBC/DebtAndEquities/Debt`、`FBC/ProductsAndServices/ClientsAndAccounts` 和 `FND/OwnershipAndControl/Ownership` 中的辅助概念。完整模块见 [FIBO GitHub 仓库](https://github.com/edmcouncil/fibo)。
 
-## Why this lab
+## 为什么设计这个实验
 
-FIBO is large — hundreds of ontology modules covering securities, derivatives, corporate actions, indices, and more. The `LOAN` domain alone spans multiple sub-modules:
+FIBO 规模很大，数百个本体模块覆盖证券、衍生品、公司行动、指数等领域。仅 `LOAN` 领域就包含多个子模块：
 
-| FIBO Module | What it covers |
+| FIBO 模块 | 覆盖内容 |
 |---|---|
-| `LOAN/LoansGeneral/Loans` | Loan lifecycle concepts (loan, servicing, payment history, lien and ownership classifiers) |
-| `FBC/DebtAndEquities/Debt` | Borrower/lender roles, collateral, security agreements, debt terms |
-| `FBC/ProductsAndServices/ClientsAndAccounts` | Transaction records and individual transactions used by payment history |
-| `LOAN/RealEstateLoans/Mortgages` | Real-estate-specific constraints (real property collateral and mortgage constructs) |
-| `FND/OwnershipAndControl/Ownership` | Ownership semantics reused by loan ownership classifiers |
+| `LOAN/LoansGeneral/Loans` | 贷款生命周期：贷款、贷后服务、还款历史、担保权及所有权分类 |
+| `FBC/DebtAndEquities/Debt` | 借款人和贷款人角色、抵押物、担保协议、债务条款 |
+| `FBC/ProductsAndServices/ClientsAndAccounts` | 还款历史使用的交易记录和单笔交易 |
+| `LOAN/RealEstateLoans/Mortgages` | 房地产专用约束：不动产抵押物及按揭结构 |
+| `FND/OwnershipAndControl/Ownership` | 贷款所有权分类复用的所有权语义 |
 
-*(Source: [FIBO ontology structure](https://github.com/edmcouncil/fibo/tree/master/LOAN))*
+*来源：[FIBO 本体结构](https://github.com/edmcouncil/fibo/tree/master/LOAN)。*
 
-This lab extracts a teachable subset focused on loan contracts and payment flows so you can learn FIBO modeling patterns without navigating the full module hierarchy.
+本实验提取围绕贷款合同与还款流程的教学子集，让你无需遍历完整模块层级，就能学习 FIBO 建模模式。
 
-## What we'll build
+## 我们将构建什么
 
-Over four progressive steps, we'll model a **Loans ontology** with 10 entity types and 10 relationships:
+通过四个递进步骤，构建一个包含 10 个实体类型、10 条关系的**贷款本体**：
 
-1. **Core Loan Triad** — `Loan`, `Borrower`, `Lender`
-2. **Collateral & Schedules** — `Collateral`, `LoanPaymentSchedule`
-3. **Servicing & Payment History** — `Servicer`, `PaymentHistory`, `PaymentTransaction`
-4. **Risk Classifiers** — `OwnershipInterest`, `LenderLienPosition`
+1. **贷款核心三元组**：`Loan`、`Borrower`、`Lender`
+2. **抵押物与还款计划**：`Collateral`、`LoanPaymentSchedule`
+3. **贷后服务与还款历史**：`Servicer`、`PaymentHistory`、`PaymentTransaction`
+4. **风险分类器**：`OwnershipInterest`、`LenderLienPosition`
 
-## Real questions this model supports
+## 模型支持的实际问题
 
-- Which collateralized loans have subordinate lien positions?
-- Which borrowers have interest-only loans above a principal threshold?
-- How do payment transaction patterns vary by servicer?
-- Which ownership structures correlate with repayment issues?
+- 哪些抵押贷款的担保权顺位较低？
+- 哪些借款人拥有本金超过阈值的只付息贷款？
+- 不同贷后服务机构的还款交易模式有何差异？
+- 哪些所有权结构与还款问题相关？
 
-## Licensing and attribution
+## 许可与署名
 
-This lab is adapted from the EDM Council FIBO ontology:
+本实验改编自 EDM Council 的 FIBO 本体：
 
-- **Copyright**: EDM Council, Inc. and Object Management Group, Inc. (see module headers for exact year ranges)
-- **License**: [MIT License](https://opensource.org/licenses/MIT)
-- **Source repository**: [github.com/edmcouncil/fibo](https://github.com/edmcouncil/fibo)
-- **Specification**: [spec.edmcouncil.org/fibo](https://spec.edmcouncil.org/fibo/)
+- **版权所有**：EDM Council, Inc. 和 Object Management Group, Inc.（具体年份范围见模块文件头）
+- **许可证**：[MIT 许可证](https://opensource.org/licenses/MIT)
+- **源代码仓库**：[github.com/edmcouncil/fibo](https://github.com/edmcouncil/fibo)
+- **规范**：[spec.edmcouncil.org/fibo](https://spec.edmcouncil.org/fibo/)
 
-The ontology files in this lab are simplified, classroom-friendly adaptations. They preserve core FIBO semantics while reducing complexity for step-by-step instruction.
+本实验中的本体文件是简化后的教学版本，在保留 FIBO 核心语义的同时降低复杂度，便于逐步学习。
 
 ```quiz
-Q: What organization develops and maintains FIBO?
-- The World Bank
-- The EDM Council and Object Management Group (OMG) [correct]
-- The European Central Bank
-- The W3C Web Ontology Working Group
-> FIBO is developed by the EDM Council (Enterprise Data Management Council) in collaboration with the Object Management Group. It is open source under the MIT License and hosted on GitHub at edmcouncil/fibo.
+Q: 哪些组织开发和维护 FIBO？
+- 世界银行
+- EDM Council 和对象管理组织（OMG） [correct]
+- 欧洲中央银行
+- W3C Web 本体工作组
+> FIBO 由企业数据管理委员会 EDM Council 与对象管理组织共同开发，采用 MIT 许可证开源，GitHub 仓库为 edmcouncil/fibo。
 ```

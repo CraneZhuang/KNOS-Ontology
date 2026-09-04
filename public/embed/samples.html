@@ -1,18 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<!DOCTYPE html><html lang="zh-CN"><head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Interactive ontology embed examples covering entity types, relationships, and domain models across real scenarios." />
-  <meta property="og:title" content="Ontology Playground Embed Samples" />
-  <meta property="og:description" content="Explore interactive ontology examples and learn how to embed ontology visualizations in your own pages." />
-  <meta property="og:type" content="website" />
-  <title>Understanding Ontologies — Interactive Examples</title>
+  <meta name="description" content="通过交互示例了解实体类型、关系与领域模型。">
+  <meta property="og:title" content="本体实验室嵌入示例">
+  <meta property="og:description" content="探索本体交互示例，学习如何将图谱嵌入自己的网页。">
+  <meta property="og:type" content="website">
+  <title>理解本体 — 交互示例</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-family: 'Segoe UI', 'Microsoft YaHei', 'PingFang SC', -apple-system, BlinkMacSystemFont, sans-serif;
       background: #0F0F0F;
       color: #E0E0E0;
       line-height: 1.7;
@@ -159,244 +157,144 @@
 </head>
 <body>
   <header class="page-header">
-    <h1>Understanding Ontologies</h1>
-    <p>Interactive examples showing how ontologies model real-world domains — from coffee shops to hospitals. Click any node or edge to inspect it.</p>
+    <h1>理解本体</h1>
+    <p>通过咖啡店、医院等交互示例，了解本体如何描述现实领域。点击任意节点或连线查看详情。</p>
   </header>
 
   <main class="content">
     <nav class="toc">
-      <h3>Contents</h3>
+      <h3>目录</h3>
       <ol>
-        <li><a href="#what">What is an Ontology?</a></li>
-        <li><a href="#coffee">A First Example: Fourth Coffee</a></li>
-        <li><a href="#ecommerce">E-Commerce: Products, Carts, and Orders</a></li>
-        <li><a href="#healthcare">Healthcare: Patients, Providers, and Prescriptions</a></li>
-        <li><a href="#themes">Theming: Dark vs. Light</a></li>
-        <li><a href="#finance">Finance: Accounts, Loans, and Investments</a></li>
-        <li><a href="#manufacturing">Manufacturing: Machines, Sensors, and Quality</a></li>
-        <li><a href="#university">University: Students, Courses, and Departments</a></li>
-        <li><a href="#embed">Embed These on Your Own Site</a></li>
+        <li><a href="#what">什么是本体？</a></li>
+        <li><a href="#coffee">入门示例：Fourth Coffee</a></li>
+        <li><a href="#ecommerce">电子商务：产品、购物车与订单</a></li>
+        <li><a href="#healthcare">医疗：患者、医护人员与处方</a></li>
+        <li><a href="#themes">主题：深色与浅色</a></li>
+        <li><a href="#themes">金融：账户、贷款与投资</a></li>
+        <li><a href="#manufacturing">制造：设备、传感器与质量</a></li>
+        <li><a href="#university">大学：学生、课程与院系</a></li>
+        <li><a href="#embed">嵌入你的网站</a></li>
       </ol>
     </nav>
 
     <!-- ─── §1 What is an Ontology? ─────────────────────────────────── -->
-    <h2 id="what">1. What is an Ontology?</h2>
+    <h2 id="what">1. 什么是本体？</h2>
 
-    <p>
-      An <strong>ontology</strong> is a formal description of the concepts in a domain and the relationships between them.
-      Think of it as a blueprint that tells a system: "these are the things that exist, these are their properties, and this is how they connect."
-    </p>
+    <p><strong>本体</strong>是对某个领域的概念及其关系的正式描述。可以把它看成一份蓝图，告诉系统：有哪些事物、各有什么属性、彼此如何连接。</p>
 
-    <p>
-      In <strong>Microsoft Fabric</strong>, ontologies power IQ — the intelligent query layer that lets users ask natural-language questions
-      about their data. The ontology tells Fabric what entities exist (like <code>Customer</code>, <code>Order</code>, <code>Product</code>),
-      what properties they have, and how they relate to each other.
-    </p>
+    <p>在 <strong>Microsoft Fabric</strong> 中，本体为 IQ 提供语义基础，帮助用户用自然语言提问。本体定义 <code>Customer</code>（客户）、<code>Order</code>（订单）、<code>Product</code>（产品）等实体的属性和关系。</p>
 
-    <div class="callout">
-      <strong>Key idea:</strong> An ontology is not the data itself — it's the <em>shape</em> of the data.
-      A "Customer" entity type doesn't contain any customer records; it describes what a customer <em>is</em> (has a name, an email,
-      places orders).
-    </div>
+    <div class="callout"><strong>核心概念：</strong>本体不是数据本身，而是数据的<em>结构</em>。Customer 实体类型不包含客户记录，而是描述客户具有姓名、邮箱、下单等特征。</div>
 
-    <p>Every ontology has three building blocks:</p>
+    <p>本体有三个基本组成部分：</p>
     <ul>
-      <li><strong>Entity types</strong> — the concepts (Customer, Product, Order)</li>
-      <li><strong>Properties</strong> — the attributes of each entity (name, price, date)</li>
-      <li><strong>Relationships</strong> — how entities connect (a Customer <em>places</em> an Order)</li>
+      <li><strong>实体类型</strong>——业务概念，如 Customer、Product、Order</li>
+      <li><strong>属性</strong>——实体的特征，如 name、price、date</li>
+      <li><strong>关系</strong>——实体之间的连接，如 Customer <em>places</em> Order（客户下达订单）</li>
     </ul>
 
-    <p>Let's explore these ideas through real examples.</p>
+    <p>下面通过示例逐步探索。</p>
 
     <!-- ─── §2 Fourth Coffee ─────────────────────────────────────────── -->
-    <h2 id="coffee">2. A First Example: Fourth Coffee</h2>
+    <h2 id="coffee">2. 入门示例：Fourth Coffee</h2>
 
-    <p>
-      Imagine you're building a data model for a coffee chain. You need to track customers, the orders they place,
-      the products in each order, the stores where orders are fulfilled, and the suppliers who provide the beans.
-    </p>
+    <p>假设你正在为咖啡连锁设计数据模型，需要跟踪客户、订单、订单内产品、履约门店，以及提供咖啡豆的供应商。</p>
 
-    <p>
-      The ontology below captures all of this. Click on any node to see its properties — for example,
-      click <strong>Customer</strong> to see it has a <code>name</code> (identifier), <code>email</code>, and <code>loyaltyTier</code>.
-      Click on an edge like <strong>places</strong> to see the relationship between Customer and Order.
-    </p>
+    <p>下方本体描述了这些概念。点击 <strong>Customer</strong> 查看 <code>name</code>、<code>email</code> 和 <code>loyaltyTier</code> 等属性；点击 <strong>places</strong> 连线查看客户与订单之间的关系。</p>
 
     <div class="embed-wrapper">
-      <div class="ontology-embed"
-           data-catalogue-id="official/cosmic-coffee"
-           data-catalogue-base-url="../"
-           data-theme="dark"
-           data-height="520px">
+      <div class="ontology-embed" data-catalogue-id="official/cosmic-coffee" data-catalogue-base-url="../" data-theme="dark" data-height="520px">
       </div>
     </div>
 
-    <p>
-      Notice the <strong>cardinalities</strong>: a Customer can place <em>many</em> Orders (one-to-many),
-      each Order is processed at <em>one</em> Store (many-to-one), and Products are sourced from Suppliers (many-to-many).
-      These cardinalities tell Fabric how to join tables when answering questions like
-      "Which supplier provides the products in order #1234?"
-    </p>
+    <p>注意<strong>基数</strong>：客户可下达多个订单（一对多），每个订单由一家门店处理（多对一），产品可来自多个供应商（多对多）。这些关系帮助表达“订单 #1234 中的产品来自哪家供应商？”等问题。</p>
 
-    <div class="callout">
-      <strong>Try it:</strong> Switch to the <strong>RDF Source</strong> tab to see the same ontology expressed as RDF/XML —
-      the W3C standard format that Fabric uses under the hood.
-    </div>
+    <div class="callout"><strong>试一试：</strong>切换至 <strong>RDF 源码</strong> 标签，查看同一本体的 RDF/XML 表达；它采用 W3C 标准语法。</div>
 
     <!-- ─── §3 E-Commerce ────────────────────────────────────────────── -->
-    <h2 id="ecommerce">3. E-Commerce: Products, Carts, and Orders</h2>
+    <h2 id="ecommerce">3. 电子商务：产品、购物车与订单</h2>
 
-    <p>
-      Online retail is a classic ontology domain. A buyer browses products, adds them to a shopping cart,
-      then places an order. After receiving a product, they might write a review.
-    </p>
+    <p>在线零售是经典本体场景。买家浏览产品、加入购物车，再下达订单；收货后还可能撰写评价。</p>
 
-    <p>
-      This ontology models that flow. The <strong>Shopping Cart</strong> entity is interesting —
-      it sits between Buyer and Product, representing a transient "intent to purchase" before the Order is finalized.
-    </p>
+    <p><strong>Shopping Cart（购物车）</strong>位于 Buyer 和 Product 之间，在订单确定之前表示临时的购买意向。</p>
 
     <div class="embed-wrapper">
-      <div class="ontology-embed"
-           data-catalogue-id="official/ecommerce"
-           data-catalogue-base-url="../"
-           data-theme="dark"
-           data-height="480px">
+      <div class="ontology-embed" data-catalogue-id="official/ecommerce" data-catalogue-base-url="../" data-theme="dark" data-height="480px">
       </div>
     </div>
 
-    <h3>Why model Reviews as a separate entity?</h3>
+    <h3>为什么把评价建模为独立实体？</h3>
 
-    <p>
-      You might wonder: why not just add a "review" property on Product? Because a review belongs to a
-      <em>specific buyer</em> and a <em>specific product</em> — it's a relationship, not just a property.
-      By making Review its own entity, you can ask questions like "Show me all 5-star reviews by buyers
-      who spent over $100" — something that requires joining Buyer → Review → Product.
-    </p>
+    <p>评价同时属于某位买家和某个产品，不只是产品的一个属性。将 Review 独立建模后，就能沿 Buyer → Review → Product 表达“显示累计消费超过 100 美元的买家给出的五星评价”等问题。</p>
 
     <!-- ─── §4 Healthcare ────────────────────────────────────────────── -->
-    <h2 id="healthcare">4. Healthcare: Patients, Providers, and Prescriptions</h2>
+    <h2 id="healthcare">4. 医疗：患者、医护人员与处方</h2>
 
-    <p>
-      Healthcare data is notoriously complex. This ontology simplifies it to five core concepts:
-      Patients, Providers (doctors), Appointments, Diagnoses, and Prescriptions.
-    </p>
+    <p>此示例把复杂的医疗数据简化为五个核心概念：Patient（患者）、Provider（医护人员）、Appointment（预约）、Diagnosis（诊断）和 Prescription（处方）。</p>
 
-    <p>
-      The key insight is the <strong>chain of events</strong>: a Patient has an Appointment with a Provider,
-      who makes a Diagnosis, which leads to a Prescription. Click the edges to trace this path.
-    </p>
+    <p>关键是<strong>事件链</strong>：患者预约医护人员，医护人员作出诊断，再开具处方。点击连线可以沿路径探索。</p>
 
     <div class="embed-wrapper">
-      <div class="ontology-embed"
-           data-catalogue-id="official/healthcare"
-           data-catalogue-base-url="../"
-           data-theme="dark"
-           data-height="480px">
+      <div class="ontology-embed" data-catalogue-id="official/healthcare" data-catalogue-base-url="../" data-theme="dark" data-height="480px">
       </div>
     </div>
 
-    <div class="callout">
-      <strong>Identifier properties</strong> (marked with 🔑 in the inspector) are special — they uniquely identify each record.
-      A Patient's identifier might be <code>patientId</code>, while a Prescription's identifier is <code>prescriptionId</code>.
-      Fabric uses these to resolve entities when answering queries.
-    </div>
+    <div class="callout"><strong>标识符属性</strong>在详情面板中以 🔑 标记，用来唯一标识记录。例如 Patient 的 <code>patientId</code>、Prescription 的 <code>prescriptionId</code>。</div>
 
     <!-- ─── §5 Theming ───────────────────────────────────────────────── -->
-    <h2 id="themes">5. Theming: Dark vs. Light</h2>
+    <h2 id="themes">5. 主题与金融模型：深色与浅色</h2>
 
-    <p>
-      Every embed supports a <code>data-theme</code> attribute. Here's the same Finance ontology in both themes,
-      side by side:
-    </p>
+    <p>嵌入组件支持 <code>data-theme</code> 属性。下面并排展示同一金融本体的两种主题：</p>
 
     <div class="comparison">
       <div>
         <div class="embed-wrapper">
-          <div class="ontology-embed"
-               data-catalogue-id="official/finance"
-               data-catalogue-base-url="../"
-               data-theme="dark"
-               data-height="400px">
+          <div class="ontology-embed" data-catalogue-id="official/finance" data-catalogue-base-url="../" data-theme="dark" data-height="400px">
           </div>
         </div>
         <div class="comparison-label">data-theme="dark"</div>
       </div>
       <div>
         <div class="embed-wrapper">
-          <div class="ontology-embed"
-               data-catalogue-id="official/finance"
-               data-catalogue-base-url="../"
-               data-theme="light"
-               data-height="400px">
+          <div class="ontology-embed" data-catalogue-id="official/finance" data-catalogue-base-url="../" data-theme="light" data-height="400px">
           </div>
         </div>
         <div class="comparison-label">data-theme="light"</div>
       </div>
     </div>
 
-    <p>
-      The Finance ontology models banking relationships: Customers own Accounts, Accounts have Transactions,
-      Customers take out Loans, and Investments are funded by Accounts. Click around to explore.
-    </p>
+    <p>金融本体描述银行关系：客户拥有账户，账户记录交易，客户申请贷款，投资由账户出资。点击图谱继续探索。</p>
 
     <!-- ─── §6 Manufacturing ─────────────────────────────────────────── -->
-    <h2 id="manufacturing">6. Manufacturing: Machines, Sensors, and Quality</h2>
+    <h2 id="manufacturing">6. 制造：设备、传感器与质量</h2>
 
-    <p>
-      In Industry 4.0, factories generate massive amounts of sensor data. This ontology models
-      the essential concepts: Machines that are monitored by Sensors, Work Orders that Machines execute,
-      Parts that Work Orders consume, and Quality Checks that inspect the finished Parts.
-    </p>
+    <p>工业场景会产生大量传感器数据。这里描述设备、监测设备的传感器、设备执行的工单、工单消耗的零件及检查成品的质检记录。</p>
 
     <div class="embed-wrapper">
-      <div class="ontology-embed"
-           data-catalogue-id="official/manufacturing"
-           data-catalogue-base-url="../"
-           data-theme="dark"
-           data-height="480px">
+      <div class="ontology-embed" data-catalogue-id="official/manufacturing" data-catalogue-base-url="../" data-theme="dark" data-height="480px">
       </div>
     </div>
 
-    <p>
-      This is a great example of an ontology where the <strong>sensor → machine → work order → part → quality check</strong>
-      chain enables end-to-end traceability. If a quality check fails, you can trace back through the ontology to find
-      which machine, which sensor readings, and which work order were involved.
-    </p>
+    <p><strong>传感器 → 设备 → 工单 → 零件 → 质检</strong>路径支持端到端追溯。当质检不合格时，可沿本体追查相关设备、传感器读数和工单。</p>
 
     <!-- ─── §7 University ────────────────────────────────────────────── -->
-    <h2 id="university">7. University: Students, Courses, and Departments</h2>
+    <h2 id="university">7. 大学：学生、课程与院系</h2>
 
-    <p>
-      Our final example models a university. Students enroll in Courses through Enrollments (a many-to-many
-      relationship modeled as its own entity). Professors teach Courses and belong to Departments.
-    </p>
+    <p>学生通过 Enrollment 选课记录连接 Course，将多对多关系建模为独立实体；Professor 教授课程并隶属于 Department。</p>
 
     <div class="embed-wrapper">
-      <div class="ontology-embed"
-           data-catalogue-id="official/university"
-           data-catalogue-base-url="../"
-           data-theme="dark"
-           data-height="480px">
+      <div class="ontology-embed" data-catalogue-id="official/university" data-catalogue-base-url="../" data-theme="dark" data-height="480px">
       </div>
     </div>
 
-    <h3>Why is Enrollment a separate entity?</h3>
+    <h3>为什么 Enrollment 是独立实体？</h3>
 
-    <p>
-      Just like Review in the E-Commerce ontology, Enrollment is a <strong>junction entity</strong> —
-      it represents the many-to-many relationship between Students and Courses, but it also carries
-      its own properties (like <code>grade</code> and <code>semester</code>). Without it, you couldn't
-      answer "What grade did student X get in course Y in Fall 2025?"
-    </p>
+    <p>与电商的 Review 类似，Enrollment 是<strong>中间实体</strong>：它连接学生和课程，同时记录自己的 <code>grade</code>（成绩）与 <code>semester</code>（学期），以回答“学生 X 在 2025 年秋季的课程 Y 中取得什么成绩？”等问题。</p>
 
     <!-- ─── §8 Embed on your site ────────────────────────────────────── -->
-    <h2 id="embed">8. Embed These on Your Own Site</h2>
+    <h2 id="embed">8. 嵌入你的网站</h2>
 
-    <p>
-      Every visualization on this page is a self-contained embed widget. To add one to your own page,
-      copy this snippet:
-    </p>
+    <p>本页每张图都是独立的嵌入组件。将以下代码复制到网页中即可添加：</p>
 
     <pre style="background: #1e1e1e; padding: 20px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.6; color: #d4d4d4; margin: 16px 0 24px;"><code>&lt;div class="ontology-embed"
      data-catalogue-id="official/cosmic-coffee"
@@ -406,27 +304,23 @@
 &lt;/div&gt;
 &lt;script src="<span style="color:#7dd3fc">YOUR_SITE_URL</span>/embed/ontology-embed.js"&gt;&lt;/script&gt;</code></pre>
 
-    <p>Replace <code>YOUR_SITE_URL</code> with the URL of your deployed Ontology Playground site. You can also:</p>
+    <p>将 <code>YOUR_SITE_URL</code> 替换为已部署的本体实验室地址。还可以：</p>
 
     <ul>
-      <li>Use <code>data-ontology-url</code> to load from any RDF/XML or JSON URL</li>
-      <li>Use <code>data-ontology-inline</code> with a base64-encoded JSON ontology</li>
-      <li>Set <code>data-theme="light"</code> for light backgrounds</li>
-      <li>Adjust height with <code>data-height="400px"</code></li>
+      <li>用 <code>data-ontology-url</code> 从 RDF/XML 或 JSON 地址加载本体</li>
+      <li>用 <code>data-ontology-inline</code> 传入 Base64 编码的 JSON 本体</li>
+      <li>设置 <code>data-theme="light"</code> 使用浅色主题</li>
+      <li>用 <code>data-height="400px"</code> 调整高度</li>
     </ul>
 
-    <p>
-      You can also grab the embed code from the <strong>Gallery</strong> in the main app —
-      click the share icon on any ontology card to copy a ready-to-paste snippet.
-    </p>
+    <p>也可在主应用的<strong>本体目录</strong>中点击卡片分享图标，复制可直接粘贴的嵌入代码。</p>
   </main>
 
   <footer>
-    <p>
-      Built with <a href="./">Ontology Playground</a> — the community resource for learning about ontologies and Microsoft Fabric IQ.
-    </p>
+    <p>基于<a href="../">本体实验室</a>构建——学习本体与 Microsoft Fabric IQ 的社区资源。</p>
   </footer>
 
   <script src="ontology-embed.js"></script>
-</body>
-</html>
+
+
+</body></html>

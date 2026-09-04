@@ -1,7 +1,7 @@
 ---
-title: IQ Lab: Retail Supply Chain
+title: IQ 实验：零售供应链
 slug: iq-lab-retail-supply-chain
-description: Build a complete retail supply chain ontology step by step — from core commerce entities to fulfillment, inventory, and promotions.
+description: 逐步构建完整零售供应链本体，从核心交易实体扩展到履约、库存和促销。
 type: lab
 icon: 🔬
 ---

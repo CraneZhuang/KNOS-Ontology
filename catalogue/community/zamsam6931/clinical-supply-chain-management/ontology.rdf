@@ -8,8 +8,8 @@
     xmlns:ont="http://example.org/ontology/clinical-supply-chain-management/">
 
     <owl:Ontology rdf:about="http://example.org/ontology/clinical-supply-chain-management/">
-        <rdfs:label>Clinical Supply Chain Management</rdfs:label>
-        <rdfs:comment>            Enterprise Clinical Supply Chain Knowledge Graph  for Microsoft Fabric Ontology Playground        </rdfs:comment>
+        <rdfs:label>临床供应链本体</rdfs:label>
+        <rdfs:comment>用于 Microsoft Fabric 本体实验室的企业临床供应链知识图谱。</rdfs:comment>
     </owl:Ontology>
 
     <!-- ===================== -->
@@ -18,91 +18,91 @@
 
     <owl:Class rdf:about="http://example.org/ontology/clinical-supply-chain-management/Study">
         <rdfs:label>Study</rdfs:label>
-        <rdfs:comment>Represents a clinical trial or research study.</rdfs:comment>
+        <rdfs:comment>临床试验或研究项目。</rdfs:comment>
         <ont:icon>📝</ont:icon>
         <ont:color>#0078D4</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/clinical-supply-chain-management/Site">
         <rdfs:label>Site</rdfs:label>
-        <rdfs:comment>Represents a clinical research center or hospital.</rdfs:comment>
+        <rdfs:comment>临床研究中心或医院。</rdfs:comment>
         <ont:icon>🏢</ont:icon>
         <ont:color>#5C2D91</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/clinical-supply-chain-management/Patient">
         <rdfs:label>Patient</rdfs:label>
-        <rdfs:comment>Represents a participant enrolled in a study.</rdfs:comment>
+        <rdfs:comment>入组研究的参与者。</rdfs:comment>
         <ont:icon>👤</ont:icon>
         <ont:color>#FFB900</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/clinical-supply-chain-management/Enrollment">
         <rdfs:label>Enrollment</rdfs:label>
-        <rdfs:comment>Tracks patient recruitment and enrollment metrics.</rdfs:comment>
+        <rdfs:comment>跟踪患者招募与入组指标。</rdfs:comment>
         <ont:icon>📋</ont:icon>
         <ont:color>#107C10</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/clinical-supply-chain-management/Visit">
         <rdfs:label>Visit</rdfs:label>
-        <rdfs:comment>Represents a patient interaction or treatment visit.</rdfs:comment>
+        <rdfs:comment>患者的一次接触或治疗访视。</rdfs:comment>
         <ont:icon>🔗</ont:icon>
         <ont:color>#008272</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/clinical-supply-chain-management/Compound">
         <rdfs:label>Compound</rdfs:label>
-        <rdfs:comment>Represents investigational drug products.</rdfs:comment>
+        <rdfs:comment>研究用药产品。</rdfs:comment>
         <ont:icon>📦</ont:icon>
         <ont:color>#D83B01</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/clinical-supply-chain-management/Manufacturing">
         <rdfs:label>Manufacturing</rdfs:label>
-        <rdfs:comment>Represents manufacturing operations and production batches.</rdfs:comment>
+        <rdfs:comment>制造作业与生产批次。</rdfs:comment>
         <ont:icon>🔧</ont:icon>
         <ont:color>#5C2D91</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/clinical-supply-chain-management/Demand">
         <rdfs:label>Demand</rdfs:label>
-        <rdfs:comment>Represents forecasted clinical supply demand.</rdfs:comment>
+        <rdfs:comment>预测的临床物资需求。</rdfs:comment>
         <ont:icon>📈</ont:icon>
         <ont:color>#E81123</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/clinical-supply-chain-management/Depot">
         <rdfs:label>Depot</rdfs:label>
-        <rdfs:comment>Regional supply storage center</rdfs:comment>
+        <rdfs:comment>区域物资存储中心。</rdfs:comment>
         <ont:icon>📦</ont:icon>
         <ont:color>#107C10</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/clinical-supply-chain-management/Shipment">
         <rdfs:label>Shipment</rdfs:label>
-        <rdfs:comment>Represents movement of inventory between locations.</rdfs:comment>
+        <rdfs:comment>库存在地点之间的移动。</rdfs:comment>
         <ont:icon>🛒</ont:icon>
         <ont:color>#0078D4</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/clinical-supply-chain-management/Inventory">
         <rdfs:label>Inventory</rdfs:label>
-        <rdfs:comment>Represents available stock of clinical supplies.</rdfs:comment>
+        <rdfs:comment>可用临床物资库存。</rdfs:comment>
         <ont:icon>📦</ont:icon>
         <ont:color>#008272</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/clinical-supply-chain-management/Country">
         <rdfs:label>Country</rdfs:label>
-        <rdfs:comment>Country geographic entity</rdfs:comment>
+        <rdfs:comment>国家地理实体。</rdfs:comment>
         <ont:icon>🌐</ont:icon>
         <ont:color>#D83B01</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/clinical-supply-chain-management/Region">
         <rdfs:label>Region</rdfs:label>
-        <rdfs:comment>Geographic region</rdfs:comment>
+        <rdfs:comment>地理区域。</rdfs:comment>
         <ont:icon>📦</ont:icon>
         <ont:color>#0078D4</ont:color>
     </owl:Class>

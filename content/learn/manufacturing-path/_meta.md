@@ -1,7 +1,7 @@
 ---
-title: "Smart Manufacturing"
+title: "智能制造"
 slug: manufacturing-path
-description: "Model an IoT-enabled factory — machines, sensors, work orders, parts, and quality checks."
+description: "建立物联网工厂模型，涵盖设备、传感器、工单、零部件与质量检验。"
 type: path
 icon: 🏭
 ---

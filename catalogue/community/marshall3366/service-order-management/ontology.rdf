@@ -8,8 +8,8 @@
     xmlns:ont="http://example.org/ontology/service-order-management/">
 
     <owl:Ontology rdf:about="http://example.org/ontology/service-order-management/">
-        <rdfs:label>Service Order Management</rdfs:label>
-        <rdfs:comment>Service Order Management</rdfs:comment>
+        <rdfs:label>服务订单管理</rdfs:label>
+        <rdfs:comment>服务订单管理</rdfs:comment>
     </owl:Ontology>
 
     <!-- ===================== -->
@@ -18,63 +18,63 @@
 
     <owl:Class rdf:about="http://example.org/ontology/service-order-management/New-entity-10">
         <rdfs:label>Warehouse</rdfs:label>
-        <rdfs:comment>It tells the location of each warehouse/plant where the part is being kept and the inventory level information</rdfs:comment>
+        <rdfs:comment>记录存放零件的仓库或工厂位置以及库存水平。</rdfs:comment>
         <ont:icon>🏢</ont:icon>
         <ont:color>#5C2D91</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/service-order-management/New-entity-9">
         <rdfs:label>ServiceEngineer</rdfs:label>
-        <rdfs:comment>Service orders are the parts or devices which requires installation and service engineer needs to inspect the site and do the installation</rdfs:comment>
+        <rdfs:comment>需要安装的零件或设备服务订单，由服务工程师勘察现场并安装。</rdfs:comment>
         <ont:icon>🔧</ont:icon>
         <ont:color>#E81123</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/service-order-management/New-entity-8">
         <rdfs:label>Payment</rdfs:label>
-        <rdfs:comment>This a payment table and contains info about Payment method, Amount, Payment Status &amp; Transaction ID</rdfs:comment>
+        <rdfs:comment>付款记录，包含方式、金额、状态和交易 ID。</rdfs:comment>
         <ont:icon>🌐</ont:icon>
         <ont:color>#00A9E0</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/service-order-management/New-entity-7">
         <rdfs:label>Shipment</rdfs:label>
-        <rdfs:comment>It contains details regarding Courier type, Courier Service Name, Delivery Date, Dispatch Date, Delivery Status, Customer Name</rdfs:comment>
+        <rdfs:comment>记录快递类型、服务商、交付日期、发运日期、配送状态和客户姓名。</rdfs:comment>
         <ont:icon>⚡</ont:icon>
         <ont:color>#008272</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/service-order-management/New-entity-6">
         <rdfs:label>Parts</rdfs:label>
-        <rdfs:comment>Parts/Product related information like Product category, Brand and the Retail Price</rdfs:comment>
+        <rdfs:comment>零件或产品信息，例如类别、品牌和零售价。</rdfs:comment>
         <ont:icon>📝</ont:icon>
         <ont:color>#D83B01</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/service-order-management/New-entity-5">
         <rdfs:label>SalesTarget</rdfs:label>
-        <rdfs:comment>Monthly Sales target by each product ID</rdfs:comment>
+        <rdfs:comment>按产品 ID 制定的月度销售目标。</rdfs:comment>
         <ont:icon>🎯</ont:icon>
         <ont:color>#5C2D91</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/service-order-management/New-entity-4">
         <rdfs:label>Customer</rdfs:label>
-        <rdfs:comment>It has details regarding the Customer Name (people) and the region from which they ordered</rdfs:comment>
+        <rdfs:comment>记录客户姓名及下单区域。</rdfs:comment>
         <ont:icon>👤</ont:icon>
         <ont:color>#FFB900</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/service-order-management/New-entity-3">
         <rdfs:label>Return</rdfs:label>
-        <rdfs:comment>Devices that got returned by Customers</rdfs:comment>
+        <rdfs:comment>客户退回的设备。</rdfs:comment>
         <ont:icon>🛒</ont:icon>
         <ont:color>#107C10</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/service-order-management/New-entity-2">
         <rdfs:label>ServiceOrders</rdfs:label>
-        <rdfs:comment>Orders placed by the customers, Products details, Shipment details, Sales Amount</rdfs:comment>
+        <rdfs:comment>客户订单、产品明细、发货信息和销售金额。</rdfs:comment>
         <ont:icon>📦</ont:icon>
         <ont:color>#0078D4</ont:color>
     </owl:Class>

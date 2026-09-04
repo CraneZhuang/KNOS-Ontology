@@ -1,8 +1,13 @@
 {
-  "name": "Banking — Step 3: Loans & Investments",
-  "description": "Complete model with Loan and Investment products",
+  "name": "银行 — 第三步：贷款与投资",
+  "description": "包含 Loan 与 Investment 产品的完整模型。",
   "icon": "📈",
   "category": "school",
-  "tags": ["banking", "finance", "school", "step-3"],
+  "tags": [
+    "banking",
+    "finance",
+    "school",
+    "step-3"
+  ],
   "author": "ontology-quest"
 }

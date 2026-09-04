@@ -1,9 +1,14 @@
 {
-  "name": "FIBO Loans Lab — Step 3: Servicing & Payment History",
-  "description": "Servicing organizations and auditable payment history — adapted from FIBO LOAN/LoansGeneral and FBC/ProductsAndServices.",
+  "name": "FIBO 贷款实验 — 第三步：贷款服务与支付历史",
+  "description": "贷款服务机构及可审计支付历史，改编自 FIBO LOAN/LoansGeneral 和 FBC/ProductsAndServices。",
   "icon": "🧾",
   "category": "school",
-  "tags": ["fibo", "loan", "school", "step-3"],
+  "tags": [
+    "fibo",
+    "loan",
+    "school",
+    "step-3"
+  ],
   "author": "EDM Council FIBO (adapted by ontology-quest)",
   "license": "MIT",
   "sourceUrl": "https://github.com/edmcouncil/fibo"

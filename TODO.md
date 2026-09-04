@@ -1,5 +1,13 @@
 # Ontology Playground — Feature Roadmap
 
+## 简体中文本地化（2026-09-04）
+
+- [x] 翻译页面操作、帮助、导览、探索任务、校验和错误提示。
+- [x] 翻译 13 个学习课程、61 篇文章、测验及独立嵌入示例。
+- [x] 翻译 71 个目录项及本体说明，保留图谱连接、来源和授权信息。
+- [x] 支持中文教学查询和中文语音识别语言设置。
+- [x] 更新中文界面测试，补充查询、课程和 RDF 中文往返测试。
+
 > The goal: build the best community resource site for learning about ontologies
 > and Microsoft Fabric IQ Ontologies. Fully static, deployable to Azure Static
 > Web Apps or GitHub Pages.

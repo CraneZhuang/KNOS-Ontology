@@ -8,8 +8,8 @@
     xmlns:ont="https://schema.org/local-business-subset/">
 
     <owl:Ontology rdf:about="https://schema.org/local-business-subset/">
-        <rdfs:label>Schema.org — LocalBusiness</rdfs:label>
-        <rdfs:comment>Local businesses, opening hours, reviews, and postal addresses — a subset of Schema.org for describing brick-and-mortar businesses.</rdfs:comment>
+        <rdfs:label>Schema.org — 本地商家</rdfs:label>
+        <rdfs:comment>Schema.org 实体商家描述子集，涵盖本地商家、营业时间、评论和邮寄地址。</rdfs:comment>
     </owl:Ontology>
 
     <!-- ===================== -->
@@ -18,35 +18,35 @@
 
     <owl:Class rdf:about="https://schema.org/local-business-subset/LocalBusiness">
         <rdfs:label>LocalBusiness</rdfs:label>
-        <rdfs:comment>A physical business establishment like a restaurant, shop, or service provider</rdfs:comment>
+        <rdfs:comment>餐厅、商店或服务提供商等实体营业场所。</rdfs:comment>
         <ont:icon>🏪</ont:icon>
         <ont:color>#0078D4</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="https://schema.org/local-business-subset/PostalAddress">
         <rdfs:label>PostalAddress</rdfs:label>
-        <rdfs:comment>A mailing address with street, city, region, and country</rdfs:comment>
+        <rdfs:comment>包含街道、城市、地区和国家的邮寄地址。</rdfs:comment>
         <ont:icon>📬</ont:icon>
         <ont:color>#5C2D91</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="https://schema.org/local-business-subset/OpeningHoursSpecification">
         <rdfs:label>OpeningHours</rdfs:label>
-        <rdfs:comment>The days and times a business is open</rdfs:comment>
+        <rdfs:comment>商家营业的日期和时段。</rdfs:comment>
         <ont:icon>🕐</ont:icon>
         <ont:color>#107C10</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="https://schema.org/local-business-subset/Review">
         <rdfs:label>Review</rdfs:label>
-        <rdfs:comment>A customer review with rating and text</rdfs:comment>
+        <rdfs:comment>包含评分和文字的客户评论。</rdfs:comment>
         <ont:icon>⭐</ont:icon>
         <ont:color>#FFB900</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="https://schema.org/local-business-subset/Person">
         <rdfs:label>Person</rdfs:label>
-        <rdfs:comment>A person who writes reviews or owns a business</rdfs:comment>
+        <rdfs:comment>撰写评论或拥有商家的人员。</rdfs:comment>
         <ont:icon>👤</ont:icon>
         <ont:color>#E74C3C</ont:color>
     </owl:Class>
@@ -138,7 +138,7 @@
 
     <owl:ObjectProperty rdf:about="https://schema.org/local-business-subset/hasAddress">
         <rdfs:label>hasAddress</rdfs:label>
-        <rdfs:comment>The postal address of the business</rdfs:comment>
+        <rdfs:comment>商家邮寄地址。</rdfs:comment>
         <rdfs:domain rdf:resource="https://schema.org/local-business-subset/LocalBusiness"/>
         <rdfs:range rdf:resource="https://schema.org/local-business-subset/PostalAddress"/>
         <ont:cardinality>one-to-one</ont:cardinality>
@@ -146,7 +146,7 @@
 
     <owl:ObjectProperty rdf:about="https://schema.org/local-business-subset/openingHours">
         <rdfs:label>openingHours</rdfs:label>
-        <rdfs:comment>The opening hours schedule for the business</rdfs:comment>
+        <rdfs:comment>商家营业时间安排。</rdfs:comment>
         <rdfs:domain rdf:resource="https://schema.org/local-business-subset/LocalBusiness"/>
         <rdfs:range rdf:resource="https://schema.org/local-business-subset/OpeningHoursSpecification"/>
         <ont:cardinality>one-to-many</ont:cardinality>
@@ -154,7 +154,7 @@
 
     <owl:ObjectProperty rdf:about="https://schema.org/local-business-subset/hasReview">
         <rdfs:label>hasReview</rdfs:label>
-        <rdfs:comment>Customer reviews of the business</rdfs:comment>
+        <rdfs:comment>客户对商家的评论。</rdfs:comment>
         <rdfs:domain rdf:resource="https://schema.org/local-business-subset/LocalBusiness"/>
         <rdfs:range rdf:resource="https://schema.org/local-business-subset/Review"/>
         <ont:cardinality>one-to-many</ont:cardinality>
@@ -162,7 +162,7 @@
 
     <owl:ObjectProperty rdf:about="https://schema.org/local-business-subset/author">
         <rdfs:label>author</rdfs:label>
-        <rdfs:comment>The person who wrote the review</rdfs:comment>
+        <rdfs:comment>评论作者。</rdfs:comment>
         <rdfs:domain rdf:resource="https://schema.org/local-business-subset/Review"/>
         <rdfs:range rdf:resource="https://schema.org/local-business-subset/Person"/>
         <ont:cardinality>many-to-one</ont:cardinality>

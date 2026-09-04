@@ -1,5 +1,21 @@
 # Ontology Playground (Preview) ☕
 
+## 简体中文版
+
+项目界面、帮助、导览、探索任务、设计器、导入导出提示、独立嵌入示例，以及 13 个课程（61 篇文章）和 71 个本体目录项的名称与说明均已中文化。实体与关系标识符、字段名、枚举值、技术标签、代码和来源署名保留，以保持 RDF/OWL 与查询兼容性。
+
+Windows PowerShell 启动：
+
+```powershell
+npm.cmd ci
+npm.cmd run build
+npm.cmd run dev -- --host 127.0.0.1 --port 5173
+```
+
+打开 `http://127.0.0.1:5173/`。首页查询支持“显示所有客户”“客户如何连接到订单？”以及“显示所有金卡会员”等教学示例；它是本地规则演示，不会查询真实业务数据。可选 AI 构建器和 Fabric 推送仍需另外配置后端或凭证，本次本地运行不包含这些外部服务。
+
+完整路由、嵌入示例运行方式及中文维护约定见 [中文化说明](docs/chinese-localization.md)。下方在线演示链接指向上游原版，并非本地中文版本。
+
 > Note: This project was developed with AI-assisted coding.
 
 **[Try it live &#x2192; microsoft.github.io/Ontology-Playground](https://microsoft.github.io/Ontology-Playground/)**

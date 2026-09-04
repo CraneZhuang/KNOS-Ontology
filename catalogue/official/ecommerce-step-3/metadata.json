@@ -1,8 +1,13 @@
 {
-  "name": "E-Commerce — Step 3: Reviews",
-  "description": "Complete model with customer reviews and ratings",
+  "name": "电子商务 — 第三步：评价",
+  "description": "包含客户评价和评分的完整模型。",
   "icon": "⭐",
   "category": "school",
-  "tags": ["ecommerce", "retail", "school", "step-3"],
+  "tags": [
+    "ecommerce",
+    "retail",
+    "school",
+    "step-3"
+  ],
   "author": "ontology-quest"
 }

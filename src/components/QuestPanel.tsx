@@ -19,7 +19,7 @@ export function QuestPanel() {
       <div className="panel-header">
         <h3 className="panel-title">
           <Target size={16} style={{ marginRight: 8 }} />
-          Quests
+          探索任务
         </h3>
       </div>
 
@@ -71,7 +71,7 @@ export function QuestPanel() {
             <div className="quest-actions">
               <button className="btn btn-secondary" onClick={abandonQuest}>
                 <X size={16} />
-                Abandon
+                放弃任务
               </button>
             </div>
           </motion.div>
@@ -98,14 +98,14 @@ export function QuestPanel() {
                   {quest.title}
                 </span>
                 <span className={`quest-badge ${quest.difficulty}`}>
-                  {quest.difficulty}
+                  {{ beginner: '入门', intermediate: '进阶', advanced: '高级' }[quest.difficulty]}
                 </span>
               </div>
               <p className="quest-description">{quest.description}</p>
               <div className="quest-reward">
                 <Trophy size={14} />
                 <span>{quest.reward.badgeIcon} {quest.reward.badge}</span>
-                <span className="quest-points">+{quest.reward.points} pts</span>
+                <span className="quest-points">+{quest.reward.points} 积分</span>
               </div>
             </motion.div>
           );
@@ -117,7 +117,7 @@ export function QuestPanel() {
         <div className="badges-panel">
           <div className="section-title">
             <Star size={14} />
-            Earned Badges ({earnedBadges.length})
+            已获徽章（{earnedBadges.length}）
           </div>
           <div className="badges-grid">
             {earnedBadges.map((badge, index) => (
@@ -134,7 +134,7 @@ export function QuestPanel() {
             ))}
           </div>
           <div style={{ marginTop: 8, fontSize: 12, color: 'var(--ms-yellow)', fontWeight: 600 }}>
-            Total: {totalPoints} points
+            合计： {totalPoints} 积分
           </div>
         </div>
       )}

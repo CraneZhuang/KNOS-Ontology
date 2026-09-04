@@ -1,23 +1,23 @@
 ---
-title: "Faculty"
+title: "教师"
 slug: faculty
-description: "Add Professor to track who teaches what — connecting faculty to courses and students through teaching assignments."
+description: "添加 Professor，通过授课关系连接教师、课程与学生。"
 order: 3
 embed: official/university-step-2
 ---
 
-## Adding faculty
+## 添加教师
 
-Who teaches the courses? The **Professor** entity adds the teaching dimension — connecting faculty to courses and, transitively, to students.
+谁负责授课？**Professor（教授）**实体加入教学维度，连接教师与课程，并通过路径间接连接学生。
 
-Adding Professor enables:
-- "Which professor teaches the most 400-level courses?"
-- "What is the average GPA in Professor Smith's courses?"
-- "Which tenured faculty teach introductory courses?"
+添加 Professor 后，可研究以下问题：
+- “哪位教授讲授的 400 级课程最多？”
+- “Smith 教授课程中学生的平均 GPA 是多少？”
+- “哪些拥有终身教职的教师教授入门课程？”
 
-## Professor entity
+## Professor 实体
 
-| Property | Type | Identifier? |
+| 属性 | 类型 | 是否为标识符？ |
 |---|---|---|
 | `professorId` | string | ✓ |
 | `name` | string | |
@@ -25,38 +25,38 @@ Adding Professor enables:
 | `tenured` | boolean | |
 | `officeHours` | string | |
 
-The `rank` property (Assistant, Associate, Full) reflects academic hierarchy. The `tenured` boolean enables queries about job security and institutional investment.
+`rank`（Assistant、Associate、Full）表示学术职级。布尔属性 `tenured` 用于区分是否拥有终身教职。
 
-## New relationships
+## 新增关系
 
-- **teaches** — `Professor` → `Course` (one-to-many)
-  A professor teaches one or more courses per semester.
+- **teaches（教授）**——`Professor` → `Course`（一对多）
+  教授每学期讲授一门或多门课程。
 
-- **advises** — `Professor` → `Student` (one-to-many)
-  A professor advises students in their academic program.
+- **advises（指导）**——`Professor` → `Student`（一对多）
+  教授为专业内的学生提供学业指导。
 
-> **Transitive queries:** With Professor → Course ← Enrollment ← Student, you can now ask questions that cross the teaching relationship: "Which students are taking courses from tenured professors?" This requires traversing Professor → Course → Enrollment → Student.
+> **跨关系查询：**沿 Professor → Course ← Enrollment ← Student，可以回答“哪些学生正在修读终身教职教授的课程？”这需要遍历 Professor → Course → Enrollment → Student。
 
-## The growing graph
+## 持续扩展的图谱
 
 <ontology-embed id="official/university-step-2" diff="official/university-step-1" height="400px"></ontology-embed>
 
-*Professor joins with teaching and advising relationships. The diff highlights what's new.*
+*Professor 通过授课和指导关系加入。差异高亮显示新增内容。*
 
-## What we learned
+## 本节总结
 
-- **Boolean properties** (tenured) create yes/no categorizations for filtering
-- **Transitive queries** traverse multiple relationships to connect distant entities
-- **Academic rank** follows a defined hierarchy (Assistant → Associate → Full)
-- The graph now supports both student-centric and faculty-centric queries
+- **布尔属性**（tenured）提供用于筛选的是/否分类
+- **跨关系查询**沿多条关系连接相距较远的实体
+- **学术职级**遵循明确的层次（Assistant → Associate → Full）
+- 图现在同时支持以学生和教师为中心的查询
 
 ```quiz
-Q: What does a transitive query across the university ontology look like?
-- Querying a single entity's properties
-- Traversing multiple relationships like Professor → Course → Enrollment → Student to connect distant entities [correct]
-- Looking up a professor by their ID
-- Counting the number of courses in the system
-> Transitive queries are one of the greatest strengths of graph-based ontologies. By traversing Professor → Course → Enrollment → Student, you can answer questions like "Which students are in tenured professors' classes?" — connecting entities that have no direct relationship but are linked through intermediate nodes.
+Q: 大学本体中的跨关系查询是什么样的？
+- 查询单个实体的属性
+- 沿 Professor → Course → Enrollment → Student 等多条关系遍历，连接相距较远的实体 [correct]
+- 通过 ID 查找教授
+- 统计系统中的课程数量
+> 跨关系查询是图本体的优势之一。沿 Professor → Course → Enrollment → Student 遍历，可回答“哪些学生修读终身教职教授的课程？”——即使两个实体没有直接关系，也能通过中间节点连接。
 ```
 
-Next, we'll add Department to organize the academic structure.
+接下来添加 Department，组织教学结构。

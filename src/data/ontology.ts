@@ -56,93 +56,93 @@ export interface DataBinding {
 // The Fourth Coffee Ontology
 export const cosmicCoffeeOntology: Ontology = {
   name: "Fourth Coffee",
-  description: "A sample ontology representing a modern coffee shop chain with suppliers, products, stores, customers, and orders.",
+  description: "以现代咖啡连锁为背景的示例本体，涵盖供应商、产品、门店、客户与订单。",
   entityTypes: [
     {
       id: "customer",
       name: "Customer",
-      description: "A person who purchases coffee products from our stores",
+      description: "在门店购买咖啡产品的顾客",
       icon: "👤",
       color: "#0078D4", // Microsoft Blue
       properties: [
-        { name: "customerId", type: "string", isIdentifier: true, description: "Unique customer identifier" },
-        { name: "name", type: "string", description: "Full name of the customer" },
-        { name: "email", type: "string", description: "Contact email address" },
-        { name: "loyaltyTier", type: "enum", values: ["Bronze", "Silver", "Gold", "Platinum"], description: "Loyalty program tier" },
-        { name: "joinDate", type: "date", description: "Date the customer joined" },
-        { name: "totalSpend", type: "decimal", unit: "USD", description: "Lifetime spend amount" }
+        { name: "customerId", type: "string", isIdentifier: true, description: "客户唯一标识符" },
+        { name: "name", type: "string", description: "客户全名" },
+        { name: "email", type: "string", description: "联系电子邮箱" },
+        { name: "loyaltyTier", type: "enum", values: ["Bronze", "Silver", "Gold", "Platinum"], description: "会员等级" },
+        { name: "joinDate", type: "date", description: "客户加入日期" },
+        { name: "totalSpend", type: "decimal", unit: "USD", description: "累计消费金额" }
       ]
     },
     {
       id: "order",
       name: "Order",
-      description: "A customer purchase transaction at a store",
+      description: "客户在门店发生的购买交易",
       icon: "🧾",
       color: "#107C10", // Microsoft Green
       properties: [
-        { name: "orderId", type: "string", isIdentifier: true, description: "Unique order identifier" },
-        { name: "timestamp", type: "datetime", description: "When the order was placed" },
-        { name: "total", type: "decimal", unit: "USD", description: "Total order amount" },
-        { name: "status", type: "enum", values: ["Pending", "Preparing", "Ready", "Completed", "Cancelled"], description: "Current order status" },
-        { name: "paymentMethod", type: "enum", values: ["Card", "Cash", "Mobile", "Gift Card"], description: "Payment method used" }
+        { name: "orderId", type: "string", isIdentifier: true, description: "订单唯一标识符" },
+        { name: "timestamp", type: "datetime", description: "下单时间" },
+        { name: "total", type: "decimal", unit: "USD", description: "订单总金额" },
+        { name: "status", type: "enum", values: ["Pending", "Preparing", "Ready", "Completed", "Cancelled"], description: "订单当前状态" },
+        { name: "paymentMethod", type: "enum", values: ["Card", "Cash", "Mobile", "Gift Card"], description: "所用支付方式" }
       ]
     },
     {
       id: "product",
       name: "Product",
-      description: "A coffee product or item available for sale",
+      description: "可销售的咖啡产品或商品",
       icon: "☕",
       color: "#5C2D91", // Microsoft Purple
       properties: [
-        { name: "productId", type: "string", isIdentifier: true, description: "Unique product identifier" },
-        { name: "name", type: "string", description: "Product name" },
-        { name: "category", type: "enum", values: ["Espresso", "Brewed", "Cold Brew", "Tea", "Food", "Merchandise"], description: "Product category" },
-        { name: "price", type: "decimal", unit: "USD", description: "Unit price" },
-        { name: "origin", type: "string", description: "Coffee bean origin country" },
-        { name: "isOrganic", type: "boolean", description: "Whether the product is certified organic" }
+        { name: "productId", type: "string", isIdentifier: true, description: "产品唯一标识符" },
+        { name: "name", type: "string", description: "产品名称" },
+        { name: "category", type: "enum", values: ["Espresso", "Brewed", "Cold Brew", "Tea", "Food", "Merchandise"], description: "产品类别" },
+        { name: "price", type: "decimal", unit: "USD", description: "单价" },
+        { name: "origin", type: "string", description: "咖啡豆原产国" },
+        { name: "isOrganic", type: "boolean", description: "产品是否通过有机认证" }
       ]
     },
     {
       id: "store",
       name: "Store",
-      description: "A physical coffee shop location",
+      description: "实体咖啡门店",
       icon: "🏪",
       color: "#FFB900", // Microsoft Yellow/Gold
       properties: [
-        { name: "storeId", type: "string", isIdentifier: true, description: "Unique store identifier" },
-        { name: "name", type: "string", description: "Store name" },
-        { name: "city", type: "string", description: "City location" },
-        { name: "state", type: "string", description: "State/Province" },
-        { name: "openDate", type: "date", description: "Store opening date" },
-        { name: "capacity", type: "integer", description: "Seating capacity" }
+        { name: "storeId", type: "string", isIdentifier: true, description: "门店唯一标识符" },
+        { name: "name", type: "string", description: "门店名称" },
+        { name: "city", type: "string", description: "所在城市" },
+        { name: "state", type: "string", description: "州 / 省" },
+        { name: "openDate", type: "date", description: "门店开业日期" },
+        { name: "capacity", type: "integer", description: "座位容量" }
       ]
     },
     {
       id: "supplier",
       name: "Supplier",
-      description: "A coffee bean or goods supplier partner",
+      description: "咖啡豆或商品供应商合作伙伴",
       icon: "🚚",
       color: "#D83B01", // Microsoft Orange
       properties: [
-        { name: "supplierId", type: "string", isIdentifier: true, description: "Unique supplier identifier" },
-        { name: "name", type: "string", description: "Supplier company name" },
-        { name: "country", type: "string", description: "Country of operation" },
-        { name: "certification", type: "enum", values: ["Fair Trade", "Rainforest Alliance", "Organic", "Direct Trade", "None"], description: "Sustainability certification" },
-        { name: "rating", type: "decimal", description: "Quality rating (1-5)" }
+        { name: "supplierId", type: "string", isIdentifier: true, description: "供应商唯一标识符" },
+        { name: "name", type: "string", description: "供应商公司名称" },
+        { name: "country", type: "string", description: "经营所在国家" },
+        { name: "certification", type: "enum", values: ["Fair Trade", "Rainforest Alliance", "Organic", "Direct Trade", "None"], description: "可持续认证" },
+        { name: "rating", type: "decimal", description: "质量评分（1–5）" }
       ]
     },
     {
       id: "shipment",
       name: "Shipment",
-      description: "A delivery of goods from supplier to store",
+      description: "从供应商发送到门店的一批货物",
       icon: "📦",
       color: "#00A9E0", // Light Blue
       properties: [
-        { name: "shipmentId", type: "string", isIdentifier: true, description: "Unique shipment identifier" },
-        { name: "dispatchDate", type: "date", description: "Date shipped from supplier" },
-        { name: "arrivalDate", type: "date", description: "Date arrived at store" },
-        { name: "status", type: "enum", values: ["In Transit", "Delivered", "Delayed"], description: "Shipment status" },
-        { name: "weight", type: "decimal", unit: "kg", description: "Total shipment weight" }
+        { name: "shipmentId", type: "string", isIdentifier: true, description: "发货单唯一标识符" },
+        { name: "dispatchDate", type: "date", description: "供应商发货日期" },
+        { name: "arrivalDate", type: "date", description: "门店收货日期" },
+        { name: "status", type: "enum", values: ["In Transit", "Delivered", "Delayed"], description: "发货状态" },
+        { name: "weight", type: "decimal", unit: "kg", description: "货物总重量" }
       ]
     }
   ],
@@ -153,7 +153,7 @@ export const cosmicCoffeeOntology: Ontology = {
       from: "customer",
       to: "order",
       cardinality: "one-to-many",
-      description: "A customer places one or more orders"
+      description: "一个客户可以下一个或多个订单"
     },
     {
       id: "order_contains_product",
@@ -161,7 +161,7 @@ export const cosmicCoffeeOntology: Ontology = {
       from: "order",
       to: "product",
       cardinality: "many-to-many",
-      description: "An order contains one or more products",
+      description: "一个订单包含一个或多个产品",
       attributes: [
         { name: "quantity", type: "integer" },
         { name: "customizations", type: "string" }
@@ -173,7 +173,7 @@ export const cosmicCoffeeOntology: Ontology = {
       from: "order",
       to: "store",
       cardinality: "many-to-one",
-      description: "An order is processed at a specific store"
+      description: "订单在指定门店处理"
     },
     {
       id: "product_sourced_from_supplier",
@@ -181,7 +181,7 @@ export const cosmicCoffeeOntology: Ontology = {
       from: "product",
       to: "supplier",
       cardinality: "many-to-one",
-      description: "A product's ingredients are sourced from a supplier"
+      description: "产品原料来自供应商"
     },
     {
       id: "shipment_from_supplier",
@@ -189,7 +189,7 @@ export const cosmicCoffeeOntology: Ontology = {
       from: "shipment",
       to: "supplier",
       cardinality: "many-to-one",
-      description: "A shipment is sent by a supplier"
+      description: "货物由供应商发出"
     },
     {
       id: "shipment_to_store",
@@ -197,7 +197,7 @@ export const cosmicCoffeeOntology: Ontology = {
       from: "shipment",
       to: "store",
       cardinality: "many-to-one",
-      description: "A shipment is delivered to a store"
+      description: "货物配送到门店"
     },
     {
       id: "shipment_contains_product",
@@ -205,7 +205,7 @@ export const cosmicCoffeeOntology: Ontology = {
       from: "shipment",
       to: "product",
       cardinality: "many-to-many",
-      description: "A shipment carries products",
+      description: "货物包含产品",
       attributes: [
         { name: "quantity", type: "integer" }
       ]

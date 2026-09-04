@@ -100,7 +100,7 @@ export async function startDeviceFlow(clientId: string): Promise<DeviceCodeRespo
     },
     body: JSON.stringify({ client_id: clientId, scope: 'public_repo' }),
   });
-  if (!res.ok) throw new Error(`Device flow start failed (${res.status})`);
+  if (!res.ok) throw new Error(`启动设备授权流程失败（${res.status}）`);
   return res.json();
 }
 
@@ -157,10 +157,10 @@ export async function pollForToken(
     }
 
     // Any other error (expired_token, access_denied, etc.)
-    throw new Error(data.error_description || data.error || 'OAuth failed');
+    throw new Error(data.error_description || data.error || "OAuth 授权失败");
   }
 
-  throw new Error('Device code expired');
+  throw new Error("设备授权码已过期");
 }
 
 // ─── GitHub API helpers ─────────────────────────────────────────────────────
@@ -180,7 +180,7 @@ async function ghFetch(path: string, token: string, init?: RequestInit): Promise
 
 export async function getUser(token: string): Promise<GitHubUser> {
   const res = await ghFetch('/user', token);
-  if (!res.ok) throw new Error(`Failed to get user (${res.status})`);
+  if (!res.ok) throw new Error(`获取用户失败（${res.status}）`);
   return res.json();
 }
 
@@ -206,7 +206,7 @@ async function ensureFork(token: string): Promise<{ owner: string; repo: string 
     body: JSON.stringify({ default_branch_only: true }),
   });
   if (!res.ok && res.status !== 202) {
-    throw new Error(`Failed to fork repo (${res.status})`);
+    throw new Error(`派生仓库失败（${res.status}）`);
   }
 
   // Wait briefly for the fork to be ready
@@ -219,7 +219,7 @@ async function ensureFork(token: string): Promise<{ owner: string; repo: string 
  */
 async function getBranchSha(token: string, owner: string, repo: string, branch: string): Promise<string> {
   const res = await ghFetch(`/repos/${owner}/${repo}/git/ref/heads/${branch}`, token);
-  if (!res.ok) throw new Error(`Branch '${branch}' not found (${res.status})`);
+  if (!res.ok) throw new Error(`分支 '${branch}' 未找到（${res.status}）`);
   const data = await res.json();
   return data.object.sha;
 }
@@ -235,7 +235,7 @@ async function createBranch(token: string, owner: string, repo: string, branch: 
   });
   if (!res.ok && res.status !== 422) {
     // 422 = branch already exists, which is fine
-    throw new Error(`Failed to create branch (${res.status})`);
+    throw new Error(`创建分支失败（${res.status}）`);
   }
 }
 
@@ -269,7 +269,7 @@ async function createOrUpdateFile(
       ...(sha ? { sha } : {}),
     }),
   });
-  if (!res.ok) throw new Error(`Failed to create file ${path} (${res.status})`);
+  if (!res.ok) throw new Error(`创建文件失败 ${path} (${res.status})`);
 }
 
 /**
@@ -294,7 +294,7 @@ async function openPullRequest(
   });
   if (!res.ok) {
     const err = await res.json().catch(() => ({}));
-    throw new Error(err.message || `Failed to create PR (${res.status})`);
+    throw new Error(err.message || `创建拉取请求失败（${res.status}）`);
   }
   const data = await res.json();
   return { html_url: data.html_url, number: data.number };

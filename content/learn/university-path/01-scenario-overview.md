@@ -1,43 +1,43 @@
 ---
-title: "Scenario Overview"
+title: "场景概览"
 slug: scenario-overview
-description: "Meet the University System — an academic institution that needs an ontology to connect students, courses, faculty, and departments."
+description: "认识大学管理场景：通过本体连接学生、课程、教师与院系。"
 order: 1
 ---
 
-## The scenario
+## 业务场景
 
-You are designing the data model for a **university management system**. The institution tracks:
+你正在为**大学管理系统**设计数据模型。学校需要管理：
 
-- **Students** with their enrollment status, GPA, and academic standing
-- **Courses** with credit hours, levels, and prerequisites
-- **Enrollments** recording which students take which courses and their grades
-- **Professors** teaching courses with their rank, tenure status, and office hours
-- **Departments** organizing academic programs and housing faculty
+- **学生**的注册状态、平均绩点（GPA）和学业情况
+- **课程**的学分、级别和先修要求
+- **选课记录**，记录学生修读的课程及成绩
+- **教授**的授课安排、职级、终身教职状态和答疑时间
+- **院系**的专业设置与教师归属
 
-Data lives across student information systems (SIS), learning management systems (LMS), human resources, and academic planning databases.
+数据分散在学生信息系统（SIS）、学习管理系统（LMS）、人力资源系统和教学规划数据库中。
 
-## Why an ontology?
+## 为什么需要本体？
 
-An academic question like **"Which departments have professors teaching courses where over 50% of enrolled students scored below a C?"** crosses departmental records, faculty assignments, course offerings, and student grades.
+例如，**“哪些院系的教授所教课程中，超过 50% 的学生成绩低于 C？”**这个问题需要关联院系、教师安排、开课信息和学生成绩。
 
-With an ontology, this maps to: `Department → Professor → Course → Enrollment (grade < C) ← Student`.
+本体中的路径为：`Department → Professor → Course → Enrollment (grade < C) ← Student`。
 
-## What we'll build
+## 我们将构建什么
 
-| Step | Entities | What you'll learn |
+| 步骤 | 实体 | 学习内容 |
 |---|---|---|
-| 1 | Student, Course, Enrollment | Academic records, many-to-many through junction entities |
-| 2 | + Professor | Faculty assignments, teaching relationships |
-| 3 | + Department | Organizational structure, hierarchy |
+| 1 | Student、Course、Enrollment | 学籍记录、通过中间实体实现多对多 |
+| 2 | + Professor | 教师安排、授课关系 |
+| 3 | + Department | 组织结构与层次 |
 
-By the end, you'll have a 5-entity, 6-relationship ontology covering the complete academic administration model.
+最终得到一个包含 5 个实体、6 条关系的大学教务本体。
 
-## Key concepts
+## 关键概念
 
-- **Junction entities** — Enrollment resolves the Student–Course many-to-many relationship
-- **Academic hierarchies** — Departments organize professors and courses
-- **Grade tracking** — letter grades and GPA as ontology properties
-- **Temporal data** — semesters, enrollment dates, academic years
+- **中间实体**——Enrollment 解析 Student 与 Course 之间的多对多关系
+- **教学层次**——院系统筹教授和课程
+- **成绩跟踪**——将字母成绩和 GPA 建模为本体属性
+- **时间数据**——学期、选课日期、学年
 
-Let's start with the academic core.
+从教学核心开始。

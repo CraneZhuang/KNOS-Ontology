@@ -1,43 +1,43 @@
 ---
-title: "Scenario Overview"
+title: "场景概览"
 slug: scenario-overview
-description: "Meet the Banking & Finance scenario — why financial services need ontologies for customer, account, and product relationships."
+description: "认识银行与金融场景，了解金融服务为什么需要本体连接客户、账户与产品。"
 order: 1
 ---
 
-## The scenario
+## 业务场景
 
-You are designing the data model for a **retail banking platform**. The bank manages:
+你正在为**零售银行平台**设计数据模型。银行管理：
 
-- **Customers** with credit profiles and risk assessments
-- **Accounts** (checking, savings, brokerage) with balances and interest rates
-- **Transactions** recording every debit, credit, and transfer
-- **Loans** including mortgages, auto loans, and personal credit
-- **Investments** tracking stock holdings and portfolio values
+- 具有信用档案和风险评估的**客户**
+- 记录余额与利率的**账户**，如活期、储蓄和经纪账户
+- 记录每次借记、贷记和转账的**交易**
+- 包括按揭、汽车贷款和个人信贷的**贷款**
+- 跟踪股票持仓与组合价值的**投资**
 
-Data spans core banking systems, payment processors, credit bureaus, and brokerage platforms — each with its own schema and identifiers.
+数据分散在核心银行系统、支付处理平台、征信机构和经纪平台中，各自使用不同结构与标识符。
 
-## Why an ontology?
+## 为什么需要本体？
 
-A compliance question like **"Show all transactions from accounts owned by high-risk customers with active loans exceeding $100K"** requires traversing from transactions to accounts to customers to loans, crossing multiple systems.
+合规问题**“显示贷款余额超过 10 万美元的高风险客户所持账户中的全部交易”**，需要从交易遍历到账户、客户和贷款，跨越多个系统。
 
-With an ontology, this is a graph traversal: `Transaction → Account → Customer (riskProfile='high') → Loan (principal > 100000)`.
+使用本体时，对应的图谱路径为：`Transaction → Account → Customer (riskProfile='high') → Loan (principal > 100000)`。
 
-## What we'll build
+## 我们将构建什么
 
-| Step | Entities | What you'll learn |
+| 步骤 | 实体 | 学习内容 |
 |---|---|---|
-| 1 | Customer, Account | Core banking entities, ownership relationships |
-| 2 | + Transaction | Activity tracking, temporal data |
-| 3 | + Loan, Investment | Financial products, multi-path relationships |
+| 1 | Customer、Account | 银行业核心实体、所有权关系 |
+| 2 | + Transaction | 活动跟踪、时间数据 |
+| 3 | + Loan、Investment | 金融产品、多路径关系 |
 
-By the end, you'll have a 5-entity, 6-relationship ontology covering the complete banking customer relationship.
+完成后，将得到包含 5 个实体、6 条关系的本体，覆盖完整的银行客户关系。
 
-## Key concepts
+## 关键概念
 
-- **Ownership chains** — Customer → Account → Transaction / Loan / Investment
-- **Financial identifiers** — account numbers, transaction IDs, loan IDs
-- **Risk and compliance** — credit scores, risk profiles
-- **Multi-path relationships** — when one entity connects to another through different paths
+- **所有权链**：Customer → Account → Transaction / Loan / Investment
+- **金融标识符**：账号、交易 ID、贷款 ID
+- **风险与合规**：信用评分、风险画像
+- **多路径关系**：两个实体通过不同路径连接
 
-Let's start with the banking foundation: Customer and Account.
+先从银行业的基础实体 Customer 和 Account 开始。

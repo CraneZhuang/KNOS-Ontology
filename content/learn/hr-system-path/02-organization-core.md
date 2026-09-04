@@ -1,25 +1,25 @@
 ---
-title: "Organization Core"
+title: "组织核心"
 slug: organization-core
-description: "Define Employee, Department, and Position to model core organizational structure."
+description: "定义 Employee、Department 和 Position，描述核心组织结构。"
 order: 2
 ---
 
-## Building the organizational backbone
+## 建立组织骨架
 
-Every HR ontology starts with three core entities:
+人力资源本体从三个核心实体开始：
 
-- **Employee** — the person in your workforce
-- **Department** — the business unit where work is organized
-- **Position** — the role definition that describes responsibility and level
+- **Employee（员工）**：组织中的人员
+- **Department（部门）**：组织工作的业务单位
+- **Position（职位）**：描述职责和职级的角色定义
 
-These three entities provide the minimum structure for hiring, reporting, and workforce planning.
+这三个实体为招聘、报告和人力规划提供最基本的结构。
 
-## Entity design
+## 实体设计
 
-### Employee
+### 员工（Employee）
 
-| Property | Type | Identifier? |
+| 属性 | 类型 | 是否为标识符？ |
 |---|---|---|
 | `employeeId` | string | ✓ |
 | `name` | string | |
@@ -27,47 +27,47 @@ These three entities provide the minimum structure for hiring, reporting, and wo
 | `employmentStatus` | enum | |
 | `jobLevel` | enum | |
 
-`employeeId` is a stable business identifier. Avoid using mutable attributes like email as the primary key.
+`employeeId` 是稳定的业务标识符。应避免使用电子邮箱等可变属性作为主键。
 
-### Department
+### 部门（Department）
 
-| Property | Type | Identifier? |
+| 属性 | 类型 | 是否为标识符？ |
 |---|---|---|
 | `departmentId` | string | ✓ |
 | `name` | string | |
 | `budget` | decimal | |
 | `status` | enum | |
 
-Department budgets allow resource planning and cost center analysis from the same graph.
+部门预算让同一张图谱同时支持资源规划与成本中心分析。
 
-### Position
+### 职位（Position）
 
-| Property | Type | Identifier? |
+| 属性 | 类型 | 是否为标识符？ |
 |---|---|---|
 | `positionId` | string | ✓ |
 | `title` | string | |
 | `level` | enum | |
 | `salaryBand` | string | |
 
-Position separates role definition from the person currently assigned to it.
+Position 将角色定义与当前任职人员分离。
 
-## Why this separation matters
+## 为什么要这样分离
 
-If you collapse these concepts into one "EmployeeProfile" entity, you lose flexibility for:
+如果把这些概念合并为一个 EmployeeProfile 实体，就会降低处理以下情况的灵活性：
 
-- historical staffing changes
-- role transitions
-- open positions that exist before a hire
+- 历史任职变化
+- 岗位转换
+- 招聘之前就已存在的空缺职位
 
-Separate entities keep the model clean and extensible.
+独立实体使模型保持清晰且便于扩展。
 
 ```quiz
-Q: Why model Position as its own entity instead of storing role fields directly on Employee only?
-- Because ontology tools require at least three entities
-- Because Position is a reusable role definition that can exist independently of a specific employee [correct]
-- To reduce the number of relationships
-- To avoid using identifier properties
-> Position represents the role itself (title, level, salary band), while Employee represents a person. Separating them supports open roles, transitions, and cleaner staffing analytics.
+Q: 为什么将 Position 建成独立实体，而不是仅在 Employee 上存储角色字段？
+- 因为本体工具至少要求三个实体
+- 因为 Position 是可复用的角色定义，可以独立于特定员工存在 [correct]
+- 为了减少关系数量
+- 为了避免使用标识符属性
+> Position 表示角色本身，包括职称、职级和薪资区间；Employee 表示具体人员。分离后可以支持空缺职位、岗位变动和更清晰的人员配置分析。
 ```
 
-Next, we add Assignment to capture who filled which role, where, and when.
+接下来添加 Assignment，记录谁在何时、何地担任什么职位。

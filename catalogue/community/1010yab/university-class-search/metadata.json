@@ -1,8 +1,14 @@
 {
-  "name": "University Class Search Ontology",
-  "description": "Academic class-search model for courses, offerings, sections, terms, sessions, instructors, meeting patterns, rooms, campuses, requisites, and reserve capacity rules.",
+  "name": "大学课程检索本体",
+  "description": "教务课程检索模型，涵盖课程、开课项目、教学班、学期、教学时段、教师、上课安排、教室、校区、修读条件和预留名额规则。",
   "icon": "📦",
   "category": "education",
-  "tags": ["education", "university", "course-search", "class-scheduling", "enrollment"],
+  "tags": [
+    "education",
+    "university",
+    "course-search",
+    "class-scheduling",
+    "enrollment"
+  ],
   "author": "1010yab"
 }

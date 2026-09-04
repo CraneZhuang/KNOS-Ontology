@@ -8,8 +8,8 @@
     xmlns:ont="http://example.org/ontology/cruise-company-operations/">
 
     <owl:Ontology rdf:about="http://example.org/ontology/cruise-company-operations/">
-        <rdfs:label>Cruise Company Operations</rdfs:label>
-        <rdfs:comment>Cruise line operations &amp; guest experience.</rdfs:comment>
+        <rdfs:label>邮轮公司</rdfs:label>
+        <rdfs:comment>邮轮运营与旅客体验。</rdfs:comment>
     </owl:Ontology>
 
     <!-- ===================== -->
@@ -18,84 +18,84 @@
 
     <owl:Class rdf:about="http://example.org/ontology/cruise-company-operations/New-entity-9">
         <rdfs:label>LoyaltyTier</rdfs:label>
-        <rdfs:comment>Loyalty program levels (Silver, Gold, Platinum, Diamond).</rdfs:comment>
+        <rdfs:comment>会员忠诚度等级（Silver、Gold、Platinum、Diamond）。</rdfs:comment>
         <ont:icon>⚡</ont:icon>
         <ont:color>#0078D4</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/cruise-company-operations/New-entity-8">
         <rdfs:label>Department</rdfs:label>
-        <rdfs:comment>Organizational unit (Hotel, Deck, Engine, Food &amp; Beverage, Entertainment, etc.).</rdfs:comment>
+        <rdfs:comment>组织部门，如酒店、甲板、轮机、餐饮、娱乐等。</rdfs:comment>
         <ont:icon>⚡</ont:icon>
         <ont:color>#0078D4</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/cruise-company-operations/New-entity-7">
         <rdfs:label>CrewMember</rdfs:label>
-        <rdfs:comment>Employee working on the ship.</rdfs:comment>
+        <rdfs:comment>在船上工作的员工。</rdfs:comment>
         <ont:icon>👤</ont:icon>
         <ont:color>#0078D4</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/cruise-company-operations/New-entity-6">
         <rdfs:label>OnboardService</rdfs:label>
-        <rdfs:comment>Any paid or complimentary service consumed onboard.</rdfs:comment>
+        <rdfs:comment>旅客在船上使用的付费或免费服务。</rdfs:comment>
         <ont:icon>⚡</ont:icon>
         <ont:color>#0078D4</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/cruise-company-operations/New-entity-5">
         <rdfs:label>Excursion</rdfs:label>
-        <rdfs:comment>Shore excursion or tour.</rdfs:comment>
+        <rdfs:comment>岸上游览或观光项目。</rdfs:comment>
         <ont:icon>⚡</ont:icon>
         <ont:color>#0078D4</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/cruise-company-operations/New-entity-4">
         <rdfs:label>Port</rdfs:label>
-        <rdfs:comment>Destination port / city.</rdfs:comment>
+        <rdfs:comment>目的港或城市。</rdfs:comment>
         <ont:icon>⚡</ont:icon>
         <ont:color>#0078D4</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/cruise-company-operations/New-entity-3">
         <rdfs:label>Itinerary</rdfs:label>
-        <rdfs:comment>Route and sequence of ports.</rdfs:comment>
+        <rdfs:comment>航线及港口访问顺序。</rdfs:comment>
         <ont:icon>⚡</ont:icon>
         <ont:color>#0078D4</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/cruise-company-operations/New-entity-2">
         <rdfs:label>Cabin</rdfs:label>
-        <rdfs:comment>Individual stateroom or suite.</rdfs:comment>
+        <rdfs:comment>独立客舱或套房。</rdfs:comment>
         <ont:icon>⚡</ont:icon>
         <ont:color>#0078D4</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/cruise-company-operations/New-entity-1">
         <rdfs:label>Ship</rdfs:label>
-        <rdfs:comment>Physical vessel (e.g. Fabric Dream, Fabric Adventure)</rdfs:comment>
+        <rdfs:comment>实体船舶，例如 Fabric Dream、Fabric Adventure。</rdfs:comment>
         <ont:icon>⚡</ont:icon>
         <ont:color>#0078D4</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/cruise-company-operations/Customer">
         <rdfs:label>Guest</rdfs:label>
-        <rdfs:comment>Individual passenger (includes loyalty members).</rdfs:comment>
+        <rdfs:comment>独立旅客，包括忠诚度计划会员。</rdfs:comment>
         <ont:icon>👤</ont:icon>
         <ont:color>#0078D4</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/cruise-company-operations/Product">
         <rdfs:label>Booking</rdfs:label>
-        <rdfs:comment>Reservation / booking record.</rdfs:comment>
+        <rdfs:comment>预订记录。</rdfs:comment>
         <ont:icon>⚡</ont:icon>
         <ont:color>#0078D4</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/cruise-company-operations/Order">
         <rdfs:label>Sailing</rdfs:label>
-        <rdfs:comment>Specific departure of a ship (e.g. 7-night Mediterranean on July 15).</rdfs:comment>
+        <rdfs:comment>船舶的一次具体航次，例如 7 月 15 日出发的 7 晚地中海航程。</rdfs:comment>
         <ont:icon>⚡</ont:icon>
         <ont:color>#0078D4</ont:color>
     </owl:Class>
@@ -623,7 +623,7 @@
         <rdfs:label>books</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/cruise-company-operations/Customer"/>
         <rdfs:range rdf:resource="http://example.org/ontology/cruise-company-operations/New-entity-5"/>
-        <rdfs:comment>Guests book excursions during a sailing (N:N).</rdfs:comment>
+        <rdfs:comment>旅客在航次中预订岸上游览（N:N）。</rdfs:comment>
         <ont:cardinality>many-to-many</ont:cardinality>
         <ont:fromEntityId>customer</ont:fromEntityId>
         <ont:toEntityId>new-entity-5</ont:toEntityId>
@@ -633,7 +633,7 @@
         <rdfs:label>is assigned to</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/cruise-company-operations/New-entity-7"/>
         <rdfs:range rdf:resource="http://example.org/ontology/cruise-company-operations/Order"/>
-        <rdfs:comment>A crew member is assigned to a sailing (N:N).</rdfs:comment>
+        <rdfs:comment>船员被分配到航次（N:N）。</rdfs:comment>
         <ont:cardinality>many-to-many</ont:cardinality>
         <ont:fromEntityId>new-entity-7</ont:fromEntityId>
         <ont:toEntityId>order</ont:toEntityId>
@@ -643,7 +643,7 @@
         <rdfs:label>reserves</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/cruise-company-operations/Product"/>
         <rdfs:range rdf:resource="http://example.org/ontology/cruise-company-operations/New-entity-2"/>
-        <rdfs:comment>Booking reserves a cabin on a specific sailing (N:1).</rdfs:comment>
+        <rdfs:comment>预订锁定特定航次的客舱（N:1）。</rdfs:comment>
         <ont:cardinality>many-to-one</ont:cardinality>
         <ont:fromEntityId>product</ont:fromEntityId>
         <ont:toEntityId>new-entity-2</ont:toEntityId>
@@ -653,7 +653,7 @@
         <rdfs:label>belongs to</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/cruise-company-operations/Customer"/>
         <rdfs:range rdf:resource="http://example.org/ontology/cruise-company-operations/New-entity-9"/>
-        <rdfs:comment>Guest belongs to a Loyalty Tier (N:1).</rdfs:comment>
+        <rdfs:comment>旅客属于某个会员等级（N:1）。</rdfs:comment>
         <ont:cardinality>one-to-many</ont:cardinality>
         <ont:fromEntityId>customer</ont:fromEntityId>
         <ont:toEntityId>new-entity-9</ont:toEntityId>
@@ -663,7 +663,7 @@
         <rdfs:label>belongs to</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/cruise-company-operations/New-entity-2"/>
         <rdfs:range rdf:resource="http://example.org/ontology/cruise-company-operations/New-entity-1"/>
-        <rdfs:comment>Cabin belongs to a ship (N:1).</rdfs:comment>
+        <rdfs:comment>客舱属于某艘船舶（N:1）。</rdfs:comment>
         <ont:cardinality>many-to-one</ont:cardinality>
         <ont:fromEntityId>new-entity-2</ont:fromEntityId>
         <ont:toEntityId>new-entity-1</ont:toEntityId>
@@ -673,7 +673,7 @@
         <rdfs:label>works in </rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/cruise-company-operations/New-entity-7"/>
         <rdfs:range rdf:resource="http://example.org/ontology/cruise-company-operations/New-entity-8"/>
-        <rdfs:comment>The crew members work in one department (N:1).</rdfs:comment>
+        <rdfs:comment>船员在某个部门工作（N:1）。</rdfs:comment>
         <ont:cardinality>many-to-one</ont:cardinality>
         <ont:fromEntityId>new-entity-7</ont:fromEntityId>
         <ont:toEntityId>new-entity-8</ont:toEntityId>
@@ -683,7 +683,7 @@
         <rdfs:label>consumes</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/cruise-company-operations/Customer"/>
         <rdfs:range rdf:resource="http://example.org/ontology/cruise-company-operations/New-entity-6"/>
-        <rdfs:comment>Guests consume onboard services (N:N, with date, amount spent, location on ship).</rdfs:comment>
+        <rdfs:comment>旅客消费船上服务（N:N），记录日期、金额和船上位置。</rdfs:comment>
         <ont:cardinality>many-to-many</ont:cardinality>
         <ont:fromEntityId>customer</ont:fromEntityId>
         <ont:toEntityId>new-entity-6</ont:toEntityId>
@@ -693,7 +693,7 @@
         <rdfs:label>take place in</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/cruise-company-operations/New-entity-5"/>
         <rdfs:range rdf:resource="http://example.org/ontology/cruise-company-operations/New-entity-4"/>
-        <rdfs:comment>Excursions take place in a port (N:1).</rdfs:comment>
+        <rdfs:comment>岸上游览在某个港口进行（N:1）。</rdfs:comment>
         <ont:cardinality>many-to-one</ont:cardinality>
         <ont:fromEntityId>new-entity-5</ont:fromEntityId>
         <ont:toEntityId>new-entity-4</ont:toEntityId>
@@ -703,7 +703,7 @@
         <rdfs:label>visits</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/cruise-company-operations/New-entity-3"/>
         <rdfs:range rdf:resource="http://example.org/ontology/cruise-company-operations/New-entity-4"/>
-        <rdfs:comment>Itinerary visits ports (1:N, with sequence number and times).</rdfs:comment>
+        <rdfs:comment>行程访问多个港口（1:N），记录顺序及时间。</rdfs:comment>
         <ont:cardinality>one-to-many</ont:cardinality>
         <ont:fromEntityId>new-entity-3</ont:fromEntityId>
         <ont:toEntityId>new-entity-4</ont:toEntityId>
@@ -713,7 +713,7 @@
         <rdfs:label>follows a</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/cruise-company-operations/Order"/>
         <rdfs:range rdf:resource="http://example.org/ontology/cruise-company-operations/New-entity-3"/>
-        <rdfs:comment>Sailing follows a Itinerary.</rdfs:comment>
+        <rdfs:comment>航次遵循指定行程。</rdfs:comment>
         <ont:cardinality>one-to-one</ont:cardinality>
         <ont:fromEntityId>order</ont:fromEntityId>
         <ont:toEntityId>new-entity-3</ont:toEntityId>
@@ -723,7 +723,7 @@
         <rdfs:label>makes</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/cruise-company-operations/Customer"/>
         <rdfs:range rdf:resource="http://example.org/ontology/cruise-company-operations/Product"/>
-        <rdfs:comment>Guest makes booking.</rdfs:comment>
+        <rdfs:comment>旅客发起预订。</rdfs:comment>
         <ont:cardinality>one-to-many</ont:cardinality>
         <ont:fromEntityId>customer</ont:fromEntityId>
         <ont:toEntityId>product</ont:toEntityId>
@@ -733,7 +733,7 @@
         <rdfs:label>is operated by</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/cruise-company-operations/Order"/>
         <rdfs:range rdf:resource="http://example.org/ontology/cruise-company-operations/New-entity-1"/>
-        <rdfs:comment>Sailing is operated by a ship.</rdfs:comment>
+        <rdfs:comment>航次由某艘船舶执行。</rdfs:comment>
         <ont:cardinality>many-to-one</ont:cardinality>
         <ont:fromEntityId>order</ont:fromEntityId>
         <ont:toEntityId>new-entity-1</ont:toEntityId>

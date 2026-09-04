@@ -43,10 +43,10 @@ describe('QueryPlayground content safety', () => {
   it('renders contributor-controlled query results as text rather than HTML', async () => {
     const { container } = render(<QueryPlayground />);
 
-    fireEvent.change(screen.getByPlaceholderText('Ask about Safety Test...'), {
+    fireEvent.change(screen.getByPlaceholderText('提问： Safety Test...'), {
       target: { value: 'How does this ontology work?' },
     });
-    fireEvent.click(screen.getByRole('button', { name: 'Run query' }));
+    fireEvent.click(screen.getByRole('button', { name: "运行查询" }));
 
     await act(async () => {
       await vi.advanceTimersByTimeAsync(600);
