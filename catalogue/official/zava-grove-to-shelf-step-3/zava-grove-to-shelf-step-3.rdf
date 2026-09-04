@@ -8,56 +8,56 @@
     xmlns:ont="http://example.org/ontology/zava-grove-to-shelf-step-3/">
 
     <owl:Ontology rdf:about="http://example.org/ontology/zava-grove-to-shelf-step-3/">
-        <rdfs:label>Zava Grove-to-Shelf — Step 3: Cold-Chain Logistics</rdfs:label>
-        <rdfs:comment>Add Shipment and ColdChainSensor for perishable logistics and live temperature telemetry.</rdfs:comment>
+        <rdfs:label>Zava 从果园到货架 — 第三步：冷链物流</rdfs:label>
+        <rdfs:comment>用 Shipment 和 ColdChainSensor 描述易腐品物流与实时温度遥测。</rdfs:comment>
     </owl:Ontology>
 
     <!-- Entity Types -->
     <owl:Class rdf:about="http://example.org/ontology/zava-grove-to-shelf-step-3/Grower">
         <rdfs:label>Grower</rdfs:label>
-        <rdfs:comment>A partner producer of fresh fruit and vegetables</rdfs:comment>
+        <rdfs:comment>生鲜果蔬合作生产商。</rdfs:comment>
         <ont:icon>👨‍🌾</ont:icon>
         <ont:color>#498205</ont:color>
     </owl:Class>
     <owl:Class rdf:about="http://example.org/ontology/zava-grove-to-shelf-step-3/Farm">
         <rdfs:label>Farm</rdfs:label>
-        <rdfs:comment>A geographic site owned or contracted by a grower</rdfs:comment>
+        <rdfs:comment>种植者拥有或签约的地理场所。</rdfs:comment>
         <ont:icon>🌾</ont:icon>
         <ont:color>#6EAA1F</ont:color>
     </owl:Class>
     <owl:Class rdf:about="http://example.org/ontology/zava-grove-to-shelf-step-3/Plot">
         <rdfs:label>Plot</rdfs:label>
-        <rdfs:comment>A managed parcel within a farm planted with one variety</rdfs:comment>
+        <rdfs:comment>农场内种植某个品种的管理地块。</rdfs:comment>
         <ont:icon>🌱</ont:icon>
         <ont:color>#107C10</ont:color>
     </owl:Class>
     <owl:Class rdf:about="http://example.org/ontology/zava-grove-to-shelf-step-3/Fruitvariety">
         <rdfs:label>FruitVariety</rdfs:label>
-        <rdfs:comment>A commercial fruit or vegetable variety</rdfs:comment>
+        <rdfs:comment>商业水果或蔬菜品种。</rdfs:comment>
         <ont:icon>🍊</ont:icon>
         <ont:color>#FFB900</ont:color>
     </owl:Class>
     <owl:Class rdf:about="http://example.org/ontology/zava-grove-to-shelf-step-3/Harvestlot">
         <rdfs:label>HarvestLot</rdfs:label>
-        <rdfs:comment>A traceable harvest event from a single plot on a given date</rdfs:comment>
+        <rdfs:comment>指定日期来自单个地块的可追溯采收事件。</rdfs:comment>
         <ont:icon>📦</ont:icon>
         <ont:color>#D83B01</ont:color>
     </owl:Class>
     <owl:Class rdf:about="http://example.org/ontology/zava-grove-to-shelf-step-3/Qualitycheck">
         <rdfs:label>QualityCheck</rdfs:label>
-        <rdfs:comment>One of the four-stage quality inspections</rdfs:comment>
+        <rdfs:comment>四阶段质量检查中的一次检查。</rdfs:comment>
         <ont:icon>🔍</ont:icon>
         <ont:color>#C239B3</ont:color>
     </owl:Class>
     <owl:Class rdf:about="http://example.org/ontology/zava-grove-to-shelf-step-3/Shipment">
         <rdfs:label>Shipment</rdfs:label>
-        <rdfs:comment>A reefer container or truck moving harvest lots to a retail DC</rdfs:comment>
+        <rdfs:comment>将采收批次运往零售配送中心的冷藏集装箱或卡车。</rdfs:comment>
         <ont:icon>🚛</ont:icon>
         <ont:color>#0099BC</ont:color>
     </owl:Class>
     <owl:Class rdf:about="http://example.org/ontology/zava-grove-to-shelf-step-3/Coldchainsensor">
         <rdfs:label>ColdChainSensor</rdfs:label>
-        <rdfs:comment>A temperature and humidity sensor attached to a shipment, streaming telemetry</rdfs:comment>
+        <rdfs:comment>附着于运输任务、持续上报遥测的温湿度传感器。</rdfs:comment>
         <ont:icon>🌡️</ont:icon>
         <ont:color>#005A9E</ont:color>
     </owl:Class>
@@ -309,7 +309,7 @@
 
     <owl:ObjectProperty rdf:about="http://example.org/ontology/zava-grove-to-shelf-step-3/shipment-carries-harvestlot">
         <rdfs:label>ShipmentCarriesHarvestLot</rdfs:label>
-        <rdfs:comment>A shipment carries one or more harvest lots</rdfs:comment>
+        <rdfs:comment>一次运输承载一个或多个采收批次。</rdfs:comment>
         <ont:cardinality>one-to-many</ont:cardinality>
         <ont:fromEntityId>shipment</ont:fromEntityId>
         <ont:toEntityId>harvestlot</ont:toEntityId>
@@ -317,7 +317,7 @@
 
     <owl:ObjectProperty rdf:about="http://example.org/ontology/zava-grove-to-shelf-step-3/shipment-monitoredby-coldchainsensor">
         <rdfs:label>ShipmentMonitoredBySensor</rdfs:label>
-        <rdfs:comment>A shipment is monitored by one or more cold-chain sensors</rdfs:comment>
+        <rdfs:comment>一个或多个冷链传感器监测运输任务。</rdfs:comment>
         <ont:cardinality>one-to-many</ont:cardinality>
         <ont:fromEntityId>shipment</ont:fromEntityId>
         <ont:toEntityId>coldchainsensor</ont:toEntityId>

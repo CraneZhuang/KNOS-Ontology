@@ -96,7 +96,7 @@ export async function decodeSharePayload(encoded: string): Promise<SharePayload>
   } catch {
     // Swallow stream errors (corrupt data) — we'll throw our own below
     await writePromise; // drain the write promise to avoid unhandled rejection
-    throw new Error('Invalid share payload: decompression failed');
+    throw new Error("分享数据无效：解压失败");
   }
   await writePromise;
 
@@ -118,7 +118,7 @@ export async function decodeSharePayload(encoded: string): Promise<SharePayload>
     !Array.isArray(payload.ontology.entityTypes) ||
     !Array.isArray(payload.ontology.relationships)
   ) {
-    throw new Error('Invalid share payload: missing ontology structure');
+    throw new Error("分享数据无效：缺少本体结构");
   }
 
   return payload;

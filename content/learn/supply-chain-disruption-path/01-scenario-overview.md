@@ -1,69 +1,69 @@
 ---
-title: "Scenario Overview"
+title: "场景概览"
 slug: scenario-overview
-description: "Understand the real-world challenge of supply chain resilience — when a single supplier disruption cascades into millions in lost revenue."
+description: "了解供应链韧性的实际挑战：单个供应商的中断如何逐级传导，造成严重的收入损失。"
 order: 1
 ---
 
-## The challenge
+## 面临的挑战
 
-Your manufacturing operation depends on a complex web of suppliers. One disruption — a natural disaster, geopolitical event, quality issue, or cyber attack — doesn't just affect that one supplier. It ripples through:
+制造业务依赖复杂的供应商网络。自然灾害、地缘政治事件、质量问题或网络攻击引发的一次中断，不仅影响单个供应商，还会波及：
 
-- **Components** that depend on that supplier
-- **Product lines** that use those components
-- **Revenue** when products can't be shipped
-- **Production timelines** that slip week by week
+- 依赖该供应商的**零部件**
+- 使用这些零部件的**产品线**
+- 因产品无法发货而受损的**收入**
+- 不断推迟的**生产计划**
 
-Without visibility into these cascades, you react after the damage is done. With it, you **anticipate and act before customers are affected**.
+如果看不清这些连锁影响，就只能在损失发生后应对；有了可见性，便有机会**在客户受到影响之前预测并采取行动**。
 
-## Real-world example
+## 场景示例
 
-A semiconductor supplier in Taiwan experiences a power outage lasting 48 hours:
+假设台湾地区的一家半导体供应商发生持续 48 小时的停电：
 
 ```
-Disruption: Taiwan Supplier Outage
+中断：台湾地区供应商停电
   ↓
-Affects: ChipX component supply
+直接影响：ChipX 零部件供应
   ↓
-Impacts: 3 product lines (laptops, tablets, displays)
+涉及：3 条产品线（笔记本电脑、平板电脑、显示器）
   ↓
-Cascades: Production halts in 2 weeks (inventory runs out)
+传导：两周后库存耗尽，生产停止
   ↓
-Result: $12M revenue at risk, customer orders delayed
+结果：1,200 万美元收入面临风险，客户订单延期
   ↓
-Mitigation: Activate pre-qualified alternative supplier + safety stock
+缓解：启用预先认证的备选供应商并增加安全库存
 ```
 
-**Without an ontology**, this analysis takes days and manual spreadsheets.  
-**With an ontology**, an AI agent can:
-1. Identify all affected components within minutes
-2. Trace to all product lines and production timelines
-3. Recommend alternative suppliers and safety stock quantities
-4. Calculate cost-benefit of each mitigation action
-5. Trigger automated alerts and procurement workflows
+**没有本体时**，这类分析可能需要数天，并依赖手工电子表格。
+**有了本体及配套数据、集成和权限后**，AI 智能体可用于：
+1. 快速识别所有受影响的零部件
+2. 追溯相关产品线及生产计划
+3. 推荐备选供应商与安全库存数量
+4. 计算各缓解措施的成本收益
+5. 按审批规则触发预警和采购流程
 
-## What you'll build
+## 你将构建什么
 
-Over four steps, we'll construct a production-grade ontology that powers this intelligence:
+我们将分四步构建支持上述分析的本体示例；生产落地还需要验证数据、集成与权限：
 
-| Step | Focus | Outcome |
+| 步骤 | 重点 | 产出 |
 |---|---|---|
-| 1 | Core entities (Supplier, Component, ProductLine, Disruption) | Vocabulary of your supply chain |
-| 2 | Entity properties and identifiers | Rich attributes for risk calculation |
-| 3 | Relationships and cascade modeling | Impact propagation graph |
-| 4 | Risk assessment and mitigation actions | Decision automation |
+| 1 | 核心实体（Supplier、Component、ProductLine、Disruption） | 供应链业务词汇 |
+| 2 | 实体属性与标识符 | 风险计算所需的丰富属性 |
+| 3 | 关系与级联建模 | 影响传播图 |
+| 4 | 风险评估与缓解措施 | 决策自动化的模型基础 |
 
-By the end, you'll have a 7-entity ontology with:
-- **40 properties** capturing reliability scores, inventory levels, costs, timelines
-- **7 relationships** modeling the disruption cascade
-- **Fabric IQ compatibility** for data agent grounding and real-time alerting
+完成后，你将得到一个包含 7 个实体的本体：
+- **40 个属性**，描述可靠性评分、库存水平、成本和时间计划
+- **7 条关系**，描述中断的级联影响
+- **兼容 Fabric IQ 的模型结构**，可作为数据智能体和实时预警的集成基础
 
-## Key concepts
+## 关键概念
 
-- **Disruption events** — the trigger (natural disaster, cyber attack, financial failure)
-- **Impact propagation** — how disruptions cascade through dependencies
-- **Risk assessment** — calculating revenue at risk and time to impact
-- **Mitigation actions** — concrete steps to reduce or eliminate impact
-- **Alternative suppliers** — pre-qualified backups with capacity and cost trade-offs
+- **中断事件**——触发因素，如自然灾害、网络攻击、财务危机
+- **影响传播**——中断如何沿依赖关系逐级传导
+- **风险评估**——计算面临风险的收入及距离影响发生的时间
+- **缓解措施**——减少或消除影响的具体行动
+- **备选供应商**——预先认证的后备来源及其产能、成本权衡
 
-Let's start by understanding the core entities and relationships that make resilience decisions possible.
+先来了解支持韧性决策的核心实体与关系。

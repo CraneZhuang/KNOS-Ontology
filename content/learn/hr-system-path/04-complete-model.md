@@ -1,59 +1,59 @@
 ---
-title: "Complete HR Model"
+title: "完整人力资源模型"
 slug: complete-model
-description: "Add PerformanceReview and apply the full HR ontology to real workforce analytics questions."
+description: "添加 PerformanceReview，并使用完整人力资源本体回答实际人员分析问题。"
 order: 4
 embed: community/ravi-chandu/hr-system
 ---
 
-## Completing the people analytics layer
+## 补齐人员分析层
 
-The final entity is **PerformanceReview**. It connects evaluation outcomes to employees over review cycles.
+最后一个实体是 **PerformanceReview（绩效评估）**，它将各评估周期的结果关联到员工。
 
-Relationship:
+关系：
 
-- `Employee` -> `PerformanceReview` (one-to-many)
+- `Employee` → `PerformanceReview`（一对多）
 
-### PerformanceReview properties
+### 绩效评估属性
 
-| Property | Type | Identifier? |
+| 属性 | 类型 | 是否为标识符？ |
 |---|---|---|
 | `reviewId` | string | ✓ |
 | `reviewPeriod` | string | |
 | `rating` | enum | |
 | `reviewDate` | date | |
 
-Now the ontology supports operational and strategic HR questions in one graph.
+现在，同一张图谱可以支持日常运营和战略层面的人力资源问题。
 
-## Complete graph
+## 完整图谱
 
 <ontology-embed id="community/ravi-chandu/hr-system" height="460px"></ontology-embed>
 
-*HR System ontology with 5 entities: Employee, Department, Position, Assignment, PerformanceReview.*
+*人力资源本体包含 Employee、Department、Position、Assignment 和 PerformanceReview 共 5 个实体。*
 
-## Example graph questions
+## 图谱问题示例
 
-| Question | Graph path |
+| 问题 | 图谱路径 |
 |---|---|
-| Which departments have the most senior employees? | Department <- Assignment <- Employee (`jobLevel=senior`) |
-| Which employees changed roles in the last year? | Employee -> Assignment (multiple records by date) -> Position |
-| Which teams have many outstanding reviews? | Department <- Assignment <- Employee -> PerformanceReview (`rating=outstanding`) |
-| Which assignments are no longer active? | Assignment (`endDate` set or `isPrimary=false`) |
+| 哪些部门的资深员工最多？ | Department ← Assignment ← Employee（jobLevel=senior） |
+| 哪些员工在过去一年更换过职位？ | Employee → Assignment（按日期区分多条记录）→ Position |
+| 哪些团队拥有较多优秀绩效评价？ | Department ← Assignment ← Employee → PerformanceReview（rating=outstanding） |
+| 哪些任职记录已不再有效？ | Assignment（已设置 endDate，或 isPrimary=false） |
 
-## Key takeaways
+## 核心要点
 
-1. Separate **person**, **org unit**, and **role** into distinct entities.
-2. Use **Assignment** as a junction entity for time-aware staffing history.
-3. Use **PerformanceReview** to attach measurable outcomes to workforce entities.
-4. Keep identifiers stable and statuses controlled via enum values.
+1. 将**人员**、**组织单位**和**角色**分成不同实体。
+2. 使用 **Assignment** 作为关联实体，记录随时间变化的任职历史。
+3. 使用 **PerformanceReview** 为人员实体关联可衡量的结果。
+4. 保持标识符稳定，通过枚举控制状态取值。
 
 ```quiz
-Q: Which entity enables historical analysis of role and department changes over time?
+Q: 哪个实体支持分析职位和部门随时间发生的历史变化？
 - Employee
 - Department
 - Assignment [correct]
 - PerformanceReview
-> Assignment records start and end dates for a specific employee-department-position link. Without it, you cannot track staffing history cleanly.
+> Assignment 为特定的员工–部门–职位关联记录开始与结束日期。没有它，就难以清晰追踪任职历史。
 ```
 
-You have completed the HR System path. Open the model in the [catalogue](#/catalogue/community/ravi-chandu/hr-system) or continue iterating in [designer](#/designer/community/ravi-chandu/hr-system).
+你已完成人力资源学习路径。可在[本体目录](#/catalogue/community/ravi-chandu/hr-system)中打开模型，或在[设计器](#/designer/community/ravi-chandu/hr-system)中继续完善。

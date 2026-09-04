@@ -1,6 +1,6 @@
 {
-  "name": "Banking & Finance",
-  "description": "Financial services with accounts, transactions, loans, and investments",
+  "name": "银行与金融",
+  "description": "包含账户、交易、贷款和投资的金融服务模型。",
   "icon": "🏦",
   "category": "finance",
   "author": "ontology-quest"

@@ -1,43 +1,43 @@
 ---
-title: "Scenario Overview"
+title: "场景概览"
 slug: scenario-overview
-description: "Meet the E-Commerce Platform — a marketplace that needs an ontology to connect buyers, products, carts, orders, and reviews."
+description: "认识电商平台：通过本体连接买家、产品、购物车、订单与评价的交易市场。"
 order: 1
 ---
 
-## The scenario
+## 业务场景
 
-You are building the data model for a **general-purpose e-commerce marketplace**. The platform handles:
+你正在为一个**通用电商交易平台**构建数据模型，平台需要处理：
 
-- **Buyers** who browse and purchase products
-- **Products** with inventory tracking
-- **Shopping Carts** as active sessions before checkout
-- **Orders** as completed purchase transactions
-- **Reviews** where buyers rate and comment on products
+- 浏览和购买产品的**买家**
+- 需要跟踪库存的**产品**
+- 结算前承载当前购物会话的**购物车**
+- 表示已完成购买交易的**订单**
+- 买家为产品评分和留言的**评价**
 
-Data flows through multiple systems — a transactional database for orders, a search engine for product discovery, and an analytics warehouse for buyer behavior.
+数据流经多个系统：订单位于事务数据库，产品搜索使用搜索引擎，买家行为分析则使用分析数仓。
 
-## Why an ontology?
+## 为什么需要本体？
 
-A question like **"Which verified reviewers rated products they didn't purchase?"** requires joining across buyers, reviews, orders, and products — touching multiple systems.
+回答**“哪些已验证的评价者评价了自己未购买的产品？”**，需要跨买家、评价、订单和产品进行关联，涉及多个系统。
 
-With an ontology, this becomes a graph pattern: find `Buyer` nodes that have a `writes → Review → reviews → Product` path but no `places → Order → includes → Product` path for the same product.
+在本体中，这转化为一个图谱模式：找到存在 `writes → Review → reviews → Product` 路径、但对同一产品不存在 `places → Order → includes → Product` 路径的 `Buyer` 节点。
 
-## What we'll build
+## 我们将构建什么
 
-| Step | Entities | What you'll learn |
+| 步骤 | 实体 | 学习内容 |
 |---|---|---|
-| 1 | Buyer, Product, Order | Core marketplace entities and purchase flow |
-| 2 | + Shopping-Cart | Pre-purchase sessions, one-to-one relationships |
-| 3 | + Review | Customer feedback loop, closing the cycle |
+| 1 | Buyer、Product、Order | 交易平台核心实体与购买流程 |
+| 2 | + Shopping-Cart | 购买前会话、一对一关系 |
+| 3 | + Review | 客户反馈、形成闭环 |
 
-By the end, you'll have a 5-entity, 6-relationship ontology covering the complete buyer journey from browsing to reviewing.
+完成后，你将得到包含 5 个实体、6 条关系的本体，覆盖从浏览到评价的完整买家旅程。
 
-## Key concepts
+## 关键概念
 
-- **Purchase flow** — the journey from browsing to buying
-- **One-to-one relationships** — when each side has exactly one partner (Buyer ↔ Cart)
-- **Feedback loops** — how reviews connect buyers back to products
-- **Session entities** — temporary objects like shopping carts
+- **购买流程**：从浏览到购买的过程
+- **一对一关系**：双方各自只对应一个对象，如 Buyer ↔ Cart
+- **反馈闭环**：评价如何将买家重新连接到产品
+- **会话实体**：购物车等临时对象
 
-Let's start with the core marketplace entities.
+先从交易平台的核心实体开始。

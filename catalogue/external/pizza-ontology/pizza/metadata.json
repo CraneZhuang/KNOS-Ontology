@@ -1,6 +1,6 @@
 {
-  "name": "Pizza Ontology",
-  "description": "The classic OWL teaching ontology — pizza types, toppings, and bases. Adapted from the University of Manchester's Pizza tutorial used worldwide in ontology courses.",
+  "name": "披萨本体",
+  "description": "经典 OWL 教学本体，描述披萨种类、配料与饼底，改编自曼彻斯特大学广泛使用的披萨教程。",
   "icon": "🍕",
   "category": "food",
   "tags": [

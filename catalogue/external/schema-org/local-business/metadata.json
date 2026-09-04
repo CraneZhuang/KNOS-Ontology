@@ -1,6 +1,6 @@
 {
-  "name": "Schema.org — LocalBusiness",
-  "description": "Local businesses, opening hours, reviews, and postal addresses — a subset of Schema.org for describing brick-and-mortar businesses and their services.",
+  "name": "Schema.org — 本地商家",
+  "description": "采用 Schema.org 子集描述实体商家及其服务，涵盖营业时间、评论和邮寄地址。",
   "icon": "🏪",
   "category": "retail",
   "tags": [

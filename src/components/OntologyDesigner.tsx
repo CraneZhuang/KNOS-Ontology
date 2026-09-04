@@ -38,7 +38,7 @@ export function OntologyDesigner({ route }: OntologyDesignerProps) {
     const id = route.ontologyId;
     fetch(`${import.meta.env.BASE_URL}catalogue.json`)
       .then((res) => {
-        if (!res.ok) throw new Error(`Failed to load catalogue`);
+        if (!res.ok) throw new Error(`目录加载失败`);
         return res.json() as Promise<Catalogue>;
       })
       .then((data) => {
@@ -57,7 +57,7 @@ export function OntologyDesigner({ route }: OntologyDesignerProps) {
       {/* Top bar */}
       <div className="designer-topbar">
         <button className="designer-back-btn" onClick={() => navigate({ page: 'home' })}>
-          <ArrowLeft size={16} /> Back
+          <ArrowLeft size={16} /> 返回
         </button>
         <div className="designer-meta-fields">
           <input
@@ -65,14 +65,14 @@ export function OntologyDesigner({ route }: OntologyDesignerProps) {
             type="text"
             value={ontology.name}
             onChange={(e) => setOntologyName(e.target.value)}
-            placeholder="Ontology name"
+            placeholder="本体名称"
           />
           <input
             className="designer-meta-desc"
             type="text"
             value={ontology.description}
             onChange={(e) => setOntologyDescription(e.target.value)}
-            placeholder="Description"
+            placeholder="说明"
           />
         </div>
         <DesignerToolbar />

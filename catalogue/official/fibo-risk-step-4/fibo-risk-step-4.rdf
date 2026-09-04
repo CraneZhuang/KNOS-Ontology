@@ -15,28 +15,28 @@
     xmlns:ont="http://example.org/ontology/fibo-risk-step-4/">
 
   <owl:Ontology rdf:about="">
-    <rdfs:label>FIBO Risk Lab — Step 4</rdfs:label>
-    <rdfs:comment>Complete FIBO risk management model with industry, geographic, loan classification, and regulatory context including cross-domain relationships. Adapted from EDM Council FIBO. Source: https://github.com/edmcouncil/fibo — MIT License.</rdfs:comment>
+    <rdfs:label>FIBO 风险实验 — 第四步：监管背景</rdfs:label>
+    <rdfs:comment>完整 FIBO 风险管理模型，涵盖行业、地理、贷款分类、监管背景及跨领域关系。改编自 EDM Council FIBO。来源：https://github.com/edmcouncil/fibo；MIT 许可。</rdfs:comment>
   </owl:Ontology>
 
   <!-- Step 1: Industry Classification -->
   <owl:Class rdf:about="Sector">
     <rdfs:label>Sector</rdfs:label>
-    <rdfs:comment>Top-level economic sector grouping industries by broad function.</rdfs:comment>
+    <rdfs:comment>按广义功能组织行业的顶层经济部门。</rdfs:comment>
     <ont:icon>🏢</ont:icon>
     <ont:color>#0078D4</ont:color>
   </owl:Class>
 
   <owl:Class rdf:about="Subsector">
     <rdfs:label>Subsector</rdfs:label>
-    <rdfs:comment>Subdivision of an economic sector for finer-grained classification.</rdfs:comment>
+    <rdfs:comment>经济部门的细分子部门。</rdfs:comment>
     <ont:icon>🏗️</ont:icon>
     <ont:color>#00A9E0</ont:color>
   </owl:Class>
 
   <owl:Class rdf:about="IndustryGroup">
     <rdfs:label>IndustryGroup</rdfs:label>
-    <rdfs:comment>NAICS-coded industry group with climate sensitivity and cyclicality attributes for risk analysis.</rdfs:comment>
+    <rdfs:comment>采用 NAICS 编码的行业组，包含气候敏感性与周期性属性，用于风险分析。</rdfs:comment>
     <ont:icon>🏭</ont:icon>
     <ont:color>#486991</ont:color>
   </owl:Class>
@@ -44,21 +44,21 @@
   <!-- Step 2: Geographic Hierarchy -->
   <owl:Class rdf:about="Region">
     <rdfs:label>Region</rdfs:label>
-    <rdfs:comment>Continental or geographic region grouping for macroeconomic analysis.</rdfs:comment>
+    <rdfs:comment>用于宏观经济分析的洲级或地理区域分组。</rdfs:comment>
     <ont:icon>🌍</ont:icon>
     <ont:color>#107C10</ont:color>
   </owl:Class>
 
   <owl:Class rdf:about="Country">
     <rdfs:label>Country</rdfs:label>
-    <rdfs:comment>Nation-state with economic zone, currency, and regulatory framework attributes.</rdfs:comment>
+    <rdfs:comment>国家实体，包含经济区、货币和监管框架属性。</rdfs:comment>
     <ont:icon>🏳️</ont:icon>
     <ont:color>#008272</ont:color>
   </owl:Class>
 
   <owl:Class rdf:about="Jurisdiction">
     <rdfs:label>Jurisdiction</rdfs:label>
-    <rdfs:comment>Subnational jurisdiction with disaster-zone flags for hurricane, flood, earthquake, and wildfire risk.</rdfs:comment>
+    <rdfs:comment>国家以下辖区，记录飓风、洪水、地震和野火风险区域标记。</rdfs:comment>
     <ont:icon>📍</ont:icon>
     <ont:color>#00B294</ont:color>
   </owl:Class>
@@ -66,21 +66,21 @@
   <!-- Step 3: Loan Classification -->
   <owl:Class rdf:about="ConcentrationCategory">
     <rdfs:label>ConcentrationCategory</rdfs:label>
-    <rdfs:comment>Regulatory concentration bucket defined by OCC/FDIC guidance for portfolio risk management.</rdfs:comment>
+    <rdfs:comment>OCC/FDIC 指引定义的监管集中度分类，用于投资组合风险管理。</rdfs:comment>
     <ont:icon>📊</ont:icon>
     <ont:color>#D83B01</ont:color>
   </owl:Class>
 
   <owl:Class rdf:about="LoanType">
     <rdfs:label>LoanType</rdfs:label>
-    <rdfs:comment>Loan product classification with Basel III risk weight, regulatory treatment, and capital tier.</rdfs:comment>
+    <rdfs:comment>贷款产品分类，记录巴塞尔 III 风险权重、监管处理和资本层级。</rdfs:comment>
     <ont:icon>💰</ont:icon>
     <ont:color>#E81123</ont:color>
   </owl:Class>
 
   <owl:Class rdf:about="CollateralType">
     <rdfs:label>CollateralType</rdfs:label>
-    <rdfs:comment>Collateral asset category with recovery expectations and concentration classification.</rdfs:comment>
+    <rdfs:comment>抵押资产类别，记录预期回收与集中度分类。</rdfs:comment>
     <ont:icon>🏠</ont:icon>
     <ont:color>#FF8C00</ont:color>
   </owl:Class>
@@ -88,14 +88,14 @@
   <!-- New in Step 4: Regulatory Context -->
   <owl:Class rdf:about="Regulation">
     <rdfs:label>Regulation</rdfs:label>
-    <rdfs:comment>Regulatory framework issued by a banking authority (OCC, FDIC, Basel Committee) governing portfolio risk.</rdfs:comment>
+    <rdfs:comment>银行监管机构（OCC、FDIC、巴塞尔委员会）发布的组合风险管理框架。</rdfs:comment>
     <ont:icon>⚖️</ont:icon>
     <ont:color>#5C2D91</ont:color>
   </owl:Class>
 
   <owl:Class rdf:about="RegulatoryLimit">
     <rdfs:label>RegulatoryLimit</rdfs:label>
-    <rdfs:comment>Quantitative threshold or limit imposed by a regulation on portfolio concentration, exposure, or capital ratios.</rdfs:comment>
+    <rdfs:comment>法规对组合集中度、风险敞口或资本比率规定的定量阈值或限额。</rdfs:comment>
     <ont:icon>🚨</ont:icon>
     <ont:color>#8764B8</ont:color>
   </owl:Class>
@@ -507,7 +507,7 @@
     <rdfs:label>partOfSector</rdfs:label>
     <rdfs:domain rdf:resource="Subsector"/>
     <rdfs:range rdf:resource="Sector"/>
-    <rdfs:comment>Links a subsector to its parent economic sector.</rdfs:comment>
+    <rdfs:comment>连接子部门与父级经济部门。</rdfs:comment>
     <ont:cardinality>many-to-one</ont:cardinality>
     <ont:fromEntityId>Subsector</ont:fromEntityId>
     <ont:toEntityId>Sector</ont:toEntityId>
@@ -517,7 +517,7 @@
     <rdfs:label>belongsToSubsector</rdfs:label>
     <rdfs:domain rdf:resource="IndustryGroup"/>
     <rdfs:range rdf:resource="Subsector"/>
-    <rdfs:comment>Links an industry group to its parent subsector.</rdfs:comment>
+    <rdfs:comment>连接行业组与父级子部门。</rdfs:comment>
     <ont:cardinality>many-to-one</ont:cardinality>
     <ont:fromEntityId>IndustryGroup</ont:fromEntityId>
     <ont:toEntityId>Subsector</ont:toEntityId>
@@ -528,7 +528,7 @@
     <rdfs:label>inCountry</rdfs:label>
     <rdfs:domain rdf:resource="Jurisdiction"/>
     <rdfs:range rdf:resource="Country"/>
-    <rdfs:comment>Links a jurisdiction to the country it belongs to.</rdfs:comment>
+    <rdfs:comment>连接辖区与所属国家。</rdfs:comment>
     <ont:cardinality>many-to-one</ont:cardinality>
     <ont:fromEntityId>Jurisdiction</ont:fromEntityId>
     <ont:toEntityId>Country</ont:toEntityId>
@@ -538,7 +538,7 @@
     <rdfs:label>inRegion</rdfs:label>
     <rdfs:domain rdf:resource="Jurisdiction"/>
     <rdfs:range rdf:resource="Region"/>
-    <rdfs:comment>Links a jurisdiction to its geographic region.</rdfs:comment>
+    <rdfs:comment>连接辖区与所属地理区域。</rdfs:comment>
     <ont:cardinality>many-to-one</ont:cardinality>
     <ont:fromEntityId>Jurisdiction</ont:fromEntityId>
     <ont:toEntityId>Region</ont:toEntityId>
@@ -549,7 +549,7 @@
     <rdfs:label>loanClassifiedAs</rdfs:label>
     <rdfs:domain rdf:resource="LoanType"/>
     <rdfs:range rdf:resource="ConcentrationCategory"/>
-    <rdfs:comment>Classifies a loan type into an OCC/FDIC concentration category.</rdfs:comment>
+    <rdfs:comment>将贷款类型归入 OCC/FDIC 集中度类别。</rdfs:comment>
     <ont:cardinality>many-to-one</ont:cardinality>
     <ont:fromEntityId>LoanType</ont:fromEntityId>
     <ont:toEntityId>ConcentrationCategory</ont:toEntityId>
@@ -559,7 +559,7 @@
     <rdfs:label>collateralClassifiedAs</rdfs:label>
     <rdfs:domain rdf:resource="CollateralType"/>
     <rdfs:range rdf:resource="ConcentrationCategory"/>
-    <rdfs:comment>Classifies a collateral type into an OCC/FDIC concentration category.</rdfs:comment>
+    <rdfs:comment>将抵押品类型归入 OCC/FDIC 集中度类别。</rdfs:comment>
     <ont:cardinality>many-to-one</ont:cardinality>
     <ont:fromEntityId>CollateralType</ont:fromEntityId>
     <ont:toEntityId>ConcentrationCategory</ont:toEntityId>
@@ -569,7 +569,7 @@
     <rdfs:label>typicallySecuredBy</rdfs:label>
     <rdfs:domain rdf:resource="CollateralType"/>
     <rdfs:range rdf:resource="LoanType"/>
-    <rdfs:comment>Links a collateral type to the loan types it typically secures.</rdfs:comment>
+    <rdfs:comment>连接抵押品类型与其通常担保的贷款类型。</rdfs:comment>
     <ont:cardinality>many-to-many</ont:cardinality>
     <ont:fromEntityId>CollateralType</ont:fromEntityId>
     <ont:toEntityId>LoanType</ont:toEntityId>
@@ -580,7 +580,7 @@
     <rdfs:label>mandatedBy</rdfs:label>
     <rdfs:domain rdf:resource="RegulatoryLimit"/>
     <rdfs:range rdf:resource="Regulation"/>
-    <rdfs:comment>Links a regulatory limit to the regulation that mandates it.</rdfs:comment>
+    <rdfs:comment>连接监管限额与规定该限额的法规。</rdfs:comment>
     <ont:cardinality>many-to-one</ont:cardinality>
     <ont:fromEntityId>RegulatoryLimit</ont:fromEntityId>
     <ont:toEntityId>Regulation</ont:toEntityId>
@@ -590,7 +590,7 @@
     <rdfs:label>limitAppliesToCategory</rdfs:label>
     <rdfs:domain rdf:resource="RegulatoryLimit"/>
     <rdfs:range rdf:resource="ConcentrationCategory"/>
-    <rdfs:comment>Links a regulatory limit to the concentration category it constrains.</rdfs:comment>
+    <rdfs:comment>连接监管限额与其约束的集中度类别。</rdfs:comment>
     <ont:cardinality>many-to-one</ont:cardinality>
     <ont:fromEntityId>RegulatoryLimit</ont:fromEntityId>
     <ont:toEntityId>ConcentrationCategory</ont:toEntityId>

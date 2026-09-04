@@ -8,8 +8,8 @@
     xmlns:ont="http://example.org/ontology/devops-value-stream-release-intelligence/">
 
     <owl:Ontology rdf:about="http://example.org/ontology/devops-value-stream-release-intelligence/">
-        <rdfs:label>DevOps Value Stream &amp; Release Intelligence</rdfs:label>
-        <rdfs:comment>Models the full software delivery chain — from feature request through work items, builds, and releases to production incidents and post-mortems — enabling AI agents to trace exactly which feature caused a production failure and who is accountable.</rdfs:comment>
+        <rdfs:label>DevOps 价值流与发布分析</rdfs:label>
+        <rdfs:comment>描述从功能需求、工作项、构建和发布到生产事件及复盘的软件交付链，支持故障来源与责任归属追踪。</rdfs:comment>
     </owl:Ontology>
 
     <!-- ===================== -->
@@ -18,49 +18,49 @@
 
     <owl:Class rdf:about="http://example.org/ontology/devops-value-stream-release-intelligence/FeatureRequest">
         <rdfs:label>FeatureRequest</rdfs:label>
-        <rdfs:comment>A business-level request for new capability or change</rdfs:comment>
+        <rdfs:comment>业务层面的新能力或变更请求。</rdfs:comment>
         <ont:icon>💡</ont:icon>
         <ont:color>#0078D4</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/devops-value-stream-release-intelligence/WorkItem">
         <rdfs:label>WorkItem</rdfs:label>
-        <rdfs:comment>A discrete unit of engineering work implementing part of a feature</rdfs:comment>
+        <rdfs:comment>实现某个功能部分内容的独立工程工作单元。</rdfs:comment>
         <ont:icon>📋</ont:icon>
         <ont:color>#107C10</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/devops-value-stream-release-intelligence/ServiceComponent">
         <rdfs:label>ServiceComponent</rdfs:label>
-        <rdfs:comment>A discrete service or module within the system architecture</rdfs:comment>
+        <rdfs:comment>系统架构中的独立服务或模块。</rdfs:comment>
         <ont:icon>⚙️</ont:icon>
         <ont:color>#5C2D91</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/devops-value-stream-release-intelligence/BuildPipeline">
         <rdfs:label>BuildPipeline</rdfs:label>
-        <rdfs:comment>A CI/CD pipeline run that compiles, tests, and packages code</rdfs:comment>
+        <rdfs:comment>编译、测试和打包代码的一次 CI/CD 流水线运行。</rdfs:comment>
         <ont:icon>🔧</ont:icon>
         <ont:color>#CA5010</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/devops-value-stream-release-intelligence/DeploymentRelease">
         <rdfs:label>DeploymentRelease</rdfs:label>
-        <rdfs:comment>A versioned deployment event pushing work items into a target environment</rdfs:comment>
+        <rdfs:comment>将工作项部署到目标环境的版本化发布事件。</rdfs:comment>
         <ont:icon>🚀</ont:icon>
         <ont:color>#038387</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/devops-value-stream-release-intelligence/Incident">
         <rdfs:label>Incident</rdfs:label>
-        <rdfs:comment>A production failure or degradation event impacting users or SLA commitments</rdfs:comment>
+        <rdfs:comment>影响用户或 SLA 的生产故障或服务降级事件。</rdfs:comment>
         <ont:icon>🚨</ont:icon>
         <ont:color>#D13438</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/devops-value-stream-release-intelligence/PostMortem">
         <rdfs:label>PostMortem</rdfs:label>
-        <rdfs:comment>A structured retrospective documenting root cause and prevention actions for a resolved incident</rdfs:comment>
+        <rdfs:comment>记录已解决事件根因和预防措施的结构化复盘。</rdfs:comment>
         <ont:icon>📝</ont:icon>
         <ont:color>#FFB900</ont:color>
     </owl:Class>
@@ -73,7 +73,7 @@
         <rdfs:label>featureId</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/devops-value-stream-release-intelligence/FeatureRequest"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Unique feature request identifier</rdfs:comment>
+        <rdfs:comment>功能请求唯一标识符。</rdfs:comment>
         <ont:isIdentifier rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</ont:isIdentifier>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
@@ -82,7 +82,7 @@
         <rdfs:label>title</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/devops-value-stream-release-intelligence/FeatureRequest"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Short descriptive title of the feature</rdfs:comment>
+        <rdfs:comment>功能的简短说明标题。</rdfs:comment>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -90,7 +90,7 @@
         <rdfs:label>businessPriority</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/devops-value-stream-release-intelligence/FeatureRequest"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Business priority</rdfs:comment>
+        <rdfs:comment>业务优先级。</rdfs:comment>
         <ont:enumValues>Critical,High,Medium,Low</ont:enumValues>
         <ont:propertyType>enum</ont:propertyType>
     </owl:DatatypeProperty>
@@ -99,7 +99,7 @@
         <rdfs:label>requestedBy</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/devops-value-stream-release-intelligence/FeatureRequest"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Stakeholder or team that raised the request</rdfs:comment>
+        <rdfs:comment>提出请求的相关方或团队。</rdfs:comment>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -107,7 +107,7 @@
         <rdfs:label>targetReleaseVersion</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/devops-value-stream-release-intelligence/FeatureRequest"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Planned release version</rdfs:comment>
+        <rdfs:comment>计划发布版本。</rdfs:comment>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -115,7 +115,7 @@
         <rdfs:label>status</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/devops-value-stream-release-intelligence/FeatureRequest"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Current lifecycle status</rdfs:comment>
+        <rdfs:comment>当前生命周期状态。</rdfs:comment>
         <ont:enumValues>Backlog,In Progress,Released,Cancelled</ont:enumValues>
         <ont:propertyType>enum</ont:propertyType>
     </owl:DatatypeProperty>
@@ -124,7 +124,7 @@
         <rdfs:label>workItemId</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/devops-value-stream-release-intelligence/WorkItem"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Unique work item identifier</rdfs:comment>
+        <rdfs:comment>工作项唯一标识符。</rdfs:comment>
         <ont:isIdentifier rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</ont:isIdentifier>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
@@ -133,7 +133,7 @@
         <rdfs:label>type</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/devops-value-stream-release-intelligence/WorkItem"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Type of engineering work</rdfs:comment>
+        <rdfs:comment>工程工作类型。</rdfs:comment>
         <ont:enumValues>Story,Bug,Task,Hotfix</ont:enumValues>
         <ont:propertyType>enum</ont:propertyType>
     </owl:DatatypeProperty>
@@ -142,7 +142,7 @@
         <rdfs:label>title</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/devops-value-stream-release-intelligence/WorkItem"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Work item title</rdfs:comment>
+        <rdfs:comment>工作项标题。</rdfs:comment>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -150,7 +150,7 @@
         <rdfs:label>assignee</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/devops-value-stream-release-intelligence/WorkItem"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Engineer assigned to this work item</rdfs:comment>
+        <rdfs:comment>分配到该工作项的工程师。</rdfs:comment>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -158,7 +158,7 @@
         <rdfs:label>sprintName</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/devops-value-stream-release-intelligence/WorkItem"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Sprint in which this work item was completed</rdfs:comment>
+        <rdfs:comment>完成该工作项的迭代。</rdfs:comment>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -166,7 +166,7 @@
         <rdfs:label>status</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/devops-value-stream-release-intelligence/WorkItem"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Current work item status</rdfs:comment>
+        <rdfs:comment>当前工作项状态。</rdfs:comment>
         <ont:enumValues>Todo,In Progress,Code Review,Done</ont:enumValues>
         <ont:propertyType>enum</ont:propertyType>
     </owl:DatatypeProperty>
@@ -175,7 +175,7 @@
         <rdfs:label>componentId</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/devops-value-stream-release-intelligence/ServiceComponent"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Unique service component identifier</rdfs:comment>
+        <rdfs:comment>服务组件唯一标识符。</rdfs:comment>
         <ont:isIdentifier rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</ont:isIdentifier>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
@@ -184,7 +184,7 @@
         <rdfs:label>name</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/devops-value-stream-release-intelligence/ServiceComponent"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Service or component name</rdfs:comment>
+        <rdfs:comment>服务或组件名称。</rdfs:comment>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -192,7 +192,7 @@
         <rdfs:label>owningTeam</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/devops-value-stream-release-intelligence/ServiceComponent"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Team responsible for this component</rdfs:comment>
+        <rdfs:comment>负责该组件的团队。</rdfs:comment>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -200,7 +200,7 @@
         <rdfs:label>tier</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/devops-value-stream-release-intelligence/ServiceComponent"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Architectural tier</rdfs:comment>
+        <rdfs:comment>架构层级。</rdfs:comment>
         <ont:enumValues>Frontend,Backend,Data,Infrastructure,ML</ont:enumValues>
         <ont:propertyType>enum</ont:propertyType>
     </owl:DatatypeProperty>
@@ -209,7 +209,7 @@
         <rdfs:label>criticalityLevel</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/devops-value-stream-release-intelligence/ServiceComponent"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Business criticality if this component fails</rdfs:comment>
+        <rdfs:comment>组件故障时的业务关键程度。</rdfs:comment>
         <ont:enumValues>Critical,High,Medium,Low</ont:enumValues>
         <ont:propertyType>enum</ont:propertyType>
     </owl:DatatypeProperty>
@@ -218,7 +218,7 @@
         <rdfs:label>language</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/devops-value-stream-release-intelligence/ServiceComponent"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Primary programming language or framework</rdfs:comment>
+        <rdfs:comment>主要编程语言或框架。</rdfs:comment>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -226,7 +226,7 @@
         <rdfs:label>buildId</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/devops-value-stream-release-intelligence/BuildPipeline"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Unique build run identifier</rdfs:comment>
+        <rdfs:comment>构建运行唯一标识符。</rdfs:comment>
         <ont:isIdentifier rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</ont:isIdentifier>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
@@ -235,7 +235,7 @@
         <rdfs:label>branch</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/devops-value-stream-release-intelligence/BuildPipeline"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Source branch that triggered the build</rdfs:comment>
+        <rdfs:comment>触发构建的源分支。</rdfs:comment>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -243,7 +243,7 @@
         <rdfs:label>triggeredBy</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/devops-value-stream-release-intelligence/BuildPipeline"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Person or event that initiated the build</rdfs:comment>
+        <rdfs:comment>发起构建的人员或事件。</rdfs:comment>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -251,7 +251,7 @@
         <rdfs:label>status</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/devops-value-stream-release-intelligence/BuildPipeline"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Build pipeline outcome</rdfs:comment>
+        <rdfs:comment>构建流水线结果。</rdfs:comment>
         <ont:enumValues>Running,Passed,Failed,Cancelled</ont:enumValues>
         <ont:propertyType>enum</ont:propertyType>
     </owl:DatatypeProperty>
@@ -260,7 +260,7 @@
         <rdfs:label>durationSeconds</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/devops-value-stream-release-intelligence/BuildPipeline"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
-        <rdfs:comment>Total build duration</rdfs:comment>
+        <rdfs:comment>构建总时长。</rdfs:comment>
         <ont:unit>seconds</ont:unit>
         <ont:propertyType>integer</ont:propertyType>
     </owl:DatatypeProperty>
@@ -269,7 +269,7 @@
         <rdfs:label>failedStage</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/devops-value-stream-release-intelligence/BuildPipeline"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Pipeline stage where the failure occurred</rdfs:comment>
+        <rdfs:comment>发生故障的流水线阶段。</rdfs:comment>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -277,7 +277,7 @@
         <rdfs:label>releaseId</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/devops-value-stream-release-intelligence/DeploymentRelease"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Unique release identifier</rdfs:comment>
+        <rdfs:comment>发布唯一标识符。</rdfs:comment>
         <ont:isIdentifier rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</ont:isIdentifier>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
@@ -286,7 +286,7 @@
         <rdfs:label>version</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/devops-value-stream-release-intelligence/DeploymentRelease"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Semantic version of the release</rdfs:comment>
+        <rdfs:comment>发布的语义化版本。</rdfs:comment>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -294,7 +294,7 @@
         <rdfs:label>environment</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/devops-value-stream-release-intelligence/DeploymentRelease"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Target deployment environment</rdfs:comment>
+        <rdfs:comment>目标部署环境。</rdfs:comment>
         <ont:enumValues>Development,Staging,Production</ont:enumValues>
         <ont:propertyType>enum</ont:propertyType>
     </owl:DatatypeProperty>
@@ -303,7 +303,7 @@
         <rdfs:label>deployedAt</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/devops-value-stream-release-intelligence/DeploymentRelease"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
-        <rdfs:comment>Timestamp when the deployment completed</rdfs:comment>
+        <rdfs:comment>部署完成时间戳。</rdfs:comment>
         <ont:propertyType>datetime</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -311,7 +311,7 @@
         <rdfs:label>deployedBy</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/devops-value-stream-release-intelligence/DeploymentRelease"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Engineer or automation that executed the deployment</rdfs:comment>
+        <rdfs:comment>执行部署的工程师或自动化程序。</rdfs:comment>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -319,7 +319,7 @@
         <rdfs:label>rollbackAvailable</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/devops-value-stream-release-intelligence/DeploymentRelease"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
-        <rdfs:comment>Whether a one-click rollback is available</rdfs:comment>
+        <rdfs:comment>是否支持一键回滚。</rdfs:comment>
         <ont:propertyType>boolean</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -327,7 +327,7 @@
         <rdfs:label>incidentId</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/devops-value-stream-release-intelligence/Incident"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Unique incident identifier</rdfs:comment>
+        <rdfs:comment>事件唯一标识符。</rdfs:comment>
         <ont:isIdentifier rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</ont:isIdentifier>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
@@ -336,7 +336,7 @@
         <rdfs:label>severity</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/devops-value-stream-release-intelligence/Incident"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Incident severity</rdfs:comment>
+        <rdfs:comment>事件严重程度。</rdfs:comment>
         <ont:enumValues>P1,P2,P3,P4</ont:enumValues>
         <ont:propertyType>enum</ont:propertyType>
     </owl:DatatypeProperty>
@@ -345,7 +345,7 @@
         <rdfs:label>title</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/devops-value-stream-release-intelligence/Incident"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Short description of the failure</rdfs:comment>
+        <rdfs:comment>故障简要说明。</rdfs:comment>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -353,7 +353,7 @@
         <rdfs:label>detectedAt</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/devops-value-stream-release-intelligence/Incident"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
-        <rdfs:comment>Timestamp when the incident was first detected</rdfs:comment>
+        <rdfs:comment>首次检测到事件的时间戳。</rdfs:comment>
         <ont:propertyType>datetime</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -361,7 +361,7 @@
         <rdfs:label>status</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/devops-value-stream-release-intelligence/Incident"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Current incident status</rdfs:comment>
+        <rdfs:comment>当前事件状态。</rdfs:comment>
         <ont:enumValues>Active,Mitigating,Resolved</ont:enumValues>
         <ont:propertyType>enum</ont:propertyType>
     </owl:DatatypeProperty>
@@ -370,7 +370,7 @@
         <rdfs:label>affectedUsers</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/devops-value-stream-release-intelligence/Incident"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
-        <rdfs:comment>Estimated number of users impacted</rdfs:comment>
+        <rdfs:comment>估计受影响用户数。</rdfs:comment>
         <ont:unit>users</ont:unit>
         <ont:propertyType>integer</ont:propertyType>
     </owl:DatatypeProperty>
@@ -379,7 +379,7 @@
         <rdfs:label>postMortemId</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/devops-value-stream-release-intelligence/PostMortem"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Unique post-mortem document identifier</rdfs:comment>
+        <rdfs:comment>复盘文档唯一标识符。</rdfs:comment>
         <ont:isIdentifier rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</ont:isIdentifier>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
@@ -388,7 +388,7 @@
         <rdfs:label>rootCause</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/devops-value-stream-release-intelligence/PostMortem"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Identified root cause of the incident</rdfs:comment>
+        <rdfs:comment>已识别的事件根本原因。</rdfs:comment>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -396,7 +396,7 @@
         <rdfs:label>contributingFactors</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/devops-value-stream-release-intelligence/PostMortem"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Secondary factors that enabled or worsened the incident</rdfs:comment>
+        <rdfs:comment>导致或加剧事件的次要因素。</rdfs:comment>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -404,7 +404,7 @@
         <rdfs:label>status</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/devops-value-stream-release-intelligence/PostMortem"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Post-mortem document status</rdfs:comment>
+        <rdfs:comment>复盘文档状态。</rdfs:comment>
         <ont:enumValues>Draft,In Review,Published</ont:enumValues>
         <ont:propertyType>enum</ont:propertyType>
     </owl:DatatypeProperty>
@@ -413,7 +413,7 @@
         <rdfs:label>actionItemCount</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/devops-value-stream-release-intelligence/PostMortem"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
-        <rdfs:comment>Number of prevention action items generated</rdfs:comment>
+        <rdfs:comment>产生的预防行动项数量。</rdfs:comment>
         <ont:propertyType>integer</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -421,7 +421,7 @@
         <rdfs:label>publishedAt</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/devops-value-stream-release-intelligence/PostMortem"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
-        <rdfs:comment>Date the post-mortem was formally published</rdfs:comment>
+        <rdfs:comment>复盘正式发布日期。</rdfs:comment>
         <ont:propertyType>date</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -433,7 +433,7 @@
         <rdfs:label>decomposesInto</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/devops-value-stream-release-intelligence/FeatureRequest"/>
         <rdfs:range rdf:resource="http://example.org/ontology/devops-value-stream-release-intelligence/WorkItem"/>
-        <rdfs:comment>A feature request is broken down into one or more discrete work items</rdfs:comment>
+        <rdfs:comment>功能请求被拆分为一个或多个独立工作项。</rdfs:comment>
         <ont:cardinality>one-to-many</ont:cardinality>
         <ont:fromEntityId>featureRequest</ont:fromEntityId>
         <ont:toEntityId>workItem</ont:toEntityId>
@@ -443,7 +443,7 @@
         <rdfs:label>modifies</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/devops-value-stream-release-intelligence/WorkItem"/>
         <rdfs:range rdf:resource="http://example.org/ontology/devops-value-stream-release-intelligence/ServiceComponent"/>
-        <rdfs:comment>A work item changes code within a specific service component</rdfs:comment>
+        <rdfs:comment>工作项修改指定服务组件内的代码。</rdfs:comment>
         <ont:cardinality>many-to-one</ont:cardinality>
         <ont:fromEntityId>workItem</ont:fromEntityId>
         <ont:toEntityId>serviceComponent</ont:toEntityId>
@@ -453,7 +453,7 @@
         <rdfs:label>bundledIn</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/devops-value-stream-release-intelligence/WorkItem"/>
         <rdfs:range rdf:resource="http://example.org/ontology/devops-value-stream-release-intelligence/DeploymentRelease"/>
-        <rdfs:comment>Work items are bundled together and shipped as a deployment release</rdfs:comment>
+        <rdfs:comment>多个工作项打包为一次部署发布。</rdfs:comment>
         <ont:cardinality>many-to-many</ont:cardinality>
         <ont:fromEntityId>workItem</ont:fromEntityId>
         <ont:toEntityId>deploymentRelease</ont:toEntityId>
@@ -463,7 +463,7 @@
         <rdfs:label>validates</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/devops-value-stream-release-intelligence/BuildPipeline"/>
         <rdfs:range rdf:resource="http://example.org/ontology/devops-value-stream-release-intelligence/DeploymentRelease"/>
-        <rdfs:comment>A build pipeline run validates and produces the artifacts for a release</rdfs:comment>
+        <rdfs:comment>构建流水线验证并生成发布制品。</rdfs:comment>
         <ont:cardinality>many-to-one</ont:cardinality>
         <ont:fromEntityId>buildPipeline</ont:fromEntityId>
         <ont:toEntityId>deploymentRelease</ont:toEntityId>
@@ -473,7 +473,7 @@
         <rdfs:label>triggers</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/devops-value-stream-release-intelligence/DeploymentRelease"/>
         <rdfs:range rdf:resource="http://example.org/ontology/devops-value-stream-release-intelligence/Incident"/>
-        <rdfs:comment>A deployment release introduces changes that trigger a production incident</rdfs:comment>
+        <rdfs:comment>部署发布引入的变更触发生产事件。</rdfs:comment>
         <ont:cardinality>one-to-many</ont:cardinality>
         <ont:fromEntityId>deploymentRelease</ont:fromEntityId>
         <ont:toEntityId>incident</ont:toEntityId>
@@ -483,7 +483,7 @@
         <rdfs:label>impacts</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/devops-value-stream-release-intelligence/Incident"/>
         <rdfs:range rdf:resource="http://example.org/ontology/devops-value-stream-release-intelligence/ServiceComponent"/>
-        <rdfs:comment>A production incident degrades or takes down one or more service components</rdfs:comment>
+        <rdfs:comment>生产事件导致一个或多个服务组件降级或不可用。</rdfs:comment>
         <ont:cardinality>many-to-many</ont:cardinality>
         <ont:fromEntityId>incident</ont:fromEntityId>
         <ont:toEntityId>serviceComponent</ont:toEntityId>
@@ -493,7 +493,7 @@
         <rdfs:label>documents</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/devops-value-stream-release-intelligence/PostMortem"/>
         <rdfs:range rdf:resource="http://example.org/ontology/devops-value-stream-release-intelligence/Incident"/>
-        <rdfs:comment>A post-mortem documents the root cause and prevention actions for a resolved incident</rdfs:comment>
+        <rdfs:comment>复盘记录已解决事件的根因和预防措施。</rdfs:comment>
         <ont:cardinality>one-to-one</ont:cardinality>
         <ont:fromEntityId>postMortem</ont:fromEntityId>
         <ont:toEntityId>incident</ont:toEntityId>

@@ -1,106 +1,106 @@
 ---
-title: Microsoft Fabric IQ Ontology Concepts
+title: Microsoft Fabric IQ 本体概念
 slug: fabric-iq-ontology-concepts
-description: How Microsoft Fabric uses ontologies to power natural-language queries over structured data — entity types, identifier properties, relationships, and cardinality.
+description: 了解 Microsoft Fabric 如何利用实体类型、标识符、关系与基数，支持结构化数据的自然语言查询。
 order: 3
 embed: official/ecommerce
 ---
 
-## What is Fabric IQ?
+## 什么是 Fabric IQ？
 
-**Microsoft Fabric** is a unified analytics platform that brings together data engineering, data science, real-time analytics, and business intelligence. **IQ** is a Fabric capability that lets users ask questions in **natural language** and get answers from structured data — no SQL required.
+**Microsoft Fabric** 是整合数据工程、数据科学、实时分析和商业智能的统一分析平台。**IQ** 是 Fabric 的一项能力，让用户使用**自然语言**从结构化数据中获取答案，而不必编写 SQL。
 
-The key ingredient is an **ontology**: a formal description of entity types, their properties, and relationships. IQ reads the ontology, understands the shape of your data, and translates plain-English questions into the correct queries.
+核心要素是**本体**，它正式描述实体类型、属性和关系。IQ 读取本体，理解数据结构，将自然语言问题转换为相应查询。
 
-## How IQ uses ontologies
+## IQ 如何使用本体
 
-When a user asks *"What were last month's total sales by region?"*, IQ needs to know:
+用户提问*“上个月各区域的销售总额是多少？”*时，IQ 需要知道：
 
-1. **Entity types** — `Order`, `Store`, `Region`
-2. **Properties** — `Order.totalAmount`, `Order.date`, `Store.region`
-3. **Relationships** — `Order` → `placedAt` → `Store`, `Store` → `locatedIn` → `Region`
-4. **Identifier properties** — which fields uniquely identify each entity (e.g. `Order.orderId`)
+1. **实体类型**：Order、Store、Region
+2. **属性**：Order.totalAmount、Order.date、Store.region
+3. **关系**：Order → placedAt → Store，Store → locatedIn → Region
+4. **标识符属性**：哪些字段唯一标识各个实体，如 Order.orderId
 
-The ontology provides all four. Without it, IQ can't distinguish a "store" from a "product" or know how to join them.
+本体提供这四类信息。否则 IQ 无法区分门店与产品，也无法知道应如何关联。
 
-## Entity types
+## 实体类型
 
-An entity type is a category of business object. In Fabric IQ, each entity type:
+实体类型是一类业务对象。在 Fabric IQ 中，每个实体类型：
 
-- Has a **name** and optional **description**
-- Contains one or more **properties** (typed columns)
-- Must have at least one **identifier property** that uniquely identifies instances
+- 具有**名称**和可选**说明**
+- 包含一个或多个**属性**，即带类型的数据列
+- 至少具有一个能够唯一区分实例的**标识符属性**
 
-Think of it as a table definition: `Customer(customerId, name, email, tier)`.
+可将其理解为表定义：`Customer(customerId, name, email, tier)`。
 
-## Properties and types
+## 属性与类型
 
-Each property has a data type:
+每个属性都有数据类型：
 
-| Type | Description | Example |
+| 类型 | 说明 | 示例 |
 |------|-------------|---------|
-| `string` | Text value | Customer name, product SKU |
-| `integer` | Whole number | Quantity, year |
-| `decimal` | Fractional number | Price, rating |
-| `date` | Calendar date | Order date, birth date |
-| `datetime` | Date with time | Created timestamp |
-| `boolean` | True/false | Is active, is premium |
+| string | 文本 | 客户姓名、产品 SKU |
+| integer | 整数 | 数量、年份 |
+| decimal | 小数 | 价格、评分 |
+| date | 日期 | 下单日期、出生日期 |
+| datetime | 日期与时间 | 创建时间戳 |
+| boolean | 真 / 假 | 是否启用、是否高级会员 |
 
-The **identifier property** (marked with a key icon) is critical: it tells IQ how to count, group, and join entities correctly.
+带钥匙图标的**标识符属性**十分关键，它告诉 IQ 如何正确计数、分组和关联实体。
 
-## Relationships and cardinality
+## 关系与基数
 
-Relationships connect entity types. Each relationship specifies:
+关系连接实体类型，每条关系指定：
 
-- **Source and target** entity types
-- **Name** (the verb: "places", "contains", "worksAt")
-- **Cardinality** — how many instances can connect
+- **源实体与目标实体**类型
+- **名称**：动作动词，如 places、contains、worksAt
+- **基数**：双方可以连接多少个实例
 
-| Cardinality | Meaning | Example |
+| 基数 | 含义 | 示例 |
 |------------|---------|---------|
-| One-to-one | Each A maps to exactly one B | `Employee` → `Badge` |
-| One-to-many | Each A maps to many Bs | `Customer` → `Order` |
-| Many-to-one | Many As map to one B | `Order` → `Store` |
-| Many-to-many | Many As map to many Bs | `Student` → `Course` |
+| 一对一 | 每个 A 对应一个 B | Employee → Badge |
+| 一对多 | 每个 A 对应多个 B | Customer → Order |
+| 多对一 | 多个 A 对应一个 B | Order → Store |
+| 多对多 | 多个 A 对应多个 B | Student → Course |
 
-IQ uses cardinality to generate correct aggregations. A one-to-many relationship between `Customer` and `Order` means "count of orders per customer" is valid, while "count of customers per order" would typically be 1.
+IQ 根据基数生成正确的汇总逻辑。Customer 与 Order 的一对多关系意味着可以统计每位客户的订单数，而每个订单的客户数通常为 1。
 
 <ontology-embed id="official/ecommerce" height="400px"></ontology-embed>
 
-*The E-Commerce ontology demonstrates IQ-ready patterns: identifier properties on each entity, typed columns, and cardinality on every relationship.*
+*电商本体展示了适用于 IQ 的模式：每个实体有标识符、每个属性有类型、每条关系有基数。*
 
-## Designing for IQ
+## 面向 IQ 设计
 
-When building an ontology for Fabric IQ, follow these guidelines:
+为 Fabric IQ 构建本体时，遵循以下原则：
 
-1. **Name entities clearly** — use business terms your users would say ("Customer", not "tbl_cust")
-2. **Add descriptions** — IQ uses them to disambiguate similar concepts
-3. **Mark identifiers** — every entity MUST have at least one identifier property
-4. **Set cardinality** — helps IQ generate correct GROUP BY and JOIN logic
-5. **Keep it focused** — model the concepts users will query, not every internal table
+1. **命名清晰**：使用用户熟悉的业务术语，如 Customer，而不是 tbl_cust
+2. **补充说明**：帮助 IQ 区分相似概念
+3. **标记标识符**：每个实体必须至少有一个标识符属性
+4. **设置基数**：帮助 IQ 生成正确的 GROUP BY 与 JOIN 逻辑
+5. **保持聚焦**：建模用户会查询的概念，而不是每张内部表
 
-## Key takeaways
+## 核心要点
 
-- Fabric IQ translates natural-language questions into SQL using an ontology
-- Entity types, properties, relationships, and cardinality are the four pillars
-- Every entity needs an identifier property for correct counting and joining
-- Good naming and descriptions improve IQ's question-answering accuracy
-- Use the [Ontology Designer](#/designer) to create IQ-ready ontologies visually
+- Fabric IQ 利用本体将自然语言问题转换为查询
+- 实体类型、属性、关系与基数是四个支柱
+- 每个实体都需要标识符，才能正确计数与关联
+- 良好命名与说明有助于提高问答准确度
+- 使用[本体设计器](#/designer)，可视化创建适用于 IQ 的本体
 
 ```quiz
-Q: Why is an identifier property required on every entity type in Fabric IQ?
-- It makes the ontology look professional
-- It tells IQ how to count, group, and join entities correctly [correct]
-- It is used as the entity's display name
-- It sets the default sort order
-> The identifier property uniquely distinguishes instances of an entity type. Without it, IQ cannot correctly generate COUNT, GROUP BY, or JOIN operations in the translated SQL.
+Q: 为什么 Fabric IQ 要求每个实体类型具有标识符属性？
+- 让本体看起来更专业
+- 告诉 IQ 如何正确计数、分组和关联实体 [correct]
+- 作为实体显示名称
+- 设置默认排序
+> 标识符属性唯一区分某一类型的各个实例。没有它，IQ 就无法正确生成 COUNT、GROUP BY 或 JOIN 操作。
 ```
 
 ```quiz
-Q: What does the cardinality of a relationship tell Fabric IQ?
-- The colour to use when drawing the relationship
-- How many instances can connect on each side of the relationship [correct]
-- Whether the relationship is optional or required
-- The order in which entities should be displayed
-> Cardinality (one-to-one, one-to-many, many-to-one, many-to-many) tells IQ how to generate correct aggregations and joins — for example, knowing that one customer has many orders.
+Q: 关系的基数向 Fabric IQ 传递什么信息？
+- 绘制关系时使用的颜色
+- 关系两端各可以连接多少个实例 [correct]
+- 关系是可选还是必需
+- 实体的显示顺序
+> 一对一、一对多、多对一和多对多等基数，帮助 IQ 生成正确的汇总与关联，例如理解一位客户可以拥有多个订单。
 ```

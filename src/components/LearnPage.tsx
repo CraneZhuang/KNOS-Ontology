@@ -26,7 +26,7 @@ export function LearnPage({ route }: LearnPageProps) {
   useEffect(() => {
     fetch(`${import.meta.env.BASE_URL}learn.json`)
       .then((res) => {
-        if (!res.ok) throw new Error(`Failed to load (${res.status})`);
+        if (!res.ok) throw new Error(`加载失败（${res.status})`);
         return res.json() as Promise<LearnManifest>;
       })
       .then(setManifest)
@@ -36,7 +36,7 @@ export function LearnPage({ route }: LearnPageProps) {
   if (error) {
     return (
       <div className={`learn-page ${themeClass(theme)}`}>
-        <div className="learn-error">Failed to load learning content: {error}</div>
+        <div className="learn-error">学习内容加载失败： {error}</div>
       </div>
     );
   }
@@ -44,7 +44,7 @@ export function LearnPage({ route }: LearnPageProps) {
   if (!manifest) {
     return (
       <div className={`learn-page ${themeClass(theme)}`}>
-        <div className="learn-loading">Loading…</div>
+        <div className="learn-loading">正在加载…</div>
       </div>
     );
   }
@@ -64,10 +64,10 @@ export function LearnPage({ route }: LearnPageProps) {
     backLabel = course.title;
     backAction = () => navigate({ page: 'learn', courseSlug: course.slug });
   } else if (course) {
-    backLabel = 'All courses';
+    backLabel = "全部课程";
     backAction = () => navigate({ page: 'learn' });
   } else {
-    backLabel = 'Playground';
+    backLabel = "探索平台";
     backAction = () => navigate({ page: 'home' });
   }
 
@@ -77,16 +77,16 @@ export function LearnPage({ route }: LearnPageProps) {
         <button
           className="learn-back-btn"
           onClick={backAction}
-          title={`Back to ${backLabel}`}
+          title={`返回 ${backLabel}`}
         >
           <ArrowLeft size={20} />
           <span>{backLabel}</span>
         </button>
         <button className="learn-header-title" onClick={() => navigate({ page: 'learn' })}>
           <BookOpen size={20} />
-          <span>Ontology School</span>
+          <span>本体学堂</span>
         </button>
-        <button className="icon-btn" onClick={toggleDarkMode} title="Toggle Theme">
+        <button className="icon-btn" onClick={toggleDarkMode} title="切换主题">
           {darkMode ? <Sun size={20} /> : <Moon size={20} />}
         </button>
       </header>
@@ -120,8 +120,7 @@ function CourseCatalogue({ courses }: { courses: LearnCourse[] }) {
     <div className="learn-index">
       <div className="learn-index-hero">
         <p>
-          Learning paths and hands-on labs to help you understand and build
-          ontologies for Microsoft Fabric IQ.
+          通过学习路径和动手实验，理解并构建适用于 Microsoft Fabric IQ 的本体。
         </p>
       </div>
       <div className="learn-card-grid">
@@ -135,16 +134,16 @@ function CourseCatalogue({ courses }: { courses: LearnCourse[] }) {
               <span className="learn-card-icon">{c.icon}</span>
               <span className={`learn-card-badge learn-card-badge--${c.type}`}>
                 {c.type === 'lab' ? <FlaskConical size={12} /> : <GraduationCap size={12} />}
-                {c.type === 'lab' ? 'Lab' : 'Path'}
+                {c.type === 'lab' ? "实验" : "学习路径"}
               </span>
             </div>
             <h2>{c.title}</h2>
             <p>{c.description}</p>
             <span className="learn-card-meta">
-              {c.articles.length} {c.type === 'lab' ? 'steps' : 'articles'}
+              {c.articles.length} {c.type === 'lab' ? '个步骤' : '篇文章'}
             </span>
             <span className="learn-card-cta">
-              {c.type === 'lab' ? 'Start lab' : 'Start learning'} <ChevronRight size={16} />
+              {c.type === 'lab' ? "开始实验" : "开始学习"} <ChevronRight size={16} />
             </span>
           </button>
         ))}
@@ -162,7 +161,7 @@ function CourseDetail({ course }: { course: LearnCourse }) {
           <span className="learn-course-icon">{course.icon}</span>
           <span className={`learn-card-badge learn-card-badge--${course.type}`}>
             {course.type === 'lab' ? <FlaskConical size={12} /> : <GraduationCap size={12} />}
-            {course.type === 'lab' ? 'Lab' : 'Learning Path'}
+            {course.type === 'lab' ? "实验" : "学习路径"}
           </span>
         </div>
         <h1>{course.title}</h1>
@@ -176,15 +175,15 @@ function CourseDetail({ course }: { course: LearnCourse }) {
             onClick={() => navigate({ page: 'learn', courseSlug: course.slug, articleSlug: a.slug })}
           >
             <span className="learn-card-order">
-              {course.type === 'lab' ? (a.order === 1 ? 'Overview' : `Step ${a.order - 1}`) : a.order}
+              {course.type === 'lab' ? (a.order === 1 ? "概览" : `步骤 ${a.order - 1}`) : a.order}
             </span>
             <h2>{a.title}</h2>
             {a.reviewStatus === 'under-human-review' && (
-              <span className="learn-card-review-badge">🔍 Under human review</span>
+              <span className="learn-card-review-badge">🔍 正在人工审核</span>
             )}
             <p>{a.description}</p>
             <span className="learn-card-cta">
-              {course.type === 'lab' ? 'Open step' : 'Read article'} <ChevronRight size={16} />
+              {course.type === 'lab' ? "打开步骤" : "阅读文章"} <ChevronRight size={16} />
             </span>
           </button>
         ))}
@@ -258,7 +257,7 @@ function ArticleView({
           const diffId = slot.dataset.diffId;
           const entry = catalogue.entries.find((e) => e.id === id);
           if (!entry) {
-            slot.innerHTML = `<div class="learn-embed-error">Ontology "${id}" not found in catalogue</div>`;
+            slot.innerHTML = `<div class="learn-embed-error">本体“${id}”未在目录中找到</div>`;
             continue;
           }
           // Find the previous-step entry for diff
@@ -279,7 +278,7 @@ function ArticleView({
       .catch(() => {
         if (cancelled) return;
         for (const slot of slots) {
-          slot.innerHTML = '<div class="learn-embed-error">Failed to load catalogue</div>';
+          slot.innerHTML = "<div class=\"learn-embed-error\">目录加载失败</div>";
         }
       });
     return () => { cancelled = true; };
@@ -291,10 +290,10 @@ function ArticleView({
         <button
           className="learn-present-btn"
           onClick={() => setPresenting(true)}
-          title="Present as slides"
+          title="以幻灯片形式演示"
         >
           <Play size={16} />
-          <span>Present</span>
+          <span>演示</span>
         </button>
       </div>
       <ArticleContent article={article} contentRef={contentRef} />
@@ -321,7 +320,7 @@ function ArticleView({
           >
             <ArrowLeft size={16} />
             <div>
-              <span className="learn-nav-label">Previous</span>
+              <span className="learn-nav-label">上一篇</span>
               <span className="learn-nav-title">{prevArticle.title}</span>
             </div>
           </button>
@@ -334,7 +333,7 @@ function ArticleView({
             onClick={() => navigate({ page: 'learn', courseSlug: course.slug, articleSlug: nextArticle.slug })}
           >
             <div>
-              <span className="learn-nav-label">Next</span>
+              <span className="learn-nav-label">下一步</span>
               <span className="learn-nav-title">{nextArticle.title}</span>
             </div>
             <ChevronRight size={16} />
@@ -429,8 +428,8 @@ export function QuizSlide({ quiz }: { quiz: QuizData }) {
       {chose && (
         <div className={`quiz-result ${isCorrect ? 'quiz-result--correct' : 'quiz-result--wrong'}`}>
           {isCorrect
-            ? <><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Correct!</>
-            : <><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg> Not quite</>}
+            ? <><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> 回答正确！</>
+            : <><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg> 还不完全正确</>}
         </div>
       )}
       {chose && quiz.explanation && (
@@ -673,13 +672,13 @@ function PresentationMode({
   return (
     <div className={`presentation-overlay ${presenterDark ? '' : 'light-theme'}`}>
       <div className="presentation-chrome">
-        <button className="presentation-close" onClick={onClose} title="Exit (Esc)">
+        <button className="presentation-close" onClick={onClose} title="退出（Esc）">
           <X size={20} />
         </button>
         <button
           className="presentation-theme-toggle"
           onClick={() => setPresenterDark((d) => !d)}
-          title="Toggle theme"
+          title="切换主题"
         >
           {presenterDark ? <Sun size={18} /> : <Moon size={18} />}
         </button>
@@ -690,7 +689,7 @@ function PresentationMode({
           className="presentation-nav presentation-nav--prev"
           onClick={goPrev}
           disabled={slideIndex === 0 && !prevArticle}
-          aria-label={slideIndex === 0 && prevArticle ? `Previous: ${prevArticle.title}` : 'Previous slide'}
+          aria-label={slideIndex === 0 && prevArticle ? `上一篇： ${prevArticle.title}` : "上一页"}
         >
           <ArrowLeft size={28} />
         </button>
@@ -714,7 +713,7 @@ function PresentationMode({
           className="presentation-nav presentation-nav--next"
           onClick={goNext}
           disabled={slideIndex === total - 1 && !nextArticle}
-          aria-label={slideIndex === total - 1 && nextArticle ? `Next: ${nextArticle.title}` : 'Next slide'}
+          aria-label={slideIndex === total - 1 && nextArticle ? `下一篇： ${nextArticle.title}` : "下一页"}
         >
           <ChevronRight size={28} />
         </button>
@@ -730,10 +729,10 @@ function PresentationMode({
         <span className="presentation-counter">
           {slideIndex + 1} / {total}
           {slideIndex === total - 1 && nextArticle && (
-            <span className="presentation-next-hint"> — next: {nextArticle.title}</span>
+            <span className="presentation-next-hint"> — 下一篇： {nextArticle.title}</span>
           )}
           {slideIndex === 0 && prevArticle && (
-            <span className="presentation-next-hint"> — prev: {prevArticle.title}</span>
+            <span className="presentation-next-hint"> — 上一篇： {prevArticle.title}</span>
           )}
         </span>
       </div>
@@ -777,7 +776,7 @@ function cyStyles(colors: { nodeText: string; edgeColor: string; edgeText: strin
         'text-valign': 'bottom' as const,
         'text-halign': 'center' as const,
         'font-size': '11px',
-        'font-family': 'Segoe UI, sans-serif',
+        'font-family': 'Segoe UI, Microsoft YaHei, PingFang SC, sans-serif',
         'font-weight': 600,
         color: colors.nodeText,
         'text-margin-y': 6,
@@ -802,7 +801,7 @@ function cyStyles(colors: { nodeText: string; edgeColor: string; edgeText: strin
       style: {
         label: 'data(label)',
         'font-size': '9px',
-        'font-family': 'Segoe UI, sans-serif',
+        'font-family': 'Segoe UI, Microsoft YaHei, PingFang SC, sans-serif',
         color: colors.edgeText,
         'text-rotation': 'autorotate' as const,
         'text-margin-y': -12,
@@ -947,7 +946,7 @@ function renderEmbedSlot(
     dot.style.cssText = `width:8px;height:8px;border-radius:50%;background:${newHighlight};display:inline-block;flex-shrink:0`;
     legend.appendChild(dot);
     const count = (newEntityIds?.size ?? 0) + (newRelIds?.size ?? 0);
-    legend.appendChild(document.createTextNode(`${count} new`));
+    legend.appendChild(document.createTextNode(`${count} 新增`));
     titleBar.appendChild(legend);
   }
 
@@ -986,8 +985,8 @@ function renderEmbedSlot(
       return btn;
     };
 
-    beforeBtn = makeTgl('Before', 'before');
-    afterBtn = makeTgl('After', 'after');
+    beforeBtn = makeTgl("变更前", 'before');
+    afterBtn = makeTgl("变更后", 'after');
     toggleGroup.appendChild(beforeBtn);
     toggleGroup.appendChild(afterBtn);
     titleBar.appendChild(toggleGroup);
@@ -995,7 +994,7 @@ function renderEmbedSlot(
 
   // Maximize / fullscreen button
   const maximizeBtn = document.createElement('button');
-  maximizeBtn.title = 'Toggle fullscreen';
+  maximizeBtn.title = "切换全屏";
   maximizeBtn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>';
   maximizeBtn.style.cssText = `border:none;background:none;cursor:pointer;color:${darkMode ? '#B3B3B3' : '#666'};padding:2px;display:flex;align-items:center;flex-shrink:0`;
   let isFullscreen = false;

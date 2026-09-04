@@ -1,57 +1,57 @@
 ---
-title: Scenario Overview
+title: 场景概览
 slug: scenario-overview
-description: Why risk management needs ontologies, and what we'll build in this lab.
+description: 了解风险管理为什么需要本体，以及本实验将构建的模型。
 order: 1
 reviewStatus: under-human-review
 ---
 
-## The problem: concentration risk
+## 问题：集中度风险
 
-When a bank's loan portfolio is too heavily exposed to a single industry, geography, or product type, a single adverse event — a hurricane, an industry downturn, a regulatory change — can cascade into systemic losses. This is **concentration risk**, and regulators like the OCC and FDIC require banks to monitor and limit it.
+当银行贷款组合过度暴露于某个行业、地区或产品类型时，一次飓风、行业衰退或监管变化，就可能引发连锁性的系统损失。这就是**集中度风险**，OCC、FDIC 等监管机构要求银行对其监测和限制。
 
-The challenge? Concentration risk spans multiple domains simultaneously:
+难点在于，集中度风险会同时跨越多个领域：
 
-- **Industry**: Is too much lending concentrated in construction or real estate?
-- **Geography**: Are loans clustered in hurricane-prone or earthquake-prone jurisdictions?
-- **Product type**: What's the Basel III risk-weighted exposure by loan type?
-- **Regulation**: Which concentration limits are approaching their thresholds?
+- **行业**：贷款是否过度集中于建筑业或房地产业？
+- **地理**：贷款是否集中在飓风或地震高发辖区？
+- **产品类型**：各贷款类型按巴塞尔 III 计算的风险加权敞口是多少？
+- **监管**：哪些集中度限额正接近阈值？
 
-## Why ontologies matter here
+## 本体在这里的价值
 
-Traditional data warehouses store these dimensions in separate tables with foreign keys. An ontology-driven approach gives you:
+传统数据仓库将这些维度存放在独立表中，通过外键连接。本体驱动的方法提供：
 
-- **Explicit semantics** — "a residential mortgage has a 35% Basel risk weight" is encoded in the model, not buried in business rules
-- **Cross-domain queries** — traverse from a jurisdiction's disaster flags through its loans to their concentration categories in a single graph walk
-- **Regulatory traceability** — every limit links to the regulation that mandates it
+- **显式语义**：如“住宅按揭的巴塞尔风险权重为 35%”这样的示例规则可编码在模型中，而非埋藏在业务规则里
+- **跨领域查询**：在一次图谱遍历中，从辖区的灾害标记经过贷款，到达集中度类别
+- **监管可追溯性**：每个限额都关联到规定它的监管规则
 
-## What we'll build
+## 我们将构建什么
 
-Over four progressive steps, we'll model a **FIBO Risk Management** ontology with 11 entity types and 10 relationships:
+我们将通过四个递进步骤，构建包含 11 个实体类型、10 条关系的 **FIBO 风险管理本体**：
 
-| Step | Domain | New Entities |
+| 步骤 | 领域 | 新增实体 |
 |---|---|---|
-| 1 | Industry Classification | Sector, Subsector, IndustryGroup |
-| 2 | Geographic Hierarchy | Region, Country, Jurisdiction |
-| 3 | Loan Classification | ConcentrationCategory, LoanType, CollateralType |
-| 4 | Regulatory Context | Regulation, RegulatoryLimit |
+| 1 | 行业分类 | Sector、Subsector、IndustryGroup |
+| 2 | 地理层级 | Region、Country、Jurisdiction |
+| 3 | 贷款分类 | ConcentrationCategory、LoanType、CollateralType |
+| 4 | 监管背景 | Regulation、RegulatoryLimit |
 
-## Real questions this model supports
+## 模型支持的实际问题
 
-- Which jurisdictions in hurricane zones have the highest concentration of construction loans?
-- What percentage of the portfolio exceeds OCC concentration limits?
-- Which loan types carry the highest Basel risk weight in regions with high climate sensitivity?
-- How do regulatory limits map across concentration categories?
+- 飓风区域中，哪些辖区的建筑贷款集中度最高？
+- 投资组合中有多少比例超过 OCC 集中度限额？
+- 气候敏感度较高地区中，哪些贷款类型的巴塞尔风险权重最高？
+- 监管限额如何映射到各集中度类别？
 
-## Source and licensing
+## 来源与许可
 
-All concepts in this lab are adapted from the [EDM Council FIBO](https://github.com/edmcouncil/fibo) ontology under the [MIT License](https://opensource.org/licenses/MIT). The specific modules referenced include classification, geographic, debt/equity, and regulatory frameworks from the FIBO family.
+本实验中的概念按照 [MIT 许可证](https://opensource.org/licenses/MIT)，改编自 [EDM Council FIBO](https://github.com/edmcouncil/fibo) 本体，涉及分类、地理、债务与权益及监管框架等模块。
 
 ```quiz
-Q: What is concentration risk in banking?
-- The risk that a bank's technology systems are too centralized
-- The risk that too much of a loan portfolio is exposed to a single industry, geography, or product type [correct]
-- The risk that a bank has too many branches in one city
-- The risk that interest rates change unexpectedly
-> Concentration risk occurs when a bank's lending is overly exposed to a single sector, region, or product type. A single adverse event (natural disaster, industry downturn) can then cause outsized losses across the portfolio.
+Q: 银行业中的集中度风险是什么？
+- 银行技术系统过度集中带来的风险
+- 贷款组合过度暴露于单一行业、地区或产品类型带来的风险 [correct]
+- 银行在一个城市开设过多分支机构带来的风险
+- 利率意外变化带来的风险
+> 当银行贷款过度集中于某个行业、地区或产品类型时，就会出现集中度风险。一次自然灾害或行业衰退等不利事件，就可能使整个组合蒙受过大的损失。
 ```

@@ -8,8 +8,8 @@
     xmlns:ont="http://example.org/ontology/supply-chain-disruption-risk-propagation/">
 
     <owl:Ontology rdf:about="http://example.org/ontology/supply-chain-disruption-risk-propagation/">
-        <rdfs:label>Supply Chain Disruption &amp; Risk Propagation</rdfs:label>
-        <rdfs:comment>Models how a disruption to one supplier cascades through components and product lines, enabling AI to recommend mitigation before the impact reaches customers.</rdfs:comment>
+        <rdfs:label>供应链中断与风险传播</rdfs:label>
+        <rdfs:comment>描述供应商中断如何通过零部件传导至产品线，为 AI 在客户受影响之前推荐缓解措施提供模型基础。</rdfs:comment>
     </owl:Ontology>
 
     <!-- ===================== -->
@@ -18,49 +18,49 @@
 
     <owl:Class rdf:about="http://example.org/ontology/supply-chain-disruption-risk-propagation/Supplier">
         <rdfs:label>Supplier</rdfs:label>
-        <rdfs:comment>External company that provides raw materials or components</rdfs:comment>
+        <rdfs:comment>提供原材料或零部件的外部企业。</rdfs:comment>
         <ont:icon>🏭</ont:icon>
         <ont:color>#0078D4</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/supply-chain-disruption-risk-propagation/Component">
         <rdfs:label>Component</rdfs:label>
-        <rdfs:comment>A part, material, or sub-assembly sourced from one or more suppliers</rdfs:comment>
+        <rdfs:comment>从一个或多个供应商采购的零件、材料或子组件。</rdfs:comment>
         <ont:icon>🔩</ont:icon>
         <ont:color>#107C10</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/supply-chain-disruption-risk-propagation/ProductLine">
         <rdfs:label>ProductLine</rdfs:label>
-        <rdfs:comment>A group of finished products that share one or more common components</rdfs:comment>
+        <rdfs:comment>共享一个或多个零部件的一组成品。</rdfs:comment>
         <ont:icon>📦</ont:icon>
         <ont:color>#5C2D91</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/supply-chain-disruption-risk-propagation/DisruptionEvent">
         <rdfs:label>DisruptionEvent</rdfs:label>
-        <rdfs:comment>An event that interrupts or threatens normal supply from one or more suppliers</rdfs:comment>
+        <rdfs:comment>中断或威胁一个或多个供应商正常供货的事件。</rdfs:comment>
         <ont:icon>⚠️</ont:icon>
         <ont:color>#D13438</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/supply-chain-disruption-risk-propagation/RiskAssessment">
         <rdfs:label>RiskAssessment</rdfs:label>
-        <rdfs:comment>An analysis of the business impact when a disruption affects the supply chain</rdfs:comment>
+        <rdfs:comment>供应链中断所造成业务影响的分析。</rdfs:comment>
         <ont:icon>📊</ont:icon>
         <ont:color>#FFB900</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/supply-chain-disruption-risk-propagation/MitigationAction">
         <rdfs:label>MitigationAction</rdfs:label>
-        <rdfs:comment>A concrete step taken to reduce or eliminate the impact of a supply disruption</rdfs:comment>
+        <rdfs:comment>减少或消除供应中断影响的具体措施。</rdfs:comment>
         <ont:icon>🛡️</ont:icon>
         <ont:color>#008575</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/supply-chain-disruption-risk-propagation/AlternativeSupplier">
         <rdfs:label>AlternativeSupplier</rdfs:label>
-        <rdfs:comment>A qualified backup supplier capable of substituting for a disrupted primary supplier</rdfs:comment>
+        <rdfs:comment>经过认证、可替代中断主供应商的后备供应商。</rdfs:comment>
         <ont:icon>🔄</ont:icon>
         <ont:color>#CA5010</ont:color>
     </owl:Class>
@@ -73,7 +73,7 @@
         <rdfs:label>supplierId</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/supply-chain-disruption-risk-propagation/Supplier"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Unique supplier identifier</rdfs:comment>
+        <rdfs:comment>供应商唯一标识符</rdfs:comment>
         <ont:isIdentifier rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</ont:isIdentifier>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
@@ -82,7 +82,7 @@
         <rdfs:label>name</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/supply-chain-disruption-risk-propagation/Supplier"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Supplier company name</rdfs:comment>
+        <rdfs:comment>供应商公司名称</rdfs:comment>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -90,7 +90,7 @@
         <rdfs:label>country</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/supply-chain-disruption-risk-propagation/Supplier"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Country of operation</rdfs:comment>
+        <rdfs:comment>经营所在国家</rdfs:comment>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -98,7 +98,7 @@
         <rdfs:label>tier</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/supply-chain-disruption-risk-propagation/Supplier"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Supply chain tier</rdfs:comment>
+        <rdfs:comment>供应链层级。</rdfs:comment>
         <ont:enumValues>Tier 1,Tier 2,Tier 3</ont:enumValues>
         <ont:propertyType>enum</ont:propertyType>
     </owl:DatatypeProperty>
@@ -107,7 +107,7 @@
         <rdfs:label>reliabilityScore</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/supply-chain-disruption-risk-propagation/Supplier"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
-        <rdfs:comment>Historical on-time delivery score (0–100)</rdfs:comment>
+        <rdfs:comment>历史准时交付评分（0–100）。</rdfs:comment>
         <ont:propertyType>decimal</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -115,7 +115,7 @@
         <rdfs:label>singleSourced</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/supply-chain-disruption-risk-propagation/Supplier"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
-        <rdfs:comment>True if no approved alternative exists</rdfs:comment>
+        <rdfs:comment>没有已获批准的替代来源时为 true。</rdfs:comment>
         <ont:propertyType>boolean</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -123,7 +123,7 @@
         <rdfs:label>componentId</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/supply-chain-disruption-risk-propagation/Component"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Unique component identifier</rdfs:comment>
+        <rdfs:comment>零部件唯一标识符。</rdfs:comment>
         <ont:isIdentifier rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</ont:isIdentifier>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
@@ -132,7 +132,7 @@
         <rdfs:label>name</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/supply-chain-disruption-risk-propagation/Component"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Component name</rdfs:comment>
+        <rdfs:comment>零部件名称。</rdfs:comment>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -140,7 +140,7 @@
         <rdfs:label>category</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/supply-chain-disruption-risk-propagation/Component"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Component category</rdfs:comment>
+        <rdfs:comment>零部件类别。</rdfs:comment>
         <ont:enumValues>Electronic,Mechanical,Chemical,Packaging,Raw Material</ont:enumValues>
         <ont:propertyType>enum</ont:propertyType>
     </owl:DatatypeProperty>
@@ -149,7 +149,7 @@
         <rdfs:label>daysOfSupplyOnHand</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/supply-chain-disruption-risk-propagation/Component"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
-        <rdfs:comment>Current inventory buffer in days</rdfs:comment>
+        <rdfs:comment>当前库存缓冲天数。</rdfs:comment>
         <ont:unit>days</ont:unit>
         <ont:propertyType>integer</ont:propertyType>
     </owl:DatatypeProperty>
@@ -158,7 +158,7 @@
         <rdfs:label>leadTimeDays</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/supply-chain-disruption-risk-propagation/Component"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
-        <rdfs:comment>Typical replenishment lead time</rdfs:comment>
+        <rdfs:comment>典型补货提前期。</rdfs:comment>
         <ont:unit>days</ont:unit>
         <ont:propertyType>integer</ont:propertyType>
     </owl:DatatypeProperty>
@@ -167,7 +167,7 @@
         <rdfs:label>criticalityLevel</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/supply-chain-disruption-risk-propagation/Component"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Impact level if this component is unavailable</rdfs:comment>
+        <rdfs:comment>零部件不可用时的影响级别。</rdfs:comment>
         <ont:enumValues>Critical,High,Medium,Low</ont:enumValues>
         <ont:propertyType>enum</ont:propertyType>
     </owl:DatatypeProperty>
@@ -176,7 +176,7 @@
         <rdfs:label>productLineId</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/supply-chain-disruption-risk-propagation/ProductLine"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Unique product line identifier</rdfs:comment>
+        <rdfs:comment>产品线唯一标识符。</rdfs:comment>
         <ont:isIdentifier rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</ont:isIdentifier>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
@@ -185,7 +185,7 @@
         <rdfs:label>name</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/supply-chain-disruption-risk-propagation/ProductLine"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Product line name</rdfs:comment>
+        <rdfs:comment>产品线名称。</rdfs:comment>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -193,7 +193,7 @@
         <rdfs:label>annualRevenue</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/supply-chain-disruption-risk-propagation/ProductLine"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
-        <rdfs:comment>Annual revenue attributed to this product line</rdfs:comment>
+        <rdfs:comment>归属于该产品线的年收入。</rdfs:comment>
         <ont:unit>USD</ont:unit>
         <ont:propertyType>decimal</ont:propertyType>
     </owl:DatatypeProperty>
@@ -202,7 +202,7 @@
         <rdfs:label>marketSegment</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/supply-chain-disruption-risk-propagation/ProductLine"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Target market segment</rdfs:comment>
+        <rdfs:comment>目标细分市场。</rdfs:comment>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -210,7 +210,7 @@
         <rdfs:label>productionStatus</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/supply-chain-disruption-risk-propagation/ProductLine"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Current production status</rdfs:comment>
+        <rdfs:comment>当前生产状态。</rdfs:comment>
         <ont:enumValues>Active,At Risk,Halted,Discontinued</ont:enumValues>
         <ont:propertyType>enum</ont:propertyType>
     </owl:DatatypeProperty>
@@ -219,7 +219,7 @@
         <rdfs:label>eventId</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/supply-chain-disruption-risk-propagation/DisruptionEvent"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Unique event identifier</rdfs:comment>
+        <rdfs:comment>事件唯一标识符。</rdfs:comment>
         <ont:isIdentifier rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</ont:isIdentifier>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
@@ -228,7 +228,7 @@
         <rdfs:label>type</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/supply-chain-disruption-risk-propagation/DisruptionEvent"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Category of disruption</rdfs:comment>
+        <rdfs:comment>中断类别。</rdfs:comment>
         <ont:enumValues>Natural Disaster,Geopolitical,Financial,Logistics,Quality Recall,Pandemic,Cyber Attack</ont:enumValues>
         <ont:propertyType>enum</ont:propertyType>
     </owl:DatatypeProperty>
@@ -237,7 +237,7 @@
         <rdfs:label>severity</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/supply-chain-disruption-risk-propagation/DisruptionEvent"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Severity of the disruption</rdfs:comment>
+        <rdfs:comment>中断严重程度。</rdfs:comment>
         <ont:enumValues>Critical,High,Medium,Low</ont:enumValues>
         <ont:propertyType>enum</ont:propertyType>
     </owl:DatatypeProperty>
@@ -246,7 +246,7 @@
         <rdfs:label>startDate</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/supply-chain-disruption-risk-propagation/DisruptionEvent"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
-        <rdfs:comment>When the disruption began</rdfs:comment>
+        <rdfs:comment>中断开始时间。</rdfs:comment>
         <ont:propertyType>date</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -254,7 +254,7 @@
         <rdfs:label>estimatedDurationDays</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/supply-chain-disruption-risk-propagation/DisruptionEvent"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
-        <rdfs:comment>Expected duration of the disruption</rdfs:comment>
+        <rdfs:comment>预计中断持续时间。</rdfs:comment>
         <ont:unit>days</ont:unit>
         <ont:propertyType>integer</ont:propertyType>
     </owl:DatatypeProperty>
@@ -263,7 +263,7 @@
         <rdfs:label>region</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/supply-chain-disruption-risk-propagation/DisruptionEvent"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Geographic region affected</rdfs:comment>
+        <rdfs:comment>受影响的地理区域。</rdfs:comment>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -271,7 +271,7 @@
         <rdfs:label>assessmentId</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/supply-chain-disruption-risk-propagation/RiskAssessment"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Unique assessment identifier</rdfs:comment>
+        <rdfs:comment>评估唯一标识符。</rdfs:comment>
         <ont:isIdentifier rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</ont:isIdentifier>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
@@ -280,7 +280,7 @@
         <rdfs:label>assessedDate</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/supply-chain-disruption-risk-propagation/RiskAssessment"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
-        <rdfs:comment>When the assessment was performed</rdfs:comment>
+        <rdfs:comment>执行评估的时间。</rdfs:comment>
         <ont:propertyType>datetime</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -288,7 +288,7 @@
         <rdfs:label>revenueAtRisk</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/supply-chain-disruption-risk-propagation/RiskAssessment"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
-        <rdfs:comment>Estimated revenue impacted if no action taken</rdfs:comment>
+        <rdfs:comment>不采取措施时预计受影响的收入。</rdfs:comment>
         <ont:unit>USD</ont:unit>
         <ont:propertyType>decimal</ont:propertyType>
     </owl:DatatypeProperty>
@@ -297,7 +297,7 @@
         <rdfs:label>timeToImpactDays</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/supply-chain-disruption-risk-propagation/RiskAssessment"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
-        <rdfs:comment>Days until production is affected if supply is not restored</rdfs:comment>
+        <rdfs:comment>供应未恢复时，距离生产受到影响的天数。</rdfs:comment>
         <ont:unit>days</ont:unit>
         <ont:propertyType>integer</ont:propertyType>
     </owl:DatatypeProperty>
@@ -306,7 +306,7 @@
         <rdfs:label>confidenceLevel</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/supply-chain-disruption-risk-propagation/RiskAssessment"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Confidence in the assessment accuracy</rdfs:comment>
+        <rdfs:comment>评估准确性的置信度。</rdfs:comment>
         <ont:enumValues>High,Medium,Low</ont:enumValues>
         <ont:propertyType>enum</ont:propertyType>
     </owl:DatatypeProperty>
@@ -315,7 +315,7 @@
         <rdfs:label>recommendedAction</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/supply-chain-disruption-risk-propagation/RiskAssessment"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Top recommended response</rdfs:comment>
+        <rdfs:comment>首选推荐响应措施。</rdfs:comment>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -323,7 +323,7 @@
         <rdfs:label>actionId</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/supply-chain-disruption-risk-propagation/MitigationAction"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Unique action identifier</rdfs:comment>
+        <rdfs:comment>措施唯一标识符。</rdfs:comment>
         <ont:isIdentifier rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</ont:isIdentifier>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
@@ -332,7 +332,7 @@
         <rdfs:label>type</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/supply-chain-disruption-risk-propagation/MitigationAction"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Type of mitigation</rdfs:comment>
+        <rdfs:comment>缓解措施类型。</rdfs:comment>
         <ont:enumValues>Activate Alternative Supplier,Increase Safety Stock,Redesign Component,Reduce Production,Expedite Shipment,Customer Communication</ont:enumValues>
         <ont:propertyType>enum</ont:propertyType>
     </owl:DatatypeProperty>
@@ -341,7 +341,7 @@
         <rdfs:label>status</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/supply-chain-disruption-risk-propagation/MitigationAction"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Current action status</rdfs:comment>
+        <rdfs:comment>措施当前状态。</rdfs:comment>
         <ont:enumValues>Proposed,Approved,In Progress,Completed,Cancelled</ont:enumValues>
         <ont:propertyType>enum</ont:propertyType>
     </owl:DatatypeProperty>
@@ -350,7 +350,7 @@
         <rdfs:label>estimatedCost</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/supply-chain-disruption-risk-propagation/MitigationAction"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
-        <rdfs:comment>Estimated cost to execute</rdfs:comment>
+        <rdfs:comment>预计执行成本。</rdfs:comment>
         <ont:unit>USD</ont:unit>
         <ont:propertyType>decimal</ont:propertyType>
     </owl:DatatypeProperty>
@@ -359,7 +359,7 @@
         <rdfs:label>leadTimeSavedDays</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/supply-chain-disruption-risk-propagation/MitigationAction"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
-        <rdfs:comment>Days of disruption impact avoided by this action</rdfs:comment>
+        <rdfs:comment>该措施可避免的中断影响天数。</rdfs:comment>
         <ont:unit>days</ont:unit>
         <ont:propertyType>integer</ont:propertyType>
     </owl:DatatypeProperty>
@@ -368,7 +368,7 @@
         <rdfs:label>altSupplierId</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/supply-chain-disruption-risk-propagation/AlternativeSupplier"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Unique alternative supplier identifier</rdfs:comment>
+        <rdfs:comment>备选供应商唯一标识符。</rdfs:comment>
         <ont:isIdentifier rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</ont:isIdentifier>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
@@ -377,7 +377,7 @@
         <rdfs:label>name</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/supply-chain-disruption-risk-propagation/AlternativeSupplier"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Alternative supplier company name</rdfs:comment>
+        <rdfs:comment>备选供应商企业名称。</rdfs:comment>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -385,7 +385,7 @@
         <rdfs:label>country</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/supply-chain-disruption-risk-propagation/AlternativeSupplier"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Country of operation</rdfs:comment>
+        <rdfs:comment>经营所在国家</rdfs:comment>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -393,7 +393,7 @@
         <rdfs:label>qualificationStatus</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/supply-chain-disruption-risk-propagation/AlternativeSupplier"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Supplier qualification status</rdfs:comment>
+        <rdfs:comment>供应商认证状态。</rdfs:comment>
         <ont:enumValues>Pre-qualified,Approved,Pending Audit,Not Qualified</ont:enumValues>
         <ont:propertyType>enum</ont:propertyType>
     </owl:DatatypeProperty>
@@ -402,7 +402,7 @@
         <rdfs:label>capacityAvailable</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/supply-chain-disruption-risk-propagation/AlternativeSupplier"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
-        <rdfs:comment>Available monthly production capacity</rdfs:comment>
+        <rdfs:comment>每月可用生产能力。</rdfs:comment>
         <ont:unit>units/month</ont:unit>
         <ont:propertyType>integer</ont:propertyType>
     </owl:DatatypeProperty>
@@ -411,7 +411,7 @@
         <rdfs:label>pricePremiumPercent</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/supply-chain-disruption-risk-propagation/AlternativeSupplier"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
-        <rdfs:comment>Cost premium vs primary supplier</rdfs:comment>
+        <rdfs:comment>相对主供应商的成本溢价。</rdfs:comment>
         <ont:unit>%</ont:unit>
         <ont:propertyType>decimal</ont:propertyType>
     </owl:DatatypeProperty>
@@ -424,7 +424,7 @@
         <rdfs:label>supplies</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/supply-chain-disruption-risk-propagation/Supplier"/>
         <rdfs:range rdf:resource="http://example.org/ontology/supply-chain-disruption-risk-propagation/Component"/>
-        <rdfs:comment>A supplier provides one or more components to the operation</rdfs:comment>
+        <rdfs:comment>供应商向运营业务提供一个或多个零部件。</rdfs:comment>
         <ont:cardinality>one-to-many</ont:cardinality>
         <ont:fromEntityId>supplier</ont:fromEntityId>
         <ont:toEntityId>component</ont:toEntityId>
@@ -434,7 +434,7 @@
         <rdfs:label>usedIn</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/supply-chain-disruption-risk-propagation/Component"/>
         <rdfs:range rdf:resource="http://example.org/ontology/supply-chain-disruption-risk-propagation/ProductLine"/>
-        <rdfs:comment>A component is incorporated into one or more product lines</rdfs:comment>
+        <rdfs:comment>零部件用于一条或多条产品线。</rdfs:comment>
         <ont:cardinality>many-to-many</ont:cardinality>
         <ont:fromEntityId>component</ont:fromEntityId>
         <ont:toEntityId>productLine</ont:toEntityId>
@@ -444,7 +444,7 @@
         <rdfs:label>affects</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/supply-chain-disruption-risk-propagation/DisruptionEvent"/>
         <rdfs:range rdf:resource="http://example.org/ontology/supply-chain-disruption-risk-propagation/Supplier"/>
-        <rdfs:comment>A disruption event impacts the supply capability of a supplier</rdfs:comment>
+        <rdfs:comment>中断事件影响供应商的供货能力。</rdfs:comment>
         <ont:cardinality>many-to-many</ont:cardinality>
         <ont:fromEntityId>disruptionEvent</ont:fromEntityId>
         <ont:toEntityId>supplier</ont:toEntityId>
@@ -454,7 +454,7 @@
         <rdfs:label>triggers</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/supply-chain-disruption-risk-propagation/DisruptionEvent"/>
         <rdfs:range rdf:resource="http://example.org/ontology/supply-chain-disruption-risk-propagation/RiskAssessment"/>
-        <rdfs:comment>A disruption event causes one or more risk assessments to be performed</rdfs:comment>
+        <rdfs:comment>中断事件触发一次或多次风险评估。</rdfs:comment>
         <ont:cardinality>one-to-many</ont:cardinality>
         <ont:fromEntityId>disruptionEvent</ont:fromEntityId>
         <ont:toEntityId>riskAssessment</ont:toEntityId>
@@ -464,7 +464,7 @@
         <rdfs:label>recommends</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/supply-chain-disruption-risk-propagation/RiskAssessment"/>
         <rdfs:range rdf:resource="http://example.org/ontology/supply-chain-disruption-risk-propagation/MitigationAction"/>
-        <rdfs:comment>A risk assessment drives specific mitigation actions</rdfs:comment>
+        <rdfs:comment>风险评估推动具体缓解措施。</rdfs:comment>
         <ont:cardinality>one-to-many</ont:cardinality>
         <ont:fromEntityId>riskAssessment</ont:fromEntityId>
         <ont:toEntityId>mitigationAction</ont:toEntityId>
@@ -474,7 +474,7 @@
         <rdfs:label>activates</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/supply-chain-disruption-risk-propagation/MitigationAction"/>
         <rdfs:range rdf:resource="http://example.org/ontology/supply-chain-disruption-risk-propagation/AlternativeSupplier"/>
-        <rdfs:comment>A mitigation action may bring alternative suppliers into production</rdfs:comment>
+        <rdfs:comment>缓解措施可启用备选供应商参与生产。</rdfs:comment>
         <ont:cardinality>many-to-many</ont:cardinality>
         <ont:fromEntityId>mitigationAction</ont:fromEntityId>
         <ont:toEntityId>alternativeSupplier</ont:toEntityId>
@@ -484,7 +484,7 @@
         <rdfs:label>canReplace</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/supply-chain-disruption-risk-propagation/AlternativeSupplier"/>
         <rdfs:range rdf:resource="http://example.org/ontology/supply-chain-disruption-risk-propagation/Supplier"/>
-        <rdfs:comment>An alternative supplier is qualified to substitute for a primary supplier</rdfs:comment>
+        <rdfs:comment>备选供应商已具备替代主供应商的资格。</rdfs:comment>
         <ont:cardinality>many-to-one</ont:cardinality>
         <ont:fromEntityId>alternativeSupplier</ont:fromEntityId>
         <ont:toEntityId>supplier</ont:toEntityId>

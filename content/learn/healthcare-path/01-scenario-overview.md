@@ -1,43 +1,43 @@
 ---
-title: "Scenario Overview"
+title: "场景概览"
 slug: scenario-overview
-description: "Meet the Healthcare System — a patient care platform that needs an ontology to connect patients, providers, diagnoses, and treatments."
+description: "认识医疗系统：通过本体连接患者、医护人员、诊断与治疗的患者护理平台。"
 order: 1
 ---
 
-## The scenario
+## 业务场景
 
-You are designing the data model for a **healthcare management system**. The hospital network tracks:
+你正在为**医疗管理系统**设计数据模型。医院网络需要跟踪：
 
-- **Patients** with medical records, blood types, and allergy information
-- **Providers** (doctors, specialists) with licenses and departmental affiliations
-- **Appointments** scheduling patient visits with specific providers
-- **Diagnoses** recording medical conditions with ICD codes and severity levels
-- **Prescriptions** tracking medication orders, dosages, and refills
+- 具有病历、血型和过敏信息的**患者**
+- 具有执照与科室归属的**医护人员**，如医生和专科医师
+- 安排患者与指定医护人员就诊的**预约**
+- 以 ICD 编码和严重程度记录病情的**诊断**
+- 跟踪药品、剂量和续配次数的**处方**
 
-Data is spread across electronic health records (EHR), scheduling systems, pharmacy databases, and billing platforms.
+数据分散在电子健康记录（EHR）、预约系统、药房数据库和计费平台中。
 
-## Why an ontology?
+## 为什么需要本体？
 
-A clinical question like **"Which patients diagnosed with severe conditions by cardiology providers still have prescriptions with zero refills remaining?"** crosses patient records, diagnosis history, provider specialties, and pharmacy data.
+临床问题**“哪些被心脏科医护人员诊断为重症的患者，仍持有剩余续配次数为零的处方？”**，需要跨患者记录、诊断历史、医生专科和药房数据查询。
 
-With an ontology, this maps to: `Patient → Diagnosis (severity=severe) ← Provider (specialty=Cardiology)` and `Diagnosis → Prescription (refillsRemaining=0)`.
+在本体中，对应路径为 `Patient → Diagnosis (severity=severe) ← Provider (specialty=Cardiology)`，以及 `Diagnosis → Prescription (refillsRemaining=0)`。
 
-## What we'll build
+## 我们将构建什么
 
-| Step | Entities | What you'll learn |
+| 步骤 | 实体 | 学习内容 |
 |---|---|---|
-| 1 | Patient, Provider, Appointment | Core clinical entities, scheduling relationships |
-| 2 | + Diagnosis | Medical conditions, multi-source relationships |
-| 3 | + Prescription | Treatment chain, completing the care cycle |
+| 1 | Patient、Provider、Appointment | 临床核心实体、预约关系 |
+| 2 | + Diagnosis | 病情、多来源关系 |
+| 3 | + Prescription | 治疗链、完整护理流程 |
 
-By the end, you'll have a 5-entity, 6-relationship ontology covering the complete patient care journey from appointment to treatment.
+完成后，你将获得包含 5 个实体、6 条关系的本体，覆盖从预约到治疗的完整患者护理过程。
 
-## Key concepts
+## 关键概念
 
-- **Clinical workflows** — appointment scheduling, diagnosis, treatment
-- **Shared relationships** — both Patient and Provider connect to Appointment
-- **Care chains** — Patient → Diagnosis → Prescription
-- **Standardized identifiers** — MRN (Medical Record Number), ICD codes, Rx numbers
+- **临床工作流**：预约、诊断与治疗
+- **共享关系**：Patient 和 Provider 都连接到 Appointment
+- **护理链**：Patient → Diagnosis → Prescription
+- **标准化标识符**：MRN（病历号）、ICD 编码和 Rx 处方号
 
-Let's start with the care delivery foundation.
+先从医疗服务的基础模型开始。

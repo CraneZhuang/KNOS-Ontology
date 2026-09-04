@@ -1,84 +1,84 @@
 ---
-title: Risk and Classifiers
+title: 风险与分类器
 slug: risk-and-classifiers
-description: Add FIBO ownership and lien classifiers to support underwriting and collateral risk analysis.
+description: 添加 FIBO 所有权和担保权顺位分类器，支持授信评估和抵押物风险分析。
 order: 5
 embed: official/fibo-loans-step-4
 reviewStatus: under-human-review
 ---
 
-## Classification layer
+## 分类层
 
-FIBO relies heavily on explicit classifiers — entities whose primary role is to categorize other entities. In this final step, we add two concepts critical to mortgage and secured lending risk analysis:
+FIBO 广泛使用显式分类器，即主要用于给其他实体分类的实体。最后一步添加两个对按揭及担保贷款风险分析至关重要的概念：
 
-- **OwnershipInterest** — classifies the legal ownership type of collateral (adapted from `fibo-loan-ln-ln:OwnershipInterest` in [LOAN/LoansGeneral/Loans](https://github.com/edmcouncil/fibo/tree/master/LOAN/LoansGeneral/Loans), grounded in `fibo-fnd-oac-own:Ownership`)
-- **LenderLienPosition** — classifies lender claim seniority over collateral assets (adapted from `fibo-loan-ln-ln:LenderLienPosition` in [LOAN/LoansGeneral/Loans](https://github.com/edmcouncil/fibo/tree/master/LOAN/LoansGeneral/Loans))
+- **OwnershipInterest（所有权权益）**：对抵押物的法律所有权类型分类，改编自 [LOAN/LoansGeneral/Loans](https://github.com/edmcouncil/fibo/tree/master/LOAN/LoansGeneral/Loans) 中的 `fibo-loan-ln-ln:OwnershipInterest`，以 `fibo-fnd-oac-own:Ownership` 为基础。
+- **LenderLienPosition（贷款人担保权顺位）**：对贷款人就抵押资产提出的债权优先级分类，改编自 [LOAN/LoansGeneral/Loans](https://github.com/edmcouncil/fibo/tree/master/LOAN/LoansGeneral/Loans) 中的 `fibo-loan-ln-ln:LenderLienPosition`。
 
-## Why classifiers matter
+## 为什么分类器重要
 
-In the FIBO Mortgages module ([LOAN/RealEstateLoans/Mortgages](https://github.com/edmcouncil/fibo/tree/master/LOAN/RealEstateLoans/Mortgages)), lien position determines recovery priority in foreclosure. A first-lien mortgage has stronger recovery expectations than a subordinate lien, which directly affects:
+在 FIBO 的[按揭模块](https://github.com/edmcouncil/fibo/tree/master/LOAN/RealEstateLoans/Mortgages)中，担保权顺位决定止赎处置时的受偿优先级。第一顺位按揭的预期回收能力强于次级顺位，这直接影响：
 
-- Credit risk modeling
-- Loss-given-default estimation
-- Portfolio risk aggregation
-- Regulatory capital calculations
+- 信用风险建模
+- 违约损失率估计
+- 投资组合风险汇总
+- 监管资本计算
 
-> **FIBO reference**: The FIBO Mortgages ontology uses `owl:Restriction` blocks to constrain real-estate collateral and contract semantics. In the LOAN ontology, `SecurityAgreement` and `Loan` are further constrained by classifier usage such as `LenderLienPosition` and `OwnershipInterest`. See [LOAN/RealEstateLoans/Mortgages.rdf](https://github.com/edmcouncil/fibo/blob/master/LOAN/RealEstateLoans/Mortgages.rdf) and [LOAN/LoansGeneral/Loans.rdf](https://github.com/edmcouncil/fibo/blob/master/LOAN/LoansGeneral/Loans.rdf).
+> **FIBO 参考：**按揭本体使用 `owl:Restriction` 约束不动产抵押物和合同语义。LOAN 本体中的 `SecurityAgreement` 与 `Loan` 还通过 `LenderLienPosition`、`OwnershipInterest` 等分类器进一步约束。参见 [Mortgages.rdf](https://github.com/edmcouncil/fibo/blob/master/LOAN/RealEstateLoans/Mortgages.rdf) 和 [Loans.rdf](https://github.com/edmcouncil/fibo/blob/master/LOAN/LoansGeneral/Loans.rdf)。
 
-## New relationships
+## 新增关系
 
-- **classifiesCollateralOwnership**: `OwnershipInterest` → `Collateral` (`one-to-many`)
-- **hasLienPosition**: `Collateral` → `LenderLienPosition` (`many-to-one`)
+- **classifiesCollateralOwnership（抵押物所有权分类）**：`OwnershipInterest` → `Collateral`（`one-to-many`）
+- **hasLienPosition（担保权顺位）**：`Collateral` → `LenderLienPosition`（`many-to-one`）
 
-## Step 4 graph (diff from Step 3)
+## 步骤 4 图谱（与步骤 3 对比）
 
 <ontology-embed id="official/fibo-loans-step-4" diff="official/fibo-loans-step-3" height="460px"></ontology-embed>
 
-*Two classifier entities (OwnershipInterest and LenderLienPosition) complete the model with risk and underwriting semantics.*
+*OwnershipInterest 和 LenderLienPosition 两个分类实体为完整模型补充风险与授信语义。*
 
-## Complete adapted model
+## 完整改编模型
 
-You can also inspect the full external subset built from the same FIBO source concepts:
+还可以查看根据相同 FIBO 源概念构建的完整外部子集：
 
 <ontology-embed id="external/fibo/loans-general" height="420px"></ontology-embed>
 
-## What you built
+## 你已构建的内容
 
-You now have a progressive, FIBO-inspired loan ontology covering:
+现在，你拥有一个受 FIBO 启发、逐步构建的贷款本体，覆盖：
 
-| Layer | Entities | FIBO source module |
+| 模型层 | 实体 | FIBO 源模块 |
 |---|---|---|
-| Contract actors | Loan, Borrower, Lender | [LOAN/LoansGeneral/Loans](https://github.com/edmcouncil/fibo/tree/master/LOAN/LoansGeneral/Loans) |
-| Security & schedule | Collateral, LoanPaymentSchedule | [FBC/DebtAndEquities/Debt](https://github.com/edmcouncil/fibo/tree/master/FBC/DebtAndEquities/Debt) |
-| Servicing operations | Servicer, PaymentHistory, PaymentTransaction | [LOAN/LoansGeneral/Loans](https://github.com/edmcouncil/fibo/tree/master/LOAN/LoansGeneral/Loans) + [FBC/ProductsAndServices/ClientsAndAccounts](https://github.com/edmcouncil/fibo/tree/master/FBC/ProductsAndServices/ClientsAndAccounts) |
-| Risk classifiers | OwnershipInterest, LenderLienPosition | [LOAN/LoansGeneral/Loans](https://github.com/edmcouncil/fibo/tree/master/LOAN/LoansGeneral/Loans) + [FND/OwnershipAndControl/Ownership](https://github.com/edmcouncil/fibo/tree/master/FND/OwnershipAndControl) |
+| 合同参与方 | Loan、Borrower、Lender | [LOAN/LoansGeneral/Loans](https://github.com/edmcouncil/fibo/tree/master/LOAN/LoansGeneral/Loans) |
+| 担保与计划 | Collateral、LoanPaymentSchedule | [FBC/DebtAndEquities/Debt](https://github.com/edmcouncil/fibo/tree/master/FBC/DebtAndEquities/Debt) |
+| 贷后服务 | Servicer、PaymentHistory、PaymentTransaction | [LOAN/LoansGeneral/Loans](https://github.com/edmcouncil/fibo/tree/master/LOAN/LoansGeneral/Loans) + [FBC/ProductsAndServices/ClientsAndAccounts](https://github.com/edmcouncil/fibo/tree/master/FBC/ProductsAndServices/ClientsAndAccounts) |
+| 风险分类器 | OwnershipInterest、LenderLienPosition | [LOAN/LoansGeneral/Loans](https://github.com/edmcouncil/fibo/tree/master/LOAN/LoansGeneral/Loans) + [FND/OwnershipAndControl/Ownership](https://github.com/edmcouncil/fibo/tree/master/FND/OwnershipAndControl) |
 
-This is a strong foundation for expanding into domain-specific modules — mortgage types, HELOC products, auto lending, or small business lending.
+这是继续扩展按揭类型、房屋净值信用额度（HELOC）、汽车贷款或小企业贷款等专用模块的坚实基础。
 
-## Further reading
+## 延伸阅读
 
-- **FIBO GitHub**: [github.com/edmcouncil/fibo](https://github.com/edmcouncil/fibo)
-- **FIBO specification**: [spec.edmcouncil.org/fibo](https://spec.edmcouncil.org/fibo/)
+- **FIBO GitHub 仓库**：[github.com/edmcouncil/fibo](https://github.com/edmcouncil/fibo)
+- **FIBO 规范**：[spec.edmcouncil.org/fibo](https://spec.edmcouncil.org/fibo/)
 - **EDM Council**: [edmcouncil.org](https://edmcouncil.org/)
-- **FIBO Loans module**: [LOAN/LoansGeneral/Loans source](https://github.com/edmcouncil/fibo/tree/master/LOAN/LoansGeneral/Loans)
-- **FIBO Mortgages module**: [LOAN/RealEstateLoans/Mortgages source](https://github.com/edmcouncil/fibo/tree/master/LOAN/RealEstateLoans/Mortgages)
-- **FIBO Debt module**: [FBC/DebtAndEquities/Debt source](https://github.com/edmcouncil/fibo/tree/master/FBC/DebtAndEquities/Debt)
-- **FIBO Clients and Accounts module**: [FBC/ProductsAndServices/ClientsAndAccounts source](https://github.com/edmcouncil/fibo/tree/master/FBC/ProductsAndServices/ClientsAndAccounts)
+- **FIBO 贷款模块**：[LOAN/LoansGeneral/Loans 源码](https://github.com/edmcouncil/fibo/tree/master/LOAN/LoansGeneral/Loans)
+- **FIBO 按揭模块**：[LOAN/RealEstateLoans/Mortgages 源码](https://github.com/edmcouncil/fibo/tree/master/LOAN/RealEstateLoans/Mortgages)
+- **FIBO 债务模块**：[FBC/DebtAndEquities/Debt 源码](https://github.com/edmcouncil/fibo/tree/master/FBC/DebtAndEquities/Debt)
+- **FIBO 客户与账户模块**：[FBC/ProductsAndServices/ClientsAndAccounts 源码](https://github.com/edmcouncil/fibo/tree/master/FBC/ProductsAndServices/ClientsAndAccounts)
 
-## Licensing
+## 许可
 
-All FIBO ontology content referenced in this lab is:
+本实验引用的所有 FIBO 本体内容：
 
-- **Copyright** EDM Council, Inc. and Object Management Group, Inc. (see module headers for exact year ranges)
-- **Licensed** under the [MIT License](https://opensource.org/licenses/MIT)
+- **版权所有**：EDM Council, Inc. 和 Object Management Group, Inc.（具体年份范围见模块文件头）
+- 按照 [MIT 许可证](https://opensource.org/licenses/MIT)**授权**
 
-The MIT License permits use, modification, and redistribution of the ontology files, including for commercial purposes, provided the copyright notice is retained. The ontology files in this lab are adapted subsets created for educational purposes.
+MIT 许可证允许使用、修改和再分发本体文件，包括商业用途，但必须保留版权声明。本实验中的本体文件是为教学目的制作的改编子集。
 
 ```quiz
-Q: What is the main value of adding LenderLienPosition to a collateral model?
-- It replaces the need for borrower information
-- It captures seniority of lender claims, which is key for credit risk and loss modeling [correct]
-- It stores payment timestamps
-- It determines loan interest rates automatically
-> Lien position captures claim priority (for example, first lien vs. subordinate lien), which directly influences recovery expectations in foreclosure. This is critical for underwriting, portfolio risk models, and regulatory capital calculations — a key concept from FIBO's debt and equity modules.
+Q: 在抵押物模型中加入 LenderLienPosition 的主要价值是什么？
+- 可以取代借款人信息
+- 描述贷款人债权的优先级，这是信用风险和损失建模的关键 [correct]
+- 存储还款时间戳
+- 自动确定贷款利率
+> 担保权顺位描述债权优先级，如第一顺位与次级顺位，直接影响止赎处置时的回收预期。它对授信评估、组合风险模型及监管资本计算至关重要，是 FIBO 债务与权益模块中的核心概念。
 ```

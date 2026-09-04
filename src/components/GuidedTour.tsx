@@ -12,32 +12,32 @@ interface TourStep {
 const tourSteps: TourStep[] = [
   {
     target: '.header',
-    title: 'Navigation & Actions',
-    description: 'Use the toolbar to access the Catalogue, Designer, Learn articles, Import/Export, and more. Press ⌘K anytime to open the command palette.',
+    title: "导航与操作",
+    description: "使用工具栏访问本体目录、设计器、学习文章、导入导出等功能。随时按 Ctrl+K / ⌘K 打开命令面板。",
     placement: 'bottom',
   },
   {
     target: '.graph-container',
-    title: 'Ontology Graph',
-    description: 'This is your ontology visualized as an interactive graph. Click on entity nodes or relationship edges to inspect them.',
+    title: "本体图谱",
+    description: "这是本体的交互式图谱。点击实体节点或关系连线，即可查看详情。",
     placement: 'bottom',
   },
   {
     target: '.quest-panel',
-    title: 'Quests',
-    description: 'Complete guided quests to learn ontology concepts step by step. Earn badges and points along the way!',
+    title: "探索任务",
+    description: "通过引导任务逐步学习本体概念，并在探索过程中获得徽章和积分！",
     placement: 'right',
   },
   {
     target: '.right-sidebar',
-    title: 'Inspector & Query',
-    description: 'Select an entity to see its properties and data bindings. Use the query bar at the bottom to ask natural language questions.',
+    title: "详情与查询",
+    description: "选择实体以查看属性和数据绑定。使用底部查询栏提出自然语言问题。",
     placement: 'left',
   },
   {
     target: '.header-actions [data-tooltip="Designer"]',
-    title: 'Ontology Designer',
-    description: 'Build your own ontologies from scratch or start from a template. Export as RDF or submit to the community catalogue.',
+    title: "本体设计器",
+    description: "从零构建本体，或从模板开始。可导出 RDF，也可提交到社区目录。",
     placement: 'bottom',
   },
 ];
@@ -175,7 +175,7 @@ export function GuidedTour({ onComplete }: GuidedTourProps) {
       >
         <div className="tour-tooltip-header">
           <span className="tour-tooltip-step">{stepIdx + 1}/{visibleSteps.length}</span>
-          <button className="tour-tooltip-close" onClick={dismiss} aria-label="Close tour">
+          <button className="tour-tooltip-close" onClick={dismiss} aria-label="关闭导览">
             <X size={16} />
           </button>
         </div>
@@ -184,19 +184,19 @@ export function GuidedTour({ onComplete }: GuidedTourProps) {
         <div className="tour-tooltip-actions">
           {stepIdx > 0 && (
             <button className="tour-btn tour-btn-secondary" onClick={prev}>
-              <ChevronLeft size={14} /> Back
+              <ChevronLeft size={14} /> 返回
             </button>
           )}
           <button className="tour-btn tour-btn-primary" onClick={next}>
             {stepIdx < visibleSteps.length - 1 ? (
-              <>Next <ChevronRight size={14} /></>
+              <>下一步 <ChevronRight size={14} /></>
             ) : (
-              'Get started!'
+              "开始使用！"
             )}
           </button>
         </div>
         <button className="tour-skip" onClick={dismiss}>
-          Skip tour · don't show again
+          跳过导览，不再显示
         </button>
       </motion.div>
     </AnimatePresence>

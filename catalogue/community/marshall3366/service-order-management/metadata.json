@@ -1,8 +1,13 @@
 {
-  "name": "Service Order Management",
-  "description": "Service order management ontology covering customers, service orders, parts, shipments, payments, warehouses, and field service engineers.",
+  "name": "服务订单管理",
+  "description": "涵盖客户、服务订单、零件、发货、付款、仓库和现场服务工程师的本体。",
   "icon": "🔧",
   "category": "general",
-  "tags": ["service", "orders", "field-service", "operations"],
+  "tags": [
+    "service",
+    "orders",
+    "field-service",
+    "operations"
+  ],
   "author": "Marshall3366"
 }

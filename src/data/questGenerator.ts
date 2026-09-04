@@ -16,21 +16,21 @@ export function generateQuestsForOntology(ontology: Ontology): Quest[] {
   if (entities.length >= 2) {
     const explorationSteps: QuestStep[] = entities.slice(0, Math.min(4, entities.length)).map((entity, index) => ({
       id: `step-1-${index + 1}`,
-      instruction: `Click on the ${entity.name} entity to learn about its properties`,
+      instruction: `点击 ${entity.name} 实体，了解其属性`,
       targetType: 'entity' as const,
       targetId: entity.id,
-      hint: `Look for the ${entity.icon} icon in the graph`
+      hint: `在图谱中寻找 ${entity.icon} 图标`
     }));
 
     quests.push({
       id: "quest-1",
-      title: "Meet the Entities",
-      description: `Discover the core entity types in the ${ontology.name} ontology.`,
+      title: "认识实体",
+      description: `了解 ${ontology.name} 本体中的核心实体类型。`,
       difficulty: "beginner",
       category: "exploration",
       steps: explorationSteps,
       reward: {
-        badge: "Entity Explorer",
+        badge: "实体探索者",
         badgeIcon: "🎖️",
         points: 100
       }
@@ -50,33 +50,33 @@ export function generateQuestsForOntology(ontology: Ontology): Quest[] {
       if (sourceEntity && !usedEntities.has(sourceEntity.id)) {
         relSteps.push({
           id: `step-2-${relSteps.length + 1}`,
-          instruction: `Start at the ${sourceEntity.name} entity`,
+          instruction: `从 ${sourceEntity.name} 实体开始`,
           targetType: 'entity',
           targetId: sourceEntity.id,
-          hint: `Find the ${sourceEntity.icon} icon`
+          hint: `寻找 ${sourceEntity.icon} 图标`
         });
         usedEntities.add(sourceEntity.id);
       }
 
       relSteps.push({
         id: `step-2-${relSteps.length + 1}`,
-        instruction: `Follow the '${rel.name}' relationship${targetEntity ? ` to ${targetEntity.name}` : ''}`,
+        instruction: `沿着 '${rel.name}' 关系${targetEntity ? ` 到达 ${targetEntity.name}` : ''}`,
         targetType: 'relationship',
         targetId: rel.id,
-        hint: `Click the line labeled "${rel.name}"`
+        hint: `点击标有 "${rel.name}"`
       });
     }
 
     if (relSteps.length >= 2) {
       quests.push({
         id: "quest-2",
-        title: "Relationship Navigator",
-        description: `Trace the connections between entities in ${ontology.name}.`,
+        title: "关系导航",
+        description: `追踪实体之间的连接，当前本体： ${ontology.name}.`,
         difficulty: "intermediate",
         category: "traversal",
         steps: relSteps,
         reward: {
-          badge: "Connection Master",
+          badge: "连接大师",
           badgeIcon: "🔗",
           points: 200
         }
@@ -105,32 +105,32 @@ export function generateQuestsForOntology(ontology: Ontology): Quest[] {
     const hubSteps: QuestStep[] = [
       {
         id: "step-3-1",
-        instruction: `Find the ${hub.name} entity - it's the most connected in this ontology!`,
+        instruction: `寻找 ${hub.name} 实体，它是这个本体中连接最多的节点！`,
         targetType: 'entity',
         targetId: hub.id,
-        hint: `${hub.name} has ${connectionCount[hub.id]} connections`
+        hint: `${hub.name} 具有 ${connectionCount[hub.id]} 条连接`
       }
     ];
 
     connectedRels.forEach((rel, i) => {
       hubSteps.push({
         id: `step-3-${i + 2}`,
-        instruction: `Explore the '${rel.name}' relationship`,
+        instruction: `探索 '${rel.name}' 关系`,
         targetType: 'relationship',
         targetId: rel.id,
-        hint: `This ${rel.from === hub.id ? 'originates from' : 'connects to'} ${hub.name}`
+        hint: `这条关系${rel.from === hub.id ? '起始于' : '指向'} ${hub.name}`
       });
     });
 
     quests.push({
       id: "quest-3",
-      title: "Find the Hub",
-      description: `Discover which entity is the most connected in ${ontology.name}.`,
+      title: "寻找核心节点",
+      description: `找出连接最多的实体，当前本体： ${ontology.name}.`,
       difficulty: "intermediate",
       category: "exploration",
       steps: hubSteps,
       reward: {
-        badge: "Hub Detective",
+        badge: "核心节点侦探",
         badgeIcon: "🔍",
         points: 200
       }
@@ -148,33 +148,33 @@ export function generateQuestsForOntology(ontology: Ontology): Quest[] {
     for (const entity of entitiesWithManyProps) {
       propSteps.push({
         id: `step-4-${propSteps.length + 1}`,
-        instruction: `Select the ${entity.name} entity and examine its ${entity.properties.length} properties`,
+        instruction: `选择 ${entity.name} 实体，查看其 ${entity.properties.length} 个属性`,
         targetType: 'entity',
         targetId: entity.id,
-        hint: `Check the Inspector panel for property details`
+        hint: `查看详情面板，了解属性信息`
       });
 
       const identifierProp = entity.properties.find(p => p.isIdentifier);
       if (identifierProp) {
         propSteps.push({
           id: `step-4-${propSteps.length + 1}`,
-          instruction: `Find the identifier property '${identifierProp.name}' in ${entity.name}`,
+          instruction: `寻找标识符属性 '${identifierProp.name}'，所属实体： ${entity.name}`,
           targetType: 'property',
           targetId: identifierProp.name,
-          hint: `Look for the key icon 🔑 marking the identifier`
+          hint: `寻找标识符旁的钥匙图标 🔑`
         });
       }
     }
 
     quests.push({
       id: "quest-4",
-      title: "Property Detective",
-      description: `Learn about the properties that define each entity type.`,
+      title: "属性侦探",
+      description: `了解定义各类实体的属性。`,
       difficulty: "intermediate",
       category: "exploration",
       steps: propSteps,
       reward: {
-        badge: "Data Scholar",
+        badge: "数据学者",
         badgeIcon: "📊",
         points: 250
       }
@@ -186,18 +186,18 @@ export function generateQuestsForOntology(ontology: Ontology): Quest[] {
   const querySteps: QuestStep[] = [
     {
       id: "step-5-1",
-      instruction: `Try asking: "What is ${sampleEntities[0]?.name || 'an entity'}?"`,
+      instruction: `试着提问："什么是 ${sampleEntities[0]?.name || '实体类型'}？"`,
       targetType: 'query',
-      hint: "Type in the Natural Language Query playground"
+      hint: "在自然语言查询面板中输入"
     }
   ];
 
   if (sampleEntities.length >= 2) {
     querySteps.push({
       id: "step-5-2",
-      instruction: `Now ask: "How does ${sampleEntities[0].name} relate to ${sampleEntities[1].name}?"`,
+      instruction: `接着提问："${sampleEntities[0].name} 如何连接到 ${sampleEntities[1].name}？"`,
       targetType: 'query',
-      hint: "Explore the relationships between entities"
+      hint: "探索实体之间的关系"
     });
   }
 
@@ -208,22 +208,22 @@ export function generateQuestsForOntology(ontology: Ontology): Quest[] {
     querySteps.push({
       id: "step-5-3",
       instruction: fromEntity && toEntity
-        ? `Try a traversal query: "How does ${fromEntity.name} connect to ${toEntity.name}?"`
-        : `Try a traversal query about the "${rel.name}" relationship`,
+        ? `尝试遍历查询："${fromEntity.name} 如何连接到 ${toEntity.name}？"`
+        : `查询该关系："${rel.name}" 关系`,
       targetType: 'query',
-      hint: `This follows the "${rel.name}" relationship path`
+      hint: `这将沿 "${rel.name}" 关系路径进行探索`
     });
   }
 
   quests.push({
     id: "quest-5",
-    title: "Query Explorer",
-    description: "Learn to ask questions using natural language queries.",
+    title: "查询探索者",
+    description: "学习使用自然语言提问。",
     difficulty: "advanced",
     category: "query",
     steps: querySteps,
     reward: {
-      badge: "Query Wizard",
+      badge: "查询达人",
       badgeIcon: "🧙",
       points: 300
     }
@@ -258,50 +258,50 @@ export function generateQuestsForOntology(ontology: Ontology): Quest[] {
       const chainSteps: QuestStep[] = [
         {
           id: "step-6-1",
-          instruction: `Start your journey at ${chain.entities[0].name}`,
+          instruction: `从这里开始探索： ${chain.entities[0].name}`,
           targetType: 'entity',
           targetId: chain.entities[0].id,
-          hint: `Find the ${chain.entities[0].icon} icon`
+          hint: `寻找 ${chain.entities[0].icon} 图标`
         },
         {
           id: "step-6-2",
-          instruction: `Follow '${chain.rels[0].name}' to reach ${chain.entities[1].name}`,
+          instruction: `沿 '${chain.rels[0].name}' 到达 ${chain.entities[1].name}`,
           targetType: 'relationship',
           targetId: chain.rels[0].id,
-          hint: "Click the connecting edge"
+          hint: "点击连接线"
         },
         {
           id: "step-6-3",
-          instruction: `Explore the ${chain.entities[1].name} entity`,
+          instruction: `探索 ${chain.entities[1].name} 实体开始`,
           targetType: 'entity',
           targetId: chain.entities[1].id,
-          hint: `This is the middle of your journey`
+          hint: `这是探索路线的中间站`
         },
         {
           id: "step-6-4",
-          instruction: `Continue via '${chain.rels[1].name}' to reach ${chain.entities[2].name}`,
+          instruction: `继续沿 '${chain.rels[1].name}' 到达 ${chain.entities[2].name}`,
           targetType: 'relationship',
           targetId: chain.rels[1].id,
-          hint: "One more connection to go!"
+          hint: "还剩一条连接！"
         },
         {
           id: "step-6-5",
-          instruction: `You made it! Explore ${chain.entities[2].name}`,
+          instruction: `你做到了！探索 ${chain.entities[2].name}`,
           targetType: 'entity',
           targetId: chain.entities[2].id,
-          hint: `Journey complete! ${chain.entities[2].icon}`
+          hint: `探索完成！ ${chain.entities[2].icon}`
         }
       ];
 
       quests.push({
         id: "quest-6",
-        title: "The Full Journey",
-        description: `Traverse from ${chain.entities[0].name} all the way to ${chain.entities[2].name}.`,
+        title: "完整探索之旅",
+        description: `从 ${chain.entities[0].name} 一路遍历到 ${chain.entities[2].name}.`,
         difficulty: "advanced",
         category: "traversal",
         steps: chainSteps,
         reward: {
-          badge: "Path Pioneer",
+          badge: "路径先锋",
           badgeIcon: "🗺️",
           points: 350
         }

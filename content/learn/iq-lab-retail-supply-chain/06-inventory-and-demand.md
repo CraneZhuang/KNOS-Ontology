@@ -1,99 +1,99 @@
 ---
-title: Inventory & Demand
+title: 库存与需求
 slug: inventory-and-demand
-description: Add Inventory, Forecast, and DemandSignal to track stock levels and predict future demand across warehouses and regions.
+description: 添加 Inventory、Forecast 和 DemandSignal，跟踪仓库库存并预测各地区未来需求。
 order: 6
 embed: official/iq-lab-retail-step-5
 ---
 
-## From transactions to planning
+## 从交易记录到业务规划
 
-Steps 1–4 modelled what **has happened** — orders, shipments, deliveries. Now we add entities for what **is happening** (inventory levels, demand signals) and what **will happen** (forecasts). This is where ontology really shines: unifying historical, real-time, and predictive data under one model.
+步骤 1–4 描述订单、发货、配送等**已经发生**的事情。现在加入库存、需求信号等**正在发生**的数据，以及预测等**将会发生**的数据。本体的优势正是在一个模型中统一历史、实时与预测数据。
 
-## Inventory
+## 库存（Inventory）
 
-Stock levels at each warehouse:
+各仓库的库存水平：
 
-| Property | Type | Identifier? |
+| 属性 | 类型 | 是否为标识符？ |
 |---|---|---|
 | `inventoryId` | string | ✓ |
 | `stockLevel` | integer | |
 | `reorderPoint` | integer | |
 
-The `reorderPoint` indicates the threshold below which new stock should be ordered — a critical metric for supply chain management.
+`reorderPoint` 表示触发补货的库存阈值，是供应链管理的关键指标。
 
-## Forecast
+## 预测（Forecast）
 
-Predicted demand for products:
+产品的预测需求：
 
-| Property | Type | Identifier? |
+| 属性 | 类型 | 是否为标识符？ |
 |---|---|---|
 | `forecastId` | string | ✓ |
 | `forecastDate` | date | |
 | `predictedDemand` | integer | |
 
-## DemandSignal
+## 需求信号（DemandSignal）
 
-Real-time indicators of customer demand — search trends, social media mentions, weather patterns:
+客户需求的实时指标，例如搜索趋势、社交媒体提及和天气模式：
 
-| Property | Type | Identifier? |
+| 属性 | 类型 | 是否为标识符？ |
 |---|---|---|
 | `signalId` | string | ✓ |
 | `signalDate` | datetime | |
 | `signalStrength` | decimal | |
 
-## New relationships
+## 新增关系
 
-Five new relationships connect inventory and demand to existing entities:
+五条新关系将库存与需求连接到已有实体：
 
-- **InventoryForProduct** — `Inventory` → `Product` (many-to-one)
-  Stock level for a specific product.
+- **InventoryForProduct（库存产品）**：`Inventory` → `Product`（多对一）
+  表示特定产品的库存水平。
 
-- **InventoryAtWarehouse** — `Inventory` → `Warehouse` (many-to-one)
-  Where the inventory is stored. Combined with InventoryForProduct, this creates the intersection: "How much of Product X is at Warehouse Y?"
+- **InventoryAtWarehouse（库存仓库）**：`Inventory` → `Warehouse`（多对一）
+  表示库存所在仓库。结合 InventoryForProduct，即可回答“仓库 Y 有多少产品 X？”
 
-- **ForecastForProduct** — `Forecast` → `Product` (many-to-one)
-  Predicted demand for a specific product.
+- **ForecastForProduct（预测产品）**：`Forecast` → `Product`（多对一）
+  表示特定产品的预测需求。
 
-- **DemandSignalForProduct** — `DemandSignal` → `Product` (many-to-one)
-  Real-time demand indicator for a product.
+- **DemandSignalForProduct（需求产品）**：`DemandSignal` → `Product`（多对一）
+  表示产品的实时需求指标。
 
-- **DemandSignalInRegion** — `DemandSignal` → `Region` (many-to-one)
-  Where the demand signal originated.
+- **DemandSignalInRegion（需求区域）**：`DemandSignal` → `Region`（多对一）
+  表示需求信号产生的区域。
 
-## Cross-source unification
+## 跨数据源统一
 
-In a real Fabric IQ deployment, these entities might come from very different sources:
+实际部署 Fabric IQ 时，这些实体可能来自完全不同的数据源：
 
-| Entity | Typical source |
+| 实体 | 典型数据源 |
 |---|---|
-| Inventory | Eventhouse (real-time updates) |
-| Forecast | Lakehouse (batch ML predictions) |
-| DemandSignal | Eventhouse (streaming data) |
-| Product | Both Lakehouse (catalog) and Eventhouse (discounts) |
+| Inventory | Eventhouse（实时更新） |
+| Forecast | Lakehouse（批量机器学习预测） |
+| DemandSignal | Eventhouse（流式数据） |
+| Product | Lakehouse（目录）与 Eventhouse（折扣） |
 
-The ontology **unifies all of these** under a single connected graph. A query like "For products with high demand signals in the southwest, what's the current inventory at nearby warehouses?" traverses across all sources seamlessly.
+本体在一张连通图谱中**统一所有来源**。“西南地区需求强劲的产品，在附近仓库还有多少库存？”这类查询就能无缝跨越多个来源。
 
-## The graph at Step 5
+## 步骤 5 图谱
 
 <ontology-embed id="official/iq-lab-retail-step-5" diff="official/iq-lab-retail-step-4" height="450px"></ontology-embed>
 
-*Thirteen entity types. Inventory links Product to Warehouse. DemandSignal connects Product to Region. The graph now spans commerce, logistics, and planning domains.*
+*十三个实体类型。Inventory 连接 Product 与 Warehouse，DemandSignal 连接 Product 与 Region。图谱覆盖交易、物流和规划领域。*
 
-## What we learned
+## 本节总结
 
-- Ontologies can unify **historical, real-time, and predictive** data
-- **Inventory** is a classic intersection entity — it sits between Product and Warehouse
-- **DemandSignal** connects to both Product and Region, enabling cross-dimensional analysis
-- Cross-source unification is the core value proposition — one model, multiple data engines
+- 本体可以统一**历史、实时与预测**数据
+- **Inventory** 是典型的交叉实体，位于 Product 和 Warehouse 之间
+- **DemandSignal** 同时连接 Product 和 Region，支持跨维度分析
+- 核心价值是跨数据源统一：一个模型，多个数据引擎
 
 ```quiz
-Q: Why is Inventory called an "intersection entity"?
-- It stores more data than other entities
-- It sits between Product and Warehouse, representing stock of a specific product at a specific location [correct]
-- It has the most relationships in the ontology
-- It is the only entity sourced from Eventhouse
-> Inventory intersects Product and Warehouse — each inventory record answers "how much of Product X is at Warehouse Y?", making it a classic intersection (or junction) entity.
+Q: 为什么 Inventory 被称为交叉实体？
+- 它存储的数据比其他实体更多
+- 它位于 Product 和 Warehouse 之间，表示特定地点某种产品的库存 [correct]
+- 它拥有本体中最多的关系
+- 它是唯一来自 Eventhouse 的实体
+> 每条 Inventory 记录回答“仓库 Y 有多少产品 X？”，因此它是 Product 和 Warehouse 的交叉点，也称关联实体。
 ```
 
-One more step: we'll add Promotion and Return to complete the picture.
+最后一步添加 Promotion 和 Return，补齐全貌。

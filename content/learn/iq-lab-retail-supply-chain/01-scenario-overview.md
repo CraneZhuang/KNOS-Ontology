@@ -1,50 +1,50 @@
 ---
-title: Scenario Overview
+title: 场景概览
 slug: scenario-overview
-description: Meet the retail supply chain scenario — why ontologies matter for multi-system retail data, and what we'll build in this lab.
+description: 认识零售供应链场景，了解本体对跨系统零售数据的价值，以及本实验将构建的内容。
 order: 1
 ---
 
-## The problem
+## 面临的问题
 
-You work for a fictional retail company that manages orders, products, customers, warehouses, and shipments across multiple regions. Data lives in multiple systems:
+你在一家虚构零售企业工作，负责多个地区的订单、产品、客户、仓库与发货业务。数据位于多个系统中：
 
-- An **Eventhouse** stores real-time transactional data — orders, shipments, demand signals.
-- A **Lakehouse** holds dimensional data — product catalogs, customer profiles, forecasts.
+- **Eventhouse** 存储订单、发货和需求信号等实时交易数据。
+- **Lakehouse** 存储产品目录、客户档案和预测等维度数据。
 
-Traditional approaches require analysts to know _which_ system holds _which_ data and how to join across them. A single question like **"Which promotions drove returns in the southwest region?"** requires traversing from returns → products → promotions → regions — touching both systems and multiple tables.
+传统方法要求分析人员知道*哪些*数据位于*哪个*系统，以及如何跨系统关联。例如**“哪些促销带动了西南地区的退货？”**，需要从退货 → 产品 → 促销 → 区域进行遍历，涉及两个系统和多张表。
 
-## Why ontology?
+## 为什么使用本体？
 
-An ontology solves this by creating a **semantic layer** over the raw data:
+本体通过在原始数据之上建立**语义层**来解决这个问题：
 
-| Without ontology | With ontology |
+| 不使用本体 | 使用本体 |
 |---|---|
-| Analysts must know table names and join columns | Business users ask questions in plain language |
-| Column names like `cust_lt_val` are opaque | Properties like *Customer lifetime value* are self-describing |
-| Cross-system queries require manual orchestration | The ontology maps concepts to sources transparently |
-| Adding a new data source means rewriting queries | Adding a new binding extends the model without breaking queries |
+| 分析人员必须了解表名与关联列 | 业务用户可以用自然语言提问 |
+| cust_lt_val 等列名含义不清晰 | “客户终身价值”等属性含义清晰 |
+| 跨系统查询需要手动编排 | 本体透明地将概念映射到数据源 |
+| 新增数据源需要改写查询 | 新增绑定即可扩展模型，无需破坏已有查询 |
 
-## What we'll build
+## 我们将构建什么
 
-Over the next six steps, we'll progressively build a **Retail Supply Chain ontology** with 15 entity types and 18 relationships:
+接下来六步将逐渐构建一个包含 15 个实体类型、18 条关系的**零售供应链本体**：
 
-1. **Core Commerce** — Customer, Order, Product
-2. **Order Details & Categories** — OrderLine, ProductCategory
-3. **Geography** — Region, Store
-4. **Fulfillment & Logistics** — Shipment, Carrier, Warehouse
-5. **Inventory & Demand** — Inventory, Forecast, DemandSignal
-6. **Complete Model** — Promotion, Return
+1. **核心交易**：Customer、Order、Product
+2. **订单明细与类别**：OrderLine、ProductCategory
+3. **地理信息**：Region、Store
+4. **履约与物流**：Shipment、Carrier、Warehouse
+5. **库存与需求**：Inventory、Forecast、DemandSignal
+6. **完整模型**：Promotion、Return
 
-Each step introduces new concepts and shows the growing graph. By the end, you'll have a fully connected ontology that could power graph queries, GQL, and natural-language Data Agent interactions in Microsoft Fabric IQ.
+每一步都引入新概念并展示扩展后的图谱。最终将得到完整连通的本体，可支持 Microsoft Fabric IQ 中的图谱查询、GQL 和自然语言数据智能体交互。
 
-## Key concepts we'll cover
+## 将学习的关键概念
 
-- **Entity types** and **identifier properties** — the building blocks
-- **Relationships** and **cardinality** — how entities connect
-- **Linking entities** — using OrderLine to bridge Order and Product
-- **Geographic hierarchies** — modelling Region → Store
-- **Cross-source unification** — one entity, multiple data sources
-- **Graph traversal** — following connections to answer complex questions
+- **实体类型**和**标识符属性**：模型的基础构件
+- **关系**与**基数**：实体如何连接
+- **关联实体**：用 OrderLine 连接 Order 与 Product
+- **地理层级**：建立 Region → Store 模型
+- **跨数据源统一**：一个实体对应多个数据源
+- **图谱遍历**：沿连接回答复杂问题
 
-Let's start with the three most fundamental entities in any commerce system.
+先从任何商业系统中最基础的三个实体开始。

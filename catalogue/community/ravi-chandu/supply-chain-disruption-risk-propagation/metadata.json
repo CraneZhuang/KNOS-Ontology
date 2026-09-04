@@ -1,8 +1,14 @@
 {
-  "name": "Supply Chain Disruption & Risk Propagation",
-  "description": "Ontology for modeling supplier disruptions, cascading component risk, product-line exposure, and mitigation actions for proactive operational decisions.",
+  "name": "供应链中断与风险传播",
+  "description": "描述供应商中断、零部件连锁风险、产品线敞口和缓解措施，支持主动运营决策的本体。",
   "icon": "📦",
   "category": "manufacturing",
-  "tags": ["supply-chain", "risk", "operations", "mitigation", "fabric-iq"],
+  "tags": [
+    "supply-chain",
+    "risk",
+    "operations",
+    "mitigation",
+    "fabric-iq"
+  ],
   "author": "Ravi Chandu Edru"
 }

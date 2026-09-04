@@ -57,7 +57,7 @@ describe('parseRDF', () => {
     </owl:Class>
 </rdf:RDF>`;
       const { ontology } = parseRDF(rdf);
-      expect(ontology.name).toBe('Imported Ontology');
+      expect(ontology.name).toBe("导入的本体");
     });
   });
 
@@ -359,7 +359,7 @@ describe('parseRDF', () => {
   describe('error handling', () => {
     it('throws RDFParseError on malformed XML', () => {
       expect(() => parseRDF('<this is not xml')).toThrow(RDFParseError);
-      expect(() => parseRDF('<this is not xml')).toThrow(/Malformed XML/);
+      expect(() => parseRDF('<this is not xml')).toThrow(/XML 格式错误/);
     });
 
     it('throws RDFParseError when no ontology or classes found', () => {
@@ -367,7 +367,7 @@ describe('parseRDF', () => {
 <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
 </rdf:RDF>`;
       expect(() => parseRDF(rdf)).toThrow(RDFParseError);
-      expect(() => parseRDF(rdf)).toThrow(/No ontology metadata or OWL classes/);
+      expect(() => parseRDF(rdf)).toThrow(/未找到本体元数据或 OWL 类/);
     });
 
     it('handles empty entity types gracefully', () => {

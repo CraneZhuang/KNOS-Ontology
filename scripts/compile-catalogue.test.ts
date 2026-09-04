@@ -142,7 +142,7 @@ describe('catalogue metadata validation', () => {
       entity.properties.some((property) => property.isIdentifier),
     ).length;
 
-    expect(entry.name).toBe('Supply Chain Disruption & Risk Propagation');
+    expect(entry.name).toBe('供应链中断与风险传播');
     expect(entry.category).toBe('manufacturing');
     expect(entry.author).toBe('Ravi Chandu Edru');
     expect(entry.tags).toEqual(expect.arrayContaining(['supply-chain', 'risk', 'operations', 'mitigation']));

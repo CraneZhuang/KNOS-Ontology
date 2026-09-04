@@ -1,6 +1,6 @@
 {
-  "name": "FIBO Industry Classification",
-  "description": "Economic sectors, subsectors, and NAICS industry groups with climate sensitivity and cyclicality attributes — adapted from EDM Council FIBO classification modules.",
+  "name": "FIBO 行业分类",
+  "description": "包含气候敏感性与周期性属性的经济部门、子部门和 NAICS 行业组，改编自 EDM Council FIBO 分类模块。",
   "icon": "🏭",
   "category": "fibo",
   "tags": [

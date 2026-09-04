@@ -1,229 +1,229 @@
 ---
-title: "Mitigation Execution & Automation"
+title: "缓解措施执行与自动化"
 slug: mitigation-execution
-description: "Transform your ontology into operational action — how to use it with Fabric IQ agents, real-time dashboards, and automation to reduce disruption impact from days to minutes."
+description: "把本体转化为运营行动：了解如何结合 Fabric IQ 智能体、实时仪表板和自动化来缩短中断响应时间。"
 order: 4
 ---
 
-## From model to action
+## 从模型到行动
 
-Your ontology is now ready to power real-time decision automation. Here's how it flows from disruption detection to mitigation execution:
+本体为决策自动化提供模型基础。以下时间线仅为演示目标，并非本应用已实现的能力或服务承诺；实际执行需要数据接入、权限与工作流集成。
 
-### Phase 1: Detection (minute 0)
+### 阶段一：检测（示例第 0 分钟）
 
-**Input**: External signal (supplier goes offline, natural disaster alert, quality issue reported)
+**输入**：外部信号（供应商离线、自然灾害预警、质量问题报告）
 
-**Your ontology enables**:
+**本体支持的分析**：
 ```
-Data Agent Query:
-  "Which suppliers are affected by the Taiwan earthquake?"
+数据智能体查询：
+  “哪些供应商受到台湾地区地震影响？”
   ↓
-  Matches: Supplier.country="Taiwan" + DisruptionEvent.region="Taiwan" 
+  匹配：Supplier.country="Taiwan" + DisruptionEvent.region="Taiwan"
            + DisruptionEvent.type="Natural Disaster"
   ↓
-  Result: 3 critical suppliers identified
+  结果：识别出 3 家关键供应商
 ```
 
-### Phase 2: Trace impact (minute 5)
+### 阶段二：追溯影响（示例第 5 分钟）
 
-**Input**: List of affected suppliers
+**输入**：受影响供应商清单
 
-**Your ontology enables**:
+**本体支持的分析**：
 ```
-Data Agent Query:
-  "For these 3 suppliers, show me all components they supply"
+数据智能体查询：
+  “显示这 3 家供应商提供的所有零部件”
   ↓
-  Follows: Supplier → supplies → Component
+  沿路径：Supplier → supplies → Component
   ↓
-  Result: 47 components identified
+  结果：识别出 47 个零部件
   
-Then: "For these 47 components, which product lines use them?"
+然后问：“哪些产品线使用这 47 个零部件？”
   ↓
-  Follows: Component → usedIn → ProductLine
+  沿路径：Component → usedIn → ProductLine
   ↓
-  Result: 12 product lines exposed
+  结果：12 条产品线存在风险敞口
 ```
 
-### Phase 3: Quantify impact (minute 15)
+### 阶段三：量化影响（示例第 15 分钟）
 
-**Input**: List of exposed product lines
+**输入**：存在风险敞口的产品线清单
 
-**Your ontology enables**:
+**本体支持的分析**：
 ```
-Calculation Engine:
-  For each exposed ProductLine:
+计算引擎示例：
+  针对每条存在风险的 ProductLine：
     revenue_at_risk = annualRevenue / 365 * daysOfSupplyOnHand
     urgency = 100 - (daysOfSupplyOnHand * 10)
   
-  Aggregate:
+  汇总：
     total_revenue_at_risk = SUM(revenue_at_risk)
     critical_product_lines = WHERE urgency > 70
     
-  Result: 
-    Total at risk: $127M
-    Critical timeline: 3 days
-    Affected customers: 450,000+
+  示例结果：
+    风险总额：1.27 亿美元
+    关键时间窗口：3 天
+    受影响客户：超过 45 万
 ```
 
-### Phase 4: Recommend actions (minute 20)
+### 阶段四：推荐措施（示例第 20 分钟）
 
-**Input**: Risk assessment results
+**输入**：风险评估结果
 
-**Your ontology enables**:
+**本体支持的分析**：
 ```
-Recommendation Engine:
-  For each component in each affected product line:
-    1. Find AlternativeSupplier records where:
+推荐引擎：
+  针对每条受影响产品线的每个零部件：
+    1. 查找满足以下条件的 AlternativeSupplier：
        - qualificationStatus="Approved"
        - capacityAvailable >= demand
        - country NOT IN earthquake_region
     
-    2. Score each alternative by:
-       - Lead time saved (leadTimeSavedDays)
-       - Cost impact (pricePremiumPercent)
-       - Reliability (reliabilityScore)
+    2. 按以下因素为备选来源评分：
+       - 节省的交付时间（leadTimeSavedDays）
+       - 成本影响（pricePremiumPercent）
+       - 可靠性（reliabilityScore）
     
-    3. Recommend top 3 actions with ROI:
-       - Action A: Activate ChipX Europe (save 2 days, cost +$2M)
-       - Action B: Increase safety stock (cost $500K, cover 2 weeks)
-       - Action C: Redesign component (lead time unknown)
+    3. 推荐三项措施并比较投资回报：
+       - 措施 A：启用 ChipX Europe（节省 2 天，增加 200 万美元成本）
+       - 措施 B：增加安全库存（成本 50 万美元，覆盖 2 周）
+       - 措施 C：重新设计零部件（提前期未知）
 ```
 
-### Phase 5: Execute (minute 25)
+### 阶段五：执行（示例第 25 分钟）
 
-**Your ontology triggers automated workflows**:
+**通过配套集成，可按审批规则触发的工作流**：
 
 ```
 IF RiskAssessment.revenueAtRisk > $50M AND 
    RiskAssessment.timeToImpactDays < 5:
    
-   THEN:
-     1. Create PurchaseOrder for recommended AlternativeSupplier
-     2. Update ProductionSchedule with new timeline
-     3. Send email to:
-        - Procurement team (execute purchase)
-        - Operations (adjust schedules)
-        - Finance (forecast $2M additional cost)
-        - CEO/Board (update on exposure)
-     4. Create Activator alerts with escalation policy
-     5. Start monitoring MitigationAction.status
+   则在授权和审批后执行：
+     1. 为推荐的 AlternativeSupplier 创建 PurchaseOrder
+     2. 按新时间线更新 ProductionSchedule
+     3. 向以下人员发送邮件：
+        - 采购团队（执行采购）
+        - 运营团队（调整计划）
+        - 财务团队（预测新增 200 万美元成本）
+        - 管理层（更新风险敞口）
+     4. 创建带升级策略的 Activator 预警
+     5. 开始监控 MitigationAction.status
 ```
 
-## Real-world workflow: End-to-end
+## 端到端流程示例
 
-### Day 1: Disruption detected
+### 第一天：发现中断
 
 ```
-10:30 AM: Taiwan earthquake magnitude 6.8
+10:30：台湾地区发生 6.8 级地震（虚构演示情景）
           ↓
-10:45 AM: Your system detects: DisruptionEvent created
+10:45：系统检测到信号并创建 DisruptionEvent
           ├─ type = "Natural Disaster"
           ├─ severity = "Critical"
           ├─ region = "Taiwan"
           ├─ estimatedDurationDays = 7
           
-10:46 AM: Data Agent traces impact
-          ├─ 3 critical suppliers affected
-          ├─ 47 components halted
-          ├─ 12 product lines exposed
-          ├─ $127M revenue at risk
-          ├─ 3 days to production stoppage
+10:46：数据智能体追溯影响
+          ├─ 3 家关键供应商受影响
+          ├─ 47 个零部件断供
+          ├─ 12 条产品线存在风险
+          ├─ 1.27 亿美元收入面临风险
+          ├─ 距离停产 3 天
           
-10:47 AM: RiskAssessment created
-          ├─ assesses impact for each product line
-          ├─ recommends actions ranked by ROI
+10:47：创建 RiskAssessment
+          ├─ 评估各产品线所受影响
+          ├─ 按投资回报排列推荐措施
           
-10:48 AM: MitigationActions auto-created
-          ├─ PO issued to ChipX Europe (approved alternative)
-          ├─ Safety stock orders placed
-          ├─ Alerts sent to procurement, ops, finance
+10:48：生成 MitigationAction 候选措施（执行需授权）
+          ├─ 向已获批准的替代供应商 ChipX Europe 下采购单
+          ├─ 下达安全库存订单
+          ├─ 向采购、运营和财务发送预警
           
-10:50 AM: Activator triggered
-          ├─ Real-time dashboard shows impact + actions
-          ├─ Escalation policy notifies leadership
-          ├─ Procurement team acknowledges + confirms receipt
+10:50：触发 Activator
+          ├─ 实时仪表板显示影响与措施
+          ├─ 按升级策略通知管理层
+          ├─ 采购团队确认收到任务
           
-11:30 AM: MitigationAction.status = "In Progress"
-          ├─ Purchase order in progress
-          ├─ ChipX Europe confirms 48-hour shipment
-          ├─ Production impact reduced from 7 days → 3 days
+11:30：MitigationAction.status = "In Progress"（进行中）
+          ├─ 采购单执行中
+          ├─ ChipX Europe 确认 48 小时内发货
+          ├─ 生产影响从 7 天减至 3 天
 ```
 
-### Day 2-4: Monitoring and adjustment
+### 第二至四天：监控与调整
 
 ```
-Every 4 hours:
-  - Check DisruptionEvent.estimatedDurationDays (update if recovery changes)
-  - Monitor MitigationAction progress
-  - Recalculate RiskAssessment with latest inventory data
-  - Alert if leadTimeSavedDays slips (alternative supplier delays)
-  - Recommend contingency actions if needed
+每 4 小时：
+  - 检查 DisruptionEvent.estimatedDurationDays，恢复预期变化时更新
+  - 监控 MitigationAction 进度
+  - 用最新库存重新计算 RiskAssessment
+  - leadTimeSavedDays 缩短时预警，例如备选供应商延误
+  - 必要时推荐应急措施
   
-Day 3: ChipX Europe shipment received
-  ├─ MitigationAction.status = "Completed"
-  ├─ Inventory restored for 47 components
-  ├─ Production resumes (3-day delay, not 7-day)
-  ├─ Actual cost: $2.1M (estimated $2M)
-  ├─ Revenue protected: ~$100M of $127M exposure
+第三天：收到 ChipX Europe 货物
+  ├─ MitigationAction.status = "Completed"（已完成）
+  ├─ 47 个零部件的库存恢复
+  ├─ 生产恢复，延误 3 天而非 7 天
+  ├─ 实际成本 210 万美元，预估为 200 万美元
+  ├─ 在 1.27 亿美元风险敞口中保护了约 1 亿美元收入
 ```
 
-## Connecting to Fabric IQ
+## 连接 Fabric IQ
 
-Your ontology integrates seamlessly with Fabric IQ data agents:
+将本体与 Fabric IQ 数据智能体集成时，可参考以下流程，并验证环境支持与权限：
 
 ```
-User: "What's our supply chain risk exposure right now?"
+用户：“目前供应链的风险敞口是多少？”
   ↓
-Data Agent grounds query against your ontology:
-  1. Find all Supplier records with singleSourced=true
-  2. For each, find Components they supply
-  3. Trace to ProductLines using those components
-  4. Calculate revenueAtRisk for each ProductLine
-  5. Return ranked list by revenueAtRisk
+数据智能体根据本体解释查询：
+  1. 查找 singleSourced=true 的 Supplier
+  2. 查找每个供应商供应的 Component
+  3. 追溯使用这些零部件的 ProductLine
+  4. 计算每条 ProductLine 的 revenueAtRisk
+  5. 按 revenueAtRisk 返回排序结果
   
-Agent Response:
-  "You have 3 critical single-source suppliers. 
-   If any are disrupted, you lose ~$180M in 
-   4-9 days. We recommend pre-qualifying 
-   8 alternative suppliers (list attached)."
+智能体示例回答：
+  “你有 3 家关键单一来源供应商。
+   若其中任何一家中断，模型估计可能在
+   4–9 天内涉及约 1.8 亿美元收入。建议预先认证
+   8 家备选供应商，名单见附件。”
 
-User: "Which alternatives are approved for ChipX?"
+用户：“ChipX 有哪些已获批准的替代供应商？”
   ↓
-Agent Query:
+智能体查询：
   AlternativeSupplier WHERE:
     canReplace.Supplier.name = "ChipX Corp"
     AND qualificationStatus = "Approved"
   ↓
-Result:
-  - ChipX Europe (capacity: 50K/month, +12% cost)
-  - SemiCorp Japan (capacity: 30K/month, +18% cost)
-  - Semiconductor Direct USA (capacity: 25K/month, +15% cost)
+示例结果：
+  - ChipX Europe（每月产能 5 万件，成本增加 12%）
+  - SemiCorp Japan（每月产能 3 万件，成本增加 18%）
+  - Semiconductor Direct USA（每月产能 2.5 万件，成本增加 15%）
 ```
 
-## Continuous improvement
+## 持续改进
 
-Track the effectiveness of your mitigation model:
+跟踪缓解模型的效果。以下数值为示例目标，应根据真实业务基线确定：
 
-| Metric | Calculation | Goal |
+| 指标 | 计算方法 | 目标 |
 |--------|-------------|------|
-| Detection speed | Hours from disruption to RiskAssessment | < 1 hour |
-| Trace accuracy | % of actual affected components identified | > 95% |
-| Impact estimate accuracy | Estimated vs. actual revenue at risk | ±10% |
-| Time to mitigation | Hours from assessment to MitigationAction execution | < 2 hours |
-| Cost efficiency | Actual cost vs. estimated cost of actions | ±5% |
-| Revenue protection rate | % of at-risk revenue protected by actions | > 80% |
+| 检测速度 | 从中断发生到建立 RiskAssessment 的小时数 | < 1 小时 |
+| 追溯准确率 | 已识别的实际受影响零部件占比 | > 95% |
+| 影响估计准确率 | 预估风险收入与实际值的差异 | ±10% |
+| 缓解响应时间 | 从评估到执行 MitigationAction 的小时数 | < 2 小时 |
+| 成本效率 | 措施实际成本与预估成本的差异 | ±5% |
+| 收入保护率 | 通过措施保护的风险收入占比 | > 80% |
 
-Each disruption event becomes a training opportunity. Your agents learn which alternative suppliers actually perform, which lead times hold up, and which product lines are most resilient.
+每次中断都是一次复盘机会：记录备选供应商的实际表现、交付周期是否可靠，以及哪些产品线更具韧性。
 
-## Summary
+## 总结
 
-Your Supply Chain Disruption & Risk Propagation ontology is production-ready:
+供应链中断与风险传播本体示例已构建完成：
 
-✅ **7 entity types** capture the full disruption lifecycle  
-✅ **40 properties** provide rich context for decision-making  
-✅ **7 relationships** model realistic impact cascades  
-✅ **Fabric IQ compatible** for natural-language agents  
-✅ **Automation-ready** with enum classifications and timestamps  
-✅ **Measurable outcomes** — reduce disruption impact from days to hours  
+✅ **7 类实体**覆盖完整的中断生命周期
+✅ **40 个属性**提供丰富的决策上下文
+✅ **7 条关系**描述连锁影响
+✅ **兼容 Fabric IQ 的结构**可作为自然语言智能体的集成基础
+✅ **枚举分类与时间戳**为后续自动化提供基础
+✅ **可衡量的目标**——通过真实指标验证响应时间和业务影响的改善
 
-Deploy it, monitor it, and watch your supply chain resilience transform.
+在完成数据、权限、接口与业务验收后，再部署到生产环境并持续监控。

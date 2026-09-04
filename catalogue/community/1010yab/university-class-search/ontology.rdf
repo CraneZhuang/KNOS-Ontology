@@ -8,8 +8,8 @@
     xmlns:ont="http://example.org/ontology/nauclasssearchontology/">
 
     <owl:Ontology rdf:about="http://example.org/ontology/nauclasssearchontology/">
-        <rdfs:label>NAUClassSearchOntology</rdfs:label>
-        <rdfs:comment>Grounded ontology for the NAU Class Search Data Agent. Internal RDF identifiers are kept stable so the ontology playground preserves the graph connections, while entity display titles use underscores and relationship labels read as natural language. The model separates Course from Course_Offering, models Course_Offering as subject plus catalog number, places prerequisites and requisites on Course_Offering, separates Term from Session, models multiple Sessions per Term with week lengths, connects Buildings to Campus and Campus to College, and models Class_Section enrollment through Academic_Policy and Reserve_Capacity_Rule.</rdfs:comment>
+        <rdfs:label>大学课程检索本体</rdfs:label>
+        <rdfs:comment>用于 NAU 课程检索数据智能体的本体。保留内部 RDF 标识符以维持图连接；实体显示名称使用下划线，关系标签使用自然语言。模型区分 Course 与 Course_Offering；开课项目由学科和课程编号组成，并承载先修及其他修读条件。Term 与 Session 分开建模，每学期可含多个按周计的教学时段。建筑连接校区，校区连接学院；教学班选课受 Academic_Policy 和 Reserve_Capacity_Rule 控制。</rdfs:comment>
     </owl:Ontology>
 
     <!-- ===================== -->
@@ -18,133 +18,133 @@
 
     <owl:Class rdf:about="http://example.org/ontology/nauclasssearchontology/Course">
         <rdfs:label>Course</rdfs:label>
-        <rdfs:comment>Catalog-level academic course concept grounded in course catalog data. A Course represents the stable academic idea, including title, units, career, level, and long catalog description text. Specific offerable variants, subject/catalog-number combinations, course_offer_number, and requisite logic are modeled through Course_Offering.</rdfs:comment>
+        <rdfs:comment>课程目录层面的稳定教学概念，包含标题、学分、学业类别、级别和详细课程说明。可开设的具体变体、学科与编号组合、course_offer_number 及修读条件由 Course_Offering 表达。</rdfs:comment>
         <ont:icon>🎓</ont:icon>
         <ont:color>#2F80ED</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/nauclasssearchontology/CourseOffering">
         <rdfs:label>Course_Offering</rdfs:label>
-        <rdfs:comment>Offerable course concept grounded in the PeopleSoft course_id + course_offer_number pattern. A Course_Offering is made up of a Subject and catalog_number, belongs to a parent Course, can be scheduled as Class_Sections, and is the correct place to attach prerequisite, co-requisite, placement, equivalency, and recommended preparation rules.</rdfs:comment>
+        <rdfs:comment>基于 PeopleSoft course_id + course_offer_number 的开课项目，由 Subject 与 catalog_number 组成，隶属于 Course，可安排为 Class_Section，并承载先修、同修、分级、等效及建议准备规则。</rdfs:comment>
         <ont:icon>🧾</ont:icon>
         <ont:color>#6C63FF</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/nauclasssearchontology/Subject">
         <rdfs:label>Subject</rdfs:label>
-        <rdfs:comment>Academic subject code such as CS, BIO, MATH, PSY, or EE. A Subject is mapped to an Academic_Organization and College so class search can reason from subject area to academic ownership.</rdfs:comment>
+        <rdfs:comment>CS、BIO、MATH、PSY、EE 等学科代码。学科映射到教学组织及学院，以支持学科归属推理。</rdfs:comment>
         <ont:icon>🔤</ont:icon>
         <ont:color>#1ABC9C</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/nauclasssearchontology/College">
         <rdfs:label>College</rdfs:label>
-        <rdfs:comment>College-level academic grouping. A College can contain multiple Academic_Organizations and can own or be associated with Subjects.</rdfs:comment>
+        <rdfs:comment>学院级教学分组，可包含多个教学组织，并拥有或关联多个学科。</rdfs:comment>
         <ont:icon>🏫</ont:icon>
         <ont:color>#F2A541</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/nauclasssearchontology/ClassSection">
         <rdfs:label>Class_Section</rdfs:label>
-        <rdfs:comment>Scheduled class section grounded in class scheduling data. A Class_Section is the student-facing scheduled instance of a Course_Offering in a specific Session, with enrollment, capacity, status, delivery mode, class number, multiple Meeting_Patterns, instructors, Reserve_Capacity_Rules, and Academic_Policy controls for add, drop, and waitlist timing.</rdfs:comment>
+        <rdfs:comment>学生可选的教学班：某个 Course_Offering 在特定 Session 中的排课实例。记录选课人数、容量、状态、授课模式、班号、多项上课安排、教师、预留名额及加课、退课、候补政策。</rdfs:comment>
         <ont:icon>🗓️</ont:icon>
         <ont:color>#00A6ED</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/nauclasssearchontology/Term">
         <rdfs:label>Term</rdfs:label>
-        <rdfs:comment>Academic term such as Fall, Spring, or Summer. A Term is measured in number of weeks and can contain multiple Sessions. For example, a Summer Term may be 12 weeks while it contains multiple 5-week summer sessions.</rdfs:comment>
+        <rdfs:comment>秋季、春季或夏季学期，长度按周计算，可包含多个 Session。例如 12 周夏季学期中可安排多个 5 周教学时段。</rdfs:comment>
         <ont:icon>📅</ont:icon>
         <ont:color>#00B894</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/nauclasssearchontology/Session">
         <rdfs:label>Session</rdfs:label>
-        <rdfs:comment>Session within a Term, such as a 12-week summer session, 5-week summer session 1, 5-week summer session 2, or 5-week summer session 3. Each Session is measured in number of weeks and can contain multiple Class_Sections.</rdfs:comment>
+        <rdfs:comment>学期内的教学时段，例如 12 周暑期班或第一、二、三个 5 周暑期班。每个时段按周计，可包含多个教学班。</rdfs:comment>
         <ont:icon>⏱️</ont:icon>
         <ont:color>#20C997</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/nauclasssearchontology/EnrollmentDateRule">
         <rdfs:label>Academic_Policy</rdfs:label>
-        <rdfs:comment>Academic policy governing Class_Section enrollment timing and rules, including open enrollment, add/drop periods, waitlist policy, withdrawal deadlines, and related session or section-specific controls.</rdfs:comment>
+        <rdfs:comment>管理教学班选课时间与规则的教务政策，包括开放选课、加退课窗口、候补规则、退学截止日期及特定时段或班级限制。</rdfs:comment>
         <ont:icon>🚦</ont:icon>
         <ont:color>#FF8C42</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/nauclasssearchontology/ProfessorInstructor">
         <rdfs:label>Instructor</rdfs:label>
-        <rdfs:comment>Professor or instructor assigned to teach a Class_Section. Uses EMPLID or another person identifier as the stable natural key and instructor_name as the display value.</rdfs:comment>
+        <rdfs:comment>负责教学班的教授或教师。以 EMPLID 或其他人员标识符作为稳定自然键，instructor_name 作为显示名称。</rdfs:comment>
         <ont:icon>👩‍🏫</ont:icon>
         <ont:color>#9B51E0</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/nauclasssearchontology/AcademicOrganization">
         <rdfs:label>Academic_Organization</rdfs:label>
-        <rdfs:comment>Academic owner such as college, division, department, school, or academic organization. Supports questions by organization, subject ownership, class ownership, and program ownership.</rdfs:comment>
+        <rdfs:comment>学院、学部、系、学校等教学归属组织，支持按组织、学科归属、课程归属和专业归属查询。</rdfs:comment>
         <ont:icon>🏛️</ont:icon>
         <ont:color>#F2994A</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/nauclasssearchontology/MeetingPattern">
         <rdfs:label>Meeting_Pattern</rdfs:label>
-        <rdfs:comment>Meeting days, meeting times, and location pattern for a Class_Section. A Class_Section can have multiple Meeting_Patterns for lecture, lab, fieldwork, or other components.</rdfs:comment>
+        <rdfs:comment>教学班的上课日期、时间和地点安排；同一班级可有讲授、实验、实习等多项安排。</rdfs:comment>
         <ont:icon>🕒</ont:icon>
         <ont:color>#27AE60</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/nauclasssearchontology/FacilityRoom">
         <rdfs:label>Room</rdfs:label>
-        <rdfs:comment>Physical room or facility where a Meeting_Pattern occurs. A Facility_Room is located in a Building.</rdfs:comment>
+        <rdfs:comment>上课安排所使用的实体教室或设施，位于某栋建筑中。</rdfs:comment>
         <ont:icon>🚪</ont:icon>
         <ont:color>#56CCF2</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/nauclasssearchontology/Building">
         <rdfs:label>Building</rdfs:label>
-        <rdfs:comment>Campus building that contains one or more Facility_Rooms. A Building is located on a Campus.</rdfs:comment>
+        <rdfs:comment>包含一个或多个教室、位于某校区的校园建筑。</rdfs:comment>
         <ont:icon>🏢</ont:icon>
         <ont:color>#828282</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/nauclasssearchontology/Campus">
         <rdfs:label>Campus</rdfs:label>
-        <rdfs:comment>Campus or location context for Buildings and Class_Sections, such as the Flagstaff Mountain Campus. A Campus belongs to a College in this ontology design.</rdfs:comment>
+        <rdfs:comment>建筑和教学班所属的校区或地点，如 Flagstaff Mountain Campus。本模型中校区隶属于学院。</rdfs:comment>
         <ont:icon>🌲</ont:icon>
         <ont:color>#145A32</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/nauclasssearchontology/ReserveCapacityRule">
         <rdfs:label>Reserve_Capacity_Rule</rdfs:label>
-        <rdfs:comment>Reserve capacity rule that allows eligible student populations to enroll in a Class_Section. A Class_Section can have multiple Reserve_Capacity_Rules with reserved seats, eligible populations, consent requirements, and enrollment counts.</rdfs:comment>
+        <rdfs:comment>允许符合条件的学生群体选课的预留名额规则。一个教学班可有多条规则，记录预留座位、适用人群、审批要求和选课人数。</rdfs:comment>
         <ont:icon>🔐</ont:icon>
         <ont:color>#EB5757</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/nauclasssearchontology/ClassAttribute">
         <rdfs:label>Class_Attribute</rdfs:label>
-        <rdfs:comment>Attribute attached to a Class_Section or Course_Offering, such as Liberal Studies, CCAT, component, lecture, lab, fieldwork, or other designations.</rdfs:comment>
+        <rdfs:comment>附于教学班或开课项目的属性，如通识教育、CCAT、教学组成、讲授、实验、实习等分类。</rdfs:comment>
         <ont:icon>🏷️</ont:icon>
         <ont:color>#F2C94C</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/nauclasssearchontology/RequisiteRule">
         <rdfs:label>Requisite_Rule</rdfs:label>
-        <rdfs:comment>Prerequisite, co-requisite, equivalency, placement, or recommended preparation rule. Requisite_Rules attach to Course_Offerings and point to prerequisite Course_Offerings, which avoids a direct Course-to-Course loop.</rdfs:comment>
+        <rdfs:comment>先修、同修、等效、分级或建议准备规则。规则关联目标开课项目，并指向先修开课项目，避免直接形成 Course 到 Course 的循环。</rdfs:comment>
         <ont:icon>🔗</ont:icon>
         <ont:color>#BB6BD9</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/nauclasssearchontology/AcademicProgram">
         <rdfs:label>Academic_Program</rdfs:label>
-        <rdfs:comment>Degree, plan, certificate, or academic program that contains Academic_Requirements and may require Courses or Course_Offerings.</rdfs:comment>
+        <rdfs:comment>包含教学要求的学位、培养方案、证书或专业，可能要求修读 Course 或 Course_Offering。</rdfs:comment>
         <ont:icon>🎯</ont:icon>
         <ont:color>#219653</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/nauclasssearchontology/AcademicRequirement">
         <rdfs:label>Academic_Requirement</rdfs:label>
-        <rdfs:comment>Requirement inside an Academic_Program, such as capstone, lab science, Liberal Studies, major requirement, or prerequisite-ready pathway. Requirements may be satisfied by Courses or Course_Offerings.</rdfs:comment>
+        <rdfs:comment>培养方案中的要求，如毕业综合实践、实验科学、通识教育、专业必修或先修路径，可由课程或开课项目满足。</rdfs:comment>
         <ont:icon>✅</ont:icon>
         <ont:color>#2D9CDB</ont:color>
     </owl:Class>
@@ -157,7 +157,7 @@
         <rdfs:label>course_id</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/Course"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
-        <rdfs:comment>PeopleSoft COURSE_ID or durable course identifier.</rdfs:comment>
+        <rdfs:comment>PeopleSoft COURSE_ID 或长期稳定的课程标识符。</rdfs:comment>
         <ont:isIdentifier rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</ont:isIdentifier>
         <ont:propertyType>integer</ont:propertyType>
     </owl:DatatypeProperty>
@@ -166,7 +166,7 @@
         <rdfs:label>course_title</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/Course"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Course title.</rdfs:comment>
+        <rdfs:comment>课程名称。</rdfs:comment>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -174,7 +174,7 @@
         <rdfs:label>course_description</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/Course"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Long catalog description text used for text-based AI search and retrieval.</rdfs:comment>
+        <rdfs:comment>用于 AI 文本检索的课程目录详细说明。</rdfs:comment>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -182,7 +182,7 @@
         <rdfs:label>academic_career</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/Course"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Academic career such as UGRD or GRAD.</rdfs:comment>
+        <rdfs:comment>学业类别，例如 UGRD 或 GRAD。</rdfs:comment>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -190,7 +190,7 @@
         <rdfs:label>academic_level</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/Course"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Academic level such as undergraduate or graduate.</rdfs:comment>
+        <rdfs:comment>教学层次，例如本科或研究生。</rdfs:comment>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -198,7 +198,7 @@
         <rdfs:label>units</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/Course"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
-        <rdfs:comment>Credit hours or course units.</rdfs:comment>
+        <rdfs:comment>学分或课程单位数。</rdfs:comment>
         <ont:propertyType>decimal</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -206,7 +206,7 @@
         <rdfs:label>course_offering_key</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/CourseOffering"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Business identifier for a Course_Offering, normally course_id + course_offer_number.</rdfs:comment>
+        <rdfs:comment>开课项目业务标识符，通常由 course_id + course_offer_number 组成。</rdfs:comment>
         <ont:isIdentifier rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</ont:isIdentifier>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
@@ -215,7 +215,7 @@
         <rdfs:label>course_id</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/CourseOffering"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
-        <rdfs:comment>PeopleSoft COURSE_ID inherited from the parent Course.</rdfs:comment>
+        <rdfs:comment>从父级课程继承的 PeopleSoft COURSE_ID。</rdfs:comment>
         <ont:isIdentifier rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</ont:isIdentifier>
         <ont:propertyType>integer</ont:propertyType>
     </owl:DatatypeProperty>
@@ -224,7 +224,7 @@
         <rdfs:label>course_offer_number</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/CourseOffering"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
-        <rdfs:comment>PeopleSoft COURSE_OFFER_NUMBER. This belongs to Course_Offering, not the generic Course concept.</rdfs:comment>
+        <rdfs:comment>PeopleSoft COURSE_OFFER_NUMBER，属于 Course_Offering，而不是通用 Course 概念。</rdfs:comment>
         <ont:isIdentifier rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</ont:isIdentifier>
         <ont:propertyType>integer</ont:propertyType>
     </owl:DatatypeProperty>
@@ -233,7 +233,7 @@
         <rdfs:label>subject_code</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/CourseOffering"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Subject code that forms the first part of the class offering, such as CS, BIO, MATH, PSY, or EE.</rdfs:comment>
+        <rdfs:comment>开课代码第一部分的学科代码，例如 CS、BIO、MATH、PSY、EE。</rdfs:comment>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -241,7 +241,7 @@
         <rdfs:label>catalog_number</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/CourseOffering"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Catalog number that forms the second part of the class offering, such as 101, 238, or 310.</rdfs:comment>
+        <rdfs:comment>开课代码第二部分的目录编号，例如 101、238、310。</rdfs:comment>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -249,7 +249,7 @@
         <rdfs:label>course_code</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/CourseOffering"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Combined subject + catalog number display code such as CS 310 or MATH 238.</rdfs:comment>
+        <rdfs:comment>学科与目录编号组合的显示代码，例如 CS 310、MATH 238。</rdfs:comment>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -257,7 +257,7 @@
         <rdfs:label>offering_status</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/CourseOffering"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Whether the Course_Offering is active, inactive, or otherwise available to schedule.</rdfs:comment>
+        <rdfs:comment>开课项目是否启用、停用或可安排教学班。</rdfs:comment>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -265,7 +265,7 @@
         <rdfs:label>subject_code</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/Subject"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Subject code, such as CS, BIO, MATH, PSY, or EE.</rdfs:comment>
+        <rdfs:comment>学科代码，例如 CS、BIO、MATH、PSY、EE。</rdfs:comment>
         <ont:isIdentifier rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</ont:isIdentifier>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
@@ -274,7 +274,7 @@
         <rdfs:label>subject_description</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/Subject"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Full subject description.</rdfs:comment>
+        <rdfs:comment>完整学科说明。</rdfs:comment>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -282,7 +282,7 @@
         <rdfs:label>college_code</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/College"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>College code or identifier.</rdfs:comment>
+        <rdfs:comment>学院代码或标识符。</rdfs:comment>
         <ont:isIdentifier rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</ont:isIdentifier>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
@@ -291,7 +291,7 @@
         <rdfs:label>college_name</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/College"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>College name.</rdfs:comment>
+        <rdfs:comment>学院名称。</rdfs:comment>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -299,7 +299,7 @@
         <rdfs:label>class_section_sk</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/ClassSection"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Surrogate key for the Class_Section.</rdfs:comment>
+        <rdfs:comment>教学班代理键。</rdfs:comment>
         <ont:isIdentifier rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</ont:isIdentifier>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
@@ -308,7 +308,7 @@
         <rdfs:label>class_section_business_key</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/ClassSection"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Composite business key for a section, generally course_id + course_offer_number + term_id + session_id + class_section_id.</rdfs:comment>
+        <rdfs:comment>教学班复合业务键，通常为 course_id + course_offer_number + term_id + session_id + class_section_id。</rdfs:comment>
         <ont:isIdentifier rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</ont:isIdentifier>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
@@ -317,7 +317,7 @@
         <rdfs:label>term_id</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/ClassSection"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Term code for the Class_Section.</rdfs:comment>
+        <rdfs:comment>教学班学期代码。</rdfs:comment>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -325,7 +325,7 @@
         <rdfs:label>session_id</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/ClassSection"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Session code for the Class_Section.</rdfs:comment>
+        <rdfs:comment>教学班时段代码。</rdfs:comment>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -333,7 +333,7 @@
         <rdfs:label>class_section_id</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/ClassSection"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>PeopleSoft CLASS_SECTION or section identifier.</rdfs:comment>
+        <rdfs:comment>PeopleSoft CLASS_SECTION 或教学班标识符。</rdfs:comment>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -341,7 +341,7 @@
         <rdfs:label>class_number</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/ClassSection"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
-        <rdfs:comment>Student-facing class number.</rdfs:comment>
+        <rdfs:comment>面向学生显示的班号。</rdfs:comment>
         <ont:propertyType>integer</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -349,7 +349,7 @@
         <rdfs:label>delivery_mode</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/ClassSection"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Delivery mode such as in-person, online, hybrid, or blended.</rdfs:comment>
+        <rdfs:comment>授课模式，例如面授、在线或混合授课。</rdfs:comment>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -357,7 +357,7 @@
         <rdfs:label>enrollment_status</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/ClassSection"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Enrollment status such as open, closed, cancelled, waitlist, or tentatively scheduled.</rdfs:comment>
+        <rdfs:comment>选课状态，例如开放、关闭、取消、候补或暂定排课。</rdfs:comment>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -365,7 +365,7 @@
         <rdfs:label>enrollment_capacity</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/ClassSection"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
-        <rdfs:comment>Maximum enrollment capacity.</rdfs:comment>
+        <rdfs:comment>最大学生容量。</rdfs:comment>
         <ont:propertyType>integer</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -373,7 +373,7 @@
         <rdfs:label>students_enrolled</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/ClassSection"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
-        <rdfs:comment>Current number of enrolled students.</rdfs:comment>
+        <rdfs:comment>当前已选课学生数。</rdfs:comment>
         <ont:propertyType>integer</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -381,7 +381,7 @@
         <rdfs:label>open_seats</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/ClassSection"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
-        <rdfs:comment>Calculated seats available for enrollment.</rdfs:comment>
+        <rdfs:comment>计算得到的剩余可选名额。</rdfs:comment>
         <ont:propertyType>integer</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -389,7 +389,7 @@
         <rdfs:label>waitlist_capacity</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/ClassSection"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
-        <rdfs:comment>Maximum waitlist capacity.</rdfs:comment>
+        <rdfs:comment>最大候补人数。</rdfs:comment>
         <ont:propertyType>integer</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -397,7 +397,7 @@
         <rdfs:label>students_on_waitlist</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/ClassSection"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
-        <rdfs:comment>Current number of students on the waitlist.</rdfs:comment>
+        <rdfs:comment>当前候补学生数。</rdfs:comment>
         <ont:propertyType>integer</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -405,7 +405,7 @@
         <rdfs:label>class_start_date</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/ClassSection"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
-        <rdfs:comment>Class_Section start date.</rdfs:comment>
+        <rdfs:comment>教学班开始日期。</rdfs:comment>
         <ont:propertyType>date</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -413,7 +413,7 @@
         <rdfs:label>class_end_date</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/ClassSection"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
-        <rdfs:comment>Class_Section end date.</rdfs:comment>
+        <rdfs:comment>教学班结束日期。</rdfs:comment>
         <ont:propertyType>date</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -421,7 +421,7 @@
         <rdfs:label>class_length_in_weeks</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/ClassSection"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
-        <rdfs:comment>Length of the Class_Section in weeks when calculated or available.</rdfs:comment>
+        <rdfs:comment>可获取或计算的教学班周数。</rdfs:comment>
         <ont:propertyType>decimal</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -429,7 +429,7 @@
         <rdfs:label>dynamically_dated</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/ClassSection"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
-        <rdfs:comment>Whether the Class_Section uses dynamically dated add, drop, or enrollment dates.</rdfs:comment>
+        <rdfs:comment>教学班是否使用动态加课、退课或选课日期。</rdfs:comment>
         <ont:propertyType>boolean</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -437,7 +437,7 @@
         <rdfs:label>term_id</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/Term"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Term code such as 1257 or 1264.</rdfs:comment>
+        <rdfs:comment>学期代码，例如 1257 或 1264。</rdfs:comment>
         <ont:isIdentifier rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</ont:isIdentifier>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
@@ -446,7 +446,7 @@
         <rdfs:label>term_description</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/Term"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Term description such as Fall 2026, Spring 2027, or Summer 2027.</rdfs:comment>
+        <rdfs:comment>学期说明，例如 2026 年秋季、2027 年春季或夏季。</rdfs:comment>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -454,7 +454,7 @@
         <rdfs:label>term_begin_date</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/Term"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
-        <rdfs:comment>Term begin date.</rdfs:comment>
+        <rdfs:comment>学期开始日期。</rdfs:comment>
         <ont:propertyType>date</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -462,7 +462,7 @@
         <rdfs:label>term_end_date</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/Term"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
-        <rdfs:comment>Term end date.</rdfs:comment>
+        <rdfs:comment>学期结束日期。</rdfs:comment>
         <ont:propertyType>date</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -470,7 +470,7 @@
         <rdfs:label>term_length_in_weeks</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/Term"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
-        <rdfs:comment>Length of the Term in weeks. Example: a Summer Term may be 12 weeks.</rdfs:comment>
+        <rdfs:comment>学期周数，例如夏季学期可能为 12 周。</rdfs:comment>
         <ont:propertyType>decimal</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -478,7 +478,7 @@
         <rdfs:label>session_key</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/Session"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Unique Session key, normally term_id + session_id.</rdfs:comment>
+        <rdfs:comment>教学时段唯一键，通常为 term_id + session_id。</rdfs:comment>
         <ont:isIdentifier rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</ont:isIdentifier>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
@@ -487,7 +487,7 @@
         <rdfs:label>session_id</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/Session"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Session code such as 12W, 5W1, 5W2, 5W3, M16, N5A, N5B, N10, N12, or dynamically dated session code.</rdfs:comment>
+        <rdfs:comment>教学时段代码，例如 12W、5W1、5W2、5W3、M16、N5A、N5B、N10、N12 或动态日期时段代码。</rdfs:comment>
         <ont:isIdentifier rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</ont:isIdentifier>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
@@ -496,7 +496,7 @@
         <rdfs:label>session_description</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/Session"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Session description such as Summer 5-week Session 1.</rdfs:comment>
+        <rdfs:comment>教学时段说明，例如第一期 5 周暑期班。</rdfs:comment>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -504,7 +504,7 @@
         <rdfs:label>session_begin_date</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/Session"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
-        <rdfs:comment>Session begin date.</rdfs:comment>
+        <rdfs:comment>教学时段开始日期。</rdfs:comment>
         <ont:propertyType>date</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -512,7 +512,7 @@
         <rdfs:label>session_end_date</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/Session"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
-        <rdfs:comment>Session end date.</rdfs:comment>
+        <rdfs:comment>教学时段结束日期。</rdfs:comment>
         <ont:propertyType>date</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -520,7 +520,7 @@
         <rdfs:label>session_length_in_weeks</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/Session"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
-        <rdfs:comment>Length of the Session in weeks. Example: Summer sessions may be 5 weeks within a 12-week Summer Term.</rdfs:comment>
+        <rdfs:comment>教学时段周数，例如 12 周夏季学期内的 5 周教学时段。</rdfs:comment>
         <ont:propertyType>decimal</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -528,7 +528,7 @@
         <rdfs:label>academic_policy_id</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/EnrollmentDateRule"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Identifier for an enrollment date control rule.</rdfs:comment>
+        <rdfs:comment>选课日期控制规则标识符。</rdfs:comment>
         <ont:isIdentifier rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</ont:isIdentifier>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
@@ -537,7 +537,7 @@
         <rdfs:label>open_enrollment_start_date</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/EnrollmentDateRule"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
-        <rdfs:comment>Date when enrollment opens.</rdfs:comment>
+        <rdfs:comment>选课开放日期。</rdfs:comment>
         <ont:propertyType>date</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -545,7 +545,7 @@
         <rdfs:label>open_enrollment_end_date</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/EnrollmentDateRule"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
-        <rdfs:comment>Date when open enrollment closes or changes.</rdfs:comment>
+        <rdfs:comment>公开选课关闭或变更日期。</rdfs:comment>
         <ont:propertyType>date</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -553,7 +553,7 @@
         <rdfs:label>add_start_date</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/EnrollmentDateRule"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
-        <rdfs:comment>Date when students may begin adding a Class_Section.</rdfs:comment>
+        <rdfs:comment>允许学生开始加课的日期。</rdfs:comment>
         <ont:propertyType>date</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -561,7 +561,7 @@
         <rdfs:label>add_end_date</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/EnrollmentDateRule"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
-        <rdfs:comment>Last date to add a Class_Section.</rdfs:comment>
+        <rdfs:comment>加课截止日期。</rdfs:comment>
         <ont:propertyType>date</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -569,7 +569,7 @@
         <rdfs:label>drop_start_date</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/EnrollmentDateRule"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
-        <rdfs:comment>Date when students may begin dropping a Class_Section.</rdfs:comment>
+        <rdfs:comment>允许学生开始退课的日期。</rdfs:comment>
         <ont:propertyType>date</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -577,7 +577,7 @@
         <rdfs:label>drop_end_date</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/EnrollmentDateRule"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
-        <rdfs:comment>Last date to drop a Class_Section without the relevant penalty.</rdfs:comment>
+        <rdfs:comment>免于相应处罚的退课截止日期。</rdfs:comment>
         <ont:propertyType>date</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -585,7 +585,7 @@
         <rdfs:label>withdrawal_deadline</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/EnrollmentDateRule"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
-        <rdfs:comment>Withdrawal deadline when available.</rdfs:comment>
+        <rdfs:comment>可用时记录的退出截止日期。</rdfs:comment>
         <ont:propertyType>date</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -593,7 +593,7 @@
         <rdfs:label>policy_source</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/EnrollmentDateRule"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Whether the date rule is derived from term, session, class section, dynamic dating, or another registrar rule source.</rdfs:comment>
+        <rdfs:comment>日期规则的来源：学期、教学时段、教学班、动态日期或其他教务规则。</rdfs:comment>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -601,7 +601,7 @@
         <rdfs:label>instructor_sk</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/ProfessorInstructor"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Surrogate key for the instructor.</rdfs:comment>
+        <rdfs:comment>教师代理键。</rdfs:comment>
         <ont:isIdentifier rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</ont:isIdentifier>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
@@ -610,7 +610,7 @@
         <rdfs:label>emplid</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/ProfessorInstructor"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Employee or person identifier for the instructor.</rdfs:comment>
+        <rdfs:comment>教师员工号或人员标识符。</rdfs:comment>
         <ont:isIdentifier rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</ont:isIdentifier>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
@@ -619,7 +619,7 @@
         <rdfs:label>instructor_name</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/ProfessorInstructor"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Instructor display name.</rdfs:comment>
+        <rdfs:comment>教师显示姓名。</rdfs:comment>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -627,7 +627,7 @@
         <rdfs:label>instructor_role</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/ProfessorInstructor"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Instructor role such as primary instructor, secondary instructor, or teaching assistant.</rdfs:comment>
+        <rdfs:comment>教师角色，例如主讲、辅讲或助教。</rdfs:comment>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -635,7 +635,7 @@
         <rdfs:label>academic_org_sk</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/AcademicOrganization"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Surrogate or business key for the academic organization.</rdfs:comment>
+        <rdfs:comment>教学组织代理键或业务键。</rdfs:comment>
         <ont:isIdentifier rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</ont:isIdentifier>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
@@ -644,7 +644,7 @@
         <rdfs:label>academic_owner_id</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/AcademicOrganization"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Academic owner identifier when available.</rdfs:comment>
+        <rdfs:comment>可获取时记录的教学归属标识符。</rdfs:comment>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -652,7 +652,7 @@
         <rdfs:label>academic_org_name</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/AcademicOrganization"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Academic organization name.</rdfs:comment>
+        <rdfs:comment>教学组织名称。</rdfs:comment>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -660,7 +660,7 @@
         <rdfs:label>organization_type</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/AcademicOrganization"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Organization type such as college, division, department, school, or program-owning unit.</rdfs:comment>
+        <rdfs:comment>组织类型，例如学院、学部、系、学校或专业管理单位。</rdfs:comment>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -668,7 +668,7 @@
         <rdfs:label>department</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/AcademicOrganization"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Department name when applicable.</rdfs:comment>
+        <rdfs:comment>适用时记录的系名称。</rdfs:comment>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -676,7 +676,7 @@
         <rdfs:label>division</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/AcademicOrganization"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Division name when applicable.</rdfs:comment>
+        <rdfs:comment>适用时记录的学部名称。</rdfs:comment>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -684,7 +684,7 @@
         <rdfs:label>meeting_pattern_sk</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/MeetingPattern"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Surrogate key for the Meeting_Pattern.</rdfs:comment>
+        <rdfs:comment>上课安排代理键。</rdfs:comment>
         <ont:isIdentifier rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</ont:isIdentifier>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
@@ -693,7 +693,7 @@
         <rdfs:label>meeting_pattern_number</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/MeetingPattern"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
-        <rdfs:comment>Meeting pattern number or sequence.</rdfs:comment>
+        <rdfs:comment>上课安排编号或顺序。</rdfs:comment>
         <ont:propertyType>integer</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -701,7 +701,7 @@
         <rdfs:label>meeting_days</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/MeetingPattern"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Meeting days such as MWF, TuTh, or Online.</rdfs:comment>
+        <rdfs:comment>上课日，例如 MWF、TuTh 或 Online。</rdfs:comment>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -709,7 +709,7 @@
         <rdfs:label>meeting_start_time</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/MeetingPattern"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Meeting start time.</rdfs:comment>
+        <rdfs:comment>上课开始时间。</rdfs:comment>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -717,7 +717,7 @@
         <rdfs:label>meeting_end_time</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/MeetingPattern"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Meeting end time.</rdfs:comment>
+        <rdfs:comment>上课结束时间。</rdfs:comment>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -725,7 +725,7 @@
         <rdfs:label>facility_id</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/FacilityRoom"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Facility or room identifier.</rdfs:comment>
+        <rdfs:comment>设施或教室标识符。</rdfs:comment>
         <ont:isIdentifier rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</ont:isIdentifier>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
@@ -734,7 +734,7 @@
         <rdfs:label>room_number</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/FacilityRoom"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Room number.</rdfs:comment>
+        <rdfs:comment>教室编号。</rdfs:comment>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -742,7 +742,7 @@
         <rdfs:label>room_description</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/FacilityRoom"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Room description or display name.</rdfs:comment>
+        <rdfs:comment>教室说明或显示名称。</rdfs:comment>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -750,7 +750,7 @@
         <rdfs:label>building_id</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/Building"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Building identifier.</rdfs:comment>
+        <rdfs:comment>建筑标识符。</rdfs:comment>
         <ont:isIdentifier rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</ont:isIdentifier>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
@@ -759,7 +759,7 @@
         <rdfs:label>building_name</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/Building"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Building name.</rdfs:comment>
+        <rdfs:comment>建筑名称。</rdfs:comment>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -767,7 +767,7 @@
         <rdfs:label>campus_code</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/Campus"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Campus or location code.</rdfs:comment>
+        <rdfs:comment>校区或地点代码。</rdfs:comment>
         <ont:isIdentifier rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</ont:isIdentifier>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
@@ -776,7 +776,7 @@
         <rdfs:label>campus_name</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/Campus"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Campus name.</rdfs:comment>
+        <rdfs:comment>校区名称。</rdfs:comment>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -784,7 +784,7 @@
         <rdfs:label>reserve_sk</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/ReserveCapacityRule"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Surrogate key for the reserve capacity rule.</rdfs:comment>
+        <rdfs:comment>预留名额规则代理键。</rdfs:comment>
         <ont:isIdentifier rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</ont:isIdentifier>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
@@ -793,7 +793,7 @@
         <rdfs:label>reserve_capacity_id</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/ReserveCapacityRule"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Reserve capacity rule identifier.</rdfs:comment>
+        <rdfs:comment>预留名额规则标识符。</rdfs:comment>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -801,7 +801,7 @@
         <rdfs:label>reserve_start_date</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/ReserveCapacityRule"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
-        <rdfs:comment>Date when the reserve capacity rule begins.</rdfs:comment>
+        <rdfs:comment>预留名额规则生效日期。</rdfs:comment>
         <ont:propertyType>date</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -809,7 +809,7 @@
         <rdfs:label>reserve_group_description</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/ReserveCapacityRule"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Description of the student group eligible for the reserved seats.</rdfs:comment>
+        <rdfs:comment>符合预留名额资格的学生群体说明。</rdfs:comment>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -817,7 +817,7 @@
         <rdfs:label>eligible_population</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/ReserveCapacityRule"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Population allowed to enroll through this reserve rule, such as plan, campus, cohort, career, or student group.</rdfs:comment>
+        <rdfs:comment>允许通过该规则选课的人群，例如按培养方案、校区、年级、学业类别或学生群体划分。</rdfs:comment>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -825,7 +825,7 @@
         <rdfs:label>enrollment_consent</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/ReserveCapacityRule"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Enrollment consent requirement if the reserve rule requires permission.</rdfs:comment>
+        <rdfs:comment>预留规则要求许可时的选课审批条件。</rdfs:comment>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -833,7 +833,7 @@
         <rdfs:label>reserve_capacity</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/ReserveCapacityRule"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
-        <rdfs:comment>Number of seats reserved for the eligible population.</rdfs:comment>
+        <rdfs:comment>为适用群体预留的座位数。</rdfs:comment>
         <ont:propertyType>integer</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -841,7 +841,7 @@
         <rdfs:label>reserve_enrolled</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/ReserveCapacityRule"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
-        <rdfs:comment>Number of students enrolled against the reserve capacity.</rdfs:comment>
+        <rdfs:comment>通过预留名额选课的学生数。</rdfs:comment>
         <ont:propertyType>integer</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -849,7 +849,7 @@
         <rdfs:label>reserve_open_seats</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/ReserveCapacityRule"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
-        <rdfs:comment>Available seats under the reserve capacity rule.</rdfs:comment>
+        <rdfs:comment>预留规则下的剩余名额。</rdfs:comment>
         <ont:propertyType>integer</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -857,7 +857,7 @@
         <rdfs:label>attribute_sk</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/ClassAttribute"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Surrogate key for the Class_Attribute.</rdfs:comment>
+        <rdfs:comment>教学班属性代理键。</rdfs:comment>
         <ont:isIdentifier rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</ont:isIdentifier>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
@@ -866,7 +866,7 @@
         <rdfs:label>attribute_id</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/ClassAttribute"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Attribute code.</rdfs:comment>
+        <rdfs:comment>属性代码。</rdfs:comment>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -874,7 +874,7 @@
         <rdfs:label>attribute_value_id</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/ClassAttribute"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Attribute value code.</rdfs:comment>
+        <rdfs:comment>属性值代码。</rdfs:comment>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -882,7 +882,7 @@
         <rdfs:label>attribute_description</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/ClassAttribute"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Attribute description.</rdfs:comment>
+        <rdfs:comment>属性说明。</rdfs:comment>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -890,7 +890,7 @@
         <rdfs:label>value_description</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/ClassAttribute"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Attribute value description.</rdfs:comment>
+        <rdfs:comment>属性值说明。</rdfs:comment>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -898,7 +898,7 @@
         <rdfs:label>requisite_rule_id</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/RequisiteRule"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Identifier for the prerequisite, co-requisite, equivalency, placement, or recommended preparation rule.</rdfs:comment>
+        <rdfs:comment>先修、同修、等效、分级或建议准备规则标识符。</rdfs:comment>
         <ont:isIdentifier rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</ont:isIdentifier>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
@@ -907,7 +907,7 @@
         <rdfs:label>requisite_type</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/RequisiteRule"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Type such as prerequisite, co-requisite, equivalency, placement, or recommended preparation.</rdfs:comment>
+        <rdfs:comment>规则类型，例如先修、同修、等效、分级或建议准备。</rdfs:comment>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -915,7 +915,7 @@
         <rdfs:label>rule_text</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/RequisiteRule"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Human-readable requisite text.</rdfs:comment>
+        <rdfs:comment>供人阅读的修读条件说明。</rdfs:comment>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -923,7 +923,7 @@
         <rdfs:label>effective_date</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/RequisiteRule"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
-        <rdfs:comment>Effective date for the rule.</rdfs:comment>
+        <rdfs:comment>规则生效日期。</rdfs:comment>
         <ont:propertyType>date</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -931,7 +931,7 @@
         <rdfs:label>minimum_grade</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/RequisiteRule"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Minimum required grade when applicable.</rdfs:comment>
+        <rdfs:comment>适用时要求的最低成绩。</rdfs:comment>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -939,7 +939,7 @@
         <rdfs:label>logical_operator</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/RequisiteRule"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Logical operator such as AND, OR, concurrent, minimum score, or minimum grade grouping.</rdfs:comment>
+        <rdfs:comment>逻辑运算符或分组，例如 AND、OR、同时修读、最低分数或最低成绩。</rdfs:comment>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -947,7 +947,7 @@
         <rdfs:label>program_code</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/AcademicProgram"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Academic program or plan code.</rdfs:comment>
+        <rdfs:comment>专业或培养方案代码。</rdfs:comment>
         <ont:isIdentifier rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</ont:isIdentifier>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
@@ -956,7 +956,7 @@
         <rdfs:label>program_name</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/AcademicProgram"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Academic program name.</rdfs:comment>
+        <rdfs:comment>专业名称。</rdfs:comment>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -964,7 +964,7 @@
         <rdfs:label>degree</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/AcademicProgram"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Degree type or award.</rdfs:comment>
+        <rdfs:comment>学位类型或授予资格。</rdfs:comment>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -972,7 +972,7 @@
         <rdfs:label>catalog_code</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/AcademicProgram"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Catalog requirement code or catalog year when available.</rdfs:comment>
+        <rdfs:comment>可获取时记录的培养要求代码或目录年份。</rdfs:comment>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -980,7 +980,7 @@
         <rdfs:label>requirement_code</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/AcademicRequirement"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Requirement identifier.</rdfs:comment>
+        <rdfs:comment>要求标识符。</rdfs:comment>
         <ont:isIdentifier rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</ont:isIdentifier>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
@@ -989,7 +989,7 @@
         <rdfs:label>requirement_name</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/AcademicRequirement"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Requirement name.</rdfs:comment>
+        <rdfs:comment>要求名称。</rdfs:comment>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -997,7 +997,7 @@
         <rdfs:label>requirement_type</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/AcademicRequirement"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Requirement type such as capstone, lab science, Liberal Studies, prerequisite, or major requirement.</rdfs:comment>
+        <rdfs:comment>要求类型，例如毕业综合实践、实验科学、通识教育、先修或专业必修。</rdfs:comment>
         <ont:propertyType>string</ont:propertyType>
     </owl:DatatypeProperty>
 
@@ -1009,7 +1009,7 @@
         <rdfs:label>has</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/Course"/>
         <rdfs:range rdf:resource="http://example.org/ontology/nauclasssearchontology/CourseOffering"/>
-        <rdfs:comment>A catalog-level Course can have one or more Course_Offerings. This separates the stable course concept from PeopleSoft course_offer_number and offering-specific requisite rules.</rdfs:comment>
+        <rdfs:comment>目录级 Course 可有一个或多个 Course_Offering，将稳定课程概念与 PeopleSoft course_offer_number 及具体开课项目的修读规则分离。</rdfs:comment>
         <ont:cardinality>one-to-many</ont:cardinality>
         <ont:fromEntityId>course</ont:fromEntityId>
         <ont:toEntityId>courseOffering</ont:toEntityId>
@@ -1019,7 +1019,7 @@
         <rdfs:label>of</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/CourseOffering"/>
         <rdfs:range rdf:resource="http://example.org/ontology/nauclasssearchontology/Course"/>
-        <rdfs:comment>A Course_Offering belongs to one parent Course.</rdfs:comment>
+        <rdfs:comment>每个 Course_Offering 隶属于一个父级 Course。</rdfs:comment>
         <ont:cardinality>many-to-one</ont:cardinality>
         <ont:fromEntityId>courseOffering</ont:fromEntityId>
         <ont:toEntityId>course</ont:toEntityId>
@@ -1029,7 +1029,7 @@
         <rdfs:label>has</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/CourseOffering"/>
         <rdfs:range rdf:resource="http://example.org/ontology/nauclasssearchontology/Subject"/>
-        <rdfs:comment>A Course_Offering is made up of a Subject and catalog_number.</rdfs:comment>
+        <rdfs:comment>Course_Offering 由 Subject 与 catalog_number 组成。</rdfs:comment>
         <ont:cardinality>many-to-one</ont:cardinality>
         <ont:fromEntityId>courseOffering</ont:fromEntityId>
         <ont:toEntityId>subject</ont:toEntityId>
@@ -1039,7 +1039,7 @@
         <rdfs:label>owned by</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/Subject"/>
         <rdfs:range rdf:resource="http://example.org/ontology/nauclasssearchontology/AcademicOrganization"/>
-        <rdfs:comment>A Subject is mapped to the Academic_Organization that owns or administers that subject area.</rdfs:comment>
+        <rdfs:comment>Subject 映射到拥有或管理该学科的 Academic_Organization。</rdfs:comment>
         <ont:cardinality>many-to-one</ont:cardinality>
         <ont:fromEntityId>subject</ont:fromEntityId>
         <ont:toEntityId>academicOrganization</ont:toEntityId>
@@ -1049,7 +1049,7 @@
         <rdfs:label>owns</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/College"/>
         <rdfs:range rdf:resource="http://example.org/ontology/nauclasssearchontology/AcademicOrganization"/>
-        <rdfs:comment>A College can contain multiple Academic_Organizations such as divisions, schools, or departments.</rdfs:comment>
+        <rdfs:comment>College 可包含学部、学校或系等多个 Academic_Organization。</rdfs:comment>
         <ont:cardinality>one-to-many</ont:cardinality>
         <ont:fromEntityId>college</ont:fromEntityId>
         <ont:toEntityId>academicOrganization</ont:toEntityId>
@@ -1059,7 +1059,7 @@
         <rdfs:label>schedules</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/CourseOffering"/>
         <rdfs:range rdf:resource="http://example.org/ontology/nauclasssearchontology/ClassSection"/>
-        <rdfs:comment>A Course_Offering can be scheduled as many Class_Sections across Terms and Sessions.</rdfs:comment>
+        <rdfs:comment>Course_Offering 可跨学期和时段安排多个 Class_Section。</rdfs:comment>
         <ont:cardinality>one-to-many</ont:cardinality>
         <ont:fromEntityId>courseOffering</ont:fromEntityId>
         <ont:toEntityId>classSection</ont:toEntityId>
@@ -1069,7 +1069,7 @@
         <rdfs:label>of</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/ClassSection"/>
         <rdfs:range rdf:resource="http://example.org/ontology/nauclasssearchontology/CourseOffering"/>
-        <rdfs:comment>A Class_Section is the scheduled instance of one Course_Offering, joined by course_id and course_offer_number plus term, session, and section identifiers.</rdfs:comment>
+        <rdfs:comment>Class_Section 是某个 Course_Offering 的排课实例，通过课程、开课编号、学期、时段和班级标识符关联。</rdfs:comment>
         <ont:cardinality>many-to-one</ont:cardinality>
         <ont:fromEntityId>classSection</ont:fromEntityId>
         <ont:toEntityId>courseOffering</ont:toEntityId>
@@ -1079,7 +1079,7 @@
         <rdfs:label>has</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/Term"/>
         <rdfs:range rdf:resource="http://example.org/ontology/nauclasssearchontology/Session"/>
-        <rdfs:comment>A Term can have multiple Sessions, and each Session is measured in number of weeks. For example, a 12-week Summer Term may contain 5-week summer sessions 1, 2, and 3.</rdfs:comment>
+        <rdfs:comment>Term 可包含多个按周计的 Session，例如 12 周夏季学期中的第一、二、三个 5 周教学时段。</rdfs:comment>
         <ont:cardinality>one-to-many</ont:cardinality>
         <ont:fromEntityId>term</ont:fromEntityId>
         <ont:toEntityId>session</ont:toEntityId>
@@ -1089,7 +1089,7 @@
         <rdfs:label>in</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/Session"/>
         <rdfs:range rdf:resource="http://example.org/ontology/nauclasssearchontology/Term"/>
-        <rdfs:comment>A Session belongs to one Term.</rdfs:comment>
+        <rdfs:comment>Session 隶属于一个 Term。</rdfs:comment>
         <ont:cardinality>many-to-one</ont:cardinality>
         <ont:fromEntityId>session</ont:fromEntityId>
         <ont:toEntityId>term</ont:toEntityId>
@@ -1099,7 +1099,7 @@
         <rdfs:label>in</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/ClassSection"/>
         <rdfs:range rdf:resource="http://example.org/ontology/nauclasssearchontology/Session"/>
-        <rdfs:comment>A Class_Section is offered in one Session, and the Session belongs to a Term.</rdfs:comment>
+        <rdfs:comment>Class_Section 开设于一个 Session，该时段隶属于某个 Term。</rdfs:comment>
         <ont:cardinality>many-to-one</ont:cardinality>
         <ont:fromEntityId>classSection</ont:fromEntityId>
         <ont:toEntityId>session</ont:toEntityId>
@@ -1109,7 +1109,7 @@
         <rdfs:label>has</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/Session"/>
         <rdfs:range rdf:resource="http://example.org/ontology/nauclasssearchontology/ClassSection"/>
-        <rdfs:comment>A Session can include many Class_Sections.</rdfs:comment>
+        <rdfs:comment>Session 可包含多个 Class_Section。</rdfs:comment>
         <ont:cardinality>one-to-many</ont:cardinality>
         <ont:fromEntityId>session</ont:fromEntityId>
         <ont:toEntityId>classSection</ont:toEntityId>
@@ -1119,7 +1119,7 @@
         <rdfs:label>governed by</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/ClassSection"/>
         <rdfs:range rdf:resource="http://example.org/ontology/nauclasssearchontology/EnrollmentDateRule"/>
-        <rdfs:comment>A Class_Section is controlled by an Academic_Policy for open enrollment, add/drop dates, waitlist dates, and withdrawal deadlines.</rdfs:comment>
+        <rdfs:comment>Class_Section 受 Academic_Policy 控制，包括选课开放、加退课、候补和退出截止日期。</rdfs:comment>
         <ont:cardinality>one-to-many</ont:cardinality>
         <ont:fromEntityId>classSection</ont:fromEntityId>
         <ont:toEntityId>enrollmentDateRule</ont:toEntityId>
@@ -1129,7 +1129,7 @@
         <rdfs:label>taught by</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/ClassSection"/>
         <rdfs:range rdf:resource="http://example.org/ontology/nauclasssearchontology/ProfessorInstructor"/>
-        <rdfs:comment>A Class_Section is taught by a Professor_Instructor.</rdfs:comment>
+        <rdfs:comment>Class_Section 由 Professor_Instructor 授课。</rdfs:comment>
         <ont:cardinality>many-to-one</ont:cardinality>
         <ont:fromEntityId>classSection</ont:fromEntityId>
         <ont:toEntityId>professorInstructor</ont:toEntityId>
@@ -1139,7 +1139,7 @@
         <rdfs:label>teaches</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/ProfessorInstructor"/>
         <rdfs:range rdf:resource="http://example.org/ontology/nauclasssearchontology/ClassSection"/>
-        <rdfs:comment>A Professor_Instructor teaches one or more Class_Sections.</rdfs:comment>
+        <rdfs:comment>Professor_Instructor 教授一个或多个 Class_Section。</rdfs:comment>
         <ont:cardinality>one-to-many</ont:cardinality>
         <ont:fromEntityId>professorInstructor</ont:fromEntityId>
         <ont:toEntityId>classSection</ont:toEntityId>
@@ -1149,7 +1149,7 @@
         <rdfs:label>affiliated with</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/ProfessorInstructor"/>
         <rdfs:range rdf:resource="http://example.org/ontology/nauclasssearchontology/AcademicOrganization"/>
-        <rdfs:comment>A Professor_Instructor may be affiliated with an Academic_Organization.</rdfs:comment>
+        <rdfs:comment>Professor_Instructor 可隶属于 Academic_Organization。</rdfs:comment>
         <ont:cardinality>many-to-one</ont:cardinality>
         <ont:fromEntityId>professorInstructor</ont:fromEntityId>
         <ont:toEntityId>academicOrganization</ont:toEntityId>
@@ -1159,7 +1159,7 @@
         <rdfs:label>has</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/ClassSection"/>
         <rdfs:range rdf:resource="http://example.org/ontology/nauclasssearchontology/MeetingPattern"/>
-        <rdfs:comment>A Class_Section can have multiple Meeting_Patterns for lecture, lab, fieldwork, discussion, or other scheduled components.</rdfs:comment>
+        <rdfs:comment>Class_Section 可有讲授、实验、实习、讨论等多项 Meeting_Pattern。</rdfs:comment>
         <ont:cardinality>one-to-many</ont:cardinality>
         <ont:fromEntityId>classSection</ont:fromEntityId>
         <ont:toEntityId>meetingPattern</ont:toEntityId>
@@ -1169,7 +1169,7 @@
         <rdfs:label>occur in</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/MeetingPattern"/>
         <rdfs:range rdf:resource="http://example.org/ontology/nauclasssearchontology/FacilityRoom"/>
-        <rdfs:comment>A Meeting_Pattern occurs in a specific Facility_Room.</rdfs:comment>
+        <rdfs:comment>Meeting_Pattern 在指定 Facility_Room 中进行。</rdfs:comment>
         <ont:cardinality>many-to-one</ont:cardinality>
         <ont:fromEntityId>meetingPattern</ont:fromEntityId>
         <ont:toEntityId>facilityRoom</ont:toEntityId>
@@ -1179,7 +1179,7 @@
         <rdfs:label>in </rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/FacilityRoom"/>
         <rdfs:range rdf:resource="http://example.org/ontology/nauclasssearchontology/Building"/>
-        <rdfs:comment>A Facility_Room is located in a Building.</rdfs:comment>
+        <rdfs:comment>Facility_Room 位于 Building 中。</rdfs:comment>
         <ont:cardinality>many-to-one</ont:cardinality>
         <ont:fromEntityId>facilityRoom</ont:fromEntityId>
         <ont:toEntityId>building</ont:toEntityId>
@@ -1189,7 +1189,7 @@
         <rdfs:label>on </rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/Building"/>
         <rdfs:range rdf:resource="http://example.org/ontology/nauclasssearchontology/Campus"/>
-        <rdfs:comment>A Building is located on a Campus.</rdfs:comment>
+        <rdfs:comment>Building 位于 Campus 中。</rdfs:comment>
         <ont:cardinality>many-to-one</ont:cardinality>
         <ont:fromEntityId>building</ont:fromEntityId>
         <ont:toEntityId>campus</ont:toEntityId>
@@ -1199,7 +1199,7 @@
         <rdfs:label>belongs to </rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/Campus"/>
         <rdfs:range rdf:resource="http://example.org/ontology/nauclasssearchontology/College"/>
-        <rdfs:comment>A Campus belongs to a College.</rdfs:comment>
+        <rdfs:comment>Campus 隶属于 College。</rdfs:comment>
         <ont:cardinality>many-to-one</ont:cardinality>
         <ont:fromEntityId>campus</ont:fromEntityId>
         <ont:toEntityId>college</ont:toEntityId>
@@ -1209,7 +1209,7 @@
         <rdfs:label>has</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/ClassSection"/>
         <rdfs:range rdf:resource="http://example.org/ontology/nauclasssearchontology/ReserveCapacityRule"/>
-        <rdfs:comment>A Class_Section can have multiple Reserve_Capacity_Rules that allow eligible student populations to enroll in the section.</rdfs:comment>
+        <rdfs:comment>Class_Section 可有多条 Reserve_Capacity_Rule，允许符合条件的学生群体选课。</rdfs:comment>
         <ont:cardinality>one-to-many</ont:cardinality>
         <ont:fromEntityId>classSection</ont:fromEntityId>
         <ont:toEntityId>reserveCapacityRule</ont:toEntityId>
@@ -1219,7 +1219,7 @@
         <rdfs:label>applies to</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/ReserveCapacityRule"/>
         <rdfs:range rdf:resource="http://example.org/ontology/nauclasssearchontology/ClassSection"/>
-        <rdfs:comment>A Reserve_Capacity_Rule allows students in an eligible population to enroll in a Class_Section when seats are reserved for them.</rdfs:comment>
+        <rdfs:comment>Reserve_Capacity_Rule 允许符合资格的学生使用预留名额加入 Class_Section。</rdfs:comment>
         <ont:cardinality>many-to-one</ont:cardinality>
         <ont:fromEntityId>reserveCapacityRule</ont:fromEntityId>
         <ont:toEntityId>classSection</ont:toEntityId>
@@ -1229,7 +1229,7 @@
         <rdfs:label>has</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/ClassSection"/>
         <rdfs:range rdf:resource="http://example.org/ontology/nauclasssearchontology/ClassAttribute"/>
-        <rdfs:comment>A Class_Section can carry Liberal Studies, CCAT, component, modality, lecture, lab, fieldwork, or other attributes.</rdfs:comment>
+        <rdfs:comment>Class_Section 可包含通识教育、CCAT、组成、授课模式、讲授、实验、实习等属性。</rdfs:comment>
         <ont:cardinality>many-to-many</ont:cardinality>
         <ont:fromEntityId>classSection</ont:fromEntityId>
         <ont:toEntityId>classAttribute</ont:toEntityId>
@@ -1239,7 +1239,7 @@
         <rdfs:label>has</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/CourseOffering"/>
         <rdfs:range rdf:resource="http://example.org/ontology/nauclasssearchontology/RequisiteRule"/>
-        <rdfs:comment>A Course_Offering can have prerequisite, co-requisite, placement, equivalency, or recommended preparation rules that must be evaluated before a student takes a Class_Section of that offering.</rdfs:comment>
+        <rdfs:comment>Course_Offering 可有先修、同修、分级、等效或建议准备规则，学生选其教学班前需评估这些规则。</rdfs:comment>
         <ont:cardinality>one-to-many</ont:cardinality>
         <ont:fromEntityId>courseOffering</ont:fromEntityId>
         <ont:toEntityId>requisiteRule</ont:toEntityId>
@@ -1249,7 +1249,7 @@
         <rdfs:label>applies to</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/RequisiteRule"/>
         <rdfs:range rdf:resource="http://example.org/ontology/nauclasssearchontology/CourseOffering"/>
-        <rdfs:comment>The target Course_Offering the student wants to take. This is the offering whose Class_Sections are blocked or conditioned by the Requisite_Rule.</rdfs:comment>
+        <rdfs:comment>学生希望修读的目标 Course_Offering；其教学班受 Requisite_Rule 阻止或附加条件限制。</rdfs:comment>
         <ont:cardinality>many-to-one</ont:cardinality>
         <ont:fromEntityId>requisiteRule</ont:fromEntityId>
         <ont:toEntityId>courseOffering</ont:toEntityId>
@@ -1259,7 +1259,7 @@
         <rdfs:label>has</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/AcademicProgram"/>
         <rdfs:range rdf:resource="http://example.org/ontology/nauclasssearchontology/AcademicRequirement"/>
-        <rdfs:comment>An Academic_Program has one or more Academic_Requirements.</rdfs:comment>
+        <rdfs:comment>Academic_Program 包含一个或多个 Academic_Requirement。</rdfs:comment>
         <ont:cardinality>one-to-many</ont:cardinality>
         <ont:fromEntityId>academicProgram</ont:fromEntityId>
         <ont:toEntityId>academicRequirement</ont:toEntityId>
@@ -1269,7 +1269,7 @@
         <rdfs:label>satisfied by </rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/AcademicRequirement"/>
         <rdfs:range rdf:resource="http://example.org/ontology/nauclasssearchontology/Course"/>
-        <rdfs:comment>An Academic_Requirement may be satisfied by one or more Courses.</rdfs:comment>
+        <rdfs:comment>Academic_Requirement 可由一个或多个 Course 满足。</rdfs:comment>
         <ont:cardinality>many-to-many</ont:cardinality>
         <ont:fromEntityId>academicRequirement</ont:fromEntityId>
         <ont:toEntityId>course</ont:toEntityId>
@@ -1279,7 +1279,7 @@
         <rdfs:label>owned by </rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/nauclasssearchontology/AcademicProgram"/>
         <rdfs:range rdf:resource="http://example.org/ontology/nauclasssearchontology/AcademicOrganization"/>
-        <rdfs:comment>An Academic_Program is owned by an Academic_Organization.</rdfs:comment>
+        <rdfs:comment>Academic_Program 由 Academic_Organization 管理。</rdfs:comment>
         <ont:cardinality>many-to-one</ont:cardinality>
         <ont:fromEntityId>academicProgram</ont:fromEntityId>
         <ont:toEntityId>academicOrganization</ont:toEntityId>

@@ -8,10 +8,10 @@ import { generateQuestsForOntology } from '../data/questGenerator';
 export type ThemeId = 'dark' | 'light' | 'aurora' | 'crimson';
 
 export const THEME_OPTIONS: { id: ThemeId; label: string; swatch: string }[] = [
-  { id: 'dark', label: 'Dark', swatch: '#1B1B1B' },
-  { id: 'light', label: 'Light', swatch: '#F5F5F5' },
-  { id: 'aurora', label: 'Aurora', swatch: '#2AAA92' },
-  { id: 'crimson', label: 'Crimson', swatch: '#D6002A' },
+  { id: 'dark', label: "深色", swatch: '#1B1B1B' },
+  { id: 'light', label: "浅色", swatch: '#F5F5F5' },
+  { id: 'aurora', label: "极光", swatch: '#2AAA92' },
+  { id: 'crimson', label: "绯红", swatch: '#D6002A' },
 ];
 
 const DARK_BASED_THEMES: ThemeId[] = ['dark', 'aurora'];

@@ -8,8 +8,8 @@
     xmlns:ont="http://example.org/ontology/discord-server-ontology/">
 
     <owl:Ontology rdf:about="http://example.org/ontology/discord-server-ontology/">
-        <rdfs:label>Discord Server Ontology</rdfs:label>
-        <rdfs:comment>An ontology representing the Fabric Community Discord. </rdfs:comment>
+        <rdfs:label>Discord 社区本体</rdfs:label>
+        <rdfs:comment>描述 Fabric Community Discord 社区的本体。</rdfs:comment>
     </owl:Ontology>
 
     <!-- ===================== -->
@@ -18,77 +18,77 @@
 
     <owl:Class rdf:about="http://example.org/ontology/discord-server-ontology/New-entity-11">
         <rdfs:label>Reaction</rdfs:label>
-        <rdfs:comment>An emoji response attached to a message</rdfs:comment>
+        <rdfs:comment>附加在消息上的表情回应。</rdfs:comment>
         <ont:icon>🎯</ont:icon>
         <ont:color>#D83B01</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/discord-server-ontology/New-entity-10">
         <rdfs:label>Thread</rdfs:label>
-        <rdfs:comment>A scoped sub-conversation within a channel</rdfs:comment>
+        <rdfs:comment>频道内限定范围的子讨论串。</rdfs:comment>
         <ont:icon>📁</ont:icon>
         <ont:color>#107C10</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/discord-server-ontology/New-entity-9">
         <rdfs:label>Moderation_Action</rdfs:label>
-        <rdfs:comment>A logged enforcement action (warn, mute, ban, kick)</rdfs:comment>
+        <rdfs:comment>已记录的管理措施，如警告、禁言、封禁或移出。</rdfs:comment>
         <ont:icon>🌐</ont:icon>
         <ont:color>#0078D4</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/discord-server-ontology/New-entity-8">
         <rdfs:label>Event</rdfs:label>
-        <rdfs:comment>A scheduled community activity (voice hangout, Q&amp;A, etc.)</rdfs:comment>
+        <rdfs:comment>已安排的社区活动，如语音聚会、问答等。</rdfs:comment>
         <ont:icon>🔧</ont:icon>
         <ont:color>#008272</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/discord-server-ontology/New-entity-7">
         <rdfs:label>Bot</rdfs:label>
-        <rdfs:comment>An automated agent operating in the server</rdfs:comment>
+        <rdfs:comment>在服务器中运行的自动化机器人。</rdfs:comment>
         <ont:icon>👤</ont:icon>
         <ont:color>#E81123</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/discord-server-ontology/New-entity-6">
         <rdfs:label>Message</rdfs:label>
-        <rdfs:comment>A unit of communication posted in a channel</rdfs:comment>
+        <rdfs:comment>发布于频道中的一条消息。</rdfs:comment>
         <ont:icon>📋</ont:icon>
         <ont:color>#FFB900</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/discord-server-ontology/New-entity-5">
         <rdfs:label>Role</rdfs:label>
-        <rdfs:comment>A permission set + identity label assigned to members</rdfs:comment>
+        <rdfs:comment>分配给成员的权限集合与身份标签。</rdfs:comment>
         <ont:icon>💳</ont:icon>
         <ont:color>#00A9E0</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/discord-server-ontology/New-entity-4">
         <rdfs:label>Member</rdfs:label>
-        <rdfs:comment>A person who has joined the server</rdfs:comment>
+        <rdfs:comment>已加入服务器的人员。</rdfs:comment>
         <ont:icon>👤</ont:icon>
         <ont:color>#5C2D91</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/discord-server-ontology/New-entity-3">
         <rdfs:label>Category</rdfs:label>
-        <rdfs:comment>A grouping of channels</rdfs:comment>
+        <rdfs:comment>频道分组。</rdfs:comment>
         <ont:icon>🏢</ont:icon>
         <ont:color>#D83B01</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/discord-server-ontology/New-entity-2">
         <rdfs:label>Channel</rdfs:label>
-        <rdfs:comment>A space for communication (text, voice, forum, announcement)</rdfs:comment>
+        <rdfs:comment>文字、语音、论坛或公告等交流空间。</rdfs:comment>
         <ont:icon>🏢</ont:icon>
         <ont:color>#107C10</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/discord-server-ontology/New-entity-1">
         <rdfs:label>Guild</rdfs:label>
-        <rdfs:comment>Top level entity for a Discord Server</rdfs:comment>
+        <rdfs:comment>Discord 服务器的顶层实体。</rdfs:comment>
         <ont:icon>🌐</ont:icon>
         <ont:color>#0078D4</ont:color>
     </owl:Class>
@@ -333,7 +333,7 @@
         <rdfs:label>hosted in</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/discord-server-ontology/New-entity-8"/>
         <rdfs:range rdf:resource="http://example.org/ontology/discord-server-ontology/New-entity-2"/>
-        <rdfs:comment>Many events can be hosted in a channel over time; each event instance is hosted in one channel</rdfs:comment>
+        <rdfs:comment>一个频道可先后承办多个活动，每次活动在一个频道中举行。</rdfs:comment>
         <ont:cardinality>many-to-one</ont:cardinality>
         <ont:fromEntityId>new-entity-8</ont:fromEntityId>
         <ont:toEntityId>new-entity-2</ont:toEntityId>
@@ -343,7 +343,7 @@
         <rdfs:label>attends</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/discord-server-ontology/New-entity-4"/>
         <rdfs:range rdf:resource="http://example.org/ontology/discord-server-ontology/New-entity-8"/>
-        <rdfs:comment>A member can attend many events; an event can have many attendees</rdfs:comment>
+        <rdfs:comment>成员可参加多个活动，活动可有多名参与者。</rdfs:comment>
         <ont:cardinality>many-to-many</ont:cardinality>
         <ont:fromEntityId>new-entity-4</ont:fromEntityId>
         <ont:toEntityId>new-entity-8</ont:toEntityId>
@@ -353,7 +353,7 @@
         <rdfs:label>targets</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/discord-server-ontology/New-entity-9"/>
         <rdfs:range rdf:resource="http://example.org/ontology/discord-server-ontology/New-entity-4"/>
-        <rdfs:comment>A member can receive many moderation actions over time; each action targets one member</rdfs:comment>
+        <rdfs:comment>成员可能多次受到管理措施，每项措施针对一名成员。</rdfs:comment>
         <ont:cardinality>many-to-one</ont:cardinality>
         <ont:fromEntityId>new-entity-9</ont:fromEntityId>
         <ont:toEntityId>new-entity-4</ont:toEntityId>
@@ -363,7 +363,7 @@
         <rdfs:label>assigns</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/discord-server-ontology/New-entity-7"/>
         <rdfs:range rdf:resource="http://example.org/ontology/discord-server-ontology/New-entity-5"/>
-        <rdfs:comment>A bot can assign many roles; a role can be assigned by many bots</rdfs:comment>
+        <rdfs:comment>机器人可分配多个角色，同一角色可由多个机器人分配。</rdfs:comment>
         <ont:cardinality>many-to-many</ont:cardinality>
         <ont:fromEntityId>new-entity-7</ont:fromEntityId>
         <ont:toEntityId>new-entity-5</ont:toEntityId>
@@ -373,7 +373,7 @@
         <rdfs:label>enforces</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/discord-server-ontology/New-entity-7"/>
         <rdfs:range rdf:resource="http://example.org/ontology/discord-server-ontology/New-entity-9"/>
-        <rdfs:comment>One bot issues many moderation actions, but each action is issued by one source (bot or member)</rdfs:comment>
+        <rdfs:comment>机器人可发出多项管理措施，每项措施由一个来源发出，可为机器人或成员。</rdfs:comment>
         <ont:cardinality>one-to-many</ont:cardinality>
         <ont:fromEntityId>new-entity-7</ont:fromEntityId>
         <ont:toEntityId>new-entity-9</ont:toEntityId>
@@ -383,7 +383,7 @@
         <rdfs:label>monitors</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/discord-server-ontology/New-entity-7"/>
         <rdfs:range rdf:resource="http://example.org/ontology/discord-server-ontology/New-entity-2"/>
-        <rdfs:comment>A bot can monitor many channels; a channel can be monitored by many bots</rdfs:comment>
+        <rdfs:comment>机器人可监控多个频道，频道可被多个机器人监控。</rdfs:comment>
         <ont:cardinality>one-to-many</ont:cardinality>
         <ont:fromEntityId>new-entity-7</ont:fromEntityId>
         <ont:toEntityId>new-entity-2</ont:toEntityId>
@@ -393,7 +393,7 @@
         <rdfs:label>spawns</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/discord-server-ontology/New-entity-6"/>
         <rdfs:range rdf:resource="http://example.org/ontology/discord-server-ontology/New-entity-10"/>
-        <rdfs:comment>One message can spawn one thread, each thread originates from one message</rdfs:comment>
+        <rdfs:comment>一条消息可发起一个讨论串，每个讨论串源于一条消息。</rdfs:comment>
         <ont:cardinality>one-to-one</ont:cardinality>
         <ont:fromEntityId>new-entity-6</ont:fromEntityId>
         <ont:toEntityId>new-entity-10</ont:toEntityId>
@@ -403,7 +403,7 @@
         <rdfs:label>receives</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/discord-server-ontology/New-entity-6"/>
         <rdfs:range rdf:resource="http://example.org/ontology/discord-server-ontology/New-entity-11"/>
-        <rdfs:comment>One message can have many reactions, each reaction belongs to one message</rdfs:comment>
+        <rdfs:comment>一条消息可有多个表情回应，每个回应属于一条消息。</rdfs:comment>
         <ont:cardinality>one-to-many</ont:cardinality>
         <ont:fromEntityId>new-entity-6</ont:fromEntityId>
         <ont:toEntityId>new-entity-11</ont:toEntityId>
@@ -413,7 +413,7 @@
         <rdfs:label>appears in</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/discord-server-ontology/New-entity-6"/>
         <rdfs:range rdf:resource="http://example.org/ontology/discord-server-ontology/New-entity-2"/>
-        <rdfs:comment>Many messages live in a channel, each message belongs to one channel</rdfs:comment>
+        <rdfs:comment>一个频道包含多条消息，每条消息属于一个频道。</rdfs:comment>
         <ont:cardinality>many-to-one</ont:cardinality>
         <ont:fromEntityId>new-entity-6</ont:fromEntityId>
         <ont:toEntityId>new-entity-2</ont:toEntityId>
@@ -423,7 +423,7 @@
         <rdfs:label>posts</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/discord-server-ontology/New-entity-4"/>
         <rdfs:range rdf:resource="http://example.org/ontology/discord-server-ontology/New-entity-6"/>
-        <rdfs:comment>One member authors many messages, but each message has one author</rdfs:comment>
+        <rdfs:comment>一名成员可撰写多条消息，每条消息只有一位作者。</rdfs:comment>
         <ont:cardinality>one-to-many</ont:cardinality>
         <ont:fromEntityId>new-entity-4</ont:fromEntityId>
         <ont:toEntityId>new-entity-6</ont:toEntityId>
@@ -433,7 +433,7 @@
         <rdfs:label>grants access to</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/discord-server-ontology/New-entity-5"/>
         <rdfs:range rdf:resource="http://example.org/ontology/discord-server-ontology/New-entity-2"/>
-        <rdfs:comment>A role can unlock many channels; a channel can be accessible by many roles</rdfs:comment>
+        <rdfs:comment>角色可开放多个频道的访问权限，频道可允许多个角色访问。</rdfs:comment>
         <ont:cardinality>many-to-many</ont:cardinality>
         <ont:fromEntityId>new-entity-5</ont:fromEntityId>
         <ont:toEntityId>new-entity-2</ont:toEntityId>
@@ -443,7 +443,7 @@
         <rdfs:label>holds</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/discord-server-ontology/New-entity-4"/>
         <rdfs:range rdf:resource="http://example.org/ontology/discord-server-ontology/New-entity-5"/>
-        <rdfs:comment>A member can hold multiple roles; a role can be held by many members</rdfs:comment>
+        <rdfs:comment>成员可拥有多个角色，一个角色可由多名成员拥有。</rdfs:comment>
         <ont:cardinality>many-to-many</ont:cardinality>
         <ont:fromEntityId>new-entity-4</ont:fromEntityId>
         <ont:toEntityId>new-entity-5</ont:toEntityId>
@@ -453,7 +453,7 @@
         <rdfs:label>belongs to</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/discord-server-ontology/New-entity-4"/>
         <rdfs:range rdf:resource="http://example.org/ontology/discord-server-ontology/New-entity-1"/>
-        <rdfs:comment>A member can be in multiple servers; a server has many members</rdfs:comment>
+        <rdfs:comment>成员可加入多个服务器，服务器可有多名成员。</rdfs:comment>
         <ont:cardinality>many-to-many</ont:cardinality>
         <ont:fromEntityId>new-entity-4</ont:fromEntityId>
         <ont:toEntityId>new-entity-1</ont:toEntityId>
@@ -463,7 +463,7 @@
         <rdfs:label>groups</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/discord-server-ontology/New-entity-3"/>
         <rdfs:range rdf:resource="http://example.org/ontology/discord-server-ontology/New-entity-2"/>
-        <rdfs:comment>One category holds many channels, but a channel belongs to one category (or none)</rdfs:comment>
+        <rdfs:comment>一个分类包含多个频道，每个频道属于一个分类或没有分类。</rdfs:comment>
         <ont:cardinality>one-to-many</ont:cardinality>
         <ont:fromEntityId>new-entity-3</ont:fromEntityId>
         <ont:toEntityId>new-entity-2</ont:toEntityId>
@@ -473,7 +473,7 @@
         <rdfs:label>contains</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/discord-server-ontology/New-entity-1"/>
         <rdfs:range rdf:resource="http://example.org/ontology/discord-server-ontology/New-entity-2"/>
-        <rdfs:comment>One server has many channels, each channel belongs to one server</rdfs:comment>
+        <rdfs:comment>一个服务器有多个频道，每个频道属于一个服务器。</rdfs:comment>
         <ont:cardinality>one-to-many</ont:cardinality>
         <ont:fromEntityId>new-entity-1</ont:fromEntityId>
         <ont:toEntityId>new-entity-2</ont:toEntityId>
@@ -483,7 +483,7 @@
         <rdfs:label>contains</rdfs:label>
         <rdfs:domain rdf:resource="http://example.org/ontology/discord-server-ontology/New-entity-1"/>
         <rdfs:range rdf:resource="http://example.org/ontology/discord-server-ontology/New-entity-3"/>
-        <rdfs:comment>One server has many categories, each category belongs to one server</rdfs:comment>
+        <rdfs:comment>一个服务器有多个分类，每个分类属于一个服务器。</rdfs:comment>
         <ont:cardinality>one-to-many</ont:cardinality>
         <ont:fromEntityId>new-entity-1</ont:fromEntityId>
         <ont:toEntityId>new-entity-3</ont:toEntityId>

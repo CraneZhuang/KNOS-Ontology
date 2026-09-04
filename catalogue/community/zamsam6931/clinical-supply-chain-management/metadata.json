@@ -1,6 +1,6 @@
 {
-  "name": "Clinical Supply Chain Ontology",
-  "description": "Models the clinical trial operations, pharmaceutical supply chain, patient enrollment lifecycle, manufacturing processes, inventory management, and global logistics involved in enterprise clinical study execution. The ontology connects studies, patients, compounds, manufacturing, depots, shipments, inventory, and geographic regions to enable semantic intelligence, operational visibility, and AI-driven clinical supply chain analytics.",
+  "name": "临床供应链本体",
+  "description": "描述临床试验运营、药品供应链、患者入组、生产、库存和全球物流。连接研究、患者、化合物、制造、仓储、运输、库存与地理区域，支持临床供应链语义分析和运营可见性。",
   "icon": "💊",
   "category": "healthcare",
   "tags": [

@@ -1,77 +1,77 @@
 ---
-title: Complete Model
+title: 完整模型
 slug: complete-model
-description: Add SustainabilityProgram to close the grove-to-shelf model — 12 entities, 13 relationships, ready for the demo.
+description: 添加 SustainabilityProgram，完成含 12 个实体、13 条关系的从果园到货架演示模型。
 order: 6
 embed: official/zava-grove-to-shelf-step-5
 ---
 
-## The last entity: sustainability
+## 最后一个实体：可持续发展
 
-Zava runs a grower-development program — internally codenamed **Dreams** — that partner farms can opt into. It funds water-efficiency, fair-pay and biodiversity initiatives. Today this data lives in a marketing system, disconnected from the supply chain.
+Zava 的种植者发展计划名为 **Dreams**，合作农场可自愿参加。计划资助节水、公平薪酬和生物多样性项目。相关数据原先位于营销系统，与供应链分离。
 
-One entity and one relationship pull it into the model:
+添加一个实体和一条关系，将它纳入模型：
 
-### SustainabilityProgram
+### SustainabilityProgram（可持续发展计划）
 
-| Property | Type | Identifier? |
+| 属性 | 类型 | 是否为标识符？ |
 |---|---|---|
 | `programId` | string | ✓ |
 | `name` | string | |
 | `focusArea` | string | |
 | `startYear` | integer | |
 
-### New relationship
+### 新增关系
 
-| From | Verb | To | Cardinality |
+| 起点 | 关系动词 | 终点 | 基数 |
 |---|---|---|---|
-| Farm | participatesIn | SustainabilityProgram | many-to-many |
+| Farm | participatesIn | SustainabilityProgram | 多对多 |
 
-A many-to-many because a single farm can be in several programs (e.g. *Dreams Water* and *Dreams Biodiversity*) and a single program enrolls many farms.
+这是多对多关系：一个农场可参加多个计划（如 Dreams Water 和 Dreams Biodiversity），一个计划也可覆盖多个农场。
 
-## The complete graph
+## 完整图谱
 
 <ontology-embed id="official/zava-grove-to-shelf-step-5" diff="official/zava-grove-to-shelf-step-4" height="520px"></ontology-embed>
 
-*12 entities, 13 relationships. Every business domain Zava cares about is now a first-class concept connected by named edges.*
+*12 个实体、13 条关系。Zava 关注的各业务领域均已作为独立概念，通过具名关系连接。*
 
-## What this model unlocks on stage
+## 完整模型支持的演示问题
 
-Five questions, each previously a multi-system, multi-day effort, all now answerable from one ontology:
+以下五类跨系统问题可用同一本体表达；实际回答仍依赖数据与查询集成：
 
-| Question | Path |
+| 问题 | 路径 |
 |---|---|
-| *"Show me last quarter's revenue from mandarins, broken down by retail chain and origin country."* | `Order forVariety FruitVariety[category=citrus]`, group by `Store.retailerName` and `HarvestLot → Plot → Farm.country` |
-| *"Which growers had quality-check failures on blueberries in the last 30 days?"* | `QualityCheck[passed=false] → HarvestLot[ofVariety.category=berry] → Plot → Farm ← owns ← Grower` |
-| *"Which shipments in transit have temperature above the safe threshold for their variety?"* | `Shipment monitoredBy ColdChainSensor[temperatureC > carries.harvestLot.ofVariety.maxStorageTempC]` |
-| *"For the breach on shipment SH-2026-04812, which retailer orders are at risk and what is the revenue exposure?"* | `Shipment[id=SH-2026-04812] → RetailDC supplies Store places Order[forVariety = breached variety, status=open]` then sum `kilograms × unitPriceEur` |
-| *"What percentage of our berry volume this season came from Dreams-program farms?"* | `HarvestLot[ofVariety.category=berry, harvestDate∈season]`, group by whether `fromPlot → Farm participatesIn SustainabilityProgram[name~"Dreams"]` |
+| *“按零售连锁和原产国统计，上季度柑橘收入是多少？”* | `Order forVariety FruitVariety[category=citrus]`，按 Store.retailerName 和 HarvestLot → Plot → Farm.country 分组 |
+| *“过去 30 天哪些种植者的蓝莓未通过质量检查？”* | `QualityCheck[passed=false] → HarvestLot[ofVariety.category=berry] → Plot → Farm ← owns ← Grower` |
+| *“哪些在途运输任务的温度超过所载品种的安全阈值？”* | `Shipment monitoredBy ColdChainSensor[temperatureC > carries.harvestLot.ofVariety.maxStorageTempC]` |
+| *“SH-2026-04812 超限后，哪些订单面临风险？涉及多少收入？”* | `Shipment[id=SH-2026-04812] → RetailDC supplies Store places Order[forVariety = breached variety, status=open]`，汇总 kilograms × unitPriceEur |
+| *“本季浆果数量中，有多少比例来自 Dreams 计划农场？”* | `HarvestLot[ofVariety.category=berry, harvestDate∈season]`，按 fromPlot → Farm participatesIn SustainabilityProgram[name~"Dreams"] 是否成立分组 |
 
-## What we built
+## 已构建的模型
 
-| Step | Entities added | Cumulative | Key concept |
+| 步骤 | 新增实体 | 累计数量 | 关键概念 |
 |---|---|---|---|
-| 1 | Grower, Farm, Plot, FruitVariety | 4 | Multi-origin sourcing, traceability anchor |
-| 2 | HarvestLot, QualityCheck | 6 | Lineage events, four-stage QC regime |
-| 3 | Shipment, ColdChainSensor | 8 | Hub entities, time-series binding |
-| 4 | RetailDC, Store, Order | 11 | Closing the loop to revenue |
-| 5 | SustainabilityProgram | 12 | Many-to-many CSR overlay |
+| 1 | Grower、Farm、Plot、FruitVariety | 4 | 多产地采购、追溯锚点 |
+| 2 | HarvestLot、QualityCheck | 6 | 来源事件、四阶段质检 |
+| 3 | Shipment、ColdChainSensor | 8 | 枢纽实体、时序绑定 |
+| 4 | RetailDC、Store、Order | 11 | 连接收入形成闭环 |
+| 5 | SustainabilityProgram | 12 | 多对多 CSR 关联 |
 
-## Key takeaways
+## 核心要点
 
-1. **One vocabulary spans five systems.** Agronomy ERPs, packhouse QC apps, IoT eventhouses, retail EDI feeds and CSR records all become bindings on the same 12-entity model.
-2. **Hub entities matter.** `HarvestLot` is the lineage hub. `Shipment` is the lakehouse↔eventhouse hub. `FruitVariety` is the supply↔demand hub.
-3. **Time-series telemetry is first-class.** `ColdChainSensor` looks just like any other entity in the ontology — the underlying storage choice (Eventhouse) is invisible to the question-asker.
-4. **Sustainability isn't a side spreadsheet.** Adding `SustainabilityProgram` lets CSR questions ride the same graph as revenue questions.
-5. **The ontology becomes the contract.** GQL queries, Fabric Data Agent prompts, and Activator rules all reference the same entity and relationship names.
+1. **一套词汇覆盖五个系统。**农业 ERP、包装质检应用、物联网 Eventhouse、零售 EDI 和 CSR 记录均可绑定到同一个 12 实体模型。
+2. **枢纽实体很重要。**HarvestLot 是来源枢纽，Shipment 是 Lakehouse 与 Eventhouse 之间的枢纽，FruitVariety 是供需枢纽。
+3. **时序遥测是正式概念。**ColdChainSensor 与其他实体一样，提问者无需关心底层选择了 Eventhouse 存储。
+4. **可持续发展不再是旁支表格。**SustainabilityProgram 让 CSR 问题与收入问题共享同一张图。
+5. **本体成为统一约定。**GQL 查询、Fabric 数据智能体提示词和 Activator 规则可引用同样的实体名和关系名。
 
 ```quiz
-Q: In Zava's complete model, the question *"What percentage of our berry volume this season came from Dreams-program farms?"* requires which path?
+Q: “本季浆果数量中，有多少比例来自 Dreams 计划农场？”需要哪条路径？
 - Order → Store → RetailDC → Farm
 - HarvestLot → Plot → Farm → SustainabilityProgram [correct]
 - ColdChainSensor → Shipment → Farm → SustainabilityProgram
 - FruitVariety → SustainabilityProgram
-> Volume is recorded on HarvestLot. To learn whether that lot came from a Dreams-program farm, walk HarvestLot → fromPlot → Plot → (contained by) Farm → participatesIn → SustainabilityProgram and filter on the program name.
+> 数量记录在 HarvestLot 上。沿 HarvestLot → fromPlot → Plot →（所属）Farm → participatesIn → SustainabilityProgram，按计划名称筛选，即可判断批次是否来自 Dreams 计划农场。
 ```
 
-You've completed the Zava Grove-to-Shelf lab. Open the [Step 5 ontology](#/catalogue/official/zava-grove-to-shelf-step-5) in the playground to query, extend, or export it.
+你已完成 Zava 从果园到货架实验！在[第五步本体](#/catalogue/official/zava-grove-to-shelf-step-5)中继续探索、扩展或导出。

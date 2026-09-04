@@ -8,8 +8,8 @@
     xmlns:ont="https://schema.org/medical-entity-subset/">
 
     <owl:Ontology rdf:about="https://schema.org/medical-entity-subset/">
-        <rdfs:label>Schema.org — MedicalEntity</rdfs:label>
-        <rdfs:comment>Medical conditions, drugs, procedures, and healthcare providers — a health-domain subset of Schema.org.</rdfs:comment>
+        <rdfs:label>Schema.org — 医疗实体</rdfs:label>
+        <rdfs:comment>Schema.org 医疗领域子集，涵盖疾病、药物、医疗操作和医疗服务提供方。</rdfs:comment>
     </owl:Ontology>
 
     <!-- ===================== -->
@@ -18,35 +18,35 @@
 
     <owl:Class rdf:about="https://schema.org/medical-entity-subset/MedicalCondition">
         <rdfs:label>MedicalCondition</rdfs:label>
-        <rdfs:comment>A disease, disorder, or medical condition</rdfs:comment>
+        <rdfs:comment>疾病、障碍或医疗状况。</rdfs:comment>
         <ont:icon>🩺</ont:icon>
         <ont:color>#0078D4</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="https://schema.org/medical-entity-subset/Drug">
         <rdfs:label>Drug</rdfs:label>
-        <rdfs:comment>A pharmaceutical drug used to treat or manage a condition</rdfs:comment>
+        <rdfs:comment>用于治疗或管理某种状况的药物。</rdfs:comment>
         <ont:icon>💊</ont:icon>
         <ont:color>#5C2D91</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="https://schema.org/medical-entity-subset/MedicalProcedure">
         <rdfs:label>MedicalProcedure</rdfs:label>
-        <rdfs:comment>A medical test, surgery, or therapeutic procedure</rdfs:comment>
+        <rdfs:comment>医学检查、手术或治疗操作。</rdfs:comment>
         <ont:icon>🏥</ont:icon>
         <ont:color>#107C10</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="https://schema.org/medical-entity-subset/Hospital">
         <rdfs:label>Hospital</rdfs:label>
-        <rdfs:comment>A hospital or healthcare facility</rdfs:comment>
+        <rdfs:comment>医院或医疗机构。</rdfs:comment>
         <ont:icon>🏨</ont:icon>
         <ont:color>#FFB900</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="https://schema.org/medical-entity-subset/Physician">
         <rdfs:label>Physician</rdfs:label>
-        <rdfs:comment>A medical doctor or specialist</rdfs:comment>
+        <rdfs:comment>医生或专科医师。</rdfs:comment>
         <ont:icon>👨‍⚕️</ont:icon>
         <ont:color>#E74C3C</ont:color>
     </owl:Class>
@@ -138,7 +138,7 @@
 
     <owl:ObjectProperty rdf:about="https://schema.org/medical-entity-subset/possibleTreatment">
         <rdfs:label>possibleTreatment</rdfs:label>
-        <rdfs:comment>A drug that may treat or manage this condition</rdfs:comment>
+        <rdfs:comment>可能用于治疗或管理该状况的药物。</rdfs:comment>
         <rdfs:domain rdf:resource="https://schema.org/medical-entity-subset/MedicalCondition"/>
         <rdfs:range rdf:resource="https://schema.org/medical-entity-subset/Drug"/>
         <ont:cardinality>one-to-many</ont:cardinality>
@@ -146,7 +146,7 @@
 
     <owl:ObjectProperty rdf:about="https://schema.org/medical-entity-subset/diagnosticTest">
         <rdfs:label>diagnosticTest</rdfs:label>
-        <rdfs:comment>A procedure used to diagnose this condition</rdfs:comment>
+        <rdfs:comment>用于诊断该状况的医疗操作。</rdfs:comment>
         <rdfs:domain rdf:resource="https://schema.org/medical-entity-subset/MedicalCondition"/>
         <rdfs:range rdf:resource="https://schema.org/medical-entity-subset/MedicalProcedure"/>
         <ont:cardinality>one-to-many</ont:cardinality>
@@ -154,7 +154,7 @@
 
     <owl:ObjectProperty rdf:about="https://schema.org/medical-entity-subset/availableAt">
         <rdfs:label>availableAt</rdfs:label>
-        <rdfs:comment>A hospital where this procedure is performed</rdfs:comment>
+        <rdfs:comment>执行该操作的医院。</rdfs:comment>
         <rdfs:domain rdf:resource="https://schema.org/medical-entity-subset/MedicalProcedure"/>
         <rdfs:range rdf:resource="https://schema.org/medical-entity-subset/Hospital"/>
         <ont:cardinality>many-to-many</ont:cardinality>
@@ -162,7 +162,7 @@
 
     <owl:ObjectProperty rdf:about="https://schema.org/medical-entity-subset/affiliatedWith">
         <rdfs:label>affiliatedWith</rdfs:label>
-        <rdfs:comment>The hospital a physician is affiliated with</rdfs:comment>
+        <rdfs:comment>医生所属医院。</rdfs:comment>
         <rdfs:domain rdf:resource="https://schema.org/medical-entity-subset/Physician"/>
         <rdfs:range rdf:resource="https://schema.org/medical-entity-subset/Hospital"/>
         <ont:cardinality>many-to-one</ont:cardinality>

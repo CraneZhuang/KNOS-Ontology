@@ -1,77 +1,77 @@
 ---
-title: Order Details & Categories
+title: 订单明细与类别
 slug: order-details-and-categories
-description: Add OrderLine as a linking entity between Order and Product, and introduce ProductCategory for grouping.
+description: 添加 OrderLine 作为 Order 与 Product 的关联实体，并引入 ProductCategory 进行分组。
 order: 3
 embed: official/iq-lab-retail-step-2
 ---
 
-## The problem with many-to-many
+## 多对多带来的问题
 
-In Step 1, we connected Order directly to Product with a many-to-many relationship. That works for simple queries like "which products were in this order?" — but what about **quantities** and **line totals**?
+步骤 1 使用多对多关系直接连接 Order 和 Product，可以回答“订单中有哪些产品？”，但**数量**和**明细金额**该放在哪里？
 
-A direct many-to-many relationship can't carry attributes. If Customer A ordered 3 units of Product X and Customer B ordered 1 unit, where does the quantity live? Not on the Order (it has multiple products) and not on the Product (it appears in multiple orders).
+本例中的直接多对多关系没有承载这些明细属性。若客户 A 购买 3 件产品 X，客户 B 购买 1 件，数量既不属于 Order（订单有多个产品），也不属于 Product（产品出现在多个订单中）。
 
-## The linking entity pattern
+## 关联实体模式
 
-The solution is a **linking entity** — an entity type that sits between two others and carries the per-association attributes:
+解决方案是**关联实体**：放在两个实体之间，保存每次关联自身的属性。
 
-**OrderLine** connects an Order to a Product and holds:
+**OrderLine（订单明细）**连接 Order 与 Product，并保存：
 
-| Property | Type | Identifier? |
+| 属性 | 类型 | 是否为标识符？ |
 |---|---|---|
 | `orderLineId` | string | ✓ |
 | `quantity` | integer | |
 | `lineTotal` | decimal (USD) | |
 
-### New relationships
+### 新增关系
 
-- **OrderHasLineItem** — `Order` → `OrderLine` (one-to-many)
-  Each order has one or more line items.
+- **OrderHasLineItem（订单明细）**：`Order` → `OrderLine`（一对多）
+  每个订单包含一条或多条明细。
 
-- **OrderLineReferencesProduct** — `OrderLine` → `Product` (many-to-one)
-  Each line item references exactly one product.
+- **OrderLineReferencesProduct（明细产品）**：`OrderLine` → `Product`（多对一）
+  每条明细只引用一个产品。
 
-Now the traversal is: `Order` → `OrderLine` → `Product`, and each line item carries its own `quantity` and `lineTotal`.
+现在遍历路径为 `Order` → `OrderLine` → `Product`，每条明细承载自己的 quantity 和 lineTotal。
 
-> **Design pattern:** Whenever a many-to-many relationship needs attributes (quantity, price, date), introduce a linking entity. This is the ontology equivalent of an association table in relational databases.
+> **设计模式：**当多对多关联需要数量、价格、日期等自身数据时，引入关联实体。这相当于关系数据库中的关联表。
 
-## Organizing with categories
+## 通过类别组织产品
 
-Products rarely exist in isolation — they belong to **categories** like "frozen goods", "household", or "electronics". Adding a ProductCategory entity lets us group products and answer questions like "Which category has the most returns?"
+产品通常属于冷冻食品、家居或电子产品等**类别**。添加 ProductCategory 后，可以分组并回答“哪个类别的退货最多？”等问题。
 
-**ProductCategory**:
+**ProductCategory（产品类别）**：
 
-| Property | Type | Identifier? |
+| 属性 | 类型 | 是否为标识符？ |
 |---|---|---|
 | `categoryId` | string | ✓ |
 | `categoryName` | string | |
 
-### New relationship
+### 新增关系
 
-- **ProductInCategory** — `Product` → `ProductCategory` (many-to-one)
-  Each product belongs to exactly one category.
+- **ProductInCategory（产品类别）**：`Product` → `ProductCategory`（多对一）
+  每个产品恰好属于一个类别。
 
-## The graph at Step 2
+## 步骤 2 图谱
 
 <ontology-embed id="official/iq-lab-retail-step-2" diff="official/iq-lab-retail-step-1" height="400px"></ontology-embed>
 
-*Five entity types connected by five relationships. OrderLine acts as a bridge between Order and Product, carrying quantity data. ProductCategory groups products.*
+*五个实体通过五条关系连接。OrderLine 连接 Order 和 Product 并承载数量数据，ProductCategory 用于产品分组。*
 
-## What we learned
+## 本节总结
 
-- **Linking entities** solve the many-to-many attribute problem
-- When a relationship needs its own data, model it as an entity
-- **Hierarchies** (Product → ProductCategory) enable roll-up queries
-- The graph is growing — each new entity connects to existing ones
+- **关联实体**解决多对多关联的属性归属问题
+- 当关系需要自身数据时，将其建模为实体
+- **层级结构** Product → ProductCategory 支持向上汇总查询
+- 图谱不断扩展，每个新实体都与已有实体连接
 
 ```quiz
-Q: When should you introduce a linking entity (like OrderLine) instead of a direct relationship?
-- When you have more than three entity types
-- When the relationship between two entities needs its own attributes [correct]
-- When both entity types have identifier properties
-- When the entities are in different namespaces
-> A linking entity is needed when a many-to-many relationship needs to carry its own data (like quantity or line total). A direct relationship cannot hold attributes.
+Q: 什么时候应使用 OrderLine 这样的关联实体，而不是直接关系？
+- 当实体类型超过三个时
+- 当两个实体之间的关系需要自身属性时 [correct]
+- 当两个实体都具有标识符属性时
+- 当两个实体位于不同命名空间时
+> 当多对多关联需要保存数量或明细金额等自身数据时，应引入关联实体。本例通过实体承载这些明细，而非只使用直接连线。
 ```
 
-Next, we'll add geographic structure with Region and Store.
+接下来添加 Region 和 Store，建立地理结构。

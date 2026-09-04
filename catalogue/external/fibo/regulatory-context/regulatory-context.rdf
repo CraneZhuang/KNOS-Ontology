@@ -15,21 +15,21 @@
     xmlns:ont="http://example.org/ontology/fibo-regulatory-context/">
 
   <owl:Ontology rdf:about="">
-    <rdfs:label>FIBO Regulatory Context</rdfs:label>
-    <rdfs:comment>Banking regulations and concentration limits for OCC, FDIC, and Basel III compliance. Adapted from EDM Council FIBO. Source: https://github.com/edmcouncil/fibo — MIT License.</rdfs:comment>
+    <rdfs:label>FIBO 监管背景</rdfs:label>
+    <rdfs:comment>OCC、FDIC 和巴塞尔 III 银行监管与集中度限额。改编自 EDM Council FIBO。来源：https://github.com/edmcouncil/fibo；MIT 许可。</rdfs:comment>
   </owl:Ontology>
 
   <!-- Entity Types -->
   <owl:Class rdf:about="Regulation">
     <rdfs:label>Regulation</rdfs:label>
-    <rdfs:comment>Regulatory framework issued by a banking authority (OCC, FDIC, Basel Committee) governing portfolio risk.</rdfs:comment>
+    <rdfs:comment>银行监管机构（OCC、FDIC、巴塞尔委员会）发布的组合风险管理框架。</rdfs:comment>
     <ont:icon>⚖️</ont:icon>
     <ont:color>#5C2D91</ont:color>
   </owl:Class>
 
   <owl:Class rdf:about="RegulatoryLimit">
     <rdfs:label>RegulatoryLimit</rdfs:label>
-    <rdfs:comment>Quantitative threshold or limit imposed by a regulation on portfolio concentration, exposure, or capital ratios.</rdfs:comment>
+    <rdfs:comment>法规对组合集中度、风险敞口或资本比率规定的定量阈值或限额。</rdfs:comment>
     <ont:icon>🚨</ont:icon>
     <ont:color>#8764B8</ont:color>
   </owl:Class>
@@ -128,7 +128,7 @@
     <rdfs:label>mandatedBy</rdfs:label>
     <rdfs:domain rdf:resource="RegulatoryLimit"/>
     <rdfs:range rdf:resource="Regulation"/>
-    <rdfs:comment>Links a regulatory limit to the regulation that mandates it.</rdfs:comment>
+    <rdfs:comment>连接监管限额与规定该限额的法规。</rdfs:comment>
     <ont:cardinality>many-to-one</ont:cardinality>
     <ont:fromEntityId>RegulatoryLimit</ont:fromEntityId>
     <ont:toEntityId>Regulation</ont:toEntityId>

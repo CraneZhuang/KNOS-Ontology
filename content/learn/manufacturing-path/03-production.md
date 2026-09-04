@@ -1,23 +1,23 @@
 ---
-title: "Production Tracking"
+title: "生产跟踪"
 slug: production
-description: "Add Work-Order and Part to track what's being produced — connecting machines to their manufacturing output."
+description: "添加 Work-Order 和 Part，连接设备与制造产出，跟踪正在生产的内容。"
 order: 3
 embed: official/manufacturing-step-2
 ---
 
-## From monitoring to producing
+## 从监测到生产
 
-Sensors tell us *how* machines are performing, but we also need to know *what* they're producing. **Work-Order** and **Part** entities add production tracking to the factory model.
+传感器告诉我们设备运行得*怎样*，但还需要知道设备生产了*什么*。**Work-Order（工单）**和 **Part（零部件）**为工厂模型加入生产跟踪。
 
-Adding production tracking enables:
-- "Which machine is producing the most parts this shift?"
-- "How many work orders are behind schedule?"
-- "What parts are currently being manufactured on CNC-01?"
+添加生产跟踪后，可以回答：
+- 本班次哪台设备生产的零部件最多？
+- 有多少工单落后于计划？
+- CNC-01 当前正在制造哪些零部件？
 
-## Work-Order entity
+## 工单实体（Work-Order）
 
-| Property | Type | Identifier? |
+| 属性 | 类型 | 是否为标识符？ |
 |---|---|---|
 | `workOrderId` | string | ✓ |
 | `priority` | string | |
@@ -25,11 +25,11 @@ Adding production tracking enables:
 | `startDate` | date | |
 | `dueDate` | date | |
 
-Work orders have both `startDate` and `dueDate` — enabling schedule adherence calculations. Combined with `priority`, this powers production planning queries.
+工单同时具有 startDate 和 dueDate，可计算计划达成情况；结合 priority，还能支持生产规划查询。
 
-## Part entity
+## 零部件实体（Part）
 
-| Property | Type | Identifier? |
+| 属性 | 类型 | 是否为标识符？ |
 |---|---|---|
 | `partId` | string | ✓ |
 | `name` | string | |
@@ -37,41 +37,41 @@ Work orders have both `startDate` and `dueDate` — enabling schedule adherence 
 | `weight` | float | |
 | `tolerance` | float | |
 
-The `tolerance` property defines acceptable manufacturing deviation. Parts with tighter tolerances need higher-precision machines — a key production planning constraint.
+tolerance 定义允许的制造偏差。公差越严格，所需设备精度越高，这是生产规划的重要约束。
 
-## New relationships
+## 新增关系
 
-- **assigned_to** — `Work-Order` → `Machine` (many-to-one)
-  Work orders are assigned to specific machines for production.
+- **assigned_to（分配到）**：`Work-Order` → `Machine`（多对一）
+  工单被分配到指定设备生产。
 
-- **produces** — `Work-Order` → `Part` (one-to-many)
-  A work order produces one or more parts.
+- **produces（生产）**：`Work-Order` → `Part`（一对多）
+  一个工单生产一个或多个零部件。
 
-- **has_part** — `Machine` → `Part` (one-to-many)
-  A machine produces parts (the output perspective).
+- **has_part（产出零部件）**：`Machine` → `Part`（一对多）
+  从产出视角描述设备生产的零部件。
 
-> **Production chain:** The chain `Machine ← Work-Order → Part` connects equipment to output through a scheduling entity. This is similar to how Appointment connects Patient and Provider in healthcare — the middle entity represents the event.
+> **生产链：**`Machine ← Work-Order → Part` 通过排期实体连接设备与产出，类似医疗场景中 Appointment 连接 Patient 和 Provider：中间实体表示事件。
 
-## The growing graph
+## 持续扩展的图谱
 
 <ontology-embed id="official/manufacturing-step-2" diff="official/manufacturing-step-1" height="400px"></ontology-embed>
 
-*Work-Order and Part join the graph, adding production tracking to the IoT foundation. The diff shows what's new.*
+*Work-Order 和 Part 加入图谱，为物联网基础补充生产跟踪。差异视图显示新增内容。*
 
-## What we learned
+## 本节总结
 
-- **Production chains** connect equipment to output through scheduling entities (Work-Order)
-- **Dual date properties** (startDate/dueDate) enable schedule adherence tracking
-- **Tolerance properties** encode manufacturing precision requirements
-- The factory model now covers both monitoring (sensors) and production (work orders)
+- **生产链**通过 Work-Order 等排期实体连接设备和产出
+- **双日期属性** startDate、dueDate 支持计划达成跟踪
+- **公差属性**描述制造精度要求
+- 工厂模型同时覆盖传感器监测和工单生产
 
 ```quiz
-Q: What does the tolerance property represent on the Part entity?
-- The maximum number of parts that can be defective
-- The acceptable manufacturing deviation — parts outside tolerance need higher-precision machines [correct]
-- The time allowed to manufacture the part
-- The temperature range the part can withstand
-> Tolerance defines how much a part's actual dimensions can deviate from specifications. Tighter tolerances require higher-precision machines and more careful quality control — making this a key constraint in production planning.
+Q: Part 上的 tolerance 属性代表什么？
+- 允许出现缺陷的最大零部件数量
+- 允许的制造偏差；越严格的公差要求越高精度的设备 [correct]
+- 制造零部件允许使用的时间
+- 零部件可以承受的温度范围
+> 公差定义实际尺寸偏离规格的允许范围。更严格的公差需要更高精度设备和更细致的质量控制，因此是生产规划的重要约束。
 ```
 
-Next, we'll add Quality-Check to close the production loop.
+接下来添加 Quality-Check，完成生产闭环。

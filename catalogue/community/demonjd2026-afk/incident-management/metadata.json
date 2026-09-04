@@ -1,7 +1,13 @@
 {
-  "name": "Incident Management",
-  "description": "Models the people, systems, and artifacts involved in an enterprise incident management workflow — from detection through resolution and deployment.",
+  "name": "IT 事件管理",
+  "description": "描述从检测、解决到部署的企业事件管理流程，涵盖人员、系统和交付物。",
   "category": "general",
-  "tags": ["incident", "itsm", "devops", "enterprise", "healthcare"],
+  "tags": [
+    "incident",
+    "itsm",
+    "devops",
+    "enterprise",
+    "healthcare"
+  ],
   "author": "Jayanth Dolai"
 }

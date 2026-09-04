@@ -1,100 +1,100 @@
 ---
-title: Ontology Design Patterns
+title: 本体设计模式
 slug: ontology-design-patterns
-description: Practical naming conventions, modelling patterns, and common anti-patterns to avoid when designing ontologies for data platforms.
+description: 了解数据平台本体设计中的实用命名约定、建模模式及应避免的常见反模式。
 order: 5
 embed: official/healthcare
 ---
 
-## Name things for humans
+## 面向人来命名
 
-The most important design decision is naming. Your entity types and properties will be read by both humans and machines — clear names make natural-language queries more accurate.
+命名是最重要的设计决策。实体类型与属性会被人和机器共同读取，清晰名称能提高自然语言查询的准确度。
 
-**Do:**
-- Use singular nouns for entity types: `Customer`, `Product`, `Order`
-- Use camelCase for properties: `firstName`, `totalAmount`, `createdDate`
-- Use verb phrases for relationships: `placedBy`, `worksAt`, `contains`
+**推荐：**
+- 实体类型使用单数名词：Customer、Product、Order
+- 属性使用驼峰命名：firstName、totalAmount、createdDate
+- 关系使用动词短语：placedBy、worksAt、contains
 
-**Don't:**
-- Use internal table names: `tbl_cust_v2`, `DIM_PRODUCT`
-- Abbreviate: `qty`, `amt`, `dt` — spell them out
-- Use generic names: `Item`, `Record`, `Thing`
+**避免：**
+- 使用内部表名：tbl_cust_v2、DIM_PRODUCT
+- 使用 qty、amt、dt 等缩写，应完整写出含义
+- 使用 Item、Record、Thing 等过于泛化的名称
 
-## One entity, one concept
+## 一个实体，一个概念
 
-Each entity type should represent a **single business concept**. If you find yourself adding unrelated properties, you probably need to split the entity.
+每个实体类型应表示**单一业务概念**。如果不断加入无关属性，通常意味着需要拆分实体。
 
-**Anti-pattern:** A `Person` entity with `salary`, `patientId`, `courseGrade`, and `accountBalance` — this is four different concepts (Employee, Patient, Student, Customer) forced into one.
+**反模式：**Person 同时包含 salary、patientId、courseGrade 和 accountBalance，把员工、患者、学生和客户四个概念强行合并。
 
-**Better:** Create separate entity types and relate them if needed: a `Person` can be linked to an `Employee` record, a `Patient` record, etc.
+**更好的方式：**分别建模，必要时通过关系连接，例如 Person 可以关联 Employee 记录、Patient 记录等。
 
-## Choose identifiers carefully
+## 谨慎选择标识符
 
-The identifier property determines how instances are counted, grouped, and joined. A good identifier is:
+标识符决定如何计数、分组与关联实例。好的标识符应当：
 
-- **Unique** across all instances
-- **Stable** — doesn't change over time
-- **Meaningful** — preferably a business key, not an internal auto-increment
+- 在全部实例中**唯一**
+- **稳定**，不随时间变化
+- **有业务含义**，优先使用业务键，而非内部自增值
 
-Examples: `isbn` for books, `email` for users, `orderId` for orders.
+例如图书的 isbn、用户的 email、订单的 orderId；使用可变业务字段时，应额外考虑其稳定性。
 
-Avoid using compound identifiers (multiple fields that together form the key) — most ontology tools expect a single identifier per entity.
+尽量避免由多个字段共同组成的复合标识符，许多本体工具期望每个实体使用单一标识符。
 
-## Model relationships, not foreign keys
+## 建模关系，而不是外键
 
-In relational databases, you use foreign keys to link tables. In an ontology, you use **named relationships** with explicit semantics.
+关系数据库通过外键连接表，本体则使用语义明确的**具名关系**。
 
-| Relational | Ontology |
+| 关系型模型 | 本体 |
 |-----------|----------|
 | `orders.customer_id → customers.id` | `Order` → `placedBy` → `Customer` |
 | `order_items.product_id → products.id` | `OrderItem` → `contains` → `Product` |
 
-The relationship **name** is critical: it tells query engines (and humans) what the connection means. "placedBy" is infinitely clearer than a column called `fk_cust_id`.
+关系**名称**告诉查询引擎和使用者这条连接的含义。placedBy 比 fk_cust_id 这样的列名清晰得多。
 
-## Get cardinality right
+## 正确设置基数
 
-Wrong cardinality leads to wrong aggregations. Ask yourself: "For one instance of A, how many instances of B can there be?"
+错误的基数会造成错误汇总。请问自己：“一个 A 实例可以对应多少个 B 实例？”
 
-- A customer can place **many** orders → one-to-many
-- An order is placed at **one** store → many-to-one
-- A student can take **many** courses, and a course has **many** students → many-to-many
+- 一位客户可以下**多个**订单 → 一对多
+- 一个订单在**一家**门店处理 → 多对一
+- 一位学生可选**多门**课程，一门课程有**多名**学生 → 多对多
 
 <ontology-embed id="official/healthcare" height="400px"></ontology-embed>
 
-*The Healthcare ontology is a good study in cardinality: a patient has many appointments, but each appointment has one provider. A diagnosis belongs to one patient but may be linked to many prescriptions.*
+*医疗本体是学习基数的好示例：患者有多次预约，每次预约对应一位医护人员；诊断属于一位患者，却可关联多张处方。*
 
-## Avoid these common mistakes
+## 避免常见问题
 
-| Mistake | Problem | Fix |
+| 常见错误 | 问题 | 修正方法 |
 |---------|---------|-----|
-| **God entity** | One entity with 30+ properties | Split into focused entities |
-| **Missing identifiers** | Can't count or group instances | Add a unique identifier property |
-| **Vague relationship names** | `relatedTo`, `hasLink` | Use specific verbs: `prescribes`, `enrolledIn` |
-| **Circular one-to-ones** | A → B and B → A both 1:1 | Probably the same entity — merge them |
-| **Over-modelling** | Every internal table becomes an entity | Model what users will query, not your schema |
+| **万能实体** | 一个实体包含 30 多个属性 | 拆分成职责聚焦的实体 |
+| **缺少标识符** | 无法计数或分组实例 | 添加唯一标识符属性 |
+| **关系名称模糊** | relatedTo、hasLink | 使用 prescribes、enrolledIn 等具体动词 |
+| **循环一对一** | A → B 和 B → A 都是 1:1 | 检查是否其实是同一实体，必要时合并 |
+| **过度建模** | 每张内部表都成为实体 | 建模用户会查询的概念，而非照搬数据库结构 |
 
-## When to use descriptions
+## 何时添加说明
 
-Every entity type, property, and relationship can have an optional **description**. Use them when:
+实体类型、属性和关系都可以有可选**说明**。以下情况尤其需要：
 
-- The name alone is ambiguous (`status` could mean many things)
-- The concept is domain-specific (`formulary`, `SKU`, `yield`)
-- You want to guide natural-language query interpretation
+- 仅靠名称可能有歧义，如 status 有多种含义
+- 概念具有领域专用性，如 formulary、SKU、yield
+- 希望引导自然语言查询的理解方式
 
-## Key takeaways
+## 核心要点
 
-- Name for humans: singular nouns, camelCase, verb phrases
-- One entity, one concept — split over-loaded entities
-- Choose stable, unique, meaningful identifiers
-- Model relationships with names, not foreign key columns
-- Set cardinality correctly to enable proper aggregations
-- Add descriptions where names are ambiguous
+- 面向人命名：单数名词、驼峰属性名、动词短语
+- 一个实体一个概念，拆分承载过多职责的实体
+- 选择稳定、唯一、有业务含义的标识符
+- 用具名关系建模，而不是外键列
+- 正确设置基数以支持正确汇总
+- 名称有歧义时补充说明
 
 ```quiz
-Q: A Person entity has properties salary, patientId, courseGrade, and accountBalance. What design pattern should you apply?
-- Add an identifier property
-- Merge all properties into a description field
-- Split into separate entity types (Employee, Patient, Student, Customer) and relate them [correct]
-- Remove all but one property to keep it simple
-> When an entity accumulates unrelated properties, it becomes a "god entity". The fix is to separate each concept into its own entity type and link them with relationships where needed.
+Q: Person 同时具有 salary、patientId、courseGrade 和 accountBalance，应如何改进？
+- 添加标识符属性
+- 把所有属性合并到说明字段
+- 拆成 Employee、Patient、Student、Customer 等独立实体，并按需连接 [correct]
+- 只保留一个属性，删除其余属性
+> 当实体积累了许多无关属性时，就成为万能实体。应将每个概念拆成独立类型，再按需用关系连接。
 ```

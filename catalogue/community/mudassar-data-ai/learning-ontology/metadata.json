@@ -1,8 +1,11 @@
 {
-  "name": "Learning Ontology",
-  "description": "Canonical learning ontology defining business entities, key attributes, required non-key attributes, and core relationships for an HR/learning domain.",
+  "name": "学习管理本体",
+  "description": "人力资源与学习领域的规范本体，定义业务实体、键属性、必填非键属性和核心关系。",
   "icon": "🎓",
   "category": "education",
-  "tags": ["learning", "hr"],
+  "tags": [
+    "learning",
+    "hr"
+  ],
   "author": "mudassar-data-ai"
 }

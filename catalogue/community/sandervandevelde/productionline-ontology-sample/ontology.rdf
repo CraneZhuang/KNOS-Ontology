@@ -8,8 +8,8 @@
     xmlns:ont="http://example.org/ontology/productionline-ontology-sample/">
 
     <owl:Ontology rdf:about="http://example.org/ontology/productionline-ontology-sample/">
-        <rdfs:label>Productionline Ontology Sample</rdfs:label>
-        <rdfs:comment>An IoT domain with devices, sensors, and readings.</rdfs:comment>
+        <rdfs:label>生产线本体示例</rdfs:label>
+        <rdfs:comment>包含设备、传感器和读数的物联网模型。</rdfs:comment>
     </owl:Ontology>
 
     <!-- ===================== -->

@@ -8,8 +8,8 @@
     xmlns:ont="http://example.org/ontology/sales-analytics-that-speaks-businessusing-fabric-iq-ontology/">
 
     <owl:Ontology rdf:about="http://example.org/ontology/sales-analytics-that-speaks-businessusing-fabric-iq-ontology/">
-        <rdfs:label>Sales Analytics That Speaks Business—Using Fabric IQ Ontology</rdfs:label>
-        <rdfs:comment>A Fabric IQ–powered sales ontology that turns transactional data into the language of the business — Customer places Order, Order generates Invoice, Return reduces Revenue — so leaders ask questions in plain business terms, not SQL.</rdfs:comment>
+        <rdfs:label>用业务语言进行销售分析：Fabric IQ 本体</rdfs:label>
+        <rdfs:comment>将交易数据表达为 Customer places Order、Order generates Invoice、Return reduces Revenue 等业务关系的销售本体，让管理者以业务术语提问。</rdfs:comment>
     </owl:Ontology>
 
     <!-- ===================== -->
@@ -18,98 +18,98 @@
 
     <owl:Class rdf:about="http://example.org/ontology/sales-analytics-that-speaks-businessusing-fabric-iq-ontology/Customer">
         <rdfs:label>Customer</rdfs:label>
-        <rdfs:comment>A person or organization that purchases goods or services from the company. Holds an address, maintains a balance, and engages in orders, invoices, and returns.</rdfs:comment>
+        <rdfs:comment>向企业购买商品或服务的个人或组织，具有地址和余额，并参与订单、发票与退货。</rdfs:comment>
         <ont:icon>🙋‍♂️</ont:icon>
         <ont:color>#0078D4</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/sales-analytics-that-speaks-businessusing-fabric-iq-ontology/CustomerAddress">
         <rdfs:label>Customer_Address</rdfs:label>
-        <rdfs:comment>A physical or mailing location associated with a customer, used for billing and delivery.</rdfs:comment>
+        <rdfs:comment>客户的实际或邮寄地址，用于账单与配送。</rdfs:comment>
         <ont:icon>🏠</ont:icon>
         <ont:color>#FFB900</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/sales-analytics-that-speaks-businessusing-fabric-iq-ontology/Item">
         <rdfs:label>Item</rdfs:label>
-        <rdfs:comment>A product or service offered by the company. Can be ordered, stored in a warehouse, sold by a sales person, and transacted through a point of sale.</rdfs:comment>
+        <rdfs:comment>企业提供的商品或服务，可被订购、存放于仓库、由销售人员售出并通过销售点交易。</rdfs:comment>
         <ont:icon>📦</ont:icon>
         <ont:color>#5C2D91</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/sales-analytics-that-speaks-businessusing-fabric-iq-ontology/Warehouse">
         <rdfs:label>Warehouse</rdfs:label>
-        <rdfs:comment>A physical facility where items are stored, orders are fulfilled, and returns are processed. Owned and operated by the company.</rdfs:comment>
+        <rdfs:comment>企业拥有和运营的实体设施，用于存储货物、订单履约和处理退货。</rdfs:comment>
         <ont:icon>🏭</ont:icon>
         <ont:color>#FFB900</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/sales-analytics-that-speaks-businessusing-fabric-iq-ontology/Department">
         <rdfs:label>Department</rdfs:label>
-        <rdfs:comment>An internal organizational unit that groups sales personnel, sits within a company, and contributes to overall revenue.</rdfs:comment>
+        <rdfs:comment>企业内部组织单位，管理销售人员并贡献收入。</rdfs:comment>
         <ont:icon>🏛️</ont:icon>
         <ont:color>#00A9E0</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/sales-analytics-that-speaks-businessusing-fabric-iq-ontology/SalesPerson">
         <rdfs:label>Sales_Person</rdfs:label>
-        <rdfs:comment>An employee who handles customer orders, sells items, works within a department, and is evaluated through sales performance.</rdfs:comment>
+        <rdfs:comment>处理客户订单、销售商品并隶属于某部门的员工，通过销售绩效评估。</rdfs:comment>
         <ont:icon>💼</ont:icon>
         <ont:color>#0078D4</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/sales-analytics-that-speaks-businessusing-fabric-iq-ontology/Company">
         <rdfs:label>Company</rdfs:label>
-        <rdfs:comment>The legal business entity that owns warehouses, operates points of sale, and employs sales personnel.</rdfs:comment>
+        <rdfs:comment>拥有仓库、运营销售点并雇用销售人员的法律业务主体。</rdfs:comment>
         <ont:icon>🏢</ont:icon>
         <ont:color>#0078D4</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/sales-analytics-that-speaks-businessusing-fabric-iq-ontology/Order">
         <rdfs:label>Order</rdfs:label>
-        <rdfs:comment>A request placed by a customer to purchase one or more items. Fulfilled from a warehouse, handled by a sales person, recorded at a point of sale, and generates an invoice.</rdfs:comment>
+        <rdfs:comment>客户购买一项或多项商品的请求，由仓库履约、销售人员处理，在销售点记录并生成发票。</rdfs:comment>
         <ont:icon>🛒</ont:icon>
         <ont:color>#107C10</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/sales-analytics-that-speaks-businessusing-fabric-iq-ontology/Invoice">
         <rdfs:label>Invoice</rdfs:label>
-        <rdfs:comment>A billing document generated from an order and issued to a customer. Records the amount payable and contributes to revenue.</rdfs:comment>
+        <rdfs:comment>从订单生成并开给客户的账单文件，记录应付金额并形成收入。</rdfs:comment>
         <ont:icon>📝</ont:icon>
         <ont:color>#107C10</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/sales-analytics-that-speaks-businessusing-fabric-iq-ontology/Return">
         <rdfs:label>Return</rdfs:label>
-        <rdfs:comment>A transaction in which a customer sends back items from a prior order. Processed at a warehouse and reduces recognized revenue.</rdfs:comment>
+        <rdfs:comment>客户退回原订单商品的交易，在仓库处理并减少已确认收入。</rdfs:comment>
         <ont:icon>🚚</ont:icon>
         <ont:color>#107C10</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/sales-analytics-that-speaks-businessusing-fabric-iq-ontology/CustomerBalance">
         <rdfs:label>Customer_Balance</rdfs:label>
-        <rdfs:comment>The current outstanding monetary amount owed by, or credit held for, a customer at a given point in time.</rdfs:comment>
+        <rdfs:comment>某时点客户的未偿金额或持有的贷方余额。</rdfs:comment>
         <ont:icon>📊</ont:icon>
         <ont:color>#D83B01</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/sales-analytics-that-speaks-businessusing-fabric-iq-ontology/SalesPerformance">
         <rdfs:label>Sales_Performance</rdfs:label>
-        <rdfs:comment>A measure of a sales person&apos;s effectiveness over a period, evaluated in terms of revenue achieved.</rdfs:comment>
+        <rdfs:comment>在一段时间内以实现收入衡量的销售人员绩效。</rdfs:comment>
         <ont:icon>📈</ont:icon>
         <ont:color>#D83B01</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/sales-analytics-that-speaks-businessusing-fabric-iq-ontology/Revenue">
         <rdfs:label>Revenue</rdfs:label>
-        <rdfs:comment>The total monetary income recognized by the business, generated through invoices, departments, and points of sale, and reduced by returns.</rdfs:comment>
+        <rdfs:comment>企业确认的总货币收入，由发票、部门和销售点产生，并因退货减少。</rdfs:comment>
         <ont:icon>💵</ont:icon>
         <ont:color>#D83B01</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/sales-analytics-that-speaks-businessusing-fabric-iq-ontology/PointOfSales">
         <rdfs:label>Point_of_Sales</rdfs:label>
-        <rdfs:comment>A location or terminal where sales transactions are completed and recorded. Operated by the company and generates revenue.</rdfs:comment>
+        <rdfs:comment>企业运营、完成和记录销售交易并产生收入的地点或终端。</rdfs:comment>
         <ont:icon>💰</ont:icon>
         <ont:color>#FFB900</ont:color>
     </owl:Class>

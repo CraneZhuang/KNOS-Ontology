@@ -1,49 +1,49 @@
 ---
-title: "Scenario Overview"
+title: "场景概览"
 slug: scenario-overview
-description: "Meet Fourth Coffee — a modern coffee chain that needs an ontology to unify data across stores, suppliers, and orders."
+description: "认识 Fourth Coffee：一家需要通过本体整合门店、供应商和订单数据的现代咖啡连锁。"
 order: 1
 ---
 
-## The scenario
+## 业务场景
 
-You are designing the data model for **Fourth Coffee**, a specialty coffee chain with stores across multiple cities. The company tracks:
+你正在为精品咖啡连锁 **Fourth Coffee** 设计数据模型。它在多个城市经营门店，需要跟踪：
 
-- **Customers** who visit stores and place orders
-- **Orders** containing coffee products and food items
-- **Products** sourced from suppliers around the world
-- **Stores** in different cities with varying capacities
-- **Suppliers** providing beans and goods
-- **Shipments** moving products from suppliers to stores
+- 到店消费并下单的**客户**
+- 包含咖啡产品和食品的**订单**
+- 从全球供应商采购的**产品**
+- 分布在不同城市、接待容量不同的**门店**
+- 提供咖啡豆和商品的**供应商**
+- 将产品从供应商运往门店的**发货单**
 
-Data lives in multiple systems — a lakehouse for customer profiles, a real-time Eventhouse for order transactions, and a Power BI semantic model for product analytics.
+数据分散在多个系统中：客户档案存放在湖仓中，订单交易存放在实时 Eventhouse 中，产品分析则使用 Power BI 语义模型。
 
-## Why an ontology?
+## 为什么需要本体？
 
-Without an ontology, answering a question like **"Which suppliers provide organic beans to our highest-capacity stores?"** requires knowing which tables are in which system, how they join, and what the column names mean.
+没有本体时，回答**“哪些供应商为接待容量最大的门店提供有机咖啡豆？”**，需要知道各张表位于哪个系统、如何关联，以及列名的业务含义。
 
-With an ontology, the question maps directly to a graph traversal:
+有了本体，这个问题可以直接映射为图谱遍历：
 
-`Store → Shipment → Supplier` filtered by `Product.isOrganic = true` and `Store.capacity`.
+沿 `Store → Shipment → Supplier` 遍历，并按照 `Product.isOrganic = true` 和 `Store.capacity` 筛选。
 
-## What we'll build
+## 我们将构建什么
 
-Over three steps, we'll progressively construct the complete Fourth Coffee ontology:
+我们将分三个步骤逐步构建完整的 Fourth Coffee 本体：
 
-| Step | Entities | What you'll learn |
+| 步骤 | 实体 | 学习内容 |
 |---|---|---|
-| 1 | Customer, Order, Product | Core entity types, identifiers, cardinality |
-| 2 | + Store | Location modelling, many-to-one relationships |
-| 3 | + Supplier, Shipment | Supply chain connections, hub entities |
+| 1 | Customer、Order、Product | 核心实体类型、标识符、基数 |
+| 2 | + Store | 地点建模、多对一关系 |
+| 3 | + Supplier、Shipment | 供应链连接、枢纽实体 |
 
-By the end, you'll have a 6-entity, 7-relationship ontology that can power graph queries, GQL, and natural-language Data Agent interactions.
+完成后，你将获得包含 6 个实体、7 条关系的本体，可用于图谱查询、GQL 和自然语言数据智能体交互。
 
-## Key concepts
+## 关键概念
 
-- **Entity types** — the nouns of your domain (Customer, Order, Product…)
-- **Properties** — attributes that describe each entity (name, price, status…)
-- **Identifier properties** — unique keys for each entity instance
-- **Relationships** — directed connections with cardinality (one-to-many, many-to-many)
-- **Hub entities** — entities like Shipment that connect multiple domains
+- **实体类型**：业务领域中的名词，如 Customer、Order、Product
+- **属性**：描述实体的特征，如 name、price、status
+- **标识符属性**：每个实体实例的唯一键
+- **关系**：具有方向和基数的连接，如一对多、多对多
+- **枢纽实体**：像 Shipment 一样连接多个业务领域的实体
 
-Let's start with the three most fundamental entities in any commerce system.
+先从任何商业系统中最基础的三个实体开始。

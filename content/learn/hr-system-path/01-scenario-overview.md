@@ -1,44 +1,44 @@
 ---
-title: "Scenario Overview"
+title: "场景概览"
 slug: scenario-overview
-description: "Meet the HR System scenario and the cross-functional questions your ontology must answer."
+description: "认识人力资源场景，以及本体需要回答的跨职能问题。"
 order: 1
 ---
 
-## The scenario
+## 业务场景
 
-You are designing a **human resources ontology** for a growing organization. The business needs a shared model for:
+你正在为一家不断发展的组织设计**人力资源本体**。业务需要共享模型来描述：
 
-- **Employees** and their lifecycle status
-- **Departments** and budget ownership
-- **Positions** and role hierarchy
-- **Assignments** that place employees into departments and positions over time
-- **Performance reviews** used for development and compensation discussions
+- **员工**及其生命周期状态
+- **部门**及预算归属
+- **职位**与角色层级
+- 记录员工在不同时期所属部门和职位的**任职记录**
+- 用于发展与薪酬讨论的**绩效评估**
 
-Data currently lives across payroll tools, HRIS, spreadsheets, and manager notes.
+当前数据分散在薪资工具、HRIS、电子表格和管理者记录中。
 
-## Why an ontology?
+## 为什么需要本体？
 
-A question like **"Which departments have the highest number of senior employees rated outstanding in the last review cycle?"** crosses employee records, org structure, role definitions, and review outcomes.
+问题**“哪些部门在最近一次评估中获评优秀的资深员工最多？”**，跨越员工记录、组织结构、角色定义和评估结果。
 
-With an ontology, this becomes a connected graph query instead of manual joins across disconnected systems.
+使用本体后，可以进行连通的图谱查询，无需手工关联彼此分离的系统。
 
-## What we'll build
+## 我们将构建什么
 
-| Step | Entities in focus | What you'll learn |
+| 步骤 | 重点实体 | 学习内容 |
 |---|---|---|
-| 1 | Employee, Department, Position | Organizational foundation and identifiers |
-| 2 | + Assignment | Junction entity pattern for staffing history |
-| 3 | + PerformanceReview | Review cycles, ratings, and people analytics |
-| 4 | Complete model | End-to-end HR questions and graph reasoning |
+| 1 | Employee、Department、Position | 组织基础与标识符 |
+| 2 | + Assignment | 记录任职历史的关联实体模式 |
+| 3 | + PerformanceReview | 评估周期、评级与人员分析 |
+| 4 | 完整模型 | 端到端人力资源问题与图谱推理 |
 
-By the end, you'll understand how to model a practical HR domain with clear governance-ready structure.
+完成后，你将掌握如何构建结构清晰、便于治理的实用人力资源模型。
 
-## Key concepts
+## 关键概念
 
-- **Stable identifiers** for every entity
-- **Junction entities** for many-to-many staffing scenarios
-- **Temporal properties** (startDate, reviewDate) for time-aware analysis
-- **Enum values** for controlled statuses and ratings
+- 为每个实体使用**稳定标识符**
+- 使用**关联实体**描述多对多任职场景
+- 通过 startDate、reviewDate 等**时间属性**开展时态分析
+- 使用**枚举值**控制状态和评级
 
-Let's start with the organization core.
+先从组织核心开始。

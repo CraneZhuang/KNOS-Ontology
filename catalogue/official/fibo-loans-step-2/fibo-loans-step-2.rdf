@@ -15,28 +15,28 @@
     xmlns:ont="http://example.org/ontology/fibo-loans-step-2/">
 
   <owl:Ontology rdf:about="">
-    <rdfs:label>FIBO Loans Lab — Step 2</rdfs:label>
-    <rdfs:comment>Collateral and payment schedule concepts added to the core loan model. Adapted from EDM Council FIBO. Source: https://github.com/edmcouncil/fibo — MIT License.</rdfs:comment>
+    <rdfs:label>FIBO 贷款实验 — 第二步：抵押品与还款计划</rdfs:label>
+    <rdfs:comment>在核心贷款模型中添加抵押品与还款计划。改编自 EDM Council FIBO。来源：https://github.com/edmcouncil/fibo；MIT 许可。</rdfs:comment>
   </owl:Ontology>
 
   <!-- Entities from Step 1 -->
   <owl:Class rdf:about="Loan">
     <rdfs:label>Loan</rdfs:label>
-    <rdfs:comment>Debt instrument extended to a borrower and repaid according to contract terms.</rdfs:comment>
+    <rdfs:comment>向借款人提供、按合同条款偿还的债务工具。</rdfs:comment>
     <ont:icon>📄</ont:icon>
     <ont:color>#00A9E0</ont:color>
   </owl:Class>
 
   <owl:Class rdf:about="Borrower">
     <rdfs:label>Borrower</rdfs:label>
-    <rdfs:comment>Party that receives funds and assumes repayment obligations.</rdfs:comment>
+    <rdfs:comment>接收资金并承担偿还义务的一方。</rdfs:comment>
     <ont:icon>👤</ont:icon>
     <ont:color>#0078D4</ont:color>
   </owl:Class>
 
   <owl:Class rdf:about="Lender">
     <rdfs:label>Lender</rdfs:label>
-    <rdfs:comment>Party that provides funds or credit under loan agreement terms.</rdfs:comment>
+    <rdfs:comment>按贷款合同提供资金或信用的一方。</rdfs:comment>
     <ont:icon>🏦</ont:icon>
     <ont:color>#107C10</ont:color>
   </owl:Class>
@@ -44,14 +44,14 @@
   <!-- New in Step 2 -->
   <owl:Class rdf:about="Collateral">
     <rdfs:label>Collateral</rdfs:label>
-    <rdfs:comment>Asset pledged to secure repayment obligations. Adapted from fibo-fbc-dae-dbt:Collateral.</rdfs:comment>
+    <rdfs:comment>为担保偿还义务而质押的资产，改编自 fibo-fbc-dae-dbt:Collateral。</rdfs:comment>
     <ont:icon>🏠</ont:icon>
     <ont:color>#D83B01</ont:color>
   </owl:Class>
 
   <owl:Class rdf:about="LoanPaymentSchedule">
     <rdfs:label>LoanPaymentSchedule</rdfs:label>
-    <rdfs:comment>Regular schedule defining due dates and expected loan payments. Adapted from fibo-loan-ln-ln:LoanPaymentSchedule.</rdfs:comment>
+    <rdfs:comment>定义到期日期与预期还款额的定期计划，改编自 fibo-loan-ln-ln:LoanPaymentSchedule。</rdfs:comment>
     <ont:icon>🗓️</ont:icon>
     <ont:color>#5C2D91</ont:color>
   </owl:Class>
@@ -139,7 +139,7 @@
     <rdfs:label>owedBy</rdfs:label>
     <rdfs:domain rdf:resource="Loan"/>
     <rdfs:range rdf:resource="Borrower"/>
-    <rdfs:comment>Relates a loan to the borrower obligated to repay it.</rdfs:comment>
+    <rdfs:comment>连接贷款与承担偿还义务的借款人。</rdfs:comment>
     <ont:cardinality>many-to-one</ont:cardinality>
     <ont:fromEntityId>Loan</ont:fromEntityId>
     <ont:toEntityId>Borrower</ont:toEntityId>
@@ -149,7 +149,7 @@
     <rdfs:label>originatedBy</rdfs:label>
     <rdfs:domain rdf:resource="Loan"/>
     <rdfs:range rdf:resource="Lender"/>
-    <rdfs:comment>Relates a loan to the lending organization that originated it.</rdfs:comment>
+    <rdfs:comment>连接贷款与发放贷款的机构。</rdfs:comment>
     <ont:cardinality>many-to-one</ont:cardinality>
     <ont:fromEntityId>Loan</ont:fromEntityId>
     <ont:toEntityId>Lender</ont:toEntityId>
@@ -159,7 +159,7 @@
     <rdfs:label>securedBy</rdfs:label>
     <rdfs:domain rdf:resource="Loan"/>
     <rdfs:range rdf:resource="Collateral"/>
-    <rdfs:comment>Relates a secured loan to pledged collateral assets.</rdfs:comment>
+    <rdfs:comment>连接担保贷款与质押资产。</rdfs:comment>
     <ont:cardinality>one-to-many</ont:cardinality>
     <ont:fromEntityId>Loan</ont:fromEntityId>
     <ont:toEntityId>Collateral</ont:toEntityId>
@@ -169,7 +169,7 @@
     <rdfs:label>repaidBySchedule</rdfs:label>
     <rdfs:domain rdf:resource="Loan"/>
     <rdfs:range rdf:resource="LoanPaymentSchedule"/>
-    <rdfs:comment>Relates a loan to its payment schedule.</rdfs:comment>
+    <rdfs:comment>连接贷款与还款计划。</rdfs:comment>
     <ont:cardinality>one-to-one</ont:cardinality>
     <ont:fromEntityId>Loan</ont:fromEntityId>
     <ont:toEntityId>LoanPaymentSchedule</ont:toEntityId>

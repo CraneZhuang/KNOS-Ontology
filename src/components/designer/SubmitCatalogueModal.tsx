@@ -49,48 +49,47 @@ export function SubmitCatalogueModal({ onClose }: SubmitCatalogueModalProps) {
       <div className="modal-content submit-catalogue-modal" onClick={(e) => e.stopPropagation()}>
         <button className="modal-close" onClick={onClose}><X size={18} /></button>
         <h2 className="modal-title">
-          <Github size={20} /> Submit to Catalogue
+          <Github size={20} /> 提交到本体目录
         </h2>
 
         <div className="submit-step">
           <p className="submit-description">
-            Share your ontology with the community! Download the files below,
-            then open a pull request on the{' '}
+            与社区分享你的本体！先下载下方文件，然后向以下仓库发起拉取请求：{' '}
             <a href={REPO_URL} target="_blank" rel="noopener noreferrer">
-              Ontology Playground repo <ExternalLink size={12} />
+              本体探索平台仓库 <ExternalLink size={12} />
             </a>.
           </p>
 
           <div className="submit-instructions">
-            <h3>How to submit</h3>
+            <h3>如何提交</h3>
             <ol>
-              <li>Download your ontology RDF and metadata files below.</li>
+              <li>下载下方的本体 RDF 文件和元数据文件。</li>
               <li>
                 <a href={`${REPO_URL}/fork`} target="_blank" rel="noopener noreferrer">
-                  Fork the repository <ExternalLink size={12} />
+                  派生（Fork）仓库 <ExternalLink size={12} />
                 </a>
               </li>
               <li>
-                Add the files under{' '}
+                将文件添加到以下目录：{' '}
                 <code>catalogue/community/your-username/</code>
               </li>
-              <li>Edit <code>metadata.json</code> — fill in your name, category, and tags.</li>
-              <li>Open a pull request against <code>main</code>.</li>
+              <li>编辑 <code>metadata.json</code> ，填写姓名、类别和标签。</li>
+              <li>向以下分支发起拉取请求： <code>main</code>.</li>
             </ol>
           </div>
 
           <div className="submit-download-actions">
             <button className="designer-action-btn primary" onClick={handleDownloadRdf}>
-              <Download size={14} /> Download RDF
+              <Download size={14} /> 下载 RDF
               {downloaded && <Check size={14} style={{ marginLeft: 4 }} />}
             </button>
             <button className="designer-action-btn secondary" onClick={handleDownloadMetadata}>
-              <Download size={14} /> Download metadata.json
+              <Download size={14} /> 下载 metadata.json
             </button>
           </div>
 
           <div className="submit-form-actions">
-            <button className="designer-action-btn secondary" onClick={onClose}>Close</button>
+            <button className="designer-action-btn secondary" onClick={onClose}>关闭</button>
           </div>
         </div>
       </div>

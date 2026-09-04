@@ -1,8 +1,15 @@
 {
-  "name": "Baby Routine Tracking",
-  "description": "Models a baby’s daily routine by capturing caregiver-logged activities (sleep, feeding, diaper changes), associated observations, and emerging patterns to enable structured tracking and insights into the baby’s behavior.",
+  "name": "婴儿日常记录",
+  "description": "记录照护者填写的睡眠、喂养、换尿布等活动、相关观察和日常规律，用结构化方式跟踪婴儿行为。",
   "icon": "📦",
   "category": "general",
-  "tags": ["baby care", "routine tracking", "baby activity monitoring","activity monitoring", "parenting", "behavior insights"],
+  "tags": [
+    "baby care",
+    "routine tracking",
+    "baby activity monitoring",
+    "activity monitoring",
+    "parenting",
+    "behavior insights"
+  ],
   "author": "Vaibhavi Shah"
 }

@@ -17,17 +17,17 @@ export interface DesignerTemplate {
 export const designerTemplates: DesignerTemplate[] = [
   {
     id: 'retail',
-    label: 'Retail',
-    description: 'Customers, products, and orders',
+    label: "零售",
+    description: "客户、产品和订单",
     icon: '🛒',
     ontology: {
-      name: 'Retail Ontology',
-      description: 'A retail domain with customers, products, and orders.',
+      name: '零售本体',
+      description: "包含客户、产品和订单的零售领域模型。",
       entityTypes: [
         {
           id: 'customer',
           name: 'Customer',
-          description: 'A person who buys products',
+          description: "购买产品的人",
           icon: '👤',
           color: '#4A90D9',
           properties: [
@@ -40,7 +40,7 @@ export const designerTemplates: DesignerTemplate[] = [
         {
           id: 'product',
           name: 'Product',
-          description: 'An item available for purchase',
+          description: "可供购买的商品",
           icon: '📦',
           color: '#E74C3C',
           properties: [
@@ -53,7 +53,7 @@ export const designerTemplates: DesignerTemplate[] = [
         {
           id: 'order',
           name: 'Order',
-          description: 'A purchase transaction',
+          description: "一次购买交易",
           icon: '🧾',
           color: '#27AE60',
           properties: [
@@ -64,24 +64,24 @@ export const designerTemplates: DesignerTemplate[] = [
         },
       ],
       relationships: [
-        { id: 'r-places', name: 'places', from: 'customer', to: 'order', cardinality: 'one-to-many', description: 'Customer places an order' },
-        { id: 'r-contains', name: 'contains', from: 'order', to: 'product', cardinality: 'many-to-many', description: 'Order contains products' },
+        { id: 'r-places', name: 'places', from: 'customer', to: 'order', cardinality: 'one-to-many', description: "客户下订单" },
+        { id: 'r-contains', name: 'contains', from: 'order', to: 'product', cardinality: 'many-to-many', description: "订单包含产品" },
       ],
     },
   },
   {
     id: 'healthcare',
-    label: 'Healthcare',
-    description: 'Patients, providers, and encounters',
+    label: "医疗健康",
+    description: "患者、医护人员和就诊记录",
     icon: '🏥',
     ontology: {
-      name: 'Healthcare Ontology',
-      description: 'A healthcare domain with patients, providers, and encounters.',
+      name: '医疗本体',
+      description: "包含患者、医护人员和就诊记录的医疗模型。",
       entityTypes: [
         {
           id: 'patient',
           name: 'Patient',
-          description: 'A person receiving medical care',
+          description: "接受医疗服务的人",
           icon: '🩺',
           color: '#3498DB',
           properties: [
@@ -94,7 +94,7 @@ export const designerTemplates: DesignerTemplate[] = [
         {
           id: 'provider',
           name: 'Provider',
-          description: 'A healthcare professional',
+          description: "医疗专业人员",
           icon: '👨‍⚕️',
           color: '#2ECC71',
           properties: [
@@ -106,7 +106,7 @@ export const designerTemplates: DesignerTemplate[] = [
         {
           id: 'encounter',
           name: 'Encounter',
-          description: 'A clinical visit or appointment',
+          description: "一次就诊或预约",
           icon: '📋',
           color: '#9B59B6',
           properties: [
@@ -117,24 +117,24 @@ export const designerTemplates: DesignerTemplate[] = [
         },
       ],
       relationships: [
-        { id: 'r-has-encounter', name: 'hasEncounter', from: 'patient', to: 'encounter', cardinality: 'one-to-many', description: 'Patient has an encounter' },
-        { id: 'r-seen-by', name: 'seenBy', from: 'encounter', to: 'provider', cardinality: 'many-to-one', description: 'Encounter is with a provider' },
+        { id: 'r-has-encounter', name: 'hasEncounter', from: 'patient', to: 'encounter', cardinality: 'one-to-many', description: "患者拥有就诊记录" },
+        { id: 'r-seen-by', name: 'seenBy', from: 'encounter', to: 'provider', cardinality: 'many-to-one', description: "就诊对应医护人员" },
       ],
     },
   },
   {
     id: 'finance',
-    label: 'Finance',
-    description: 'Accounts, transactions, and parties',
+    label: "金融",
+    description: "账户、交易和参与方",
     icon: '💰',
     ontology: {
-      name: 'Finance Ontology',
-      description: 'A financial domain with accounts, transactions, and parties.',
+      name: '金融本体',
+      description: "包含账户、交易和参与方的金融领域模型。",
       entityTypes: [
         {
           id: 'party',
           name: 'Party',
-          description: 'An individual or organization',
+          description: "个人或组织",
           icon: '🏦',
           color: '#2C3E50',
           properties: [
@@ -146,7 +146,7 @@ export const designerTemplates: DesignerTemplate[] = [
         {
           id: 'account',
           name: 'Account',
-          description: 'A financial account',
+          description: "金融账户",
           icon: '💳',
           color: '#E67E22',
           properties: [
@@ -159,7 +159,7 @@ export const designerTemplates: DesignerTemplate[] = [
         {
           id: 'transaction',
           name: 'Transaction',
-          description: 'A financial movement',
+          description: "资金变动",
           icon: '🔄',
           color: '#1ABC9C',
           properties: [
@@ -171,24 +171,24 @@ export const designerTemplates: DesignerTemplate[] = [
         },
       ],
       relationships: [
-        { id: 'r-owns', name: 'owns', from: 'party', to: 'account', cardinality: 'one-to-many', description: 'Party owns an account' },
-        { id: 'r-has-txn', name: 'hasTransaction', from: 'account', to: 'transaction', cardinality: 'one-to-many', description: 'Account has transactions' },
+        { id: 'r-owns', name: 'owns', from: 'party', to: 'account', cardinality: 'one-to-many', description: "参与方拥有账户" },
+        { id: 'r-has-txn', name: 'hasTransaction', from: 'account', to: 'transaction', cardinality: 'one-to-many', description: "账户包含交易" },
       ],
     },
   },
   {
     id: 'iot',
     label: 'IoT',
-    description: 'Devices, sensors, and readings',
+    description: "设备、传感器和读数",
     icon: '📡',
     ontology: {
-      name: 'IoT Ontology',
-      description: 'An IoT domain with devices, sensors, and readings.',
+      name: '物联网本体',
+      description: "包含设备、传感器和读数的物联网模型。",
       entityTypes: [
         {
           id: 'device',
           name: 'Device',
-          description: 'A connected IoT device',
+          description: "联网的物联网设备",
           icon: '🖥️',
           color: '#34495E',
           properties: [
@@ -201,7 +201,7 @@ export const designerTemplates: DesignerTemplate[] = [
         {
           id: 'sensor',
           name: 'Sensor',
-          description: 'A measurement component on a device',
+          description: "设备上的测量组件",
           icon: '🌡️',
           color: '#E74C3C',
           properties: [
@@ -213,7 +213,7 @@ export const designerTemplates: DesignerTemplate[] = [
         {
           id: 'reading',
           name: 'Reading',
-          description: 'A sensor measurement at a point in time',
+          description: "传感器在某个时点的测量值",
           icon: '📊',
           color: '#3498DB',
           properties: [
@@ -224,24 +224,24 @@ export const designerTemplates: DesignerTemplate[] = [
         },
       ],
       relationships: [
-        { id: 'r-has-sensor', name: 'hasSensor', from: 'device', to: 'sensor', cardinality: 'one-to-many', description: 'Device has sensors' },
-        { id: 'r-produces', name: 'produces', from: 'sensor', to: 'reading', cardinality: 'one-to-many', description: 'Sensor produces readings' },
+        { id: 'r-has-sensor', name: 'hasSensor', from: 'device', to: 'sensor', cardinality: 'one-to-many', description: "设备安装传感器" },
+        { id: 'r-produces', name: 'produces', from: 'sensor', to: 'reading', cardinality: 'one-to-many', description: "传感器产生读数" },
       ],
     },
   },
   {
     id: 'education',
-    label: 'Education',
-    description: 'Students, courses, and enrollments',
+    label: "教育",
+    description: "学生、课程和选课记录",
     icon: '🎓',
     ontology: {
-      name: 'Education Ontology',
-      description: 'An education domain with students, courses, and enrollments.',
+      name: '教育本体',
+      description: "包含学生、课程和选课记录的教育模型。",
       entityTypes: [
         {
           id: 'student',
           name: 'Student',
-          description: 'A person enrolled in courses',
+          description: "选修课程的人",
           icon: '🧑‍🎓',
           color: '#8E44AD',
           properties: [
@@ -253,7 +253,7 @@ export const designerTemplates: DesignerTemplate[] = [
         {
           id: 'course',
           name: 'Course',
-          description: 'An academic course',
+          description: "教学课程",
           icon: '📚',
           color: '#D35400',
           properties: [
@@ -265,7 +265,7 @@ export const designerTemplates: DesignerTemplate[] = [
         {
           id: 'instructor',
           name: 'Instructor',
-          description: 'A teacher or professor',
+          description: "教师或教授",
           icon: '👩‍🏫',
           color: '#16A085',
           properties: [
@@ -276,8 +276,8 @@ export const designerTemplates: DesignerTemplate[] = [
         },
       ],
       relationships: [
-        { id: 'r-enrolled-in', name: 'enrolledIn', from: 'student', to: 'course', cardinality: 'many-to-many', description: 'Student enrolled in a course' },
-        { id: 'r-taught-by', name: 'taughtBy', from: 'course', to: 'instructor', cardinality: 'many-to-one', description: 'Course taught by an instructor' },
+        { id: 'r-enrolled-in', name: 'enrolledIn', from: 'student', to: 'course', cardinality: 'many-to-many', description: "学生选修课程" },
+        { id: 'r-taught-by', name: 'taughtBy', from: 'course', to: 'instructor', cardinality: 'many-to-one', description: "课程由教师讲授" },
       ],
     },
   },

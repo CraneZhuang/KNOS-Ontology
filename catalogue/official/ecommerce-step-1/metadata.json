@@ -1,8 +1,13 @@
 {
-  "name": "E-Commerce — Step 1: Buyer & Products",
-  "description": "Buyer and Product — the marketplace foundation",
+  "name": "电子商务 — 第一步：买家与产品",
+  "description": "Buyer 与 Product：交易平台基础。",
   "icon": "🛒",
   "category": "school",
-  "tags": ["ecommerce", "retail", "school", "step-1"],
+  "tags": [
+    "ecommerce",
+    "retail",
+    "school",
+    "step-1"
+  ],
   "author": "ontology-quest"
 }

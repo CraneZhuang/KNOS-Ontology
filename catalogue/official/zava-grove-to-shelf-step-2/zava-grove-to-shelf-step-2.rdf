@@ -8,50 +8,50 @@
     xmlns:ont="http://example.org/ontology/zava-grove-to-shelf-step-2/">
 
     <owl:Ontology rdf:about="http://example.org/ontology/zava-grove-to-shelf-step-2/">
-        <rdfs:label>Zava Grove-to-Shelf — Step 2: Harvest &amp; Quality</rdfs:label>
-        <rdfs:comment>Add HarvestLot and QualityCheck to capture harvest events and the four-stage QC regime.</rdfs:comment>
+        <rdfs:label>Zava 从果园到货架 — 第二步：采收与质量</rdfs:label>
+        <rdfs:comment>添加 HarvestLot 和 QualityCheck，描述采收事件及四阶段质检制度。</rdfs:comment>
     </owl:Ontology>
 
     <!-- Entity Types (Classes) -->
 
     <owl:Class rdf:about="http://example.org/ontology/zava-grove-to-shelf-step-2/Grower">
         <rdfs:label>Grower</rdfs:label>
-        <rdfs:comment>A partner producer of fresh fruit and vegetables</rdfs:comment>
+        <rdfs:comment>生鲜果蔬合作生产商。</rdfs:comment>
         <ont:icon>👨‍🌾</ont:icon>
         <ont:color>#498205</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/zava-grove-to-shelf-step-2/Farm">
         <rdfs:label>Farm</rdfs:label>
-        <rdfs:comment>A geographic site owned or contracted by a grower</rdfs:comment>
+        <rdfs:comment>种植者拥有或签约的地理场所。</rdfs:comment>
         <ont:icon>🌾</ont:icon>
         <ont:color>#6EAA1F</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/zava-grove-to-shelf-step-2/Plot">
         <rdfs:label>Plot</rdfs:label>
-        <rdfs:comment>A managed parcel within a farm planted with one variety</rdfs:comment>
+        <rdfs:comment>农场内种植某个品种的管理地块。</rdfs:comment>
         <ont:icon>🌱</ont:icon>
         <ont:color>#107C10</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/zava-grove-to-shelf-step-2/Fruitvariety">
         <rdfs:label>FruitVariety</rdfs:label>
-        <rdfs:comment>A commercial fruit or vegetable variety</rdfs:comment>
+        <rdfs:comment>商业水果或蔬菜品种。</rdfs:comment>
         <ont:icon>🍊</ont:icon>
         <ont:color>#FFB900</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/zava-grove-to-shelf-step-2/Harvestlot">
         <rdfs:label>HarvestLot</rdfs:label>
-        <rdfs:comment>A traceable harvest event from a single plot on a given date</rdfs:comment>
+        <rdfs:comment>指定日期来自单个地块的可追溯采收事件。</rdfs:comment>
         <ont:icon>📦</ont:icon>
         <ont:color>#D83B01</ont:color>
     </owl:Class>
 
     <owl:Class rdf:about="http://example.org/ontology/zava-grove-to-shelf-step-2/Qualitycheck">
         <rdfs:label>QualityCheck</rdfs:label>
-        <rdfs:comment>One of the four-stage quality inspections (field, packhouse, DC, store)</rdfs:comment>
+        <rdfs:comment>四阶段质检中的一次检查：田间、包装中心、配送中心或门店。</rdfs:comment>
         <ont:icon>🔍</ont:icon>
         <ont:color>#C239B3</ont:color>
     </owl:Class>
@@ -233,7 +233,7 @@
 
     <owl:ObjectProperty rdf:about="http://example.org/ontology/zava-grove-to-shelf-step-2/grower-owns-farm">
         <rdfs:label>GrowerOwnsFarm</rdfs:label>
-        <rdfs:comment>A grower owns or operates one or more farms</rdfs:comment>
+        <rdfs:comment>种植者拥有或运营一个或多个农场。</rdfs:comment>
         <ont:cardinality>one-to-many</ont:cardinality>
         <ont:fromEntityId>grower</ont:fromEntityId>
         <ont:toEntityId>farm</ont:toEntityId>
@@ -241,7 +241,7 @@
 
     <owl:ObjectProperty rdf:about="http://example.org/ontology/zava-grove-to-shelf-step-2/farm-contains-plot">
         <rdfs:label>FarmContainsPlot</rdfs:label>
-        <rdfs:comment>A farm contains many plots</rdfs:comment>
+        <rdfs:comment>农场包含多个地块。</rdfs:comment>
         <ont:cardinality>one-to-many</ont:cardinality>
         <ont:fromEntityId>farm</ont:fromEntityId>
         <ont:toEntityId>plot</ont:toEntityId>
@@ -249,7 +249,7 @@
 
     <owl:ObjectProperty rdf:about="http://example.org/ontology/zava-grove-to-shelf-step-2/plot-grows-fruitvariety">
         <rdfs:label>PlotGrowsFruitVariety</rdfs:label>
-        <rdfs:comment>Each plot grows a single fruit variety per cycle</rdfs:comment>
+        <rdfs:comment>每个地块在一个周期中种植一个水果品种。</rdfs:comment>
         <ont:cardinality>many-to-one</ont:cardinality>
         <ont:fromEntityId>plot</ont:fromEntityId>
         <ont:toEntityId>fruitvariety</ont:toEntityId>
@@ -257,7 +257,7 @@
 
     <owl:ObjectProperty rdf:about="http://example.org/ontology/zava-grove-to-shelf-step-2/harvestlot-fromplot-plot">
         <rdfs:label>HarvestLotFromPlot</rdfs:label>
-        <rdfs:comment>Each harvest lot originates from one plot</rdfs:comment>
+        <rdfs:comment>每个采收批次来自一个地块。</rdfs:comment>
         <ont:cardinality>many-to-one</ont:cardinality>
         <ont:fromEntityId>harvestlot</ont:fromEntityId>
         <ont:toEntityId>plot</ont:toEntityId>
@@ -265,7 +265,7 @@
 
     <owl:ObjectProperty rdf:about="http://example.org/ontology/zava-grove-to-shelf-step-2/harvestlot-ofvariety-fruitvariety">
         <rdfs:label>HarvestLotOfVariety</rdfs:label>
-        <rdfs:comment>Each harvest lot carries one fruit variety</rdfs:comment>
+        <rdfs:comment>每个采收批次包含一个水果品种。</rdfs:comment>
         <ont:cardinality>many-to-one</ont:cardinality>
         <ont:fromEntityId>harvestlot</ont:fromEntityId>
         <ont:toEntityId>fruitvariety</ont:toEntityId>
@@ -273,7 +273,7 @@
 
     <owl:ObjectProperty rdf:about="http://example.org/ontology/zava-grove-to-shelf-step-2/qualitycheck-checks-harvestlot">
         <rdfs:label>QualityCheckChecksHarvestLot</rdfs:label>
-        <rdfs:comment>Each quality check targets one harvest lot at a given stage</rdfs:comment>
+        <rdfs:comment>每次质量检查针对指定阶段的一个采收批次。</rdfs:comment>
         <ont:cardinality>many-to-one</ont:cardinality>
         <ont:fromEntityId>qualitycheck</ont:fromEntityId>
         <ont:toEntityId>harvestlot</ont:toEntityId>

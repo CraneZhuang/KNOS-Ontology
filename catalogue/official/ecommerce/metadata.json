@@ -1,6 +1,6 @@
 {
-  "name": "E-Commerce Platform",
-  "description": "Online retail with buyers, products, carts, orders, and reviews",
+  "name": "电子商务平台",
+  "description": "包含买家、产品、购物车、订单和评价的在线零售模型。",
   "icon": "🛒",
   "category": "retail",
   "author": "ontology-quest"

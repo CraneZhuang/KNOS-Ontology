@@ -1,8 +1,13 @@
 {
-  "name": "Fourth Coffee — Step 2: Stores",
-  "description": "Adding Store locations where orders are processed",
+  "name": "Fourth Coffee — 第二步：门店",
+  "description": "添加处理订单的 Store 门店。",
   "icon": "🏪",
   "category": "school",
-  "tags": ["coffee", "retail", "school", "step-2"],
+  "tags": [
+    "coffee",
+    "retail",
+    "school",
+    "step-2"
+  ],
   "author": "ontology-quest"
 }

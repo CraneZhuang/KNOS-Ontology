@@ -1,27 +1,27 @@
 ---
-title: Orchard Foundation
+title: 果园基础
 slug: orchard-foundation
-description: Define Grower, Farm, Plot and FruitVariety — the four entities that capture Zava's multi-origin sourcing model.
+description: 定义 Grower、Farm、Plot 和 FruitVariety，描述 Zava 多产地采购模式的四个核心实体。
 order: 2
 embed: official/zava-grove-to-shelf-step-1
 ---
 
-## Where Zava's data starts
+## Zava 数据的起点
 
-Zava sources premium fruit from a network of partner producers. Before we can talk about quality, shipments or retail orders, we need a vocabulary for **who grows what, where**.
+Zava 从合作生产商网络采购优质水果。在讨论质量、运输和零售订单之前，先要建立描述**谁在何处种什么**的词汇。
 
-Four entities capture this:
+由四个实体表达：
 
-- **Grower** — the partner company (e.g. *Finca La Marina S.L.*).
-- **Farm** — the geographic site a grower owns or operates.
-- **Plot** — a managed parcel inside a farm, planted with one variety.
-- **FruitVariety** — the commercial variety (e.g. *Nadorcott* mandarin, *Sekoya Pop* blueberry).
+- **Grower（种植者）**——合作企业，例如 *Finca La Marina S.L.*。
+- **Farm（农场）**——种植者拥有或运营的地理场所。
+- **Plot（地块）**——农场内种植某个品种的管理单元。
+- **FruitVariety（水果品种）**——商业品种，例如 *Nadorcott* 柑橘、*Sekoya Pop* 蓝莓。
 
-## Entities
+## 实体
 
-### Grower
+### Grower（种植者）
 
-| Property | Type | Identifier? |
+| 属性 | 类型 | 是否为标识符？ |
 |---|---|---|
 | `growerId` | string | ✓ |
 | `name` | string | |
@@ -29,11 +29,11 @@ Four entities capture this:
 | `partnerSince` | date | |
 | `isMasterGrower` | boolean | |
 
-`isMasterGrower` flags Zava's strategic, long-term partners.
+`isMasterGrower` 标记 Zava 的长期战略合作伙伴。
 
-### Farm
+### Farm（农场）
 
-| Property | Type | Identifier? |
+| 属性 | 类型 | 是否为标识符？ |
 |---|---|---|
 | `farmId` | string | ✓ |
 | `name` | string | |
@@ -41,46 +41,46 @@ Four entities capture this:
 | `region` | string | |
 | `hectares` | decimal (ha) | |
 
-### Plot
+### Plot（地块）
 
-| Property | Type | Identifier? |
+| 属性 | 类型 | 是否为标识符？ |
 |---|---|---|
 | `plotId` | string | ✓ |
 | `hectares` | decimal (ha) | |
 | `plantingYear` | integer | |
 
-### FruitVariety
+### FruitVariety（水果品种）
 
-| Property | Type | Identifier? |
+| 属性 | 类型 | 是否为标识符？ |
 |---|---|---|
 | `varietyId` | string | ✓ |
 | `commercialName` | string | |
 | `category` | string | |
-| `shelfLifeDays` | integer (days) | |
+| `shelfLifeDays` | integer（天） | |
 
-## Relationships
+## 关系
 
-| From | Verb | To | Cardinality |
+| 起点 | 关系动词 | 终点 | 基数 |
 |---|---|---|---|
-| Grower | owns | Farm | one-to-many |
-| Farm | contains | Plot | one-to-many |
-| Plot | grows | FruitVariety | many-to-one |
+| Grower | owns | Farm | 一对多 |
+| Farm | contains | Plot | 一对多 |
+| Plot | grows | FruitVariety | 多对一 |
 
-The chain `Grower → Farm → Plot → FruitVariety` is what makes **end-to-end traceability** possible: from a piece of fruit on the shelf back to the exact plot it came from.
+Grower → Farm → Plot → FruitVariety 路径提供**端到端追溯**的基础：从货架上的水果追溯到具体产地地块。
 
-## The graph so far
+## 当前图谱
 
 <ontology-embed id="official/zava-grove-to-shelf-step-1" height="380px"></ontology-embed>
 
-*Four entities and three relationships are already enough to answer questions like "How many hectares of Nadorcott mandarin does Zava source from Spain?"*
+*仅四个实体、三条关系，就能表达“Zava 在西班牙采购的 Nadorcott 柑橘对应多少公顷种植面积？”等问题。*
 
 ```quiz
-Q: In Zava's model, why is `Plot` a separate entity from `Farm` rather than just a property of `Farm`?
-- It makes the graph look denser
-- A farm can host multiple plots each planted with a different variety, and traceability requires plot-level identity [correct]
-- Plots have different owners than farms
-- It's required by RDF
-> Plots are first-class because a single farm typically grows several varieties side-by-side, and Zava needs to trace each harvest lot back to the specific plot — not just the farm.
+Q: 为什么 Zava 将 Plot 建模为独立实体，而不是 Farm 的一个属性？
+- 为了让图看起来更密集
+- 一个农场可有多个种植不同品种的地块，追溯需要地块级标识 [correct]
+- 因为地块与农场的所有者必然不同
+- 因为 RDF 强制要求这样做
+> 同一农场通常同时种植多个品种。Zava 需要把每个采收批次追溯到具体地块，而不只是农场，因此地块应是独立实体。
 ```
 
-Next, we'll add the **harvest events** and the famous **four-stage quality check**.
+接下来添加**采收事件**与**四阶段质量检查**。
